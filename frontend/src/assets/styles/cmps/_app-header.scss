@@ -1,4 +1,6 @@
 .app-header {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+        sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,14 +9,38 @@
     height: 44px;
     padding: 6px 4px;
 
-    .nav-options { 
+    .nav-options {
         display: flex;
         align-items: center;
-        
+
+        :not(:last-child) {
+            margin-right: 14px;
+        }
+
         .home-icon {
             color: whitesmoke;
             margin: 0px 6px;
             font-size: 24px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin-bottom: 0;
+                color: whitesmoke;
+            }
+        }
+
+        .trello-icon {
+            color: whitesmoke;
+            font-size: 20px;
+            margin-right: 7px;
+        }
+
+        .logo {
+            font-size: 20px;
         }
     }
 }

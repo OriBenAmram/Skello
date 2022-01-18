@@ -18,8 +18,8 @@ export class _AppHeader extends React.Component {
           <NavLink exact to="/">
             <AiFillHome className='home-icon' />
           </NavLink>
-          <NavLink className='logo clean-link' exact to="/workspace">
-          <ImTrello />Skello
+          <NavLink className='logo-container clean-link' exact to="/workspace">
+            <ImTrello className='trello-icon' /><p className='logo'>Skello</p>
           </NavLink>
           <NavLink className='boards clean-link' exact to="/board/:321">
             Boards

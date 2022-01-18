@@ -10,12 +10,12 @@ import { storageService } from '../services/async-storage.service'
 function _BoardApp() {
     // const [isMenuOpen, setMenuOpen] = useState(false)
  
-    // useEffect(() => {
-      
-    //     return () => {
+    useEffect(() => {
+        _loadBoard()
+        return () => {
           
-    //     }
-    // }, [])
+        }
+    }, [])
 
     // useEffect(() => {
     // }, [])
@@ -27,10 +27,10 @@ function _BoardApp() {
     //     // action
     // }
 
-    // _loadBoard = async () => {
-    //     const data = storageService.query();
-    //     if(data) console.log(data);
-    //   };
+    const _loadBoard = async () => {
+        const data = storageService.query();
+        if(data) console.log(data);
+      };
     
     return (
         <div className="bopard-app">
