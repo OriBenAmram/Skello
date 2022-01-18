@@ -13,7 +13,7 @@ export function HomePage() {
           <button>Start Demo</button>
         </div>
         <div>
-          <img class="hero-img" src={heroImg} alt="" />
+          <img className="hero-img" src={heroImg} alt="" />
         </div>
       </div>
     </section>
