@@ -1,0 +1,36 @@
+// Setup
+// @import "setup/variables.scss";
+// @import "setup/functions.scss";
+// @import "setup/mixins.scss";
+// @import "setup/typography.scss";
+
+// Basics
+// @import "basics/helpers.scss";
+// @import "basics/layout.scss";
+// @import "basics/base.scss";
+// @import "basics/buttons.scss";
+
+// PAGES
+// @import "pages/home-page.scss";
+
+// Components
+@import "cmps/add-toy.scss";
+@import "cmps/add-review.scss";
+@import "cmps/chat-box.scss";
+@import "cmps/marker.scss";
+@import "cmps/popup-modal.scss";
+@import "cmps/side-bar.scss";
+@import "cmps/toy-filter.scss";
+@import "cmps/toy-preview.scss";
+@import "cmps/toy-list.scss";
+@import "cmps/user-list.scss";
+@import "cmps/user-preview.scss";
+@import "cmps/toy-sort-select.scss";
+@import "cmps/review-preview.scss";
+@import "cmps/review-list.scss";
+
+
+// general
+@import "cmps/app-header.scss";
+@import "cmps/app-footer.scss";
+
