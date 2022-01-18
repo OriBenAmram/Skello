@@ -2,7 +2,8 @@ import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import thunk from 'redux-thunk';
 
 // Reducers
-import {toyReducer} from './toy.reducer';
+import {userReducer} from './user/user.reducer.js';
+// import {toyReducer} from './toy.reducer';
 
 const rootReducer = combineReducers({
   //   toyModule: toyReducer,

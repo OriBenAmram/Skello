@@ -1,4 +1,4 @@
-import heroImg from '../assets/img/hero.png';
+// import heroImg from '../assets/img/hero.png';
 
 export function HomePage() {
   return (
@@ -11,9 +11,7 @@ export function HomePage() {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, recusandae.</p>
           <button>To Demo</button>
         </div>
-        <div>
-          <img src={heroImg} className="hero-img" alt="" />
-        </div>
+        <div>{/* <img src={heroImg} className="hero-img" alt="" /> */}</div>
       </div>
     </section>
   );

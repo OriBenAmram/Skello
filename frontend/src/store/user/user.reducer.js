@@ -1,4 +1,4 @@
-// import { userService } from '../services/user.service.js'
+import {userService} from '../../services/user.service.js';
 
 const initialState = {
   loggedinUser: userService.getLoggedinUser(),
@@ -15,10 +15,6 @@ export function userReducer(state = initialState, action) {
       return (newState = {...state, users: action.users});
 
     default:
-      return {...state};
+      return newState;
   }
-  // For debug:
-  // window.userState = newState;
-  // console.log('State:', newState);
-  return newState;
 }

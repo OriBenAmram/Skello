@@ -17,8 +17,12 @@ export class _AppHeader extends React.Component {
     // const {user} = this.props;
     return (
       <header className="app-header">
-        <section></section>
-        <section></section>
+        <section>
+          {/* <h1 style={{backgroundColor: 'lightgrey', height: 100}}>
+            im Header <br />
+          </h1> */}
+        </section>
+
         {/* <NavLink className="logo" exact to="/">
             MisterToy
           </NavLink> */}
