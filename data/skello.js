@@ -52,11 +52,10 @@ async function loadAndWatchBoard(boardId) {
     // subscribe to socket and commit to store
 }
 
-
-
 const board = {
     "_id": "b101",
     "title": "Board Title",
+    "isFavorite": false,
     "createdAt": 1589983468418,
     "createdBy": {
         "_id": "u101",
@@ -87,78 +86,54 @@ const board = {
                     "id": "c101",
                     "title": "We have to Replace the logo",
                     "description": "Replace logo",
-                    "createdAt" : Date.now(),
-                    "style": {}
-                },
-                {
-                    "id": "c102",
-                    "title": "Add Samples",
-                    "description": "Add Samples",
-                    "createdAt" : Date.now(),
-                },
-            ],
-        },
-        {
-            "id": "g102",
-            "title": "Group 2",
-            "tasks": [
-                {
-                    "id": "c103",
-                    "title": "Do that"
-                },
-                {
-                    "id": "c104",
-                    "title": "Help me",
-                    "status": "in-progress",
-                    "description": "description",
-                    "comments": [
+                    "createdAt": Date.now(),
+                    "labelIds": ["l908", "l909"],
+                    "style": {
+                        "id": "1202",
+                        // Is that the right way, or should we marched it to the same key?
+                        "bgClr": "red",
+                        "bgImg": "url",
+                        "coverMode": "full"
+                    },
+                    "byMember": {
+                        "_id": "u101",
+                        "imgUrl": "url",
+                        "fullname": "muki",
+                        "username": "muki pori",
+                    },
+                    "attachments": [
                         {
-                            "id": "ZdPnm",
-                            "txt": "also @yaronb please CR this",
-                            "createdAt": 1590999817436.0,
-                            "byMember": {
-                                "_id": "u101",
-                                "fullname": "Tal Tarablus",
-                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                            }
-                        }
-                    ],
-                    "checklists": [
-                        {
-                            "id": "YEhmF",
-                            "title": "Checklist",
-                            "todos": [
-                                {
-                                    "id": "212jX",
-                                    "title": "To Do 1",
-                                    "isDone": false
-                                }
-                            ]
-                        }
-                    ],
+                            "id": "iVWjDl",
+                            "name": "Media url",
+                            "url": "https://res.cloudinary.com/dusakec3z/video/upload/v1633862965/riynj77lwmbwrq3smk8k.webm",
+                            "createdAt": Date.now()
+                        }],
                     "members": [
                         {
                             "_id": "u101",
-                            "username": "Tal",
-                            "fullname": "Tal Tarablus",
-                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        }
-                    ],
-                    "labelIds": ["l101", "l102"],
-                    "createdAt": 1590999730348,
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            "imgUrl": "url",
+                            "fullname": "muki",
+                            "username": "muki pori",
+                        },
+                        {
+                            "_id": "u101",
+                            "imgUrl": "url",
+                            "fullname": "muki",
+                            "username": "muki pori",
+                        },
+                        {
+                            "_id": "u101",
+                            "imgUrl": "url",
+                            "fullname": "muki",
+                            "username": "muki pori",
+                        }],
+                    "dueDate": {
+                        "date": 1589983468418,
+                        "isDone": false
                     },
-                    "style": {
-                        "bgColor": "#26de81"
-                    }
+                    "isArchive": false
                 }
-            ],
-            "style": {}
+            ]
         }
     ],
     "activities": [
@@ -176,58 +151,18 @@ const board = {
                 "title": "Replace Logo"
             }
         }
-    ],
-    // for monday
-    "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+    ]
 }
+
 const user = {
     "_id": "u101",
     "fullname": "Abi Abambi",
     "username": "abi@ababmi.com",
     "password": "aBambi123",
     "imgUrl": "http://some-img.jpg",
-    "mentions": [{
-        "id": "m101",
-        "boardId": "m101",
-        "taskId": "t101"
-    }]
+    // "mentions": [{
+    //     "id": "m101",
+    //     "boardId": "m101",
+    //     "taskId": "t101"
+    // }]
 }
-
-// For Monday Mostly:
-// Dynamic Components: 
-// <TaskPreview> => <tr> 
-//    <td v-for="(cmpType) in cmpsOrder">
-//         <component :is="cmpType" :info="getCmpInfo(cmpType)" @updated="updateTask(cmpType, $event)">
-//    </td>
-
-function updateTask(cmpType, data) {
-    // Switch
-    // task.members = data;
-    // task.status = data;
-}
-
-
-const cmp1 = {
-    type: 'status-picker',
-    info: {
-        selectedStatus: 'pending',
-        statuses: [{}, {}]
-    }
-}
-
-const cmp2 = {
-    type: 'member-picker',
-    info: {
-        selectedMembers: ['m1', 'm2'],
-        members: ['m1', 'm2', 'm3']
-    }
-}
-
-const cmp3 = {
-    type: 'date-picker',
-    info: {
-        selectedDate: '2022-09-07',
-    }
-}
-
-
