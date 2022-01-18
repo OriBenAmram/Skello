@@ -1,6 +1,62 @@
-.home-page{
-    text-align: center;
-    img{
-        width: 400px;
+.homepage{
+    
+    width: 100%;
+    color: #172B4D;
+    // background-color: #FAFBFC;
+    background: linear-gradient(0deg, #fff, #eae6ff 100%);
+    padding: 0 10%;
+
+    .hero{
+        padding: 100px 0 0;
+        align-items: center;
+        grid-gap: 40px;
+        gap: 40px;
+        flex-direction: row;
     }
+
+}
+
+.hero-content{
+    width: 665px;
+    h1{
+        // font-family: 'Charlie Display',sans-serif;
+        font-family: Secular;
+        font-size: 2.8rem;
+        line-height: 1.25;
+        font-weight: 500;
+    }
+
+    p{
+        font-family: 'Charlie Text',sans-serif;
+        font-size: 1.25rem;
+        color: #091e42;
+        letter-spacing: 1.4px
+    }
+
+    button{
+        width: 50%;
+        background-color: #0065ff;
+        font-size: 1.25rem;
+        font-family: "Charlie Text", sans-serif;
+        padding: 15px 0;
+        border:none;
+        border-radius: 6px;
+        letter-spacing: 1px;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color .15s ease-in;
+        margin: 10% 0;
+
+        &:hover{
+            background-color: #0056d9;
+            cursor:pointer;
+        }
+    }
+
+   
+
+}
+
+.hero-img{
+    max-height: 600px;
 }

@@ -1,6 +1,6 @@
 import { HomePage } from './pages/HomePage.jsx';
 import { Workspace } from './pages/Workspace.jsx';
-import { BoardPage } from './pages/BoardPage.jsx';
+import { BoardApp } from './pages/BoardApp.jsx';
 
 const routes = [
   {
@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/board/:id',
-    component: BoardPage,
+    component: BoardApp,
   },
 ];
 
