@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { AiFillHome } from "react-icons/bs";
+import { AiFillHome } from "react-icons/ai";
+import { ImTrello } from "react-icons/im";
 // import { BsGrid3X3Gap } from 'react-icons/fa';
 
 export class _AppHeader extends React.Component {
@@ -13,15 +14,14 @@ export class _AppHeader extends React.Component {
     // const {user} = this.props;
     return (
       <header className="app-header">
-        <section>
+        <section className='nav-options'>
           <NavLink exact to="/">
-            {/* <AiFillHome /> */}
-            Home
+            <AiFillHome className='home-icon' />
           </NavLink>
-          <NavLink exact to="/workspace">
-            Skello
+          <NavLink className='logo clean-link' exact to="/workspace">
+          <ImTrello />Skello
           </NavLink>
-          <NavLink exact to="/board/:321">
+          <NavLink className='boards clean-link' exact to="/board/:321">
             Boards
           </NavLink>
         </section>

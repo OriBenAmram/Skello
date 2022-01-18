@@ -1,9 +1,20 @@
-.app-header { 
+.app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background-color: #026AA7;
-    height: rem(44px);
-    
+    background-color: #026aa7;
+    height: 44px;
+    padding: 6px 4px;
+
+    .nav-options { 
+        display: flex;
+        align-items: center;
+        
+        .home-icon {
+            color: whitesmoke;
+            margin: 0px 6px;
+            font-size: 24px;
+        }
+    }
 }
