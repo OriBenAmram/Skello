@@ -3,17 +3,12 @@ import ReactDOM from 'react-dom';
 import RootCmp from './RootCmp.jsx';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-<<<<<<< HEAD
-import {BrowserRouter as Router} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import {store} from './store/store';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import './assets/styles/style.scss';
 
 
-=======
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
->>>>>>> b126045ca8f44452a63a17f66096f315b07f3fc5
 
 ReactDOM.render(
   <React.StrictMode>
