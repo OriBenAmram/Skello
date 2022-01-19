@@ -35,7 +35,12 @@ function _BoardApp() {
     return (
         <div className="bopard-app">
             <h1>board app</h1>
-        </div>
+            {/* Board header navbar */}
+            <BoardHeader />
+            {/* group list - like list of. */}
+            <GroupList />
+
+        </div >
     )
 }
 
