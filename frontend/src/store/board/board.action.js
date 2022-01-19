@@ -23,3 +23,18 @@ export function loadBoard(boardId) {
     }
   };
 }
+
+export function addTask(taskTitle, groupId, boardId) {
+  return async dispatch => {
+    try {
+      const board = await boardService.add(taskTitle, groupId, boardId);
+      console.log('board after add', board);
+      dispatch({
+        type: 'SAVE_BOARD',
+        board: board,
+      });
+    } catch (err) {
+      console.log('cant add task', err);
+    }
+  };
+}

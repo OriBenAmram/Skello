@@ -1,10 +1,13 @@
 import React from 'react';
-import {GrAdd, GrClose} from 'react-icons/gr';
+import {connect} from 'react-redux';
 
-export class ActionButton extends React.Component {
+import {GrAdd, GrClose} from 'react-icons/gr';
+import {addTask} from '../../store/board/board.action.js';
+
+class _ActionButton extends React.Component {
   state = {
     isFormOpen: false,
-    txt: '',
+    taskTitle: '',
   };
 
   toggleForm = () => {
@@ -13,26 +16,46 @@ export class ActionButton extends React.Component {
 
   handleChange = ({target}) => {
     const value = target.value;
-    this.setState({txt: value});
+    this.setState({taskTitle: value});
   };
 
-  onAddTask = () => {
+  onAddTask = async () => {
     console.log('Task Added');
+    const {taskTitle} = this.state;
+    const {groupId, boardId} = this.props;
+
+    if (!taskTitle) return;
+    await this.props.addTask(taskTitle, groupId, boardId);
+    this.cleanForm();
+    this.toggleForm();
+  };
+
+  cleanForm = () => {
+    this.setState({taskTitle: ''});
   };
 
   renderTaskInput = () => {
     const {isList} = this.props;
-    const {txt} = this.state;
+    const {taskTitle} = this.state;
     const placeholder = isList ? 'Enter list title...' : 'Enter a title for this task...';
     const btnText = isList ? 'Add List' : 'Add Card';
     return (
       <div className="add-task-open">
-        <textarea autoFocus placeholder={placeholder} onChange={this.handleChange} value={txt}></textarea>
+        <textarea
+          autoFocus
+          placeholder={placeholder}
+          onChange={this.handleChange}
+          value={taskTitle}></textarea>
         <div className="task-btns flex align-center">
           <button onClick={this.onAddTask} className="task-btn save-task">
             {btnText}
           </button>
-          <button onClick={this.toggleForm} className="task-btn close-task">
+          <button
+            onClick={() => {
+              this.toggleForm();
+              this.cleanForm();
+            }}
+            className="task-btn close-task">
             <GrClose />
           </button>
         </div>
@@ -59,3 +82,16 @@ export class ActionButton extends React.Component {
     return isFormOpen ? this.renderTaskInput() : this.renderAddButton();
   }
 }
+
+// function mapStateToProps({ boardModule }) {
+//   return {
+//     board: boardModule.board,
+//   };
+// }
+
+const mapDispatchToProps = {
+  addTask,
+};
+
+export const ActionButton = connect(null, mapDispatchToProps)(_ActionButton);
+// export const ActionButton = connect(mapStateToProps, mapDispatchToProps)(_ActionButton)
