@@ -14,7 +14,10 @@
 @import "pages/home-page.scss";
 
 // Components
-// @import "cmps/add-toy.scss";
+
+// groups
+@import "cmps/group-preview.scss";
+@import "cmps/group-list.scss";
 
 // general
 @import "cmps/app-header.scss";

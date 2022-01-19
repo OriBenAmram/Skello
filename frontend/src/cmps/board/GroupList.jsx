@@ -1,5 +1,5 @@
 import React from "react";
-import { GroupPreview } from "./board/GroupPreview.jsx";
+import { GroupPreview } from "./GroupPreview.jsx";
 
 export function GroupList({ board }) {
   console.log('board - grouplist', board);

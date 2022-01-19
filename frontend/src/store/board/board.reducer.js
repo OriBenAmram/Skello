@@ -1,6 +1,8 @@
+import { boardService } from "../../services/board.service";
 
 const initialState = {
-    board: null
+    board: null,
+    boards: boardService.getBoardsFromStorage() || []
 };
 
 export function boardReducer(state = initialState, action) {
@@ -9,8 +11,8 @@ export function boardReducer(state = initialState, action) {
         case 'SET_BOARD':
             return (newState = { ...state, board: action.board });
 
-        // case 'SET_BOARDS':
-        //     return (newState = { ...state, users: action.users });
+        case 'SET_BOARDS':
+            return (newState = { ...state, boards: action.boards });
 
         default:
             return newState;

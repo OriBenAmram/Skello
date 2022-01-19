@@ -1,30 +1,34 @@
-import {storageService} from './async-storage.service.js';
+import { storageService } from './async-storage.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
 
-const STORAGE_KEY = 'board';
-let gBoard = _getBoards();
+const STORAGE_KEY = 'boards';
+_setBoardsToStorage()
 
-function _getBoards() {
+function getBoardsFromStorage() {
+  const boards = storageService.loadFromStorage(STORAGE_KEY);
+  console.log('boards from storage', boards)
+  return boards
+}
+
+function query() {
+  return storageService.query(STORAGE_KEY)
+}
+
+export const boardService = {
+  query,
+  getBoardsFromStorage
+}
+
+
+function _saveBoardsToStorage(boards) {
+  storageService.saveToStorage(STORAGE_KEY, boards);
+}
+
+function _setBoardsToStorage() {
   let boards = storageService.loadFromStorage(STORAGE_KEY);
   if (!boards || !boards.length) {
     boards = DUMMY_BOARDS;
   }
   _saveBoardsToStorage(boards);
-  return boards;
 }
 
-export const boardService = {
-    query,
-    // getById,
-    // save,
-    // remove
-}
-
-
-function query() { 
-    return storageService.query(STORAGE_KEY)
-}
-
-function _saveBoardsToStorage(boards) {
-  storageService.saveToStorage(STORAGE_KEY, boards);
-}
