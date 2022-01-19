@@ -1,4 +1,4 @@
-import {userService} from '../../services/user.service.js'
+import { userService } from '../../services/user.service.js'
 
 
 export function login(credentials) {
@@ -18,7 +18,6 @@ export function login(credentials) {
 
 
 export function signup(credentials) {
-    console.log("🚀 ~ file: user.actions.js ~ line 21 ~ signup ~ credentials", credentials)
     return async (dispatch) => {
         try {
             const user = await userService.signup(credentials)

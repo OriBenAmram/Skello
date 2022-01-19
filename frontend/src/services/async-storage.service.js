@@ -9,7 +9,7 @@ export const storageService = {
 };
 
 function query(entityType, delay = 500) {
-  console.log('entityType:', entityType);
+  // console.log('entityType:', entityType);
   var entities = JSON.parse(localStorage.getItem(entityType)) || [];
 
   return new Promise((resolve, reject) => {
@@ -22,6 +22,8 @@ function query(entityType, delay = 500) {
 function get(entityType, entityId) {
   return query(entityType).then(entities => entities.find(entity => entity._id === entityId));
 }
+
+
 function post(entityType, newEntity) {
   newEntity._id = _makeId();
   return query(entityType).then(entities => {
@@ -49,7 +51,7 @@ function remove(entityType, entityId) {
 }
 
 function _save(entityType, entities) {
-  console.log('entityType FROM SAVE!', entityType);
+  // console.log('entityType FROM SAVE!', entityType);
   localStorage.setItem(entityType, JSON.stringify(entities));
 }
 

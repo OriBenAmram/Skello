@@ -8,11 +8,15 @@ function query() {
   return storageService.query(STORAGE_KEY)
 }
 
-
 function getBoardsFromStorage() {
   const boards = storageService.loadFromStorage(STORAGE_KEY);
   return boards
 }
+
+function getById(toyId) {
+  return storageService.get(STORAGE_KEY, toyId)
+}
+
 
 function _saveBoardsToStorage(boards) {
   storageService.saveToStorage(STORAGE_KEY, boards);
@@ -26,6 +30,8 @@ function _setBoardsToStorage() {
   _saveBoardsToStorage(boards);
   return boards
 }
+
+
 
 export const boardService = {
   query,
