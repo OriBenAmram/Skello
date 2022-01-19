@@ -4,6 +4,7 @@ const DUMMY_BOARDS = [
     {
         "_id": "b101",
         "title": "Board Title",
+        isFavorite: true,
         "isPublic": false,
         "createdAt": 1589983468418,
         "createdBy": {
@@ -103,6 +104,7 @@ const DUMMY_BOARDS = [
     },
     {
         "_id": "b545",
+        isFavorite: true,
         "title": "Sprint4",
         "isPublic": false,
         "createdAt": 1589983468418,
@@ -196,6 +198,7 @@ const DUMMY_BOARDS = [
     },
     {
         "_id": "b999",
+        isFavorite: false,
         "title": "Sprint 5",
         "isPublic": false,
         "createdAt": 1589983468418,
@@ -289,6 +292,7 @@ const DUMMY_BOARDS = [
     },
     {
         "_id": "b156",
+        isFavorite: false,
         "title": "Sprint 6",
         "isPublic": false,
         "createdAt": 1589983468418,

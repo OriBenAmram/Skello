@@ -7,5 +7,17 @@
         cursor: pointer;
         height: 100%;
         border-radius:5px;
+        position: relative;
     }
+
+    .star-icon{
+        font-size: 1.3rem;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        &.favorite{
+            color: gold
+        }
+    }
+
 }

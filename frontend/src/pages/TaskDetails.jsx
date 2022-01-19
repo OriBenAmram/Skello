@@ -1,6 +1,46 @@
 
 import { AiOutlineCreditCard } from "react-icons/ai";
-export function TaskDetails() {
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+// const [board, setBoard] = useState(null);  
+
+export function TaskDetails(props) {
+    const dispatch = useDispatch();
+    const [task, setTask] = useState(null);
+
+
+    const { boardId, groupId, taskId } = props.match.params;
+    console.log('params:', boardId, groupId, taskId);
+
+
+
+    // Find curr task move //
+    const currBoard = useSelector(state => state.boardModule.board);
+    const currGroup = currBoard?.groups.find(group => group.id === groupId);
+    const currTask = currGroup.tasks.find(task => task.id === taskId);
+    console.log('currTask:', currTask);
+    setTask(currTask)
+
+    // console.log('board:', board);
+
+    // const task = board.task.find(task => task.id === taskId);
+    // console.log('task:', task);
+
+    // useEffect(async () => {
+    //     if (!id) this.props.history.push('/workspace');
+    //     else {
+    //         try {
+    //             const board = await dispatch(loadBoard(id));
+    //             if (!board) props.history.push('/workspace');
+    //             else setBoard(board);
+    //         } catch (err) {
+    //             console.log('cant load board', err);
+    //         }
+    //     }
+    // }, []);
+
 
 
     return (
@@ -14,10 +54,10 @@ export function TaskDetails() {
                 </section>
                 {/* Details-header */}
                 <section className='details-header'>
-                    <AiOutlineCreditCard className='header-icon'/>
-                    <textarea>app header bla bla</textarea>
+                    <AiOutlineCreditCard className='header-icon' />
+                    <textarea>good job!</textarea>
                     <div className="header-sub-title">
-                        <span>by Ori Ben Amram</span>
+                        <span>daniel </span>
                     </div>
                 </section>
 
