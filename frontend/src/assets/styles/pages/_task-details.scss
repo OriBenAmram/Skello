@@ -1,0 +1,70 @@
+.task-details-page { 
+    background-color: #212427c7;
+    height: 100vh;
+    padding-top: 50px;
+
+    .task-details-modal { 
+        width: 70%;
+        height: 700px;
+        margin: auto;
+        background-color: whitesmoke;
+
+        display: flex;
+        flex-direction: column;
+
+
+        .details-cover{
+            height: 160px;
+            background-color: rgb(55, 95, 168);
+        }
+
+        .details-header{
+            margin: 12px 40px 8px 56px;
+            position: relative;
+            min-height: 32px;
+            background-color: inherit;
+
+            .header-icon { 
+                position: absolute;
+                left: -40px;
+                top: 4px;
+            }
+
+            textarea {
+                overflow: hidden;
+                overflow-wrap: break-word;
+                height: rem(32.8px);
+
+                font-size: rem(20px);
+                font-weight: 600;
+                line-height: rem(24px);
+                margin: -4px -8px;
+                width: 100%;
+                border:none;
+                padding: 4px 8px;
+                background-color: rgba(255, 255, 255, 0);
+                border-radius: 3px;
+            }
+        }
+        // Main-vontent
+        .main-content{
+            display: flex;
+            
+            // Side-Bar
+            .side-bar{
+                height: 100%;
+                background-color: rgb(194, 111, 111);
+            }
+        }
+
+        
+    }
+}
+
+
+// align-items: center;
+//     display: flex;
+//     min-height: 32px;
+//     margin: 0 0 4px 40px;
+//     padding: 8px 0;
+//     position: relative
