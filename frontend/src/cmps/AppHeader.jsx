@@ -12,15 +12,13 @@ export class _AppHeader extends React.Component {
   componentDidMount() { }
 
   render() {
-    // console.log(' this.props:', this.props);
-    console.log('this.props.location:', this.props.location);
+    const { board } = this.props
+    console.log(' board :',  board );
     const isHome = this.props.location.pathname === '/'
     const isBoard = this.props.location.pathname.includes('board');
-    console.log('isHome? header', isHome);
-    console.log('isBoard? header', isBoard);
     const { user } = this.props;
     return (
-      <header className={`app-header ${ (isBoard) ? 'board' : '' }`}>
+      <header className={`app-header ${(isBoard) ? 'board' : ''}`}>
         <section className='nav-options'>
           <NavLink className='home-icon-container' exact to="/">
             <AiFillHome className='home-icon' />
@@ -28,9 +26,9 @@ export class _AppHeader extends React.Component {
           <NavLink className='logo-container clean-link' exact to="/workspace">
             <ImTrello className='trello-icon' /><p className='logo'>Skello</p>
           </NavLink>
-          <NavLink className='boards-selector clean-link' exact to="/board/:321">
+          {board && <NavLink className='boards-selector clean-link' exact to={`/board/${board._id}`}>
             Boards
-          </NavLink>
+          </NavLink>}
         </section>
 
         {/* {!user && <section className='user-general-options'>
@@ -54,9 +52,9 @@ export class _AppHeader extends React.Component {
   }
 }
 
-function mapStateToProps({ userModule }) {
+function mapStateToProps({ boardModule }) {
   return {
-    user: userModule.user,
+    board: boardModule.board,
   };
 }
 

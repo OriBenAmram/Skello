@@ -1,46 +1,30 @@
 import React, { Component, useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
 
-// only for now //
-import { storageService } from '../services/async-storage.service'
+// CMPS
+import { GroupList } from '../cmps/GroupList.jsx'
 
-
-// TODO: Connect To STORE - Action
+// ACTIONS
 
 export function BoardApp() {
-    // const [isMenuOpen, setMenuOpen] = useState(false)
-    // const board = useSelector(state => state.board)
-    // const dispatch = useDispatch(function)
+    const dispatch = useDispatch()
+    // board from store
+    const board = useSelector(state => state.board)
+    console.log("🚀 ~ file: BoardApp.jsx ~ line 16 ~ BoardApp ~ board", board)
+
+    // CDM
     useEffect(() => {
-        _loadBoard()
-        return () => {
-            // dispatch(actionfunc)
-        }
+
     }, [])
 
-    // useEffect(() => {
-    // }, [])
 
-    // const addMsg = (newMsg) => {
-    //     setMsgs(prevMsgs => [...prevMsgs, newMsg])
-    //     if (!toy.msgs) toy.msgs = [];
-    //     toy.mags.push(newMsg)
-    //     // action
-    // }
-
-    const _loadBoard = async () => {
-        const data = storageService.query('boardDB');
-        if (data) console.log(data);
-    };
-
+    if (!board) return <h1>Loading...</h1>
     return (
         <div className="board-app">
             <h1>board app</h1>
             {/* Board header navbar */}
             {/* <BoardHeader /> */}
-            {/* group list - like list of. */}
-            {/* <GroupList /> */}
-
+            <GroupList board={board} />
         </div >
     )
 }

@@ -132,7 +132,8 @@ const board = {
                             "username": "muki12",
                         }],
                     "dueDate": 1589983468418,
-                    "isArchive": false
+                    "archiveAt": null
+                    // "isArchive": false
 
                     // {
                     //     "date": 
