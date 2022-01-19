@@ -1,0 +1,15 @@
+.task-preview{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    min-height: 32px;
+    margin: 0;
+    box-shadow: 0 1px 0 #c0c6d0;
+    background: #fff;
+    padding: 5px 8px 3px;
+    border-radius: 3px;
+    font-size: .875rem;
+    transition: background-color .1s;
+    cursor: pointer;
+    margin-bottom: 4px;
+}

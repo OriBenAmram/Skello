@@ -1,5 +1,12 @@
 .group-preview { 
-    height: 500px;
-    width: 150px;
-    background-color: rgb(57, 115, 153);
+    min-width: 17rem;
+    // overflow: hidden;
+    border-radius: 3px;
+    background-color: #ebecf0;
+    padding: 0 8px;
+    margin-bottom: 0;
+    height: fit-content;
+    max-width: 272px;
+    max-height: 80vh;
+    margin-inline-end: 8px;
 }
