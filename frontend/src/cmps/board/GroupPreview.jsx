@@ -1,10 +1,10 @@
-import {Link} from 'react-router-dom';
+import {TaskList} from './TaskList';
 
-// SERVICES
-export function GroupPreview({group}) {
+export function GroupPreview({group, tasks}) {
   return (
     <article className="group-preview">
-      <h1>Preview</h1>
+      <h3>{group.title}</h3>
+      <TaskList tasks={tasks} />
     </article>
   );
 }

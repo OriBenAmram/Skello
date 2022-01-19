@@ -16,10 +16,12 @@
 // Components
 @import "cmps/board-list.scss";
 
-// groups
+// Group
 @import "cmps/group-preview.scss";
 @import "cmps/group-list.scss";
 
+// Task
+@import "cmps/task-preview";
 // general
 @import "cmps/app-header.scss";
 
