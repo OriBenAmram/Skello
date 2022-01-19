@@ -32,3 +32,18 @@ function _setBoardsToStorage() {
   _saveBoardsToStorage(boards);
 }
 
+export const boardService = {
+  query,
+  // getById,
+  // save,
+  // remove
+}
+
+
+function query() {
+  return storageService.query(STORAGE_KEY)
+}
+
+function _saveBoardsToStorage(boards) {
+  storageService.saveToStorage(STORAGE_KEY, boards);
+}

@@ -52,6 +52,8 @@ async function loadAndWatchBoard(boardId) {
     // subscribe to socket and commit to store
 }
 
+// id from MongoDB - _id //
+
 const board = {
     "_id": "b101",
     "title": "Board Title",
@@ -89,46 +91,54 @@ const board = {
                     "createdAt": Date.now(),
                     "labelIds": ["l101"],
                     "style": {
+                        // "id": "1202",
 
-                        "backgroundColor": "red",
-                        "backgroundImage": "url",
+                        // Is that the right way, or should we marched it to the same key?
+                        "bgClr": "red",
+                        "bgImg": "url",
                         "isCover": false
                     },
+                    // we need all this data about the user?
                     "byMember": {
                         "_id": "u101",
                         "imgUrl": "url",
-                        "fullname": "muki",
-                        "username": "muki pori",
+                        "fullname": "Muki Puri",
+                        "username": "muki12",
                     },
                     "attachments": [
                         {
                             "id": "iVWjDl",
                             "name": "Media url",
-                            "url": "https://res.cloudinary.com/dusakec3z/video/upload/v1633862965/riynj77lwmbwrq3smk8k.webm",
+                            "url": "url",
                             "createdAt": Date.now()
                         }],
                     "members": [
                         {
                             "_id": "u101",
                             "imgUrl": "url",
-                            "fullname": "Ori Ben Amram",
-                            "username": "ori8",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
                         },
                         {
-                            "_id": "u102",
+                            "_id": "u101",
                             "imgUrl": "url",
-                            "fullname": "Yuval Shai",
-                            "username": "yuval22",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
                         },
                         {
-                            "_id": "u103",
+                            "_id": "u101",
                             "imgUrl": "url",
-                            "fullname": "Daniel Shaked",
-                            "username": "daniel98",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
                         }],
                     "dueDate": 1589983468418,
-                    "isDone": false,
                     "archiveAt": null
+                    // "isArchive": false
+
+                    // {
+                    //     "date": 
+                    //     "status": "done"
+                    // },
                 }
             ]
         }

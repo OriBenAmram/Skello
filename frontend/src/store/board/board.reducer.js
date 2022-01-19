@@ -18,3 +18,5 @@ export function boardReducer(state = initialState, action) {
             return newState;
     }
 }
+
+console.log('initialState:', initialState);
