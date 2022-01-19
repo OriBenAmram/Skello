@@ -2,18 +2,17 @@ import { storageService } from './async-storage.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
 
 const STORAGE_KEY = 'boards';
-_setBoardsToStorage()
-
+const gBoards = _setBoardsToStorage()
 
 function query() {
   return storageService.query(STORAGE_KEY)
 }
+
+
 function getBoardsFromStorage() {
   const boards = storageService.loadFromStorage(STORAGE_KEY);
   return boards
 }
-
-
 
 function _saveBoardsToStorage(boards) {
   storageService.saveToStorage(STORAGE_KEY, boards);
@@ -25,9 +24,11 @@ function _setBoardsToStorage() {
     boards = DUMMY_BOARDS;
   }
   _saveBoardsToStorage(boards);
+  return boards
 }
 
 export const boardService = {
   query,
-  getBoardsFromStorage
+  getById,
+  getBoardsFromStorage,
 }
