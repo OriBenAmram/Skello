@@ -8,7 +8,10 @@ import { Link } from 'react-router-dom'
 
 // SERVICES
 
+
 class _Workspace extends Component {
+
+
 
     render() {
         return (
@@ -22,15 +25,13 @@ class _Workspace extends Component {
     }
 }
 
-function mapStateToProps({ userModule }) {
+function mapStateToProps({ boardModule }) {
     return {
-        // user: userModule.user,
+        boards: boardModule.boards
     }
 }
-
 const mapDispatchToProps = {
-    
-};
+}
 
 export const Workspace = connect(mapStateToProps, mapDispatchToProps)(_Workspace)
 
