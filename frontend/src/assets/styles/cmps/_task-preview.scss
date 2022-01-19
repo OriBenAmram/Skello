@@ -13,3 +13,20 @@
     cursor: pointer;
     margin-bottom: 4px;
 }
+
+.add-task-open{
+    textarea{
+        background-color: #fff;
+        box-shadow: 0 1px 0 #c0c6d0;
+        border: none;
+        outline: none;
+        resize: none;
+        padding: 8px;
+        height: 70px;
+        display: inline-block;
+        cursor: text;
+        border-radius: 3px;
+        width: 100%;
+
+    }
+}

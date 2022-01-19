@@ -10,4 +10,26 @@
     max-width: 272px;
     max-height: 80vh;
     margin-inline-end: 8px;
+
+    .add-btn{
+        align-items: center;
+        border-radius: 3px;
+        height: 35px;
+        width: 262px;
+        gap: 5px;
+        color: rgb(94, 108, 132);
+        cursor: pointer;
+
+        p{
+            margin:0
+        }
+
+        svg.icon{
+            font-size: 15px;
+        }
+
+        &:hover{
+            background-color: #d3d3d3;
+        }
+    }
 }

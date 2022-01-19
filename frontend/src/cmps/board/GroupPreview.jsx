@@ -6,7 +6,7 @@ export function GroupPreview({group, boardId}) {
     <article className="group-preview">
       <h3>{group.title}</h3>
       <TaskList groupId={group.id} boardId={boardId} tasks={group.tasks} />
-      <ActionButton />
+      <ActionButton groupId={group.id} boardId={boardId} />
     </article>
   );
 }
