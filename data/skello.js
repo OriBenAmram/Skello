@@ -87,13 +87,14 @@ const board = {
                     "title": "We have to Replace the logo",
                     "description": "Replace logo",
                     "createdAt": Date.now(),
-                    "labelIds": ["l908", "l909"],
+                    // Should we keep only an array of the ids or more?
+                    "labelIds": ["l101"],
                     "style": {
                         "id": "1202",
                         // Is that the right way, or should we marched it to the same key?
                         "bgClr": "red",
                         "bgImg": "url",
-                        "coverMode": "full"
+                        "isCover": false
                     },
                     "byMember": {
                         "_id": "u101",

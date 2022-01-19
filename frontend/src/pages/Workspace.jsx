@@ -13,6 +13,9 @@ class _Workspace extends Component {
     render() {
         return (
             <section className='workspace-page'>
+                <section className='left-side-bar-container'>
+                    
+                </section>
                 <h1>WorkSpace</h1>
             </section>
         )

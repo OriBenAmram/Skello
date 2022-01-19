@@ -7,13 +7,14 @@ import { storageService } from '../services/async-storage.service'
 
 // TODO: Connect To STORE - Action
 
-function _BoardApp() {
+export function BoardApp() {
     // const [isMenuOpen, setMenuOpen] = useState(false)
-
+    // const board = useSelector(state => state.board)
+    // const dispatch = useDispatch(function)
     useEffect(() => {
         _loadBoard()
         return () => {
-
+            // dispatch(actionfunc)
         }
     }, [])
 
@@ -28,22 +29,13 @@ function _BoardApp() {
     // }
 
     const _loadBoard = async () => {
-        const data = storageService.query();
+        const data = storageService.query('boardDB');
         if (data) console.log(data);
     };
 
     return (
-        <div className="bopard-app">
+        <div className="board-app">
             <h1>board app</h1>
         </div>
     )
 }
-
-const mapStateToProps = state => {
-    return {
-    }
-}
-const mapDispatchToProps = {
-}
-
-export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)

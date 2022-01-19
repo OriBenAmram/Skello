@@ -6,10 +6,16 @@ export const storageService = {
   remove,
 };
 
-query()
-function query(entityType = "appDB", delay = 500) {
+// Creating demo data
+query('boardDB')
+
+function query(entityType, delay = 500) {
+  console.log('entityType:', entityType);
   var entities = JSON.parse(localStorage.getItem(entityType)) || [];
-  if (!entities?.length) entities = localStorage.setItem(entityType, JSON.stringify(_createDemoData()));
+  if (!entities?.length && entityType !== 'user') {
+    console.log('got here')
+    entities = localStorage.setItem(entityType, JSON.stringify(_createDemoData()));
+  }
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
