@@ -1,5 +1,6 @@
 import React from 'react';
-import AddIcon from '@mui/icons-material/Add';
+import {GrAdd} from 'react-icons/gr';
+
 export class ActionButton extends React.Component {
   renderAddButton = () => {
     const {isList} = this.props;
@@ -8,13 +9,13 @@ export class ActionButton extends React.Component {
 
     return (
       <div>
-        addIcon
+        <GrAdd />
         <p>{buttonText}</p>
       </div>
     );
   };
 
   render() {
-    return null;
+    return <GrAdd />;
   }
 }

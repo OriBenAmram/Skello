@@ -1,3 +1,4 @@
+import {ActionButton} from './ActionButton';
 import {TaskList} from './TaskList';
 
 export function GroupPreview({group, tasks}) {
@@ -5,6 +6,7 @@ export function GroupPreview({group, tasks}) {
     <article className="group-preview">
       <h3>{group.title}</h3>
       <TaskList tasks={tasks} />
+      <ActionButton />
     </article>
   );
 }
