@@ -1,5 +1,5 @@
 .task-details-page {
-    background-color: #212427c7;
+    background-color: #000000a3;
     height: 100vh;
     padding-top: 50px;
     color: #172b4d;
@@ -8,7 +8,11 @@
     line-height: 20px;
 
     .task-details-modal {
-        width: 70%;
+        width: rem(768px);
+        position: fixed;
+        transform: translate(-50%);
+        left: 50%;
+        top: 50px;
         min-height: 600px;
         margin: auto;
         background-color: whitesmoke;
@@ -21,7 +25,6 @@
             border-radius: 3px;
             text-decoration: none;
             resize: none;
-            cursor: pointer;
         }
 
         ::placeholder {
@@ -49,14 +52,20 @@
                 overflow: hidden;
                 overflow-wrap: break-word;
                 height: rem(32.8px);
-
                 font-size: rem(20px);
                 font-weight: 600;
+                color: #172b4d;
                 line-height: rem(24px);
                 margin: -4px -8px;
                 padding: 4px 8px;
                 background-color: rgba(255, 255, 255, 0);
                 width: 100%;
+
+                &:focus {
+                    background-color: #fff;
+                    box-shadow: inset 0 0 0 2px #0079bf;
+                    outline: none;
+                }
             }
 
             .header-sub-title span {
@@ -80,6 +89,7 @@
                     display: inline-block;
                     min-height: rem(18px);
                     min-width: rem(40px);
+                    font-weight: 600;
                 }
 
                 .description-container {
@@ -102,8 +112,9 @@
                         min-height: rem(40px);
                         padding: 8px 12px;
                         background-color: #091e420a;
-                        margin: 0 0 4px 40px;
+                        margin: 0 0 12px 40px;
                         transition: all 0.4s;
+                        cursor: pointer;
 
                         &:hover {
                             background-color: #091e4214;
@@ -136,7 +147,15 @@
                             border-radius: 3px;
                             font-size: rem(14px);
                         }
-                        
+
+                        .show-details-btn {
+                            background-color: #091e420a;
+                            color: #172b4d;
+                            border: none;
+                            border-radius: 3px;
+                            height: 32px;
+                            padding: 6px 12px;
+                        }
                     }
 
                     .description-icon {
@@ -145,21 +164,45 @@
                         top: 4px;
                     }
                 }
+
+                .activity-container {
+                    
+                }
             }
 
             // Side-Bar
             .side-bar {
                 height: 100%;
+                padding: 0 16px 8px 8px;
                 flex: 1;
-                background-color: rgb(194, 111, 111);
+                // border: rgb(194, 111, 111) 1px solid;
+
+                h3 {
+                    color: #5e6c84;
+                }
+
+                .add-to-card { 
+                    margin-bottom: 24px;
+                }
+
+                .button-link {
+                    background-color: #091e420a;
+                    color: #172b4d;
+                    border: none;
+                    border-radius: 3px;
+                    height: 32px;
+                    padding: 6px 12px;
+                    width: 100%;
+                    margin-bottom: 8px;
+                    display: block;
+                    display: flex;
+                    align-items: center;
+
+                    :first-child {
+                        margin-right: 10px;
+                    }
+                }
             }
         }
     }
 }
-
-// align-items: center;
-//     display: flex;
-//     min-height: 32px;
-//     margin: 0 0 4px 40px;
-//     padding: 8px 0;
-//     position: relative

@@ -1,6 +1,7 @@
 
 import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineCreditCard } from "react-icons/ai";
+import { AiOutlineUserAdd } from "react-icons/ai";
 export function TaskDetails() {
 
 
@@ -36,25 +37,33 @@ export function TaskDetails() {
                                     <button className="save-btn">Save</button>
                                     <button className="primary-close-btn">X</button>
                                 </div>
-                                <button>Formatting help</button>
+                                <button className="show-details-btn">Formatting help</button>
                             </div>
                         </div>
                         {/* Activities */}
-                        <div className='activities'>
-                            Activities
+                        <div className='activity-container'>
+                            <div className='title-container'>
+                                <h3>Activity</h3>
+                                <button className="details-btn">Show details</button>
+                            </div>
                         </div>
                     </section>
 
                     {/* Side-Bar */}
                     <section className='side-bar'>
-                        <section className='suggested'>
-                            suggested
-                        </section>
                         <section className='add-to-card'>
-                            add to card
+                            <h3>Add to card</h3>
+                            <button className="button-link"> <AiOutlineUserAdd /> Members</button>
+                            <button className="button-link">Labels</button>
+                            <button className="button-link">Checklist</button>
+                            <button className="button-link">Dates</button>
+                            <button className="button-link">Attachment</button>
                         </section>
                         <section className='actions'>
-                            actions
+                            <h3>Actions</h3>
+                            <button className="button-link">Move</button>
+                            <button className="button-link">Copy</button>
+                            <button className="button-link">Archive</button>
                         </section>
                     </section>
 
