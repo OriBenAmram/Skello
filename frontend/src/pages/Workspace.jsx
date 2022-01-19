@@ -15,18 +15,19 @@ import { loadBoards } from '../store/board/board.action.js'
 
 export function Workspace() {
     const dispatch = useDispatch();
-    const boards = useSelector(state => state.boards)
+    // const boards = useSelector(state => state.boards)
 
+    // const boards = useSelector(state => state.boards)
+    // const board = useSelector(state => state.boards)
+    // console.log('boards:', boards);
 
 
 
     useEffect(() => {
-        console.log('i, im cmpDmount');
         dispatch(loadBoards())
     }, [])
 
 
-    console.log('boards:', boards);
 
 
     return (

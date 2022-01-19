@@ -15,7 +15,6 @@ export class _AppHeader extends React.Component {
     const isHome = this.props.location.pathname === '/'
     const isBoard = this.props.location.pathname.includes('board');
     const { user, board } = this.props;
-    console.log(' board :', board);
 
     return (
       <header className={`app-header ${(isBoard) ? 'board' : ''}`}>

@@ -2,7 +2,9 @@ import { boardService } from "../../services/board.service";
 
 const initialState = {
     board: null,
-    boards: boardService.getBoardsFromStorage() || []
+    // boards: boardService.getBoardsFromStorage() || ['baba']
+    boards: []
+
 };
 
 export function boardReducer(state = initialState, action) {
@@ -19,4 +21,3 @@ export function boardReducer(state = initialState, action) {
     }
 }
 
-console.log('initialState:', initialState);
