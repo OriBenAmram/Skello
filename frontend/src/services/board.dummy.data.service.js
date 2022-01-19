@@ -1,58 +1,7 @@
-// Guidelines
-// boardStore (no need for groupStore, taskStore), boardService
-// *. Support saving the entire board and also on the task level, 
-// PUT /api/board/b123/task/t678
+import {utilService} from './util.service.js'
 
-//    (no need for seperate APIs for mini-updates of task parts like members or status)
-// *. No need for saving an activities array per task, those activities are easily filtered from the board activities
-// *. activites - when board is updated, the frontend does not send the activities array within the board 
-//    instead it only sends a new activity object: {txt, boardId, groupId, taskId}
-//    the backend adds this activity to the board with $push and can also emit socket notificatios
-// *. D & D Guidelines - vue-smooth-dnd / vuedraggable / react-beutiful-dnd
-// *. Same model for Monday style app (do not implement a generic columns feature)
-// *. We do not handle concurrent editing - needs versioning
-
-// Rendering performance:
-// Store Mutation - saveBoard
-// state.board = board
-// Later, support switching a specific task
-
-
-// <BoardDetails> => <BoardGroup v-for>
-// <BoardGroup> => <TaskPreview v-for>
-// <TaskDetails> (+edit) - initially can be loaded in seperate route (later on we can place it in a modal and nested route)
-
-
-
-// Store - saveTask
-function storeSaveTask(task, activity) {
-    const activity = {
-        "id": makeId(),
-        "txt": "Changed Color",
-        "createdAt": Date.now(),
-        "byMember": userService.getLoggedinUser(),
-        "task": task
-    }
-    board = boardService.saveTask(boardId, groupId, task, activity)
-    commit(board)
-}
-
-// boardService
-function saveTask(boardId, groupId, task, activity) {
-    const board = getById(boardId)
-    // TODO: find the task, and update
-    board.activities.unshift(activity)
-    saveBoard(board)
-    return board
-}
-
-// boardStore-action
-async function loadAndWatchBoard(boardId) {
-    // load from service and commit to store
-    // subscribe to socket and commit to store
-}
-
-const board = {
+const DUMMY_BOARDS = [
+    {
     "_id": "b101",
     "title": "Board Title",
     "isPublic": false,
@@ -79,11 +28,11 @@ const board = {
     ],
     "groups": [
         {
-            "id": "g101",
+            "id": utilService.makeId(),
             "title": "Group 1",
             "tasks": [
                 {
-                    "id": "c101",
+                    "id": utilService.makeId(),
                     "title": "We have to Replace the logo",
                     "description": "Replace logo",
                     "createdAt": Date.now(),
@@ -102,7 +51,7 @@ const board = {
                     },
                     "attachments": [
                         {
-                            "id": "iVWjDl",
+                            "id": utilService.makeId(),
                             "name": "Media url",
                             "url": "https://res.cloudinary.com/dusakec3z/video/upload/v1633862965/riynj77lwmbwrq3smk8k.webm",
                             "createdAt": Date.now()
@@ -135,7 +84,7 @@ const board = {
     ],
     "activities": [
         {
-            "id": "a101",
+            "id": utilService.makeId(),
             "txt": "Changed Color",
             "createdAt": 154514,
             "byMember": {
@@ -144,22 +93,13 @@ const board = {
                 "imgUrl": "http://some-img"
             },
             "task": {
-                "id": "c101",
+                "id": utilService.makeId(),
                 "title": "Replace Logo"
             }
         }
     ]
 }
+    
+]
 
-const user = {
-    "_id": "u101",
-    "fullname": "Abi Abambi",
-    "username": "abi@ababmi.com",
-    "password": "aBambi123",
-    "imgUrl": "http://some-img.jpg",
-    // "mentions": [{
-    //     "id": "m101",
-    //     "boardId": "m101",
-    //     "taskId": "t101"
-    // }]
-}
+export default DUMMY_BOARDS;

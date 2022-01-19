@@ -1,46 +1,43 @@
 import React, { Component, useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
-// only for now //
-import { storageService } from '../services/async-storage.service'
+// CMPS
+import { GroupList } from '../cmps/GroupList.jsx'
 
-
-// TODO: Connect To STORE - Action
+// ACTIONS
+import { loadBoard } from '../store/board/board.action.js'
 
 export function BoardApp() {
-    // const [isMenuOpen, setMenuOpen] = useState(false)
-    // const board = useSelector(state => state.board)
-    // const dispatch = useDispatch(function)
+    const dispatch = useDispatch()
+    // board from store
+    const board = useSelector(state => state.board)
+    console.log("🚀 ~ file: BoardApp.jsx ~ line 16 ~ BoardApp ~ board", board)
+    
+    // CDM
     useEffect(() => {
-        _loadBoard()
-        return () => {
-            // dispatch(actionfunc)
-        }
+        dispatch(loadBoard())
+        // loadBoard()
     }, [])
 
-    // useEffect(() => {
-    // }, [])
+////////////////////////////////////////////////////////////////////////
+// Use dispatch actions
+// import {saveCar} from ....
+// const dispatch = useDispatch()
+// dispatch (saveCar(car))
 
-    // const addMsg = (newMsg) => {
-    //     setMsgs(prevMsgs => [...prevMsgs, newMsg])
-    //     if (!toy.msgs) toy.msgs = [];
-    //     toy.mags.push(newMsg)
-    //     // action
-    // }
+// our store
+// const cars =  useSelector (state=> state.cars)
+//////////////////////////////////////////////////////////////////////
 
-    const _loadBoard = async () => {
-        const data = storageService.query('boardDB');
-        if (data) console.log(data);
-    };
-
+    
+    if (!board) return <h1>Loading...</h1>
     return (
         <div className="board-app">
             <h1>board app</h1>
             {/* Board header navbar */}
             {/* <BoardHeader /> */}
-            {/* group list - like list of. */}
-            {/* <GroupList /> */}
-
+            <GroupList board={board} />
         </div >
     )
 }

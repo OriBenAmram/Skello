@@ -4,18 +4,13 @@ export const storageService = {
   post,
   put,
   remove,
+  saveToStorage,
+  loadFromStorage,
 };
-
-// Creating demo data
-query('boardDB')
 
 function query(entityType, delay = 500) {
   console.log('entityType:', entityType);
   var entities = JSON.parse(localStorage.getItem(entityType)) || [];
-  if (!entities?.length && entityType !== 'user') {
-    console.log('got here')
-    entities = localStorage.setItem(entityType, JSON.stringify(_createDemoData()));
-  }
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -67,107 +62,11 @@ function _makeId(length = 5) {
   return text;
 }
 
+function saveToStorage(key, val) {
+  localStorage.setItem(key, JSON.stringify(val));
+}
 
-function _createDemoData() {
-  return {
-    "_id": "b101",
-    "title": "Board Title",
-    "isFavorite": false,
-    "createdAt": 1589983468418,
-    "createdBy": {
-      "_id": "u101",
-      "fullname": "Daniel Shaked",
-      "imgUrl": "http://some-img"
-    },
-    "style": {},
-    "labels": [
-      {
-        "id": "l101",
-        "title": "Done",
-        "color": "#61bd4f"
-      }
-    ],
-    "members": [
-      {
-        "_id": "u101",
-        "fullname": "Tal Tarablus",
-        "imgUrl": "https://www.google.com"
-      }
-    ],
-    "groups": [
-      {
-        "id": "g101",
-        "title": "Group 1",
-        "tasks": [
-          {
-            "id": "c101",
-            "title": "We have to Replace the logo",
-            "description": "Replace logo",
-            "createdAt": Date.now(),
-            "labelIds": ["l908", "l909"],
-            "style": {
-              "id": "1202",
-              // Is that the right way, or should we marched it to the same key?
-              "bgClr": "red",
-              "bgImg": "url",
-              "coverMode": "full"
-            },
-            "byMember": {
-              "_id": "u101",
-              "imgUrl": "url",
-              "fullname": "muki",
-              "username": "muki pori",
-            },
-            "attachments": [
-              {
-                "id": "iVWjDl",
-                "name": "Media url",
-                "url": "https://res.cloudinary.com/dusakec3z/video/upload/v1633862965/riynj77lwmbwrq3smk8k.webm",
-                "createdAt": Date.now()
-              }],
-            "members": [
-              {
-                "_id": "u101",
-                "imgUrl": "url",
-                "fullname": "muki",
-                "username": "muki pori",
-              },
-              {
-                "_id": "u101",
-                "imgUrl": "url",
-                "fullname": "muki",
-                "username": "muki pori",
-              },
-              {
-                "_id": "u101",
-                "imgUrl": "url",
-                "fullname": "muki",
-                "username": "muki pori",
-              }],
-            "dueDate": {
-              "date": 1589983468418,
-              "isDone": false
-            },
-            "isArchive": false
-          }
-        ]
-      }
-    ],
-    "activities": [
-      {
-        "id": "a101",
-        "txt": "Changed Color",
-        "createdAt": 154514,
-        "byMember": {
-          "_id": "u101",
-          "fullname": "Abi Abambi",
-          "imgUrl": "http://some-img"
-        },
-        "task": {
-          "id": "c101",
-          "title": "Replace Logo"
-        }
-      }
-    ]
-  }
+function loadFromStorage(key) {
+  var val = localStorage.getItem(key);
+  return JSON.parse(val);
 }

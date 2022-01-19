@@ -1,19 +1,12 @@
 import React from "react";
-import { GroupDetails } from "./GroupDetails.jsx";
+import { GroupPreview } from "./board/GroupPreview.jsx";
 
-
-export function GroupList({ groups }) {
-
-
+export function GroupList({ board }) {
+  console.log('board - grouplist', board);
+  
   return (
-    <>
-      {groups.map((group, idx) => (
-        <div key={group.id}>
-          <GroupDetails
-
-          />
-        </div>))}
-
-    </>
-  );
+    <section className='group-list-container'>
+        {board.groups.map(group => <GroupPreview  group={group}/>)}
+    </section>
+  )
 }
