@@ -2,8 +2,7 @@ import { boardService } from "../../services/board.service";
 
 const initialState = {
     board: null,
-    // boards: boardService.getBoardsFromStorage() || ['baba']
-    boards: []
+    boards: boardService.getBoardsFromStorage() || []
 
 };
 

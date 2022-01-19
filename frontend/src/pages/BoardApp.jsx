@@ -9,9 +9,8 @@ import { GroupList } from '../cmps/board/GroupList.jsx'
 export function BoardApp() {
     const dispatch = useDispatch()
     // board from store
-    const board = useSelector(state => state.board)
-    console.log("🚀 ~ file: BoardApp.jsx ~ line 16 ~ BoardApp ~ board", board)
-    
+    const board = useSelector(state => state.boardModule.board)
+
     if (!board) return <h1>Loading... board app</h1>
     return (
         <div className="board-app">

@@ -13,6 +13,9 @@ function getBoardsFromStorage() {
   return boards
 }
 
+function getById(toyId) {
+  return storageService.get(STORAGE_KEY, toyId)
+}
 
 
 function _saveBoardsToStorage(boards) {
@@ -27,7 +30,10 @@ function _setBoardsToStorage() {
   _saveBoardsToStorage(boards);
 }
 
+
+
 export const boardService = {
   query,
+  getById,
   getBoardsFromStorage
 }

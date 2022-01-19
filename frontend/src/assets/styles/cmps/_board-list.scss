@@ -1,0 +1,11 @@
+.board-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+    grid-auto-rows: 140px;
+    gap: 16px;
+    .board-preview {
+        cursor: pointer;
+        height: 100%;
+        border-radius:5px;
+    }
+}

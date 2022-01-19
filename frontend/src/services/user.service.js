@@ -1,4 +1,4 @@
-import {storageService} from './async-storage.service.js';
+import { storageService } from './async-storage.service.js';
 
 const STORAGE_KEY = 'user';
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser';
@@ -24,7 +24,6 @@ function login(credentials) {
   });
 }
 function signup(userInfo) {
-  console.log("🚀 ~ file: user.service.js ~ line 27 ~ signup ~ userInfo", userInfo)
   return storageService.post(STORAGE_KEY, userInfo).then(user => {
     _setLoggedinUser(user);
     return user;
