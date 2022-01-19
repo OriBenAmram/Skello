@@ -37,9 +37,9 @@ export function BoardApp() {
         <div className="board-app">
             <h1>board app</h1>
             {/* Board header navbar */}
-            <BoardHeader />
+            {/* <BoardHeader /> */}
             {/* group list - like list of. */}
-            <GroupList />
+            {/* <GroupList /> */}
 
         </div >
     )

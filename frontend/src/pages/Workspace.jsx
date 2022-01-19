@@ -17,7 +17,7 @@ class _Workspace extends Component {
         return (
             <section className='workspace-page'>
                 <section className='left-side-bar-container'>
-                    
+
                 </section>
                 <h1>WorkSpace</h1>
             </section>
@@ -27,7 +27,7 @@ class _Workspace extends Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        boards: boardModule.boards
+        // boards: boardModule.boards
     }
 }
 const mapDispatchToProps = {
