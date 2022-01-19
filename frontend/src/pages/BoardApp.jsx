@@ -10,16 +10,19 @@ import {loadBoard} from '../store/board/board.action';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
-  const [board, setBoard] = useState(null);
+  const board = useSelector(state => state.boardModule.board);
+  console.log('board:', board);
+  // const [board, setBoard] = useState(null);
   const {id} = props.match.params;
 
   useEffect(async () => {
     if (!id) this.props.history.push('/workspace');
     else {
       try {
-        const board = await dispatch(loadBoard(id));
+        await dispatch(loadBoard(id));
+        console.log('continued after dispatch')
         if (!board) props.history.push('/workspace');
-        else setBoard(board);
+        // else setBoard(board);
       } catch (err) {
         console.log('cant load board', err);
       }
