@@ -52,10 +52,12 @@ async function loadAndWatchBoard(boardId) {
     // subscribe to socket and commit to store
 }
 
+// id from MongoDB - _id //
+
 const board = {
     "_id": "b101",
     "title": "Board Title",
-    "isFavorite": false,
+    "isPublic": false,
     "createdAt": 1589983468418,
     "createdBy": {
         "_id": "u101",
@@ -87,52 +89,55 @@ const board = {
                     "title": "We have to Replace the logo",
                     "description": "Replace logo",
                     "createdAt": Date.now(),
-                    // Should we keep only an array of the ids or more?
                     "labelIds": ["l101"],
                     "style": {
-                        "id": "1202",
+                        // "id": "1202",
+
                         // Is that the right way, or should we marched it to the same key?
                         "bgClr": "red",
                         "bgImg": "url",
                         "isCover": false
                     },
+                    // we need all this data about the user?
                     "byMember": {
                         "_id": "u101",
                         "imgUrl": "url",
-                        "fullname": "muki",
-                        "username": "muki pori",
+                        "fullname": "Muki Puri",
+                        "username": "muki12",
                     },
                     "attachments": [
                         {
                             "id": "iVWjDl",
                             "name": "Media url",
-                            "url": "https://res.cloudinary.com/dusakec3z/video/upload/v1633862965/riynj77lwmbwrq3smk8k.webm",
+                            "url": "url",
                             "createdAt": Date.now()
                         }],
                     "members": [
                         {
                             "_id": "u101",
                             "imgUrl": "url",
-                            "fullname": "muki",
-                            "username": "muki pori",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
                         },
                         {
                             "_id": "u101",
                             "imgUrl": "url",
-                            "fullname": "muki",
-                            "username": "muki pori",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
                         },
                         {
                             "_id": "u101",
                             "imgUrl": "url",
-                            "fullname": "muki",
-                            "username": "muki pori",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
                         }],
-                    "dueDate": {
-                        "date": 1589983468418,
-                        "isDone": false
-                    },
+                    "dueDate": 1589983468418,
                     "isArchive": false
+
+                    // {
+                    //     "date": 
+                    //     "status": "done"
+                    // },
                 }
             ]
         }
