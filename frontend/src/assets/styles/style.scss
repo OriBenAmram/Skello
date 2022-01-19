@@ -12,15 +12,19 @@
 
 // PAGES
 @import "pages/home-page.scss";
+@import "pages/task-details.scss";
 
 // Components
 @import "cmps/board-list.scss";
 @import "cmps/loader.scss";
+@import "cmps/details-header.scss";
 
-// groups
+// Group
 @import "cmps/group-preview.scss";
 @import "cmps/group-list.scss";
 
+// Task
+@import "cmps/task-preview";
 // general
 @import "cmps/app-header.scss";
 
