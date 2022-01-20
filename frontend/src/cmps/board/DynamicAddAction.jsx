@@ -7,7 +7,7 @@ import {addTask, addGroup} from '../../store/board/board.action.js';
 class _DynamicAddAction extends React.Component {
   state = {
     isFormOpen: false,
-    taskTitle: '',
+    title: '',
   };
 
   toggleForm = () => {
@@ -16,37 +16,36 @@ class _DynamicAddAction extends React.Component {
 
   handleChange = ({target}) => {
     const value = target.value;
-    this.setState({taskTitle: value});
+    this.setState({title: value});
   };
 
   onAddGroup = async () => {
     console.log('Group Added');
-    const {taskTitle} = this.state;
+    const {title} = this.state;
     const {boardId} = this.props;
-    if (!taskTitle) return;
-    await this.props.addGroup(taskTitle, boardId);
+    if (!title) return;
+    await this.props.addGroup(title, boardId);
     this.cleanForm();
     this.toggleForm();
   };
 
   onAddTask = async () => {
     console.log('Task Added');
-    const {taskTitle} = this.state;
+    const {title} = this.state;
     const {groupId, boardId} = this.props;
-
-    if (!taskTitle) return;
-    await this.props.addTask(taskTitle, groupId, boardId);
+    if (!title) return;
+    await this.props.addTask(title, groupId, boardId);
     this.cleanForm();
     this.toggleForm();
   };
 
   cleanForm = () => {
-    this.setState({taskTitle: ''});
+    this.setState({title: ''});
   };
 
   renderTaskInput = () => {
     const {isList} = this.props;
-    const {taskTitle} = this.state;
+    const {title} = this.state;
     const placeholder = isList ? 'Enter list title...' : 'Enter a title for this task...';
     const btnText = isList ? 'Add List' : 'Add Card';
     return (
@@ -55,7 +54,7 @@ class _DynamicAddAction extends React.Component {
           autoFocus
           placeholder={placeholder}
           onChange={this.handleChange}
-          value={taskTitle}
+          value={title}
           // onBlur={() => {
           //   this.toggleForm();
           //   this.cleanForm();

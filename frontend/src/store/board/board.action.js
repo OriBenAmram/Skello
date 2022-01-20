@@ -28,7 +28,6 @@ export function addTask(taskTitle, groupId, boardId) {
   return async dispatch => {
     try {
       const board = await boardService.addTask(taskTitle, groupId, boardId);
-      console.log('board after add', board);
       dispatch({
         type: 'SAVE_BOARD',
         board: board,
@@ -43,7 +42,6 @@ export function addGroup(groupTitle, boardId) {
   return async dispatch => {
     try {
       const board = await boardService.addGroup(groupTitle, boardId);
-      console.log('🚀 addGroup ~ board', board);
       dispatch({
         type: 'SAVE_BOARD',
         board: board,
