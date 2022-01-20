@@ -1,12 +1,20 @@
 import { storageService } from './async-storage.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
 import { utilService } from '../services/util.service.js';
+import axios from 'axios'
+
+const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk'
 
 const STORAGE_KEY = 'boards';
 const gBoards = _setBoardsToStorage();
 
 function query() {
   return storageService.query(STORAGE_KEY);
+}
+
+async function queryImages(query = 'random') {
+  const photos = await axios.get(`https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`)
+  return photos.data.results
 }
 
 function add(taskTitle, groupId, boardId) {
@@ -72,5 +80,6 @@ export const boardService = {
   getById,
   getBoardsFromStorage,
   add,
-  save
+  save,
+  queryImages
 };

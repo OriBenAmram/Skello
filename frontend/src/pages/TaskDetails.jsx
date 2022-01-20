@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // CPMS
-import {TaskCover} from '../cmps/task-details/TaskCover.jsx';
-import {TaskHeader} from '../cmps/task-details/TaskHeader.jsx';
-import {TaskDescription} from '../cmps/task-details/TaskDescription.jsx';
-import {TaskActivities} from '../cmps/task-details/TaskActivities.jsx';
-import {TaskSideBar} from '../cmps/task-details/TaskSideBar.jsx';
-import {Loader} from '../cmps/Loader.jsx';
+import { TaskCover } from '../cmps/task-details/TaskCover.jsx';
+import { TaskHeader } from '../cmps/task-details/TaskHeader.jsx';
+import { TaskDescription } from '../cmps/task-details/TaskDescription.jsx';
+import { TaskActivities } from '../cmps/task-details/TaskActivities.jsx';
+import { TaskSideBar } from '../cmps/task-details/TaskSideBar.jsx';
+import { Loader } from '../cmps/Loader.jsx';
 
 // const [board, setBoard] = useState(null);
 
@@ -17,8 +17,7 @@ export function TaskDetails(props) {
   const currBoard = useSelector(state => state.boardModule.board);
 
   useEffect(async () => {
-    const {boardId, groupId, taskId} = props.match.params;
-    console.log('params:', boardId, groupId, taskId);
+    const { boardId, groupId, taskId } = props.match.params;
     const currGroup = currBoard?.groups.find(group => group.id === groupId);
     const currTask = currGroup?.tasks?.find(task => task.id === taskId);
     console.log('currTask:', currTask);

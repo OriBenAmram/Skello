@@ -1,7 +1,7 @@
-import {ActionButton} from './ActionButton';
-import {TaskList} from './TaskList';
+import { ActionButton } from './ActionButton';
+import { TaskList } from './TaskList';
 
-export function GroupPreview({group, boardId}) {
+export function GroupPreview({ group, boardId }) {
   return (
     <article className="group-preview">
       <h3>{group.title}</h3>

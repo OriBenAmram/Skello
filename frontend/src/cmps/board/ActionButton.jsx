@@ -1,8 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {GrAdd, GrClose} from 'react-icons/gr';
-import {addTask} from '../../store/board/board.action.js';
+import { GrAdd, GrClose } from 'react-icons/gr';
+import { addTask } from '../../store/board/board.action.js';
 
 class _ActionButton extends React.Component {
   state = {
@@ -11,26 +11,23 @@ class _ActionButton extends React.Component {
   };
 
   toggleForm = () => {
-    this.setState({isFormOpen: !this.state.isFormOpen});
+    this.setState({ isFormOpen: !this.state.isFormOpen });
   };
 
-  handleChange = ({target}) => {
+  handleChange = ({ target }) => {
     const value = target.value;
-    this.setState({taskTitle: value});
+    this.setState({ taskTitle: value });
   };
 
   onAddGroup = () => {
-    console.log('Group Added');
-    const {taskTitle} = this.state;
-    console.log('🚀 ~ file: ActionButton.jsx ~ line 25 ~ _ActionButton ~ taskTitle', taskTitle);
-    const {boardId} = this.props;
-    console.log('🚀 ~ file: ActionButton.jsx ~ line 27 ~ _ActionButton ~ boardId', boardId);
+    const { taskTitle } = this.state;
+    const { boardId } = this.props;
   };
 
   onAddTask = async () => {
     console.log('Task Added');
-    const {taskTitle} = this.state;
-    const {groupId, boardId} = this.props;
+    const { taskTitle } = this.state;
+    const { groupId, boardId } = this.props;
 
     if (!taskTitle) return;
     await this.props.addTask(taskTitle, groupId, boardId);
@@ -39,12 +36,12 @@ class _ActionButton extends React.Component {
   };
 
   cleanForm = () => {
-    this.setState({taskTitle: ''});
+    this.setState({ taskTitle: '' });
   };
 
   renderTaskInput = () => {
-    const {isList} = this.props;
-    const {taskTitle} = this.state;
+    const { isList } = this.props;
+    const { taskTitle } = this.state;
     const placeholder = isList ? 'Enter list title...' : 'Enter a title for this task...';
     const btnText = isList ? 'Add List' : 'Add Card';
     return (
@@ -54,10 +51,10 @@ class _ActionButton extends React.Component {
           placeholder={placeholder}
           onChange={this.handleChange}
           value={taskTitle}
-          // onBlur={() => {
-          //   this.toggleForm();
-          //   this.cleanForm();
-          // }}
+        // onBlur={() => {
+        //   this.toggleForm();
+        //   this.cleanForm();
+        // }}
         ></textarea>
         <div className="task-btns flex align-center">
           <button
@@ -81,7 +78,7 @@ class _ActionButton extends React.Component {
   };
 
   renderAddButton = () => {
-    const {isList} = this.props;
+    const { isList } = this.props;
 
     const buttonText = isList ? 'Add another list' : 'Add another task';
 
@@ -94,7 +91,7 @@ class _ActionButton extends React.Component {
   };
 
   render() {
-    const {isFormOpen} = this.state;
+    const { isFormOpen } = this.state;
 
     return isFormOpen ? this.renderTaskInput() : this.renderAddButton();
   }
