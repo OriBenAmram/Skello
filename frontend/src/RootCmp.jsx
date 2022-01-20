@@ -14,13 +14,13 @@ import routes from './routes.js';
 export function RootCmp() {
 
 
-  const board = useSelector(state => state.boardModule.board);
-  console.log('board:', board);
+  // const board = useSelector(state => state.boardModule.board);
+  // console.log('board:', board);
 
 
 
   return (
-    <div className='root-cmp' style={(board) && { background: `${board.style.background}  center center / cover` }}>
+    <div className='root-cmp'>
       <AppHeader />
       <main>
         <Switch>
@@ -30,7 +30,7 @@ export function RootCmp() {
         </Switch>
       </main>
 
-      <PopoverSideMenu />
+      {/* <PopoverSideMenu /> */}
     </div >
   );
 
