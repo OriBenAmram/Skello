@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // CMPS
 import { MembersModalContent } from './MembersModalContent.jsx'
-
+import { CheckListModalContent } from './CheckListModalContent.jsx'
 export function DynamicActionModal({ toggleModal, type, pos }) {
     console.log('pos.clientY:', pos.clientY);
 
@@ -14,7 +14,7 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
             case 'members':
                 return <MembersModalContent task />
             case 'checklist':
-                // return <MembersModalContent task />
+                return <CheckListModalContent />
         }
     }
     console.log('pos:', pos);
@@ -30,7 +30,7 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
             <section className='modal-content'>
                 <input placeholder={`Search ${type}...`} type="text" className='modal-main-input' autoFocus />
                 {/* CONTENT */}
-                {/* {getContentForDisplay()} */}
+                {getContentForDisplay()}
             </section>
         </section>
     );
