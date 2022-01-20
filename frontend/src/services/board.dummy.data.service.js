@@ -3,13 +3,13 @@ import { utilService } from './util.service.js'
 const DUMMY_BOARDS = [
     {
         "_id": "b101",
-        "title": "Board Title",
+        "title": "Skello Demo",
         "isStarred": true,
         "isPublic": false,
         "createdAt": 1589983468418,
         "createdBy": {
             "_id": "u101",
-            "fullname": "Daniel Shaked",
+            "fullname": "Asaf Margalit",
             "imgUrl": "http://some-img"
         },
         "style": {
@@ -18,50 +18,70 @@ const DUMMY_BOARDS = [
         "labels": [
             {
                 "id": "l101",
-                "title": "Done",
-                "color": "#61bd4f"
-            }
+                "title": "",
+                "color": "red"
+            },
+            {
+                "id": "l202",
+                "title": "",
+                "color": "blue"
+            },
+            {
+                "id": "l303",
+                "title": "done",
+                "color": "yellow"
+            },
         ],
         "members": [
             {
                 "_id": "u101",
-                "fullname": "Tal Tarablus",
+                "fullname": "Asaf Margalit",
+                "imgUrl": "https://www.google.com"
+            },
+            {
+                "_id": "u102",
+                "fullname": "Harry Potter",
+                "imgUrl": "https://www.google.com"
+            },
+            {
+                "_id": "u103",
+                "fullname": "Zinadin Zidan",
                 "imgUrl": "https://www.google.com"
             }
         ],
         "groups": [
             {
                 "id": utilService.makeId(),
-                "title": "Group 1",
+                "title": "Todo",
                 "tasks": [
                     {
                         "id": utilService.makeId(),
-                        "title": "We have to Replace the logo",
-                        "description": "Replace logo",
+                        "title": "Nested Task",
+                        "description": "Create nested task details page, with dark overflow",
                         "createdAt": Date.now(),
-                        "labelIds": ["l101"],
+                        "labelIds": ["l101", "l202"],
                         "style": {
-
-                            "backgroundColor": "red",
-                            "backgroundImage": "url",
+                            "backgroundColor": "#4c78b7",
+                            "backgroundImage": "url(https://images.unsplash.com/photo-1642628658566-1db49cadf78c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0N3x8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60)",
                             "isCover": false
                         },
                         "byMember": {
-                            "_id": "u101",
+                            "_id": "u103",
+                            // TODO
                             "imgUrl": "url",
-                            "fullname": "Muki Pori",
-                            "username": "muki2",
+                            "fullname": "Zinadin Zidan",
+                            "username": "zinadin.bold@gmail.com",
                         },
                         "attachments": [
                             {
                                 "id": utilService.makeId(),
                                 "name": "Media url",
-                                "url": "https://res.cloudinary.com/dusakec3z/video/upload/v1633862965/riynj77lwmbwrq3smk8k.webm",
+                                "url": "url(https://images.unsplash.com/photo-1642628658566-1db49cadf78c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0N3x8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60=435&q=80)",
                                 "createdAt": Date.now()
                             }],
                         "members": [
                             {
-                                "_id": "u101",
+                                "_id": "u104",
                                 "imgUrl": "url",
                                 "fullname": "Ori Ben Amram",
                                 "username": "ori8",
@@ -83,21 +103,21 @@ const DUMMY_BOARDS = [
                         "archiveAt": null
                     }
                 ]
-            }
+            },
         ],
         "activities": [
             {
                 "id": utilService.makeId(),
-                "txt": "Changed Color",
+                "txt": "added a submit button",
                 "createdAt": 154514,
                 "byMember": {
-                    "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "_id": "u103",
+                    "fullname": "Harry Potter",
                     "imgUrl": "http://some-img"
                 },
                 "task": {
                     "id": utilService.makeId(),
-                    "title": "Replace Logo"
+                    "title": "Doing"
                 }
             }
         ]
@@ -182,7 +202,7 @@ const DUMMY_BOARDS = [
         "activities": [
             {
                 "id": utilService.makeId(),
-                "txt": "Changed Color",
+                "txt": "Moved this card from Todo to Doing",
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u101",

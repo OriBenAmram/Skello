@@ -9,7 +9,7 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
     const [modalContent, setModalContent] = useState({ isSearch: true });
 
     // Switch if that decide if
-    const getItemsForDisplay = () => {
+    const getContentForDisplay = () => {
         let props;
         switch (type) {
             case 'members':
@@ -27,7 +27,7 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
             <section className='modal-content'>
                 <input placeholder={`Search ${type}...`} type="text" className='modal-main-input' autoFocus />
                 {/* CONTENT */}
-                { <ModalContent />}
+                {/* {getContentForDisplay()} */}
             </section>
         </section>
     );
