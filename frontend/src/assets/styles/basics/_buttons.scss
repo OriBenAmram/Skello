@@ -1,3 +1,10 @@
-button { 
+button {
     cursor: pointer;
+}
+
+.primary-close-btn {
+    font-size: rem(14px);
+    padding: 4px 8px;
+    background-color: inherit;
+    border: none;
 }

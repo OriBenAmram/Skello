@@ -1,0 +1,9 @@
+.workspace-container{
+    .boards-wrapper{
+        width: 100%;
+        max-width: 1000px;
+        min-width: 288px;
+        display: flex;
+        flex-direction: column;
+    }
+}

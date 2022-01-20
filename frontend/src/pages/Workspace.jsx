@@ -5,6 +5,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadBoards, setBoard } from '../store/board/board.action.js';
 import { BoardList } from '../cmps/workspace/BoardList.jsx';
+import { BsPerson } from 'react-icons/bs';
+
+
+
 
 export function Workspace() {
     const dispatch = useDispatch();
@@ -32,12 +36,24 @@ export function Workspace() {
     // }
 
     return (
-        <section className="workspace-page">
-            <section className="left-side-bar-container"></section>
-            <h3>Favorites Boards</h3>
-            <BoardList boards={getFavoriteBoards} onToggleFavorite={onToggleFavorite} />
-            <h3>Workspace</h3>
-            <BoardList boards={boards} onToggleFavorite={onToggleFavorite} />
+        <section className="workspace-container">
+            <div className="boards-wrapper">
+                <div className="boards-preview">
+                    <div className="boards-preview-title">
+                        <BsPerson className='person-icon' />
+                        <h3>staered Boards</h3>
+                    </div>
+                    <BoardList boards={getFavoriteBoards} onToggleFavorite={onToggleFavorite} />
+                </div>
+                <div className="boards-preview">
+                    <div className="boards-preview-title">
+                        <BsPerson className='person-icon' />
+                        <h3>Workspace</h3>
+                    </div>
+                    <BoardList boards={boards} onToggleFavorite={onToggleFavorite} />
+                </div>
+            </div>
+
         </section>
     );
 }

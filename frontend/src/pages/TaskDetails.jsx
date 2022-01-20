@@ -1,4 +1,5 @@
 
+import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,38 +10,17 @@ import { useDispatch, useSelector } from 'react-redux';
 export function TaskDetails(props) {
     const dispatch = useDispatch();
     const [task, setTask] = useState(null);
-
-
-    const { boardId, groupId, taskId } = props.match.params;
-    console.log('params:', boardId, groupId, taskId);
-
-
-
-    // Find curr task move //
     const currBoard = useSelector(state => state.boardModule.board);
-    const currGroup = currBoard?.groups.find(group => group.id === groupId);
-    const currTask = currGroup.tasks.find(task => task.id === taskId);
-    console.log('currTask:', currTask);
-    setTask(currTask)
 
-    // console.log('board:', board);
 
-    // const task = board.task.find(task => task.id === taskId);
-    // console.log('task:', task);
-
-    // useEffect(async () => {
-    //     if (!id) this.props.history.push('/workspace');
-    //     else {
-    //         try {
-    //             const board = await dispatch(loadBoard(id));
-    //             if (!board) props.history.push('/workspace');
-    //             else setBoard(board);
-    //         } catch (err) {
-    //             console.log('cant load board', err);
-    //         }
-    //     }
-    // }, []);
-
+    useEffect(async () => {
+        const { boardId, groupId, taskId } = props.match.params;
+        console.log('params:', boardId, groupId, taskId);
+        const currGroup = currBoard?.groups.find(group => group.id === groupId);
+        const currTask = currGroup?.tasks?.find(task => task.id === taskId);
+        console.log('currTask:', currTask);
+        setTask(currTask)
+    }, []);
 
 
     return (
@@ -55,7 +35,9 @@ export function TaskDetails(props) {
                 {/* Details-header */}
                 <section className='details-header'>
                     <AiOutlineCreditCard className='header-icon' />
-                    <textarea>good job!</textarea>
+                    <textarea defaultValue="baba">
+
+                    </textarea>
                     <div className="header-sub-title">
                         <span>daniel </span>
                     </div>
@@ -65,24 +47,35 @@ export function TaskDetails(props) {
                     {/* Main-Col */}
                     <section className='main-col'>
                         {/* Description */}
-                        <div className='description'>
-                            <span>app description ma ma</span>
+                        <div className='description-container'>
+                            <div className="description-title-container">
+                                <h3>Description</h3>
+                            </div>
+                            <textarea defaultValue="" placeholder="Add a more detailed description..." className="description-text-area"></textarea>
+                            <div className="description-edit-container">
+                                <div>
+                                    <button className="save-btn">Save</button>
+                                    <button className="primary-close-btn">X</button>
+                                </div>
+                                <button>Formatting help</button>
+                            </div>
                         </div>
                         {/* Activities */}
                         <div className='activities'>
-
+                            Activities
                         </div>
                     </section>
 
                     {/* Side-Bar */}
                     <section className='side-bar'>
                         <section className='suggested'>
-
+                            suggested
                         </section>
                         <section className='add-to-card'>
-
+                            add to card
                         </section>
                         <section className='actions'>
+                            actions
                         </section>
                     </section>
 
