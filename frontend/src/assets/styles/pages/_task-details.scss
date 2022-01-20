@@ -1,6 +1,12 @@
 .task-details-page {
     background-color: #000000a3;
     height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 15;
     padding-top: 50px;
     color: #172b4d;
     font-size: 14px;
@@ -40,6 +46,14 @@
         }
 
         // GENERAL
+
+        h4 {
+            color: #5e6c84;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 20px;
+            margin-bottom: 4px;
+        }
 
         .details-primary-btn {
             background-color: #091e420a;

@@ -1,0 +1,43 @@
+.details-additions-container {
+    display: flex;
+    margin: 0 0 12px 40px;
+    flex: 1;
+
+    // border: 1px solid black;
+
+    .type-container {
+        margin: 0 8px 8px 0;
+        .items-container {
+            display: flex;
+
+            :not(:last-child) {
+                margin-right: 4px;
+            }
+
+            .plus-item {
+                color: #42526e;
+                font-size: 16px;
+                background-color: #eaecf0;
+            }
+
+            .label-box { 
+                border-radius: 3px;
+                font-weight: 600;
+                height: 32px;
+                margin: 0 4px 4px 0;
+                min-width: 40px;
+                padding: 0 12px;
+                cursor: pointer;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: whitesmoke;
+
+                &.plus-item {
+                    color: #42526e;
+                }
+            }
+        }
+    }
+}
