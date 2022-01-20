@@ -40,6 +40,16 @@
 
         ::placeholder {
             color: #172b4d;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
+                Helvetica Neue, sans-serif;
+        }
+
+        .primary-icon {
+            height: 24px;
+            width: 24px;
+            position: absolute;
+            left: -40px;
+            top: 0px;
         }
 
         // COVER
@@ -75,9 +85,6 @@
             background-color: inherit;
 
             .header-icon {
-                position: absolute;
-                left: -40px;
-                top: 4px;
             }
 
             textarea {
@@ -100,9 +107,13 @@
                 }
             }
 
-            .header-sub-title span {
+            .header-sub-title {
                 color: grey;
                 font-size: rem(14px);
+
+                span {
+                    text-decoration: underline;
+                }
             }
         }
 
@@ -110,6 +121,10 @@
         .main-content {
             display: flex;
             width: 100%;
+
+            .main-content-icon { 
+                top: 8px;
+            }
 
             // MAIN-COL
             .main-col {
@@ -134,6 +149,11 @@
                     margin: 0 0 4px 40px;
                     padding: 8px 0;
                     position: relative;
+
+                    .details-primary-btn { 
+                        position: absolute;
+                        right: 5px;
+                    }
                 }
 
                 // DESCRIPTION
@@ -205,14 +225,14 @@
                         height: 20px;
                         padding: 8px 12px;
                         border-radius: 3px;
-                        border:none;
+                        border: none;
                         box-shadow: none;
                         background-color: white;
                         box-sizing: initial;
                         min-height: 20px;
                         resize: none;
                         flex: 1;
-                        margin: 0 0 0 40px;
+                        box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
                     }
 
                     .title-container {
@@ -221,7 +241,44 @@
                         align-items: center;
                     }
 
+                    .text-area-container {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        margin: 0 0 0 40px;
+
+                        .save-btn {
+                            position: absolute;
+                            bottom: 10px;
+                            left: 10px;
+                            background-color: #091e420a;
+                            border: none;
+                            color: #a5adba;
+                            display: inline-block;
+                            padding: 6px 12px;
+                        }
+
+                        .add-icons-options {
+                            display: flex;
+                            position: absolute;
+                            bottom: 10px;
+                            right: 10px;
+
+                            :not(:last-child) {
+                                margin-right: 15px;
+                            }
+                        }
+                    }
+
                     .input-activity-box {
+                        cursor: pointer;
+                        &:focus {
+                            padding-bottom: 56px;
+                            transition-duration: 85ms;
+                            transition-property: padding-bottom;
+                            transition-timing-function: ease;
+                            outline: none;
+                        }
                     }
                 }
             }

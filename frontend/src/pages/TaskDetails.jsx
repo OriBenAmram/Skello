@@ -1,9 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineTags, AiOutlineFieldTime, AiOutlineCreditCard, AiOutlineClose, AiOutlineCopy } from "react-icons/ai";
-import { BsPersonPlus } from "react-icons/bs";
+import { AiOutlineTags, AiOutlineFieldTime, AiOutlineCreditCard, AiOutlineClose, AiOutlineBars, AiOutlineCopy } from "react-icons/ai";
+import { BiSmile } from "react-icons/bi";
+import { BsPersonPlus, BsTextLeft } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md"
+import { GoMention } from "react-icons/go"
+
+// CPMS
 
 
 // const [board, setBoard] = useState(null);  
@@ -35,12 +39,10 @@ export function TaskDetails(props) {
                 </section>
                 {/* Details-header */}
                 <section className='details-header'>
-                    <AiOutlineCreditCard className='header-icon' />
-                    <textarea defaultValue="baba">
-
-                    </textarea>
+                    <AiOutlineCreditCard className='primary-icon header-icon' />
+                    <textarea defaultValue="Add baba"></textarea>
                     <div className="header-sub-title">
-                        <span>daniel </span>
+                        in list <span>Todo</span>
                     </div>
                 </section>
 
@@ -50,6 +52,7 @@ export function TaskDetails(props) {
                         {/* Description */}
                         <div className='description-container'>
                             <div className="title-container">
+                                <BsTextLeft className='primary-icon main-content-icon' />
                                 <h3>Description</h3>
                             </div>
                             <textarea defaultValue="" placeholder="Add a more detailed description..." className="description-text-area"></textarea>
@@ -64,10 +67,21 @@ export function TaskDetails(props) {
                         {/* Activities */}
                         <div className='activity-container'>
                             <div className='title-container'>
+                                <AiOutlineBars className='primary-icon main-content-icon' />
                                 <h3>Activity</h3>
                                 <button className="details-primary-btn">Show details</button>
                             </div>
-                            <input className='input-activity-box comment-general-box' type="text" placeholder="Write a comment..." />
+                            <div className='text-area-container'>
+                                <textarea defaultValue="" className='input-activity-box comment-general-box' placeholder="Write a comment...">
+                                </textarea>
+                                <button className='save-btn'>Save</button>
+                                <div className='add-icons-options'>
+                                    <MdOutlineAttachment />
+                                    <GoMention />
+                                    <BiSmile />
+                                    <AiOutlineCreditCard />
+                                </div>
+                            </div>
                         </div>
                     </section>
 
