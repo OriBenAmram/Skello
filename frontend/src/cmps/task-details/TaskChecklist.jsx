@@ -7,7 +7,8 @@ export function TaskChecklist() {
 
     const [isAddingItem, setAddingItem] = useState(false);
 
-
+    console.log('isAddingItem:', isAddingItem);
+    
     return (
         <div className='checklist-container'>
             <div className='title-container'>
@@ -19,14 +20,17 @@ export function TaskChecklist() {
             <section className='check-list-todos'>
 
             </section>
-            {!isAddingItem && <button className='details-primary-btn add-item-btn'>Add an Item</button>}
-            {isAddingItem && <section>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+            {!isAddingItem && <button className='details-primary-btn add-item-btn' onClick={() => {
+                setAddingItem(true)
+            }}>Add an Item</button>}
+            {isAddingItem && <section className='adding-item-section'>
+                    <textarea autoFocus onBlur={() => {
+                        setAddingItem(false)
+                    }}></textarea>
                     <div className='add-item-controllers'>
                         <button>Add</button>
                         <button>X</button>
                     </div>
-                
                 </section>}
             {/* <div className='text-area-container'>
                 <textarea defaultValue="" className='input-activity-box comment-general-box' placeholder="Write a comment...">
