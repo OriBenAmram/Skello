@@ -34,11 +34,11 @@ export function BoardApp(props) {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Route path='/board/:boardId/:groupId/:taskId' component={TaskDetails} />
-      <div className="board-app" style={{ background: style.background }}>
+      <div className="board-app" >
         <h1>board app</h1>
         {/* <BoardHeader /> */}
         <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
       </div>
-    </DragDropContext>
+    </DragDropContext >
   );
 }

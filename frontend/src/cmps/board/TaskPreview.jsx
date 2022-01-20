@@ -15,12 +15,11 @@ export function TaskPreview(props) {
     style,
     title,
   } = task;
-  return (<>
+  return (
     <Link to={`/board/${boardId}/${groupId}/${task.id}`}>
       <section className="task-preview">
         <p>{title}</p>
       </section>
     </Link >
-  </>
   );
 }

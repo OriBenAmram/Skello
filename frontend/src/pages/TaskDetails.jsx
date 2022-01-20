@@ -17,16 +17,17 @@ export function TaskDetails(props) {
     const [task, setTask] = useState(null);
     const board = useSelector(state => state.boardModule.board);
 
-  useEffect(async () => {
-    const { boardId, groupId, taskId } = props.match.params;
-    const currGroup = currBoard?.groups.find(group => group.id === groupId);
-    const currTask = currGroup?.tasks?.find(task => task.id === taskId);
-    console.log('currTask:', currTask);
-    setTask(currTask);
-  }, []);
+    useEffect(async () => {
+        const { boardId, groupId, taskId } = props.match.params;
+        // const currBoard = currBoard?.groups.find(group => group.id === groupId);
+        const currGroup = board?.groups.find(group => group.id === groupId);
+        const currTask = currGroup?.tasks?.find(task => task.id === taskId);
+        console.log('currTask:', currTask);
+        setTask(currTask);
+    }, []);
 
     const onCloseModal = () => {
-        props.history.push(`/${board._id}`)
+        props.history.push(`/board/${board._id}`)
     }
 
 
