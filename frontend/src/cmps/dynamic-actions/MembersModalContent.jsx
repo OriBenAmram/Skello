@@ -8,7 +8,7 @@ export function ModalContent(props) {
 
 
     return (
-        <section className='dynamic-modal-content'>
+        <section className='members-modal-content'>
             
         </section>
     );

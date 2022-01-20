@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // CMPS
-import { ModalContent } from './ModalContent.jsx'
+import { MembersModalContent  } from './MembersModalContent.jsx'
 
 export function DynamicActionModal({ toggleModal, type, pos }) {
     console.log('pos.clientY:', pos.clientY);
@@ -13,7 +13,7 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
         let props;
         switch (type) {
             case 'members':
-                props = 'members'
+                return <MembersModalContent />
                 break
         }
     }
