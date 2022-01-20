@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { GrAdd, GrClose } from 'react-icons/gr';
 import { addTask, addGroup } from '../../store/board/board.action.js';
+
+
 
 class _DynamicAddAction extends React.Component {
   state = {

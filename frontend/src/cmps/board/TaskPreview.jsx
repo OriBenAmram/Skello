@@ -17,7 +17,6 @@ export function TaskPreview(props) {
   } = task;
   return (<>
     <Link to={`/board/${boardId}/${groupId}/${task.id}`}>
-
       <section className="task-preview">
         <p>{title}</p>
       </section>

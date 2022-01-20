@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { Route } from 'react-router-dom';
 
 // CMPS
 import { GroupList } from '../cmps/board/GroupList.jsx';
 import { Loader } from '../cmps/Loader.jsx';
+import { TaskDetails } from './TaskDetails.jsx';
 
 // ACTIONS
 import { loadBoard } from '../store/board/board.action';
@@ -31,6 +33,7 @@ export function BoardApp(props) {
   if (!board) return <Loader />;
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <Route path='/board/:boardId/:groupId/:taskId' component={TaskDetails} />
       <div className="board-app" style={{ background: style.background }}>
         <h1>board app</h1>
         {/* <BoardHeader /> */}
