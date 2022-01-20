@@ -74,3 +74,16 @@
 .hide {
     display: none;
 }
+
+.member-avatar { 
+    border-radius: 25em;
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-weight: 600;
+    cursor: pointer;
+}

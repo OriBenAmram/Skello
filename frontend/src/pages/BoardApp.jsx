@@ -20,7 +20,6 @@ export function BoardApp(props) {
   useEffect(async () => {
     try {
       await dispatch(loadBoard(id));
-      console.log('continued after dispatch');
     } catch (err) {
     }
   }, []);
@@ -33,12 +32,12 @@ export function BoardApp(props) {
   if (!board) return <Loader />;
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Route path='/board/:boardId/:groupId/:taskId' component={TaskDetails} />
       <div className="board-app" style={{ background: `${board.style.background}  center center / cover` }}>
         <h1>board app</h1>
         {/* <BoardHeader /> */}
         <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
       </div>
+      <Route path='/board/:boardId/:groupId/:taskId' component={TaskDetails} />
     </DragDropContext >
 
   );
