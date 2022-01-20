@@ -8,16 +8,31 @@
         height: 100%;
         border-radius:5px;
         position: relative;
+
+        &:hover{
+            .starred-container{
+                opacity: 1;
+            }
+        }
     }
 
+.starred-container{
+    transition: 0.3s ease-in-out;
+    position: absolute;
+    background-color: gray;
+    padding: 3px;
+    border-radius: 7px;
+    opacity: 0;
+    bottom: 5px;
+    right: 5px;
     .star-icon{
         font-size: 1.3rem;
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        &.favorite{
+        &.starred{
             color: gold
         }
     }
+
+}
+
 
 }

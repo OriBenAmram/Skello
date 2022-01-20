@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AiOutlineStar } from "react-icons/ai";
 
-export function BoardList({ boards, onToggleFavorite }) {
+export function BoardList({ boards, onToggleStarred }) {
     if (!boards?.length) return <></>
+    console.log('boards:', boards);
+
     return (
         <div className="board-list">
             {boards.map(board => {
@@ -13,9 +15,11 @@ export function BoardList({ boards, onToggleFavorite }) {
 
                             <div className="board-preview-details">
                                 <h3>{board.title.length > 15 ? board.title.substring(0, 15) + '...' : board.title}</h3>
-                                <AiOutlineStar className={`star-icon ${(board.isFavorite) ? 'favorite' : ''}`}
-                                    onClick={(ev) => onToggleFavorite(ev, board._id)}
-                                />
+                                <div className="starred-container">
+                                    <AiOutlineStar className={`star-icon ${(board.isStarred) ? 'starred' : ''}`}
+                                        onClick={(ev) => onToggleStarred(ev, board._id)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </Link>

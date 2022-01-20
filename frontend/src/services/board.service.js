@@ -1,6 +1,6 @@
-import {storageService} from './async-storage.service.js';
+import { storageService } from './async-storage.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
-import {utilService} from '../services/util.service.js';
+import { utilService } from '../services/util.service.js';
 
 const STORAGE_KEY = 'boards';
 const gBoards = _setBoardsToStorage();
@@ -40,8 +40,18 @@ function getBoardsFromStorage() {
   return boards;
 }
 
-function getById(toyId) {
-  return storageService.get(STORAGE_KEY, toyId);
+function getById(boardId) {
+  return storageService.get(STORAGE_KEY, boardId);
+}
+
+function save(board) {
+  console.log('board:', board);
+
+  if (board._id) {
+    return storageService.put(STORAGE_KEY, board)
+  } else {
+    return storageService.post(STORAGE_KEY, board)
+  }
 }
 
 function _saveBoardsToStorage(boards) {
@@ -62,4 +72,5 @@ export const boardService = {
   getById,
   getBoardsFromStorage,
   add,
+  save
 };

@@ -4,7 +4,7 @@ const DUMMY_BOARDS = [
     {
         "_id": "b101",
         "title": "Board Title",
-        "isStared": true,
+        "isStarred": true,
         "isPublic": false,
         "createdAt": 1589983468418,
         "createdBy": {
@@ -104,7 +104,7 @@ const DUMMY_BOARDS = [
     },
     {
         "_id": "b545",
-        "isStared": true,
+        "isStarred": true,
         "title": "Sprint4",
         "isPublic": false,
         "createdAt": 1589983468418,
@@ -198,7 +198,7 @@ const DUMMY_BOARDS = [
     },
     {
         "_id": "b999",
-        "isStared": false,
+        "isStarred": false,
         "title": "Sprint 5",
         "isPublic": false,
         "createdAt": 1589983468418,
@@ -292,7 +292,7 @@ const DUMMY_BOARDS = [
     },
     {
         "_id": "b156",
-        "isStared": false,
+        "isStarred": false,
         "title": "Sprint 6",
         "isPublic": false,
         "createdAt": 1589983468418,
