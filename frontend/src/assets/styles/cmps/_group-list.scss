@@ -1,6 +1,7 @@
 .group-list-container{
     .add-btn.group{
         cursor: pointer;
+        white-space: nowrap;
         background-color: rgba(235,236,240,.21176470588235294);
         padding: 6px 8px;
         transition: background-color .2s;

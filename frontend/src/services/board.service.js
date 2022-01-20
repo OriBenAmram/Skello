@@ -1,6 +1,6 @@
-import { storageService } from './async-storage.service.js';
+import {storageService} from './async-storage.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
-import { utilService } from '../services/util.service.js';
+import {utilService} from '../services/util.service.js';
 
 const STORAGE_KEY = 'boards';
 const gBoards = _setBoardsToStorage();
@@ -9,7 +9,7 @@ function query() {
   return storageService.query(STORAGE_KEY);
 }
 
-function add(taskTitle, groupId, boardId) {
+function addTask(taskTitle, groupId, boardId) {
   const taskToAdd = {
     id: utilService.makeId(),
     createdAt: Date.now(),
@@ -35,6 +35,18 @@ function add(taskTitle, groupId, boardId) {
   return storageService.put(STORAGE_KEY, board);
 }
 
+function addGroup(groupTitle, boardId) {
+  const newGroup = {
+    id: utilService.makeId(),
+    title: groupTitle,
+    tasks: [],
+  };
+
+  const board = gBoards.find(board => board._id === boardId);
+  board.groups.push(newGroup);
+  return storageService.put(STORAGE_KEY, board);
+}
+
 function getBoardsFromStorage() {
   const boards = storageService.loadFromStorage(STORAGE_KEY);
   return boards;
@@ -48,9 +60,9 @@ function save(board) {
   console.log('board:', board);
 
   if (board._id) {
-    return storageService.put(STORAGE_KEY, board)
+    return storageService.put(STORAGE_KEY, board);
   } else {
-    return storageService.post(STORAGE_KEY, board)
+    return storageService.post(STORAGE_KEY, board);
   }
 }
 
@@ -71,6 +83,7 @@ export const boardService = {
   query,
   getById,
   getBoardsFromStorage,
-  add,
-  save
+  addTask,
+  save,
+  addGroup,
 };

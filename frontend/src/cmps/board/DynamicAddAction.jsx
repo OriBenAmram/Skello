@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {GrAdd, GrClose} from 'react-icons/gr';
-import {addTask} from '../../store/board/board.action.js';
+import {addTask, addGroup} from '../../store/board/board.action.js';
 
-class _ActionButton extends React.Component {
+class _DynamicAddAction extends React.Component {
   state = {
     isFormOpen: false,
-    taskTitle: '',
+    title: '',
   };
 
   toggleForm = () => {
@@ -16,35 +16,36 @@ class _ActionButton extends React.Component {
 
   handleChange = ({target}) => {
     const value = target.value;
-    this.setState({taskTitle: value});
+    this.setState({title: value});
   };
 
-  onAddGroup = () => {
+  onAddGroup = async () => {
     console.log('Group Added');
-    const {taskTitle} = this.state;
-    console.log('🚀 ~ file: ActionButton.jsx ~ line 25 ~ _ActionButton ~ taskTitle', taskTitle);
+    const {title} = this.state;
     const {boardId} = this.props;
-    console.log('🚀 ~ file: ActionButton.jsx ~ line 27 ~ _ActionButton ~ boardId', boardId);
+    if (!title) return;
+    await this.props.addGroup(title, boardId);
+    this.cleanForm();
+    this.toggleForm();
   };
 
   onAddTask = async () => {
     console.log('Task Added');
-    const {taskTitle} = this.state;
+    const {title} = this.state;
     const {groupId, boardId} = this.props;
-
-    if (!taskTitle) return;
-    await this.props.addTask(taskTitle, groupId, boardId);
+    if (!title) return;
+    await this.props.addTask(title, groupId, boardId);
     this.cleanForm();
     this.toggleForm();
   };
 
   cleanForm = () => {
-    this.setState({taskTitle: ''});
+    this.setState({title: ''});
   };
 
   renderTaskInput = () => {
     const {isList} = this.props;
-    const {taskTitle} = this.state;
+    const {title} = this.state;
     const placeholder = isList ? 'Enter list title...' : 'Enter a title for this task...';
     const btnText = isList ? 'Add List' : 'Add Card';
     return (
@@ -53,7 +54,7 @@ class _ActionButton extends React.Component {
           autoFocus
           placeholder={placeholder}
           onChange={this.handleChange}
-          value={taskTitle}
+          value={title}
           // onBlur={() => {
           //   this.toggleForm();
           //   this.cleanForm();
@@ -108,7 +109,8 @@ class _ActionButton extends React.Component {
 
 const mapDispatchToProps = {
   addTask,
+  addGroup,
 };
 
-export const ActionButton = connect(null, mapDispatchToProps)(_ActionButton);
+export const DynamicAddAction = connect(null, mapDispatchToProps)(_DynamicAddAction);
 // export const ActionButton = connect(mapStateToProps, mapDispatchToProps)(_ActionButton)
