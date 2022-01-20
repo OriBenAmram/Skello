@@ -112,6 +112,30 @@ const board = {
                             "url": "url",
                             "createdAt": Date.now()
                         }],
+                    "checklists": [
+                        {
+                            "id": "VXZcwp",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "title": "Move tasks with drag & drop",
+                                    "id": "I19Bt6",
+                                    "isDone": true
+                                },
+                                {
+                                    "title": "Move tasks with move action",
+                                    "id": "k1wcOO",
+                                    "isDone": true
+                                },
+                                {
+                                    "title": "Copy tasks with copy action",
+                                    "id": "6GlVmg",
+                                    "isDone": true
+                                }
+                            ]
+                        }
+                    ],
+
                     "members": [
                         {
                             "_id": "u101",
