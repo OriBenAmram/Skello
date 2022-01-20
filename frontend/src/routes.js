@@ -5,9 +5,17 @@ import { TaskDetails } from './pages/TaskDetails.jsx';
 import { LoginSignup } from './pages/LoginSignup.jsx';
 
 const routes = [
+  // {
+  //   path: '/board/:boardId/:groupId/:taskId',
+  //   component: TaskDetails,
+  // },
   {
-    path: '/',
-    component: HomePage,
+    path: '/board/:id',
+    component: BoardApp,
+  },
+  {
+    path: '/workspace',
+    component: Workspace,
   },
   {
     path: '/login',
@@ -18,16 +26,8 @@ const routes = [
     component: LoginSignup,
   },
   {
-    path: '/workspace',
-    component: Workspace,
-  },
-  {
-    path: '/board/:boardId/:groupId/:taskId',
-    component: TaskDetails,
-  },
-  {
-    path: '/board/:id',
-    component: BoardApp,
+    path: '/',
+    component: HomePage,
   },
 ];
 

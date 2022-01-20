@@ -1,8 +1,8 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
 // Cmps
-import {AppHeader} from './cmps/AppHeader';
+import { AppHeader } from './cmps/AppHeader';
+import { PopoverSideMenu } from './cmps/PopoverSideMenu.jsx'
 
 // Routes
 import routes from './routes.js';
@@ -15,11 +15,12 @@ export class RootCmp extends React.Component {
         <main>
           <Switch>
             {routes.map(route => (
-              // short if with exact and board
-              <Route key={route.path} exact component={route.component} path={route.path} />
+              <Route key={route.path} component={route.component} path={route.path} />
             ))}
           </Switch>
         </main>
+
+        <PopoverSideMenu />
       </div>
     );
   }

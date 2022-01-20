@@ -10,11 +10,9 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
 
     // Switch if that decide if
     const getContentForDisplay = () => {
-        let props;
         switch (type) {
             case 'members':
-                return <MembersModalContent />
-                break
+                return <MembersModalContent task />
         }
     }
 

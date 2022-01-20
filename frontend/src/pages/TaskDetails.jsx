@@ -17,17 +17,13 @@ export function TaskDetails(props) {
     const [task, setTask] = useState(null);
     const board = useSelector(state => state.boardModule.board);
 
-    useEffect(async () => {
-        const { boardId, groupId, taskId } = props.match.params;
-        console.log('params:', boardId, groupId, taskId);
-        const currGroup = board?.groups.find(group => group.id === groupId);
-        setGroup(currGroup);
-        const currTask = currGroup?.tasks?.find(task => task.id === taskId);
-        console.log('board:', board);
-        console.log('currGroup:', currGroup);
-        console.log('currTask:', currTask);
-        setTask(currTask);
-    }, []);
+  useEffect(async () => {
+    const { boardId, groupId, taskId } = props.match.params;
+    const currGroup = currBoard?.groups.find(group => group.id === groupId);
+    const currTask = currGroup?.tasks?.find(task => task.id === taskId);
+    console.log('currTask:', currTask);
+    setTask(currTask);
+  }, []);
 
     const onCloseModal = () => {
         props.history.push(`/${board._id}`)

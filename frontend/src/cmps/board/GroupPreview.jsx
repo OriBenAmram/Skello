@@ -1,9 +1,9 @@
-import {Draggable} from 'react-beautiful-dnd';
+import { Draggable } from 'react-beautiful-dnd';
 
-import {DynamicAddAction} from './DynamicAddAction';
-import {TaskList} from './TaskList';
+import { DynamicAddAction } from './DynamicAddAction';
+import { TaskList } from './TaskList';
 
-export function GroupPreview({group, boardId, index}) {
+export function GroupPreview({ group, boardId, index }) {
   return (
     <Draggable draggableId={group.id} index={index}>
       {provided => (

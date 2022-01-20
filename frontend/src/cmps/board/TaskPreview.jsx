@@ -1,6 +1,7 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 export function TaskPreview(props) {
-  const {task, boardId, groupId} = props;
+  const { task, boardId, groupId } = props;
   const {
     archiveAt,
     attachments,
@@ -14,11 +15,13 @@ export function TaskPreview(props) {
     style,
     title,
   } = task;
-  return (
+  return (<>
     <Link to={`/board/${boardId}/${groupId}/${task.id}`}>
+
       <section className="task-preview">
         <p>{title}</p>
       </section>
-    </Link>
+    </Link >
+  </>
   );
 }
