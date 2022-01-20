@@ -11,7 +11,7 @@ export function TaskDescription({ description }) {
                 <BsTextLeft className='primary-icon main-content-icon' />
                 <h3>Description</h3>
             </div>
-            <textarea defaultValue="" placeholder={description} className="description-text-area"></textarea>
+            <textarea placeholder={description} className="description-text-area"></textarea>
             <div className="description-edit-container">
                 <div>
                     <button className="save-btn">Save</button>

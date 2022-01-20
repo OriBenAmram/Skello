@@ -18,11 +18,15 @@
 // Components
 @import "cmps/board-list.scss";
 @import "cmps/loader.scss";
+@import "cmps/app-header.scss";
+@import "cmps/dynamic-action-modal.scss";
+@import "cmps/dynamic-modal-content.scss";
 
 // details
-@import "cmps/details-cover.scss";
-@import "cmps/details-header.scss";
-@import "cmps/details-description.scss";
+@import "cmps/task/details-cover.scss";
+@import "cmps/task/details-header.scss";
+@import "cmps/task/details-description.scss";
+@import "cmps/task/details-activities.scss";
 
 // Group
 @import "cmps/group-preview.scss";

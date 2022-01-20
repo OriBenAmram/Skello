@@ -15,6 +15,7 @@ export class RootCmp extends React.Component {
         <main>
           <Switch>
             {routes.map(route => (
+              // short if with exact and board
               <Route key={route.path} exact component={route.component} path={route.path} />
             ))}
           </Switch>
