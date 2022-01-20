@@ -135,30 +135,28 @@ const board = {
                             ]
                         }
                     ],
-                    "dueDate": 1633546980000.0,
-                    "isDone": true
-                },
-                "members": [
-                    {
-                        "_id": "u101",
-                        "imgUrl": "url",
-                        "fullname": "Muki Puri",
-                        "username": "muki12",
-                    },
-                    {
-                        "_id": "u101",
-                        "imgUrl": "url",
-                        "fullname": "Muki Puri",
-                        "username": "muki12",
-                    },
-                    {
-                        "_id": "u101",
-                        "imgUrl": "url",
-                        "fullname": "Muki Puri",
-                        "username": "muki12",
-                    }],
-                "dueDate": 1589983468418,
-                "archiveAt": null
+
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "imgUrl": "url",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
+                        },
+                        {
+                            "_id": "u101",
+                            "imgUrl": "url",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
+                        },
+                        {
+                            "_id": "u101",
+                            "imgUrl": "url",
+                            "fullname": "Muki Puri",
+                            "username": "muki12",
+                        }],
+                    "dueDate": 1589983468418,
+                    "archiveAt": null
                     // "isArchive": false
 
                     // {
@@ -166,25 +164,25 @@ const board = {
                     //     "status": "done"
                     // },
                 }
-    ]
-}
-    ],
-"activities": [
-    {
-        "id": "a101",
-        "txt": "Changed Color",
-        "createdAt": 154514,
-        "byMember": {
-            "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
-        },
-        "task": {
-            "id": "c101",
-            "title": "Replace Logo"
+            ]
         }
-    }
-]
+    ],
+    "activities": [
+        {
+            "id": "a101",
+            "txt": "Changed Color",
+            "createdAt": 154514,
+            "byMember": {
+                "_id": "u101",
+                "fullname": "Abi Abambi",
+                "imgUrl": "http://some-img"
+            },
+            "task": {
+                "id": "c101",
+                "title": "Replace Logo"
+            }
+        }
+    ]
 }
 
 const user = {
