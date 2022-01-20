@@ -1,9 +1,27 @@
 
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineTags, AiOutlineFieldTime, AiOutlineCreditCard, AiOutlineClose, AiOutlineCopy } from "react-icons/ai";
 import { BsPersonPlus } from "react-icons/bs";
-// import { IoIosArrowRoundForward } from "react-icons/ioios";
-import {MdOutlineAttachment}  from "react-icons/md"
-export function TaskDetails() {
+import { MdOutlineAttachment } from "react-icons/md"
+
+
+// const [board, setBoard] = useState(null);  
+
+export function TaskDetails(props) {
+    const dispatch = useDispatch();
+    const [task, setTask] = useState(null);
+    const currBoard = useSelector(state => state.boardModule.board);
+
+
+    useEffect(async () => {
+        const { boardId, groupId, taskId } = props.match.params;
+        console.log('params:', boardId, groupId, taskId);
+        const currGroup = currBoard?.groups.find(group => group.id === groupId);
+        const currTask = currGroup?.tasks?.find(task => task.id === taskId);
+        console.log('currTask:', currTask);
+        setTask(currTask)
+    }, []);
 
 
     return (
@@ -13,14 +31,16 @@ export function TaskDetails() {
             <div className="task-details-modal">
                 {/* Cover */}
                 <section className='details-cover'>
-                        <button className="close-modal-btn">X</button>
+                    <button className="close-modal-btn">X</button>
                 </section>
                 {/* Details-header */}
                 <section className='details-header'>
                     <AiOutlineCreditCard className='header-icon' />
-                    <textarea>app header bla bla</textarea>
+                    <textarea defaultValue="baba">
+
+                    </textarea>
                     <div className="header-sub-title">
-                        <span>by Ori Ben Amram</span>
+                        <span>daniel </span>
                     </div>
                 </section>
 
@@ -32,7 +52,7 @@ export function TaskDetails() {
                             <div className="title-container">
                                 <h3>Description</h3>
                             </div>
-                            <textarea placeholder="Add a more detailed description..." className="description-text-area"></textarea>
+                            <textarea defaultValue="" placeholder="Add a more detailed description..." className="description-text-area"></textarea>
                             <div className="description-edit-container">
                                 <div>
                                     <button className="save-btn">Save</button>
@@ -64,7 +84,7 @@ export function TaskDetails() {
                         <section className='actions'>
                             <h3>Actions</h3>
                             <button className="button-link"> Move</button>
-                            <button className="button-link"> <AiOutlineCopy/>Copy</button>
+                            <button className="button-link"> <AiOutlineCopy />Copy</button>
                             <button className="button-link"> Archive</button>
                         </section>
                     </section>
