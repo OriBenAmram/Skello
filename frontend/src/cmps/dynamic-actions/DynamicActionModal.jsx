@@ -13,11 +13,16 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
         switch (type) {
             case 'members':
                 return <MembersModalContent task />
+            case 'checklist':
+                // return <MembersModalContent task />
         }
     }
+    console.log('pos:', pos);
+
 
     return (
-        <section className='dynamic-action-modal' style={{ top: `${pos.clientY + 130}px`, left: `${pos.clientX - 70}px` }} >
+        // <section className='dynamic-action-modal' style={{ top: `${pos.clientY}px`, left: `${pos.clientX}px` }} >
+        <section className='dynamic-action-modal' style={{ top: `${pos.clientY}px`, left: `732px` }} >
             <section className='modal-header'>
                 <button className='simple-close-btn' onClick={toggleModal}>x</button>
                 {type}
