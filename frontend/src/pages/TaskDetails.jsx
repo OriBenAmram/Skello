@@ -1,14 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineTags, AiOutlineFieldTime, AiOutlineCreditCard, AiOutlineClose, AiOutlineBars, AiOutlineCopy } from "react-icons/ai";
+import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCreditCard, AiOutlineClose, AiOutlineBars, AiOutlineCopy } from "react-icons/ai";
+import { IoPersonOutline } from "react-icons/io5";
 import { BiSmile } from "react-icons/bi";
-import { BsPersonPlus, BsTextLeft } from "react-icons/bs";
+import { BsPersonPlus, BsTextLeft, BsArrowRight, BsArchive } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md"
 import { GoMention } from "react-icons/go"
 
-// CPMS
 
+// CPMS
+import { Loader } from '../cmps/Loader.jsx'
 
 // const [board, setBoard] = useState(null);  
 
@@ -28,6 +30,8 @@ export function TaskDetails(props) {
     }, []);
 
 
+
+    if (!task) return <Loader />
     return (
         <section className='task-details-page'>
 
@@ -40,9 +44,9 @@ export function TaskDetails(props) {
                 {/* Details-header */}
                 <section className='details-header'>
                     <AiOutlineCreditCard className='primary-icon header-icon' />
-                    <textarea defaultValue="Add baba"></textarea>
+                    <textarea defaultValue={task.title}></textarea>
                     <div className="header-sub-title">
-                        in list <span>Todo</span>
+                        in list <span> todo </span>
                     </div>
                 </section>
 
@@ -88,18 +92,23 @@ export function TaskDetails(props) {
                     {/* Side-Bar */}
                     <section className='side-bar'>
                         <section className='add-to-card'>
+                            <h3>suggested</h3>
+                            <button className="button-link"> <IoPersonOutline /> Join</button>
+                        </section>
+
+                        <section className='add-to-card'>
                             <h3>Add to card</h3>
                             <button className="button-link"> <BsPersonPlus /> Members</button>
                             <button className="button-link"> <AiOutlineTags /> Labels</button>
-                            <button className="button-link">  Checklist</button>
+                            <button className="button-link"> <AiOutlineCheckSquare />  Checklist</button>
                             <button className="button-link"> <AiOutlineFieldTime /> Dates</button>
                             <button className="button-link"> <MdOutlineAttachment /> Attachment</button>
                         </section>
                         <section className='actions'>
                             <h3>Actions</h3>
-                            <button className="button-link"> Move</button>
+                            <button className="button-link"> <BsArrowRight /> Move</button>
                             <button className="button-link"> <AiOutlineCopy />Copy</button>
-                            <button className="button-link"> Archive</button>
+                            <button className="button-link"> <BsArchive /> Archive</button>
                         </section>
                     </section>
 
