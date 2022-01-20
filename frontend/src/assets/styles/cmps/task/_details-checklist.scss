@@ -1,0 +1,17 @@
+.checklist-container {
+   
+    .add-item-btn { 
+        margin-left: 40px;
+    }
+
+    .input-activity-box {
+        cursor: pointer;
+        &:focus {
+            padding-bottom: 56px;
+            transition-duration: 85ms;
+            transition-property: padding-bottom;
+            transition-timing-function: ease;
+            outline: none;
+        }
+    }
+}

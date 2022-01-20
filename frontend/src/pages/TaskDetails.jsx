@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TaskCover } from '../cmps/task-details/TaskCover.jsx';
 import { TaskHeader } from '../cmps/task-details/TaskHeader.jsx';
 import { TaskDescription } from '../cmps/task-details/TaskDescription.jsx';
+import { TaskChecklist } from '../cmps/task-details/TaskChecklist.jsx';
 import { TaskActivities } from '../cmps/task-details/TaskActivities.jsx';
 import { TaskSideBar } from '../cmps/task-details/TaskSideBar.jsx';
 import { Loader } from '../cmps/Loader.jsx';
@@ -34,8 +35,11 @@ export function TaskDetails(props) {
     return (
         <section className="task-details-page">
             <div className="task-details-modal">
+                <button className="close-modal-btn" onClick={() => {
+                    onCloseModal()
+                }}>X</button>
                 {/* Cover */}
-                <TaskCover onCloseModal={onCloseModal} />
+                <TaskCover />
                 {/* Details-header */}
                 <TaskHeader title={task.title} />
 
@@ -44,6 +48,10 @@ export function TaskDetails(props) {
                     <section className="main-col">
                         {/* Description */}
                         <TaskDescription description={task.description} />
+
+                        {/* CheckList */}
+                        <TaskChecklist />
+                        {/* {task.checklists?.length && <TaskChecklist />} */}
 
                         {/* Activities */}
                         <TaskActivities />
