@@ -112,27 +112,53 @@ const board = {
                             "url": "url",
                             "createdAt": Date.now()
                         }],
-                    "members": [
+                    "checklists": [
                         {
-                            "_id": "u101",
-                            "imgUrl": "url",
-                            "fullname": "Muki Puri",
-                            "username": "muki12",
-                        },
-                        {
-                            "_id": "u101",
-                            "imgUrl": "url",
-                            "fullname": "Muki Puri",
-                            "username": "muki12",
-                        },
-                        {
-                            "_id": "u101",
-                            "imgUrl": "url",
-                            "fullname": "Muki Puri",
-                            "username": "muki12",
-                        }],
-                    "dueDate": 1589983468418,
-                    "archiveAt": null
+                            "id": "VXZcwp",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "title": "Move tasks with drag & drop",
+                                    "id": "I19Bt6",
+                                    "isDone": true
+                                },
+                                {
+                                    "title": "Move tasks with move action",
+                                    "id": "k1wcOO",
+                                    "isDone": true
+                                },
+                                {
+                                    "title": "Copy tasks with copy action",
+                                    "id": "6GlVmg",
+                                    "isDone": true
+                                }
+                            ]
+                        }
+                    ],
+                    "dueDate": 1633546980000.0,
+                    "isDone": true
+                },
+                "members": [
+                    {
+                        "_id": "u101",
+                        "imgUrl": "url",
+                        "fullname": "Muki Puri",
+                        "username": "muki12",
+                    },
+                    {
+                        "_id": "u101",
+                        "imgUrl": "url",
+                        "fullname": "Muki Puri",
+                        "username": "muki12",
+                    },
+                    {
+                        "_id": "u101",
+                        "imgUrl": "url",
+                        "fullname": "Muki Puri",
+                        "username": "muki12",
+                    }],
+                "dueDate": 1589983468418,
+                "archiveAt": null
                     // "isArchive": false
 
                     // {
@@ -140,25 +166,25 @@ const board = {
                     //     "status": "done"
                     // },
                 }
-            ]
-        }
-    ],
-    "activities": [
-        {
-            "id": "a101",
-            "txt": "Changed Color",
-            "createdAt": 154514,
-            "byMember": {
-                "_id": "u101",
-                "fullname": "Abi Abambi",
-                "imgUrl": "http://some-img"
-            },
-            "task": {
-                "id": "c101",
-                "title": "Replace Logo"
-            }
-        }
     ]
+}
+    ],
+"activities": [
+    {
+        "id": "a101",
+        "txt": "Changed Color",
+        "createdAt": 154514,
+        "byMember": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "task": {
+            "id": "c101",
+            "title": "Replace Logo"
+        }
+    }
+]
 }
 
 const user = {
