@@ -1,6 +1,4 @@
 
-import { AiOutlineClose } from "react-icons/ai";
-import { AiOutlineCreditCard } from "react-icons/ai";
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineTags, AiOutlineFieldTime, AiOutlineCreditCard, AiOutlineClose, AiOutlineCopy } from "react-icons/ai";
