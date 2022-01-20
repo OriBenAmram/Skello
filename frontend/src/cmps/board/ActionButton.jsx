@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {GrAdd, GrClose} from 'react-icons/gr';
-import {addTask} from '../../store/board/board.action.js';
+import {addTask, addGroup} from '../../store/board/board.action.js';
 
 class _ActionButton extends React.Component {
   state = {
@@ -19,12 +19,14 @@ class _ActionButton extends React.Component {
     this.setState({taskTitle: value});
   };
 
-  onAddGroup = () => {
+  onAddGroup = async () => {
     console.log('Group Added');
     const {taskTitle} = this.state;
-    console.log('🚀 ~ file: ActionButton.jsx ~ line 25 ~ _ActionButton ~ taskTitle', taskTitle);
     const {boardId} = this.props;
-    console.log('🚀 ~ file: ActionButton.jsx ~ line 27 ~ _ActionButton ~ boardId', boardId);
+    if (!taskTitle) return;
+    await this.props.addGroup(taskTitle, boardId);
+    this.cleanForm();
+    this.toggleForm();
   };
 
   onAddTask = async () => {
@@ -108,6 +110,7 @@ class _ActionButton extends React.Component {
 
 const mapDispatchToProps = {
   addTask,
+  addGroup,
 };
 
 export const ActionButton = connect(null, mapDispatchToProps)(_ActionButton);
