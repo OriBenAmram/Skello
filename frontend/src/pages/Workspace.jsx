@@ -8,8 +8,6 @@ import { BoardList } from '../cmps/workspace/BoardList.jsx';
 
 import { onSaveBoard } from '../store/board/board.action';
 
-
-
 export function Workspace() {
     const dispatch = useDispatch();
     const boards = useSelector(state => state.boardModule.boards);

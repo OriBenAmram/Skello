@@ -17,6 +17,7 @@ async function queryImages(query = 'random') {
   return photos.data.results
 }
 
+
 function add(taskTitle, groupId, boardId) {
   const taskToAdd = {
     id: utilService.makeId(),
