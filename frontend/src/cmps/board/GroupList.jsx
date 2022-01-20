@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionButton} from './ActionButton.jsx';
+import {DynamicAddAction} from './DynamicAddAction.jsx';
 import {GroupPreview} from './GroupPreview.jsx';
 
 export function GroupList({board}) {
@@ -8,7 +8,7 @@ export function GroupList({board}) {
       {board.groups.map(group => (
         <GroupPreview key={group.id} boardId={board._id} group={group} />
       ))}
-      <ActionButton isList boardId={board._id} />
+      <DynamicAddAction isList boardId={board._id} />
     </section>
   );
 }

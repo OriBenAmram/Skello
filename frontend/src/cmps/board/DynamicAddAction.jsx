@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {GrAdd, GrClose} from 'react-icons/gr';
 import {addTask, addGroup} from '../../store/board/board.action.js';
 
-class _ActionButton extends React.Component {
+class _DynamicAddAction extends React.Component {
   state = {
     isFormOpen: false,
     taskTitle: '',
@@ -113,5 +113,5 @@ const mapDispatchToProps = {
   addGroup,
 };
 
-export const ActionButton = connect(null, mapDispatchToProps)(_ActionButton);
+export const DynamicAddAction = connect(null, mapDispatchToProps)(_DynamicAddAction);
 // export const ActionButton = connect(mapStateToProps, mapDispatchToProps)(_ActionButton)
