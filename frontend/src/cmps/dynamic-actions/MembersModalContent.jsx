@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // CMPS
 
-export function ModalContent(props) {
+export function MembersModalContent(props) {
 
     // const [modalContent, setModalContent] = useState({ isSearch: true });
 
