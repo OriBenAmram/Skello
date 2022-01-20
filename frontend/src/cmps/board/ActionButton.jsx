@@ -19,6 +19,14 @@ class _ActionButton extends React.Component {
     this.setState({taskTitle: value});
   };
 
+  onAddGroup = () => {
+    console.log('Group Added');
+    const {taskTitle} = this.state;
+    console.log('🚀 ~ file: ActionButton.jsx ~ line 25 ~ _ActionButton ~ taskTitle', taskTitle);
+    const {boardId} = this.props;
+    console.log('🚀 ~ file: ActionButton.jsx ~ line 27 ~ _ActionButton ~ boardId', boardId);
+  };
+
   onAddTask = async () => {
     console.log('Task Added');
     const {taskTitle} = this.state;
@@ -40,14 +48,23 @@ class _ActionButton extends React.Component {
     const placeholder = isList ? 'Enter list title...' : 'Enter a title for this task...';
     const btnText = isList ? 'Add List' : 'Add Card';
     return (
-      <div className="add-task-open">
+      <div className={`add-task-open ${isList ? 'group' : ''}`}>
         <textarea
           autoFocus
           placeholder={placeholder}
           onChange={this.handleChange}
-          value={taskTitle}></textarea>
+          value={taskTitle}
+          // onBlur={() => {
+          //   this.toggleForm();
+          //   this.cleanForm();
+          // }}
+        ></textarea>
         <div className="task-btns flex align-center">
-          <button onClick={this.onAddTask} className="task-btn save-task">
+          <button
+            onClick={() => {
+              isList ? this.onAddGroup() : this.onAddTask();
+            }}
+            className="task-btn save-task">
             {btnText}
           </button>
           <button
@@ -69,7 +86,7 @@ class _ActionButton extends React.Component {
     const buttonText = isList ? 'Add another list' : 'Add another task';
 
     return (
-      <div className="add-btn flex" onClick={this.toggleForm}>
+      <div className={`add-btn flex ${isList ? 'group' : ''}`} onClick={this.toggleForm}>
         <GrAdd className="icon" />
         <p>{buttonText}</p>
       </div>
