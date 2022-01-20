@@ -19,7 +19,6 @@ export function TaskDetails(props) {
 
     useEffect(async () => {
         const { boardId, groupId, taskId } = props.match.params;
-        // const currBoard = currBoard?.groups.find(group => group.id === groupId);
         const currGroup = board?.groups.find(group => group.id === groupId);
         const currTask = currGroup?.tasks?.find(task => task.id === taskId);
         console.log('currTask:', currTask);
