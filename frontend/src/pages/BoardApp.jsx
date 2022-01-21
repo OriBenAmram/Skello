@@ -7,7 +7,7 @@ import {GroupList} from '../cmps/board/GroupList.jsx';
 import {Loader} from '../cmps/Loader.jsx';
 
 // ACTIONS
-import {loadBoard} from '../store/board/board.action';
+import {loadBoard, handleDrag} from '../store/board/board.action';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
@@ -24,9 +24,19 @@ export function BoardApp(props) {
     }
   }, []);
 
-  const onDragEnd = () => {
-    //TODO: reordering logic
-    console.log('Drag End');
+  const onDragEnd = result => {
+    // DroppableId: "all-groups" when group is dropped
+    // Source - start index
+    // Destination - end index(where was it dropped)
+    // DraggableId - wich element was dragged by id
+    // Type - group or task
+    const {destination, source, draggableId, type} = result;
+
+    if (!destination) return;
+
+    dispatch(
+      handleDrag(board, source.droppableId, destination.droppableId, source.index, destination.index, type)
+    );
   };
 
   if (!board) return <Loader />;

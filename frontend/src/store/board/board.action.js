@@ -63,3 +63,35 @@ export function onSaveBoard(board) {
     }
   };
 }
+
+export function handleDrag(
+  board,
+  droppableIdStart,
+  droppableIdEnd,
+  droppableIndexStart,
+  droppableIndexEnd,
+  type
+) {
+  console.log('handle Drag ->');
+  console.log('🚀 ~ file: board.action.js ~ line 75 ~ type', type);
+  console.log('🚀 ~ file: board.action.js ~ line 75 ~ droppableIndexEnd', droppableIndexEnd);
+  console.log('🚀 ~ file: board.action.js ~ line 75 ~ droppableIndexStart', droppableIndexStart);
+  console.log('🚀 ~ file: board.action.js ~ line 75 ~ droppableIdEnd', droppableIdEnd);
+  console.log('🚀 ~ file: board.action.js ~ line 75 ~ droppableIdStart', droppableIdStart);
+  return async dispatch => {
+    const newBoard = {...board};
+    if (type === 'group') {
+      // take out group from old index
+      const group = newBoard.groups.splice(droppableIndexStart, 1);
+      // insert group to new index
+      newBoard.groups.splice(droppableIndexEnd, 0, ...group);
+    }
+
+    await boardService.save(newBoard);
+
+    dispatch({
+      type: 'SAVE_BOARD',
+      board: newBoard,
+    });
+  };
+}
