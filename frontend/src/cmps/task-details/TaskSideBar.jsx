@@ -21,8 +21,6 @@ export function TaskSideBar() {
         setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
     }
 
-    console.log('modal:', modal);
-
     return (
         <section className='side-bar'>
             <section className='add-to-card'>

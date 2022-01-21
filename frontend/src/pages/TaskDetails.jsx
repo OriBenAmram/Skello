@@ -30,11 +30,14 @@ export function TaskDetails(props) {
         props.history.push(`/board/${board._id}`)
     }
 
-
     if (!task) return <Loader />;
     return (
-        <section className="task-details-page">
-            <div className="task-details-modal">
+        <section className="task-details-page" onClick={()=> { 
+            onCloseModal()
+        }}>
+            <div className="task-details-modal" onClick={(ev) => { 
+                ev.stopPropagation()
+            }}>
                 <button className="close-modal-btn" onClick={() => {
                     onCloseModal()
                 }}>X</button>

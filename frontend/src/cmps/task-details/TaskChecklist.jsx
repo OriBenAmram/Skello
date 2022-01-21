@@ -7,8 +7,6 @@ export function TaskChecklist() {
 
     const [isAddingItem, setAddingItem] = useState(false);
 
-    console.log('isAddingItem:', isAddingItem);
-    
     return (
         <div className='checklist-container'>
             <div className='title-container'>
@@ -32,11 +30,6 @@ export function TaskChecklist() {
                         <button>X</button>
                     </div>
                 </section>}
-            {/* <div className='text-area-container'>
-                <textarea defaultValue="" className='input-activity-box comment-general-box' placeholder="Write a comment...">
-                </textarea>
-                <button className='save-btn'>Add</button>
-            </div> */}
         </div>
     );
 }
