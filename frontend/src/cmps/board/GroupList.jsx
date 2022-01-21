@@ -11,8 +11,8 @@ export function GroupList({board}) {
           {board.groups.map((group, index) => (
             <GroupPreview key={group.id} boardId={board._id} group={group} id={group.id} index={index} />
           ))}
-          <DynamicAddAction isList boardId={board._id} />
           {provided.placeholder}
+          <DynamicAddAction isList boardId={board._id} />
         </section>
       )}
     </Droppable>

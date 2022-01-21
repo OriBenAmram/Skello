@@ -94,7 +94,7 @@ export function handleDrag(
       }
       // Moving task between differents groups
       if (droppableIdStart !== droppableIdEnd) {
-        // Find the group where drag happend
+        // Find the group where drag happened
         const groupStart = newBoard.groups.find(group => group.id === droppableIdStart);
 
         // Pull out task from this group
