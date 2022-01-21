@@ -16,20 +16,41 @@ const DUMMY_BOARDS = [
             background: 'url(https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80)'
         },
         "labels": [
+            // green
             {
                 "id": "l101",
-                "title": "",
-                "color": "red"
+                "title": "daniel",
+                "color": "#61bd4f"
             },
+            // yellow
             {
-                "id": "l202",
+                "id": "l102",
                 "title": "",
-                "color": "blue"
+                "color": "#f2d600"
             },
+            // orange
             {
-                "id": "l303",
+                "id": "l103",
                 "title": "done",
-                "color": "yellow"
+                "color": "#ff9f1a"
+            },
+            // red
+            {
+                "id": "l104",
+                "title": "",
+                "color": "#eb5a46"
+            },
+            // purple
+            {
+                "id": "l105",
+                "title": "yuval",
+                "color": "#c377e0"
+            },
+            // blue
+            {
+                "id": "l106",
+                "title": "ori",
+                "color": "#0079bf"
             },
         ],
         "members": [
@@ -59,7 +80,7 @@ const DUMMY_BOARDS = [
                         "title": "Nested Task",
                         "description": "Create nested task details page, with dark overflow",
                         "createdAt": Date.now(),
-                        "labelIds": ["l101", "l202"],
+                        "labelIds": ["l101", "l102", "103", "104", "105", "106"],
                         "style": {
                             "backgroundColor": "#4c78b7",
                             "backgroundImage": "url(https://images.unsplash.com/photo-1642628658566-1db49cadf78c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0N3x8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60)",

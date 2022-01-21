@@ -9,7 +9,7 @@ import { Loader } from '../cmps/Loader.jsx';
 import { TaskDetails } from './TaskDetails.jsx';
 
 // ACTIONS
-import { loadBoard } from '../store/board/board.action';
+import { loadBoard, handleDrag } from '../store/board/board.action';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
@@ -20,18 +20,22 @@ export function BoardApp(props) {
   useEffect(async () => {
     try {
       await dispatch(loadBoard(id));
-    } catch (err) {
-    }
+    } catch (err) { }
   }, []);
 
+  const onDragEnd = result => {
+    // DroppableId: "all-groups" when group is dropped
+    // Source - start index
+    // Destination - end index(where was it dropped)
+    // DraggableId - wich element was dragged by id
+    // Type - group or task
+    const { destination, source, draggableId, type } = result;
 
+    if (!destination) return;
 
-  // console.log('board', board);
-
-
-  const onDragEnd = () => {
-    //TODO: reordering logic
-    ('Drag End');
+    dispatch(
+      handleDrag(board, source.droppableId, destination.droppableId, source.index, destination.index, type)
+    );
   };
 
   if (!board) return <Loader />;
@@ -42,8 +46,7 @@ export function BoardApp(props) {
         {/* <BoardHeader /> */}
         <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
       </div>
-      <Route path='/board/:boardId/:groupId/:taskId' component={TaskDetails} />
-    </DragDropContext >
-
+      <Route path="/board/:boardId/:groupId/:taskId" component={TaskDetails} />
+    </DragDropContext>
   );
 }

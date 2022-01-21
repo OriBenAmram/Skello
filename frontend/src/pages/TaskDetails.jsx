@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { GrClose } from "react-icons/gr";
+
 // CPMS
 import { TaskCover } from '../cmps/task-details/TaskCover.jsx';
 import { TaskHeader } from '../cmps/task-details/TaskHeader.jsx';
@@ -56,7 +58,7 @@ export function TaskDetails(props) {
             }}>
                 <button className="close-modal-btn" onClick={() => {
                     onCloseModal()
-                }}>X</button>
+                }}><GrClose style={{ height: '15px', width: '15px' }}/></button>
                 {/* Cover */}
                 <TaskCover />
                 {/* Details-header */}
