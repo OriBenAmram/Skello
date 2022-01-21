@@ -23,6 +23,8 @@ export function TaskDetails(props) {
     
     useEffect(async () => {
         const { boardId, groupId, taskId } = props.match.params;
+        console.log('boardm from useEffect:', board);
+
         const currGroup = board?.groups.find(group => group.id === groupId);
         setGroup(currGroup);
         const currTask = currGroup?.tasks?.find(task => task.id === taskId);
@@ -68,10 +70,12 @@ export function TaskDetails(props) {
                         <TaskDescription description={task.description} />
 
                         {/* CheckList */}
-                        {/* <TaskChecklists
+                        <TaskChecklists
+                            boardId={props.match.params.boardId}
+                            groupId={props.match.params.groupId}
                             task={task}
                             onSaveTaskChecklists={onSaveTaskChecklists}
-                        /> */}
+                        />
                         {/* {task.checklists?.length && <TaskChecklist />} */}
 
                         {/* Activities */}

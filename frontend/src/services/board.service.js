@@ -26,6 +26,15 @@ function getById(boardId) {
   return storageService.get(STORAGE_KEY, boardId);
 }
 
+function updateTask(boardId, groupId, taskId, taskToUpdate) {
+  const board = gBoards.find(board => board._id === boardId);
+  const groupIdx = board.groups.findIndex(group => group.id === groupId)
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+  board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate)
+  return storageService.put(STORAGE_KEY, board);
+}
+
+
 function save(board) {
   console.log('board:', board);
 
