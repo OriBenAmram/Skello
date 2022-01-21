@@ -13,9 +13,7 @@ export function GroupPreview({group, boardId, index}) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className="group-preview">
-          {/* TODO: groupPreviewTitle cmp props->group */}
           <GroupPreviewTitle group={group} />
-          {/* <h3>{group.title}</h3> */}
           <TaskList groupId={group.id} boardId={boardId} tasks={group.tasks} />
           <DynamicAddAction groupId={group.id} boardId={boardId} />
         </article>
