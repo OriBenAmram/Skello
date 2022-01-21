@@ -20,20 +20,18 @@ export function TaskDetails(props) {
     const [group, setGroup] = useState(null);
     const [task, setTask] = useState(null);
     const board = useSelector(state => state.boardModule.board);
-
+    
     useEffect(async () => {
         const { boardId, groupId, taskId } = props.match.params;
         const currGroup = board?.groups.find(group => group.id === groupId);
+        setGroup(currGroup);
         const currTask = currGroup?.tasks?.find(task => task.id === taskId);
         setTask(currTask);
-    }, []);
-
+    }, [board]);
+    // console.log('board from useEffect:', board);
+    
     const onCloseModal = () => {
         props.history.push(`/board/${board._id}`)
-    }
-
-    const onSaveLabels = (labels) => {
-        console.log('labels onSaveLabels', labels)
     }
 
     const onSaveTaskChecklists = (checklists) => {
@@ -64,7 +62,7 @@ export function TaskDetails(props) {
                     <section className="main-col">
 
                         {/* Potential members, labels and dueDate */}
-                        {/* <TaskAdditionsShow board={board} task={task} /> */}
+                        <TaskAdditionsShow board={board} task={task} />
 
                         {/* Description */}
                         <TaskDescription description={task.description} />
@@ -81,7 +79,7 @@ export function TaskDetails(props) {
                     </section>
 
                     {/* Side-Bar */}
-                    <TaskSideBar task={task} board={board} />
+                    <TaskSideBar task={task} group={group} board={board} />
                 </section>
             </div>
         </section>

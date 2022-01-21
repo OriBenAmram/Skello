@@ -38,12 +38,25 @@ export function addTask(taskTitle, groupId, boardId) {
   };
 }
 
+export function updateTask(boardId, groupId, taskId, taskToUpdate) {
+  return async dispatch => {
+    try {
+      const board = await boardService.updateTask(boardId, groupId, taskId, taskToUpdate);
+      dispatch({
+        type: 'SAVE_BOARD',
+        board: board,
+      });
+    } catch (err) {
+      console.log('Cant update task', err);
+    }
+  };
+}
+
 export function addGroup(groupTitle, boardId) {
   return async dispatch => {
     try {
       const board = await boardService.addGroup(groupTitle, boardId);
       console.log('board:', board);
-
       dispatch({
         type: 'SAVE_BOARD',
         board: board,
@@ -64,9 +77,4 @@ export function onSaveBoard(board) {
       console.log('BoardActions: err in onSaveBoard', err);
     }
   };
-}
-
-
-export function updateTodo(todo, todoId) {
-
 }

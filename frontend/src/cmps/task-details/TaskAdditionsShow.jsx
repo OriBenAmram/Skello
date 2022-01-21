@@ -7,7 +7,7 @@ export function TaskAdditionsShow({ board, task }) {
 
     useEffect(() => {
         setLabels()
-    }, []);
+    }, [task]);
 
     const onClickAvatar = (member) => {
     }
@@ -17,9 +17,7 @@ export function TaskAdditionsShow({ board, task }) {
     }
 
     const getLabelById = (labelId) => {
-        return board.labels.find(label => {
-            return label.id === labelId
-        })
+        return board.labels.find(label => label.id === labelId)
     }
 
     const setLabels = () => {

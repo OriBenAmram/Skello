@@ -8,7 +8,7 @@ export const storageService = {
   loadFromStorage,
 };
 
-function query(entityType, delay = 500) {
+function query(entityType, delay = 1) {
   // console.log('entityType:', entityType);
   var entities = JSON.parse(localStorage.getItem(entityType)) || [];
 
@@ -51,6 +51,7 @@ function remove(entityType, entityId) {
 }
 
 function _save(entityType, entities) {
+  console.log('entities:', entities);
   localStorage.setItem(entityType, JSON.stringify(entities));
 }
 

@@ -8,7 +8,7 @@ import { MdOutlineAttachment } from "react-icons/md";
 // CMPS
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
-export function TaskSideBar({ task, board }) {
+export function TaskSideBar({ task, group, board }) {
 
     const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
 
@@ -45,7 +45,7 @@ export function TaskSideBar({ task, board }) {
                 <button className="button-link" onClick={(event) => {
                     toggleModal({ event, type: 'attachment' })
                 }} > <MdOutlineAttachment /> Attachment</button>
-                {modal.isModalOpen && <DynamicActionModal task={task} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
+                {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
             </section>
             <section className='actions'>
                 <h3>Actions</h3>
