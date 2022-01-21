@@ -30,6 +30,10 @@ export function TaskDetails(props) {
         props.history.push(`/board/${board._id}`)
     }
 
+    const onSaveLabels =(labels) => { 
+        console.log('labels onSaveLabels', labels)
+    }
+
     const onSaveTaskChecklists = (checklists) => {
         task.checklists = checklists
         this.setTask(task)
@@ -58,7 +62,7 @@ export function TaskDetails(props) {
                     <section className="main-col">
 
                         {/* Potential members, labels and dueDate */}
-                        <TaskAdditionsShow board={board} task={task} />
+                        {/* <TaskAdditionsShow board={board} task={task} /> */}
 
                         {/* Description */}
                         <TaskDescription description={task.description} />
@@ -75,7 +79,7 @@ export function TaskDetails(props) {
                     </section>
 
                     {/* Side-Bar */}
-                    <TaskSideBar />
+                    <TaskSideBar task={task} board={board}/>
                 </section>
             </div>
         </section>

@@ -2,8 +2,9 @@ import { useState } from "react";
 
 // CMPS
 import { MembersModalContent } from './MembersModalContent.jsx'
+import { LabelsModalContent } from './LabelsModalContent.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
-export function DynamicActionModal({ toggleModal, type, pos }) {
+export function DynamicActionModal({ toggleModal, type, pos, task, board }) {
 
     const [modalContent, setModalContent] = useState({ isSearch: true });
 
@@ -11,10 +12,23 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':
-                return <MembersModalContent task />
+                return <MembersModalContent />
+            case 'labels':
+                return <LabelsModalContent task={task} board={board} />
             case 'checklist':
                 return <CheckListModalContent />
         }
+    }
+
+    const getPositionByType = () => {
+        // switch (type) {
+        //     case 'members':
+        //         return {  }
+        //     case 'labels':
+        //         return <LabelsModalContent task={task} board={board} />
+        //     case 'checklist':
+        //         return <CheckListModalContent />
+        // }
     }
 
 
