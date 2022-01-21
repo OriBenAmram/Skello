@@ -85,6 +85,20 @@ export function handleDrag(
       const group = newBoard.groups.splice(droppableIndexStart, 1);
       // insert group to new index
       newBoard.groups.splice(droppableIndexEnd, 0, ...group);
+    } else {
+      // Moving task in the same group
+      if (droppableIdStart === droppableIdEnd) {
+        const group = newBoard.groups.find(group => group.id === droppableIdStart);
+        const task = group.tasks.splice(droppableIndexStart, 1);
+        group.tasks.splice(droppableIndexEnd, 0, ...task);
+      }
+      // Moving task between differents groups
+      if (droppableIdStart !== droppableIdEnd) {
+        const groupStart = newBoard.groups.find(group => group.id === droppableIdStart);
+        const task = groupStart.tasks.splice(droppableIndexStart, 1);
+        const groupEnd = newBoard.groups.find(group => group.id === droppableIdEnd);
+        groupEnd.tasks.splice(droppableIndexEnd, 0, ...task);
+      }
     }
 
     await boardService.save(newBoard);
