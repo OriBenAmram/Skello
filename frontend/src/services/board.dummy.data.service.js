@@ -85,18 +85,18 @@ const DUMMY_BOARDS = [
                                 "title": "Ori The King",
                                 "todos": [
                                     {
-                                        "title": "Move tasks with drag & drop",
-                                        "id": "I19Bt6",
+                                        "title": "read about d&d",
+                                        "id": "b1998",
                                         "isDone": true
                                     },
                                     {
-                                        "title": "Move tasks with move action",
-                                        "id": "k1wcOO",
+                                        "title": "build checkList & todos",
+                                        "id": "b1997",
                                         "isDone": false
                                     },
                                     {
-                                        "title": "Copy tasks with copy action",
-                                        "id": "6GlVmg",
+                                        "title": "add labels",
+                                        "id": "b1212",
                                         "isDone": true
                                     }
                                 ]

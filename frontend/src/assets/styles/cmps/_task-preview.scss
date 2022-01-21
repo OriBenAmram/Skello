@@ -1,5 +1,5 @@
 // Task
-.task-preview{
+.task-preview {
     word-wrap: break-word;
     display: flex;
     flex-direction: column;
@@ -10,14 +10,14 @@
     background: #fff;
     padding: 5px 8px 3px;
     border-radius: 3px;
-    font-size: .875rem;
-    transition: background-color .1s;
+    font-size: 0.875rem;
+    transition: background-color 0.1s;
     cursor: pointer;
     margin-bottom: 4px;
 }
 
-.add-task-open{
-    textarea{
+.add-task-open {
+    textarea {
         background-color: #fff;
         box-shadow: 0 1px 0 #c0c6d0;
         border: none;
@@ -29,16 +29,12 @@
         cursor: text;
         border-radius: 3px;
         width: 100%;
-
     }
-
-
-
 }
 
 // Group
-.add-task-open.group{
-    textarea{
+.add-task-open.group {
+    textarea {
         height: 32px;
         box-shadow: inset 0 0 0 2px #0079bf;
     }

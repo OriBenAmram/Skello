@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export function TaskAdditionsShow({ board, task }) {
-
     const [taskLabels, setTaskLabels] = useState([]);
 
     useEffect(() => {
@@ -30,8 +29,6 @@ export function TaskAdditionsShow({ board, task }) {
         })
         setTaskLabels(labels)
     }
-
-
 
     return (
         <section className='details-additions-container'>

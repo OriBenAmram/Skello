@@ -14,6 +14,7 @@
     line-height: 20px;
 
     .task-details-modal {
+        z-index: 20;
         width: rem(768px);
         position: fixed;
         transform: translate(-50%);
@@ -136,7 +137,6 @@
                 .title-container {
                     min-height: rem(32px);
                     display: flex;
-                    align-items: center;
                     margin: 0 0 4px 40px;
                     padding: 8px 0;
                     position: relative;
