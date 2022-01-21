@@ -1,30 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsCheck2Square } from "react-icons/bs";
+import { updateTask } from '../../store/board/board.action.js';
+
+import { TaskTodoList } from './TaskTodoList.jsx'
 
 
-import { TaskTodolist } from './TaskTodoList.jsx'
-
-
-export function TaskChecklistPreview({ checklist, checklist: { title, id, } }) {
+export function TaskChecklistPreview({ boardId, groupId, task, checklist, checklist: { title, id, } }) {
     const [isAddingItem, setAddingItem] = useState(false);
     const [isEditingTitle, setEditingTitle] = useState(false);
     const [checklistData, setChecklistData] = useState(checklist)
-    const [isTextAreaOpen, toggleTextArea] = useState(false);
+    const dispatch = useDispatch()
+
+    console.log('checklist:', checklist);
 
 
 
     function handleChange({ target }) {
         const { name, value } = target
+        console.log('checklistData', checklistData);
         setChecklistData({ ...checklistData, [name]: value })
     }
 
-    function saveChecklist() {
-        console.log(checklistData)
+    function onRemoveTodo(todoId) {
+        const checklistId = checklist.id;
+        const updatedChecklist = { ...checklist, todos: checklist.todos.filter(todo => todo.id !== todoId) }
+        const taskToUpdate = {
+            ...task,
+            checklists: task.checklists.map(checklist => (checklist.id !== checklistId ? checklist : updatedChecklist))
+        }
+
+        console.log(taskToUpdate);
+        onUpdateTask(taskToUpdate);
+    }
+
+    function saveChecklist(checklistId) {
+        task.checklists = task.checklists.map(checklist => (checklist.id === checklistId ? checklistData : checklist));
+        onUpdateTask(task)
+    }
+
+    function onUpdateTask(task) {
+        dispatch(updateTask(boardId, groupId, task.id, task))
     }
 
     function onToggleTodo(todoId) {
-        console.log(todoId)
         const todoIdx = checklist.todos.findIndex(todo => todo.id === todoId);
         checklistData.todos[todoIdx].isDone = !checklist.todos[todoIdx].isDone
         setChecklistData({ ...checklistData })
@@ -42,7 +61,13 @@ export function TaskChecklistPreview({ checklist, checklist: { title, id, } }) {
             {!isEditingTitle && <section>
                 <div className='title-container'>
                     <BsCheck2Square className='primary-icon main-content-icon' />
-                    <h3>{title}</h3>
+                    <textarea
+                        name="title"
+                        defaultValue={title}
+                        onChange={(ev) => handleChange(ev)}>
+                    </textarea>
+
+                    <button onClick={() => saveChecklist(checklist.id)}>save</button>
                     <div className='btns-container'>
                         <button className="checklist-main-btn">Hide checked Items</button>
                         <button className="checklist-main-btn">Delete</button>
@@ -62,8 +87,9 @@ export function TaskChecklistPreview({ checklist, checklist: { title, id, } }) {
             </div>
             {/* CHECKLIST-LIST */}
             <TaskTodoList
-
-                task={task} />
+                onRemoveTodo={onRemoveTodo}
+                onToggleTodo={onToggleTodo}
+                checklist={checklist} />
 
 
             {/* ADD-AN-ITEM */}

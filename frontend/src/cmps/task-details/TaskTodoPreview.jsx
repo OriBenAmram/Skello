@@ -1,13 +1,17 @@
 import { IoCheckbox } from "react-icons/io5";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
-import { AiOutlineCreditCard, AiOutlineBars } from "react-icons/ai";
+import { AiOutlineCreditCard, AiOutlineBars, AiOutlineDelete } from "react-icons/ai";
 import { BiSmile } from "react-icons/bi";
 import { MdOutlineAttachment } from "react-icons/md"
 import { GoMention } from "react-icons/go"
+import React, { useState, useEffect } from 'react';
 
 
-export function TaskTodoPreview({ todo }) {
+export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo }) {
+    const [isTextAreaOpen, toggleTextArea] = useState(false);
+
+
 
     return (<div className='todo-preview' key={todo.id}>
         {/* ICON */}
@@ -16,10 +20,10 @@ export function TaskTodoPreview({ todo }) {
             : <MdCheckBoxOutlineBlank className='checkbox-icon' onClick={() => onToggleTodo(todo.id)} />}
 
         {/* TEXT-AREA */}
-        <textarea className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} >
-            {todo.title}
-        </textarea>
+        <textarea defaultValue={todo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} >
 
+        </textarea>
+        <AiOutlineDelete onClick={() => onRemoveTodo(todo.id)} />
         {/* Editing */}
         {isTextAreaOpen && <section className='edit-todo-controllers'>
             <div>

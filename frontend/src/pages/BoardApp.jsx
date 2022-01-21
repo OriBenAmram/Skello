@@ -24,6 +24,11 @@ export function BoardApp(props) {
     }
   }, []);
 
+
+
+  // console.log('board', board);
+
+
   const onDragEnd = () => {
     //TODO: reordering logic
     ('Drag End');

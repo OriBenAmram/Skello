@@ -1,18 +1,24 @@
 import { TaskTodoPreview } from './TaskTodoPreview.jsx'
 
 
-export function TaskTodoList({ task }) {
+export function TaskTodoList({ checklist, onToggleTodo, onRemoveTodo }) {
 
 
     const elTodos = () => {
-        return checklistData.todos.map(todo => <TaskTodoPreview key={todo.id} todo={todo} />)
+        return checklist.todos.map(todo =>
+            <TaskTodoPreview
+                key={todo.id}
+                todo={todo}
+                onToggleTodo={onToggleTodo}
+                onRemoveTodo={onRemoveTodo}
+            />)
 
     }
 
 
     return (
         <section className="todo-list">
-            {elTodos}
+            {elTodos()}
         </section>
     )
 }
