@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom';
+import {Draggable} from 'react-beautiful-dnd';
+
 export function TaskPreview(props) {
-  const {task, boardId, groupId} = props;
+  const {task, boardId, groupId, index} = props;
   const {
     archiveAt,
     attachments,
@@ -15,10 +17,18 @@ export function TaskPreview(props) {
     title,
   } = task;
   return (
-    <Link to={`/board/${boardId}/${groupId}/${task.id}`}>
-      <section className="task-preview">
-        <p>{title}</p>
-      </section>
-    </Link>
+    <Draggable draggableId={task.id} index={index}>
+      {provided => (
+        <Link to={`/board/${boardId}/${groupId}/${task.id}`}>
+          <section
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            className="task-preview">
+            <p>{title}</p>
+          </section>
+        </Link>
+      )}
+    </Draggable>
   );
 }
