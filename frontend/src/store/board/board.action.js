@@ -94,9 +94,16 @@ export function handleDrag(
       }
       // Moving task between differents groups
       if (droppableIdStart !== droppableIdEnd) {
+        // Find the group where drag happend
         const groupStart = newBoard.groups.find(group => group.id === droppableIdStart);
+
+        // Pull out task from this group
         const task = groupStart.tasks.splice(droppableIndexStart, 1);
+
+        // Find the group where drag ended
         const groupEnd = newBoard.groups.find(group => group.id === droppableIdEnd);
+
+        // Put the task in the new group
         groupEnd.tasks.splice(droppableIndexEnd, 0, ...task);
       }
     }
