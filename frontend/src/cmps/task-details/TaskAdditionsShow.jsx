@@ -7,17 +7,16 @@ export function TaskAdditionsShow({ board, task }) {
 
     useEffect(() => {
         setLabels()
-      }, []);
+    }, []);
 
-    const onClickAvatar = (member) => { 
-        console.log('member.fullname:', member.fullname);
+    const onClickAvatar = (member) => {
     }
 
-    const onClickLabel = (label) => { 
-        
+    const onClickLabel = (label) => {
+
     }
 
-    const getLabelById =(labelId) => { 
+    const getLabelById = (labelId) => {
         return board.labels.find(label => {
             return label.id === labelId
         })
@@ -34,30 +33,30 @@ export function TaskAdditionsShow({ board, task }) {
     return (
         <section className='details-additions-container'>
             {/* Members */}
-                {task.members && <section className='type-container'>
-                    <h4>Members</h4>
-                    <div className='items-container'>
-                        {task.members.map(member => <div style={{ backgroundColor: 'pink' }} className='member-avatar' key={member._id} onClick={() => {
-                            onClickAvatar(member)
-                        }}>
-                            {member.fullname.charAt(0).toUpperCase()}
-                            </div>)}
-                        <div className='plus-item member-avatar'>+</div>
-                    </div>
-                </section>}
+            {task.members && <section className='type-container'>
+                <h4>Members</h4>
+                <div className='items-container'>
+                    {task.members.map(member => <div style={{ backgroundColor: 'pink' }} className='member-avatar' key={member._id} onClick={() => {
+                        onClickAvatar(member)
+                    }}>
+                        {member.fullname.charAt(0).toUpperCase()}
+                    </div>)}
+                    <div className='plus-item member-avatar'>+</div>
+                </div>
+            </section>}
             {/* Labels */}
-                {taskLabels && <section className='type-container'>
-                    <h4>Labels</h4>
-                    <div className='items-container'>
-                        {taskLabels.map(label => <div style={{ backgroundColor: `${label.color}` }} className='label-box' key={label.id} onClick={() => {
-                            onClickLabel(label)
-                        }}>
-                            {label.title}
-                            </div>)}
-                        <div className='label-box plus-item'>+</div>
-                    </div>
-                </section>}
-                
+            {taskLabels && <section className='type-container'>
+                <h4>Labels</h4>
+                <div className='items-container'>
+                    {taskLabels.map(label => <div style={{ backgroundColor: `${label.color}` }} className='label-box' key={label.id} onClick={() => {
+                        onClickLabel(label)
+                    }}>
+                        {label.title}
+                    </div>)}
+                    <div className='label-box plus-item'>+</div>
+                </div>
+            </section>}
+
         </section>
     );
 }

@@ -6,7 +6,7 @@ import { TaskCover } from '../cmps/task-details/TaskCover.jsx';
 import { TaskHeader } from '../cmps/task-details/TaskHeader.jsx';
 import { TaskAdditionsShow } from '../cmps/task-details/TaskAdditionsShow.jsx';
 import { TaskDescription } from '../cmps/task-details/TaskDescription.jsx';
-import { TaskChecklist } from '../cmps/task-details/TaskChecklist.jsx';
+import { TaskChecklists } from '../cmps/task-details/TaskChecklists.jsx';
 import { TaskActivities } from '../cmps/task-details/TaskActivities.jsx';
 import { TaskSideBar } from '../cmps/task-details/TaskSideBar.jsx';
 import { Loader } from '../cmps/Loader.jsx';
@@ -29,6 +29,13 @@ export function TaskDetails(props) {
     const onCloseModal = () => {
         props.history.push(`/board/${board._id}`)
     }
+
+    const onSaveTaskChecklists = (checklists) => {
+        task.checklists = checklists
+        this.setTask(task)
+
+    }
+
 
     if (!task) return <Loader />;
     return (
@@ -57,7 +64,10 @@ export function TaskDetails(props) {
                         <TaskDescription description={task.description} />
 
                         {/* CheckList */}
-                        <TaskChecklist />
+                        <TaskChecklists
+                            task={task}
+                            onSaveTaskChecklists={onSaveTaskChecklists}
+                        />
                         {/* {task.checklists?.length && <TaskChecklist />} */}
 
                         {/* Activities */}

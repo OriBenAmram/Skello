@@ -26,7 +26,7 @@ export function BoardApp(props) {
 
   const onDragEnd = () => {
     //TODO: reordering logic
-    console.log('Drag End');
+    ('Drag End');
   };
 
   if (!board) return <Loader />;
