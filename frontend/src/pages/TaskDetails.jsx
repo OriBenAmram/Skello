@@ -32,7 +32,7 @@ export function TaskDetails(props) {
         props.history.push(`/board/${board._id}`)
     }
 
-    const onSaveLabels =(labels) => { 
+    const onSaveLabels = (labels) => {
         console.log('labels onSaveLabels', labels)
     }
 
@@ -45,10 +45,10 @@ export function TaskDetails(props) {
 
     if (!task) return <Loader />;
     return (
-        <section className="task-details-page" onClick={()=> { 
+        <section className="task-details-page" onClick={() => {
             onCloseModal()
         }}>
-            <div className="task-details-modal" onClick={(ev) => { 
+            <div className="task-details-modal" onClick={(ev) => {
                 ev.stopPropagation()
             }}>
                 <button className="close-modal-btn" onClick={() => {
@@ -70,10 +70,10 @@ export function TaskDetails(props) {
                         <TaskDescription description={task.description} />
 
                         {/* CheckList */}
-                        <TaskChecklists
+                        {/* <TaskChecklists
                             task={task}
                             onSaveTaskChecklists={onSaveTaskChecklists}
-                        />
+                        /> */}
                         {/* {task.checklists?.length && <TaskChecklist />} */}
 
                         {/* Activities */}
@@ -81,7 +81,7 @@ export function TaskDetails(props) {
                     </section>
 
                     {/* Side-Bar */}
-                    <TaskSideBar task={task} board={board}/>
+                    <TaskSideBar task={task} board={board} />
                 </section>
             </div>
         </section>

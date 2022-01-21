@@ -1,6 +1,6 @@
-import {TaskPreview} from './TaskPreview';
+import { TaskPreview } from './TaskPreview';
 
-export function TaskList({tasks, groupId, boardId}) {
+export function TaskList({ tasks, groupId, boardId }) {
   return (
     <section className="task-list-container">
       {tasks.map(task => (

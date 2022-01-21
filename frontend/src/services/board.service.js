@@ -17,33 +17,6 @@ async function queryImages(query = 'random') {
   return photos.data.results
 }
 
-
-function add(taskTitle, groupId, boardId) {
-  const taskToAdd = {
-    id: utilService.makeId(),
-    createdAt: Date.now(),
-    title: taskTitle,
-    description: '',
-    dueDate: null,
-    isDone: false,
-    archiveAt: null,
-    byMember: {
-      _id: 'u101',
-      imgUrl: 'url',
-      fullname: 'Muki Pori',
-      username: 'muki2',
-    },
-    members: [],
-    attachments: [],
-  };
-
-  const board = gBoards.find(board => board._id === boardId);
-  const groupIdx = board.groups.findIndex(group => group.id === groupId);
-  board.groups[groupIdx].tasks.push(taskToAdd);
-
-  return storageService.put(STORAGE_KEY, board);
-}
-
 function getBoardsFromStorage() {
   const boards = storageService.loadFromStorage(STORAGE_KEY);
   return boards;
@@ -76,11 +49,51 @@ function _setBoardsToStorage() {
   return boards;
 }
 
+
+function addGroup(groupTitle, boardId) {
+  const newGroup = {
+    id: utilService.makeId(),
+    title: groupTitle,
+    tasks: [],
+  };
+
+  const board = gBoards.find(board => board._id === boardId);
+  board.groups.push(newGroup);
+  return storageService.put(STORAGE_KEY, board);
+}
+function addTask(taskTitle, groupId, boardId) {
+  const taskToAdd = {
+    id: utilService.makeId(),
+    createdAt: Date.now(),
+    title: taskTitle,
+    description: '',
+    dueDate: null,
+    isDone: false,
+    archiveAt: null,
+    byMember: {
+      _id: 'u101',
+      imgUrl: 'url',
+      fullname: 'Muki Pori',
+      username: 'muki2',
+    },
+    members: [],
+    attachments: [],
+  };
+
+  const board = gBoards.find(board => board._id === boardId);
+  const groupIdx = board.groups.findIndex(group => group.id === groupId);
+  board.groups[groupIdx].tasks.push(taskToAdd);
+
+  return storageService.put(STORAGE_KEY, board);
+}
+
+
 export const boardService = {
   query,
   getById,
   getBoardsFromStorage,
-  add,
+  addGroup,
   save,
-  queryImages
+  queryImages,
+  addTask
 };
