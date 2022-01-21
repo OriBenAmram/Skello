@@ -55,6 +55,21 @@
             position: relative;
             padding-left: 40px;
             width: 100%;
+            transition: 0.3s ease-in-out;
+            
+            .delete-icon{
+                position: absolute;
+                right: 20px;
+                cursor: pointer;
+                color: red;
+                opacity: 0;
+            }
+            
+                        &:hover{
+                            .delete-icon{
+                                opacity: 1;
+                            }
+                        }
 
             .save-btn {
                 background-color: #091e420a;

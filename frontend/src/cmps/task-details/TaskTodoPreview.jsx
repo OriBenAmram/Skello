@@ -23,7 +23,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo }) {
         <textarea defaultValue={todo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} >
 
         </textarea>
-        <AiOutlineDelete onClick={() => onRemoveTodo(todo.id)} />
+        <AiOutlineDelete className="delete-icon" onClick={() => onRemoveTodo(todo.id)} />
         {/* Editing */}
         {isTextAreaOpen && <section className='edit-todo-controllers'>
             <div>

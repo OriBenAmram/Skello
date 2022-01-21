@@ -12,9 +12,6 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
     const [checklistData, setChecklistData] = useState(checklist)
     const dispatch = useDispatch()
 
-    console.log('checklist:', checklist);
-
-
 
     function handleChange({ target }) {
         const { name, value } = target
