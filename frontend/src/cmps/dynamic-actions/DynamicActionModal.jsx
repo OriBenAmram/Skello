@@ -4,7 +4,6 @@ import { useState } from "react";
 import { MembersModalContent } from './MembersModalContent.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
 export function DynamicActionModal({ toggleModal, type, pos }) {
-    console.log('pos.clientY:', pos.clientY);
 
     const [modalContent, setModalContent] = useState({ isSearch: true });
 
@@ -17,7 +16,6 @@ export function DynamicActionModal({ toggleModal, type, pos }) {
                 return <CheckListModalContent />
         }
     }
-    console.log('pos:', pos);
 
 
     return (
