@@ -80,7 +80,7 @@ const DUMMY_BOARDS = [
                         "title": "Nested Task",
                         "description": "Create nested task details page, with dark overflow",
                         "createdAt": Date.now(),
-                        "labelIds": ["l101", "l102", "103", "104", "105", "106"],
+                        "labelIds": ["l101", "l102", "l106"],
                         "style": {
                             "backgroundColor": "#4c78b7",
                             "backgroundImage": "url(https://images.unsplash.com/photo-1642628658566-1db49cadf78c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0N3x8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60)",

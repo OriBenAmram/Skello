@@ -44,11 +44,23 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 min-height: 32px;
+                position: relative;
 
-                // &:hover { 
+                .checked-label-icon {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                }
+
+                // &:hover {
                 //     box-shadow: -8px 0 ;
                 // }
             }
         }
     }
+
+
+    // Edit Modal
+    
+
 }

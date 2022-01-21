@@ -7,7 +7,7 @@ import { MembersModalContent } from './MembersModalContent.jsx'
 import { LabelsModalContent } from './LabelsModalContent.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
 
-export function DynamicActionModal({ toggleModal, type, pos, task, board }) {
+export function DynamicActionModal({ toggleModal, type, pos, task, group, board }) {
 
     const [modalContent, setModalContent] = useState({ isSearch: true });
     const [selectedLabel, setSelectedLabel] = useState(null);
@@ -18,7 +18,11 @@ export function DynamicActionModal({ toggleModal, type, pos, task, board }) {
             case 'members':
                 return <MembersModalContent />
             case 'labels':
-                return <LabelsModalContent task={task} board={board} />
+                return <LabelsModalContent task={task} group={group} board={board} />
+            case 'labels-to-add':
+                return <LabelsModalContent task={task} group={group} board={board} />
+            case 'labels-to-edit':
+                return <LabelsModalContent task={task} group={group} board={board} />
             case 'checklist':
                 return <CheckListModalContent />
         }
@@ -31,6 +35,7 @@ export function DynamicActionModal({ toggleModal, type, pos, task, board }) {
         switch (type) {
             case 'labels':
                 return { clientY: clientY - 300, clientX: 770 }
+            
             default:
                 return { clientY, clientX: 732 }
         }
@@ -48,7 +53,7 @@ export function DynamicActionModal({ toggleModal, type, pos, task, board }) {
                 {type.charAt(0).toUpperCase() + type.slice(1)}
             </section>
             <section className='modal-content'>
-                <input placeholder={`Search ${type}...`} type="text" className='modal-main-input' autoFocus />
+                {/* <input placeholder={`Search ${type}...`} type="text" className='modal-main-input' autoFocus /> */}
                 {/* CONTENT */}
                 {getContentForDisplay()}
             </section>
