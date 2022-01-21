@@ -1,9 +1,10 @@
-import { Draggable } from 'react-beautiful-dnd';
+import {Draggable} from 'react-beautiful-dnd';
 
-import { DynamicAddAction } from './DynamicAddAction';
-import { TaskList } from './TaskList';
+import {DynamicAddAction} from './DynamicAddAction';
+import {TaskList} from './TaskList';
+import {GroupPreviewTitle} from './GroupPreviewTitle';
 
-export function GroupPreview({ group, boardId, index }) {
+export function GroupPreview({group, boardId, index}) {
   return (
     <Draggable draggableId={group.id} index={index}>
       {provided => (
@@ -12,7 +13,9 @@ export function GroupPreview({ group, boardId, index }) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className="group-preview">
-          <h3>{group.title}</h3>
+          {/* TODO: groupPreviewTitle cmp props->group */}
+          <GroupPreviewTitle group={group} />
+          {/* <h3>{group.title}</h3> */}
           <TaskList groupId={group.id} boardId={boardId} tasks={group.tasks} />
           <DynamicAddAction groupId={group.id} boardId={boardId} />
         </article>
