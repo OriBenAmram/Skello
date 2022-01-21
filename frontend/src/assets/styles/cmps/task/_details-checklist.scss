@@ -1,0 +1,115 @@
+.checklist-container {
+    .add-item-btn {
+        margin-left: 40px;
+    }
+
+    .adding-item-section {
+        margin-left: 40px;
+    }
+
+    .checklist-main-btn {
+        background-color: #091e420a;
+        color: #172b4d;
+        border: none;
+        border-radius: 3px;
+        height: 32px;
+        padding: 6px 12px;
+    }
+
+    .title-container {
+        display: flex;
+        justify-content: space-between;
+
+        // ICON
+        .checkbox-icon {
+            position: absolute;
+            background-color: #fafbfc;
+            border-radius: 2px;
+            box-shadow: inset 0 0 0 2px #dfe1e6;
+            top: 5px;
+            left: 0;
+            width: 16px;
+            cursor: pointer;
+        }
+
+        textarea {
+        }
+
+        .btns-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            :not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+    }
+
+    // TODO-List
+    .todo-list {
+        min-height: 10px;
+
+        .todo-preview {
+            border-radius: 3px;
+            position: relative;
+            padding-left: 40px;
+            width: 100%;
+
+            .save-btn {
+                background-color: #091e420a;
+                border: none;
+                color: #a5adba;
+                display: inline-block;
+                padding: 6px 12px;
+            }
+
+            // ICON
+            .checkbox-icon {
+                position: absolute;
+                left: 0;
+                top: 5px;
+            }
+
+            // Normal - no editing - Preview
+            .todo-item {
+                background-color: inherit;
+                width: 100%;
+                border-radius: 3px;
+                position: relative;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #091e420a;
+                }
+
+                &:focus {
+                    overflow: hidden;
+                    overflow-wrap: break-word;
+                    height: 56px;
+                    background: #091e420a;
+                    border-color: #091e4221;
+                    box-shadow: inset 0 0 0 1px #091e4221;
+                    margin-bottom: 4px;
+                    border: none;
+                    outline: none;
+                }
+
+                &.checked {
+                    text-decoration-line: line-through;
+                }
+            }
+            .edit-todo-controllers {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .edit-iconts-options { 
+                    :not(:last-child) { 
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -42,6 +42,8 @@ export function addGroup(groupTitle, boardId) {
   return async dispatch => {
     try {
       const board = await boardService.addGroup(groupTitle, boardId);
+      console.log('board:', board);
+
       dispatch({
         type: 'SAVE_BOARD',
         board: board,

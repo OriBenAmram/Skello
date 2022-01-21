@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export function TaskCover(props) {
+export function TaskCover() {
     return (
         <section className='details-cover'>
-            <button className="close-modal-btn">X</button>
+            
         </section>
     );
 }

@@ -1,8 +1,26 @@
+import { useState } from "react";
+
 import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
 import { BsPersonPlus, BsArrowRight, BsArchive } from "react-icons/bs";
+import { MdOutlineAttachment } from "react-icons/md";
 
-export function TaskSideBar() {
+// CMPS
+import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
+
+export function TaskSideBar({ task, board }) {
+
+    const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
+
+    const toggleModal = ({ event, type }) => {
+        // In case the modal is open somewhere
+        if (modal.isModalOpen) {
+            setModal({ ...modal, isModalOpen: false })
+            return
+        }
+        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
+    }
+
     return (
         <section className='side-bar'>
             <section className='add-to-card'>
@@ -12,15 +30,26 @@ export function TaskSideBar() {
 
             <section className='add-to-card'>
                 <h3>Add to card</h3>
-                <button className="button-link"> <BsPersonPlus /> Members</button>
-                <button className="button-link"> <AiOutlineTags /> Labels</button>
-                <button className="button-link"> <AiOutlineCheckSquare />  Checklist</button>
-                <button className="button-link"> <AiOutlineFieldTime /> Dates</button>
-                {/* <button className="button-link"> <MdOutlineAttachment /> Attachment</button> */}
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'members' })
+                }} > <BsPersonPlus /> Members</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'labels' })
+                }} > <AiOutlineTags /> Labels</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'checklist' })
+                }} > <AiOutlineCheckSquare />  Checklist</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'dates' })
+                }} > <AiOutlineFieldTime /> Dates</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'attachment' })
+                }} > <MdOutlineAttachment /> Attachment</button>
+                {modal.isModalOpen && <DynamicActionModal task={task} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
             </section>
             <section className='actions'>
                 <h3>Actions</h3>
-                <button className="button-link"> <BsArrowRight /> Move</button>
+                <button className="button-link" > <BsArrowRight /> Move</button>
                 <button className="button-link"> <AiOutlineCopy />Copy</button>
                 <button className="button-link"> <BsArchive /> Archive</button>
             </section>

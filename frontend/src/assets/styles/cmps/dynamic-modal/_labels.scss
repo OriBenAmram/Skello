@@ -1,0 +1,54 @@
+.labels-modal-content {
+    // Title
+    .modal-title {
+        h4 {
+            margin: 0;
+        }
+
+        margin: 4px 0px 8px;
+    }
+
+    // Lower div
+    .new-label-btn {
+        width: 100%;
+        padding: 6px 12px;
+        margin: 8px 4px;
+    }
+
+    // List
+    .modal-items-to-edit {
+        .label-container {
+            padding-right: 36px;
+            position: relative;
+            margin: 0 0 4px;
+            min-height: 2px;
+
+            .edit-label-btn {
+                color: #42526e;
+                background-color: inherit;
+                padding: 6px;
+                border: none;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .label-box {
+                border-radius: 3px;
+                cursor: pointer;
+                font-weight: 700;
+                padding: 6px 12px;
+                color: white;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                min-height: 32px;
+
+                // &:hover { 
+                //     box-shadow: -8px 0 ;
+                // }
+            }
+        }
+    }
+}

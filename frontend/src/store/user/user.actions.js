@@ -10,7 +10,6 @@ export function login(credentials) {
                 user
             })
         } catch (err) {
-            // showErrorMsg('Cannot login')
             console.log('Cannot login', err)
         }
     }

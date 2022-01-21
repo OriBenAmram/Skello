@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {DragDropContext} from 'react-beautiful-dnd';
+import {Route} from 'react-router-dom';
 
 // CMPS
 import {GroupList} from '../cmps/board/GroupList.jsx';
 import {Loader} from '../cmps/Loader.jsx';
+import {TaskDetails} from './TaskDetails.jsx';
 
 // ACTIONS
 import {loadBoard, handleDrag} from '../store/board/board.action';
@@ -18,10 +20,7 @@ export function BoardApp(props) {
   useEffect(async () => {
     try {
       await dispatch(loadBoard(id));
-      console.log('continued after dispatch');
-    } catch (err) {
-      console.log('cant load board', err);
-    }
+    } catch (err) {}
   }, []);
 
   const onDragEnd = result => {
@@ -42,11 +41,12 @@ export function BoardApp(props) {
   if (!board) return <Loader />;
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="board-app" style={{background: style.background}}>
+      <div className="board-app" style={{background: `${board.style.background}  center center / cover`}}>
         <h1>board app</h1>
         {/* <BoardHeader /> */}
         <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
       </div>
+      <Route path="/board/:boardId/:groupId/:taskId" component={TaskDetails} />
     </DragDropContext>
   );
 }

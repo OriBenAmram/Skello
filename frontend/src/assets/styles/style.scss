@@ -9,6 +9,7 @@
 @import "basics/layout.scss";
 @import "basics/base.scss";
 @import "basics/buttons.scss";
+@import "basics/icons.scss";
 
 // PAGES
 @import "pages/home-page.scss";
@@ -19,11 +20,26 @@
 // Components
 @import "cmps/board-list.scss";
 @import "cmps/loader.scss";
+@import "cmps/app-header.scss";
+@import "cmps/dynamic-action-modal.scss";
+@import "cmps/dynamic-modal-content.scss";
+@import "cmps/popover-side-menu.scss";
+
 
 // details
-@import "cmps/details-cover.scss";
-@import "cmps/details-header.scss";
-@import "cmps/details-description.scss";
+@import "cmps/task/details-cover.scss";
+@import "cmps/task/details-header.scss";
+@import "cmps/task/details-additions.scss";
+@import "cmps/task/details-description.scss";
+@import "cmps/task/details-checklist.scss";
+@import "cmps/task/details-activities.scss";
+
+// checklists cmps
+@import "cmps/task/task-checklist-preview.scss";
+
+// Dynamic-Modal
+@import "cmps/dynamic-modal/labels.scss";
+
 
 // Group
 @import "cmps/group-preview.scss";

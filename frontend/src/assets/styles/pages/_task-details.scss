@@ -1,6 +1,12 @@
 .task-details-page {
     background-color: #000000a3;
     height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 15;
     padding-top: 50px;
     color: #172b4d;
     font-size: 14px;
@@ -8,6 +14,7 @@
     line-height: 20px;
 
     .task-details-modal {
+        z-index: 20;
         width: rem(768px);
         position: fixed;
         transform: translate(-50%);
@@ -20,7 +27,37 @@
         display: flex;
         flex-direction: column;
 
+        .close-modal-btn {
+            border-radius: 50%;
+            color: #42526e;
+            height: 40px;
+            width: 40px;
+            margin: 4px;
+            padding: 4px;
+            border: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &.dark {
+                background-color: #00000014;
+                color: #42526e;
+            }
+        }
+
         // GENERAL
+
+        h4 {
+            color: #5e6c84;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 20px;
+            margin-bottom: 4px;
+        }
 
         .details-primary-btn {
             background-color: #091e420a;
@@ -37,7 +74,26 @@
             text-decoration: none;
             resize: none;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
-            Helvetica Neue, sans-serif;
+                Helvetica Neue, sans-serif;
+        }
+
+        .main-input {
+            background-color: #fafbfc;
+            border: none;
+            border-radius: 3px;
+            box-shadow: inset 0 0 0 2px #dfe1e6;
+            line-height: 20px;
+            outline: none;
+            padding: 8px 12px;
+            transition-duration: 85ms;
+            transition-property: background-color, border-color, box-shadow;
+            transition-timing-function: ease;
+            color: #172b4d;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
+                Helvetica Neue, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
         }
 
         ::placeholder {
@@ -55,16 +111,13 @@
         }
 
         // COVER
-        
-
-        
 
         // Main-vontent
         .main-content {
             display: flex;
             width: 100%;
 
-            .main-content-icon { 
+            .main-content-icon {
                 top: 8px;
             }
 
@@ -81,95 +134,25 @@
                     display: inline-block;
                     min-height: rem(18px);
                     min-width: rem(40px);
-                    font-weight: 600;
+                    font-weight: 400;
                 }
 
                 .title-container {
                     min-height: rem(32px);
                     display: flex;
-                    align-items: center;
                     margin: 0 0 4px 40px;
                     padding: 8px 0;
                     position: relative;
 
-                    .details-primary-btn { 
+                    .details-primary-btn {
                         position: absolute;
                         right: 5px;
                     }
                 }
 
                 // DESCRIPTION
-                
 
                 // ACTIVITY
-                .activity-container {
-                    margin-bottom: rem(20px);
-                    position: relative;
-                    display: flex;
-                    flex-direction: column;
-
-                    .comment-general-box {
-                        overflow: hidden;
-                        overflow-wrap: break-word;
-                        height: 20px;
-                        padding: 8px 12px;
-                        border-radius: 3px;
-                        border: none;
-                        box-shadow: none;
-                        background-color: white;
-                        box-sizing: initial;
-                        min-height: 20px;
-                        resize: none;
-                        flex: 1;
-                        box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
-                    }
-
-                    .title-container {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                    }
-
-                    .text-area-container {
-                        position: relative;
-                        display: flex;
-                        flex-direction: column;
-                        margin: 0 0 0 40px;
-
-                        .save-btn {
-                            position: absolute;
-                            bottom: 10px;
-                            left: 10px;
-                            background-color: #091e420a;
-                            border: none;
-                            color: #a5adba;
-                            display: inline-block;
-                            padding: 6px 12px;
-                        }
-
-                        .add-icons-options {
-                            display: flex;
-                            position: absolute;
-                            bottom: 10px;
-                            right: 10px;
-
-                            :not(:last-child) {
-                                margin-right: 15px;
-                            }
-                        }
-                    }
-
-                    .input-activity-box {
-                        cursor: pointer;
-                        &:focus {
-                            padding-bottom: 56px;
-                            transition-duration: 85ms;
-                            transition-property: padding-bottom;
-                            transition-timing-function: ease;
-                            outline: none;
-                        }
-                    }
-                }
             }
 
             // Side-Bar
