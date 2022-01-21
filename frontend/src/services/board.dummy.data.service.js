@@ -13,7 +13,7 @@ const DUMMY_BOARDS = [
             "imgUrl": "http://some-img"
         },
         "style": {
-            background: 'url(https://images.unsplash.com/photo-1642590044683-d72bfab9eb35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
+            background: 'url(https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80)'
         },
         "labels": [
             {
@@ -92,7 +92,7 @@ const DUMMY_BOARDS = [
                                     {
                                         "title": "Move tasks with move action",
                                         "id": "k1wcOO",
-                                        "isDone": true
+                                        "isDone": false
                                     },
                                     {
                                         "title": "Copy tasks with copy action",

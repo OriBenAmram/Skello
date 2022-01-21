@@ -1,13 +1,13 @@
-import {boardService} from '../../services/board.service.js';
+import { boardService } from '../../services/board.service.js';
 
 // TODO: add filterby support
 export function loadBoards() {
   return async dispatch => {
     try {
       const boards = await boardService.query();
-      const action = {type: 'SET_BOARDS', boards};
+      const action = { type: 'SET_BOARDS', boards };
       dispatch(action);
-    } catch (err) {}
+    } catch (err) { }
   };
 }
 
@@ -16,7 +16,7 @@ export function loadBoard(boardId) {
     try {
       const board = await boardService.getById(boardId);
 
-      dispatch({type: 'SET_BOARD', board});
+      dispatch({ type: 'SET_BOARD', board });
       return board;
     } catch (err) {
       console.log('BoardActions: err in loadBoard', err);
@@ -57,9 +57,12 @@ export function onSaveBoard(board) {
     try {
       const savedBoard = await boardService.save(board);
       console.log('savedBoard:', savedBoard);
-      dispatch({type: 'SAVE_BOARD', board: savedBoard});
+      dispatch({ type: 'SAVE_BOARD', board: savedBoard });
     } catch (err) {
       console.log('BoardActions: err in onSaveBoard', err);
     }
   };
 }
+
+
+export function updateTodo

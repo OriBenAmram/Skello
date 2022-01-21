@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsCheck2Square } from "react-icons/bs";
 import { IoCheckbox } from "react-icons/io5";
-import { AiOutlineMore } from "react-icons/ai";
+import { FiMoreHorizontal } from "react-icons/fi";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 
@@ -10,6 +10,7 @@ import { MdCheckBoxOutlineBlank } from "react-icons/md";
 export function TaskChecklistPreview({ checklist, checklist: { title, id, } }) {
     const [isAddingItem, setAddingItem] = useState(false);
     const [checklistData, setChecklistData] = useState(checklist)
+
 
 
     function handleChange({ target }) {
@@ -23,15 +24,19 @@ export function TaskChecklistPreview({ checklist, checklist: { title, id, } }) {
 
     function onToggleTodo(todoId) {
         console.log(todoId)
-
+        const todoIdx = checklist.todos.findIndex(todo => todo.id === todoId);
+        checklistData.todos[todoIdx].isDone = !checklist.todos[todoIdx].isDone
+        setChecklistData({ ...checklistData })
     }
 
     const elTodos = () => {
         return checklistData.todos.map(todo => {
             return <div key={todo.id}>
-                {(todo.isDone) ? <MdCheckBoxOutlineBlank onClick={() => onToggleTodo(todo.id)} /> : <IoCheckbox onClick={() => onToggleTodo(todo.id)} />}
-                {todo.title}
-                {<AiOutlineMore className='more-icon' />}
+                {(todo.isDone) ? <IoCheckbox className='checkbox-icon'
+                    onClick={() => onToggleTodo(todo.id)} />
+                    : <MdCheckBoxOutlineBlank className='checkbox-icon' onClick={() => onToggleTodo(todo.id)} />}
+                <span className={`todo-title ${(todo.isDone) ? 'checked' : ''}`}>{todo.title}</span>
+                {<FiMoreHorizontal className='more-icon' />}
             </div>
         })
     }

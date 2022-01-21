@@ -25,6 +25,7 @@
 @import "cmps/dynamic-modal-content.scss";
 @import "cmps/popover-side-menu.scss";
 
+
 // details
 @import "cmps/task/details-cover.scss";
 @import "cmps/task/details-header.scss";
@@ -32,6 +33,11 @@
 @import "cmps/task/details-description.scss";
 @import "cmps/task/details-checklist.scss";
 @import "cmps/task/details-activities.scss";
+
+// checklists cmps
+@import "cmps/task/task-checklist-preview.scss";
+
+
 
 // Group
 @import "cmps/group-preview.scss";
