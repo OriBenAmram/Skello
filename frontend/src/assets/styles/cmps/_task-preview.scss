@@ -23,12 +23,15 @@
         border: none;
         outline: none;
         resize: none;
-        padding: 8px;
-        height: 70px;
-        display: inline-block;
+        padding: 6px 8px 2px;
+        height: 75px;
+        overflow-wrap: break-word;
         cursor: text;
         border-radius: 3px;
         width: 100%;
+        line-height: 20px;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+        box-shadow: 0 1px 0 #c0c6d0;
     }
 }
 
@@ -38,4 +41,5 @@
         height: 32px;
         box-shadow: inset 0 0 0 2px #0079bf;
     }
+
 }
