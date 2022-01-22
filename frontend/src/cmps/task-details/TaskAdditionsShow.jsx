@@ -7,7 +7,7 @@ export function TaskAdditionsShow({ board, task }) {
 
     useEffect(() => {
         setLabels()
-    }, [task]);
+    }, [board, task]);
 
     const onClickAvatar = (member) => {
     }
@@ -21,10 +21,16 @@ export function TaskAdditionsShow({ board, task }) {
     }
 
     const setLabels = () => {
-        const labels = task.labelIds.map(labelId => {
+        console.log('board:', board);
+        console.log('task:', task);
+
+        let labels = task.labelIds.map(labelId => {
+            console.log('labelId:', labelId);
             const label = getLabelById(labelId)
             return label
         })
+        // Why do I get undefined in one of them? The Details update happen later on after I activate this cmp, for some reason.
+        labels = labels.filter(label => (label))
         setTaskLabels(labels)
     }
 

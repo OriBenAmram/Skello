@@ -1,8 +1,6 @@
 import {TaskChecklistPreview} from './TaskChecklistPreview.jsx';
 
 export function TaskChecklists({boardId, groupId, task}) {
-  console.log('task:', task);
-
   if (!task.checklists?.length) return <></>;
 
   return task.checklists.map(checklist => {

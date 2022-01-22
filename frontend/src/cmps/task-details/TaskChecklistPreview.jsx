@@ -12,13 +12,8 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
     const [checklistData, setChecklistData] = useState(checklist)
     const dispatch = useDispatch()
 
-    console.log('checklist:', checklist);
-
-
-
     function handleChange({ target }) {
         const { name, value } = target
-        console.log('checklistData', checklistData);
         setChecklistData({ ...checklistData, [name]: value })
     }
 
@@ -30,7 +25,6 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
             checklists: task.checklists.map(checklist => (checklist.id !== checklistId ? checklist : updatedChecklist))
         }
 
-        console.log(taskToUpdate);
         onUpdateTask(taskToUpdate);
     }
 

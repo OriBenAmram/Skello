@@ -21,7 +21,6 @@ class _DynamicAddAction extends React.Component {
   };
 
   onAddGroup = async () => {
-    console.log('Group Added');
     const { title } = this.state;
     const { boardId } = this.props;
     if (!title) return;
@@ -31,7 +30,6 @@ class _DynamicAddAction extends React.Component {
   };
 
   onAddTask = async () => {
-    console.log('Task Added');
     const { title } = this.state;
     const { groupId, boardId } = this.props;
     if (!title) return;

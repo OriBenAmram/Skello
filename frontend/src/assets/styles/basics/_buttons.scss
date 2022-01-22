@@ -9,3 +9,22 @@ button {
     border: none;
 }
 
+.secondary-btn {
+    background-color: #0079bf;
+    border: none;
+    color: #fff;
+    margin-right: 4px;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: rem(14px);
+}
+
+.delete-primary-btn {
+    background-color: #b04632;
+    border: none;
+    color: #fff;
+    margin-right: 4px;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: rem(14px);
+}
