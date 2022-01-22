@@ -13,6 +13,10 @@
     font-weight: 400;
     line-height: 20px;
 
+    body .board-app { 
+        position: fixed;
+    }
+
     .task-details-modal {
         z-index: 20;
         width: rem(768px);
