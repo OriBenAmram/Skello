@@ -10,7 +10,7 @@ export function BoardList({boards, onToggleStarred}) {
         return (
           <Link key={board._id} className="clean-link" to={`/board/${board._id}`}>
             <div
-              className="board-preview"
+              className="board-preview "
               style={{background: `${board.style.background} center center / cover`}}>
               <div className="board-preview-details">
                 <h3>{board.title.length > 15 ? board.title.substring(0, 15) + '...' : board.title}</h3>
