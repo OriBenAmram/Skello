@@ -10,6 +10,8 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
     const [isAddingItem, setAddingItem] = useState(false);
     const [isEditingTitle, setEditingTitle] = useState(false);
     const [checklistData, setChecklistData] = useState(checklist)
+    const [isTextAreaOpen, toggleTextArea] = useState(false);
+
     const dispatch = useDispatch()
 
 
@@ -35,7 +37,9 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
         checklistData.todos[todoIdx].isDone = !checklist.todos[todoIdx].isDone
         setChecklistData({ ...checklistData })
     }
-    function onSaveTodo(todoId, updatedTodo) {
+    function onSaveTodo(ev, todoId, updatedTodo) {
+        // ev.stopPropagation();
+        // ev.preventDefault();
         console.log('onSaveTodo!');
         const checklistId = checklist.id;
         const updatedChecklist = { ...checklist, todos: checklist.todos.map(todo => todo.id === todoId ? updatedTodo : todo) }
@@ -43,7 +47,12 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
             ...task,
             checklists: task.checklists.map(checklist => (checklist.id !== checklistId ? checklist : updatedChecklist))
         }
-        // onUpdateTask(taskToUpdate);
+        onUpdateTask(taskToUpdate);
+    }
+
+    const onDeleteChecklist = (checklistId) => {
+        task.checklists = task.checklists.filter(checklist => (checklist.id !== checklistId));
+        onUpdateTask(task)
     }
 
     function saveChecklist(checklistId) {
@@ -74,13 +83,28 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
                     <textarea
                         name="title"
                         defaultValue={title}
+                        onClick={(ev) => toggleTextArea(true)}
                         onChange={(ev) => handleChange(ev)}>
                     </textarea>
 
-                    <button onClick={() => saveChecklist(checklist.id)}>save</button>
+                    {(isTextAreaOpen) && <section className='edit-checklist-controllers'>
+                        <div>
+                            <button
+                                onClick={() => saveChecklist(checklist.id)}
+                                className='save-btn'
+                            >
+                                Save
+                            </button>
+                            <button className="primary-close-btn">X</button>
+                        </div>
+                    </section>}
+
                     <div className='btns-container'>
                         <button className="checklist-main-btn">Hide checked Items</button>
-                        <button className="checklist-main-btn">Delete</button>
+                        <button
+                            className="checklist-main-btn delete-btn"
+                            onClick={() => onDeleteChecklist(checklist.id)}
+                        >Delete</button>
                     </div>
                 </div>
             </section>}
@@ -120,3 +144,11 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
     );
 }
 
+{/* <textarea
+    value={currTodo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`}
+    onChange={(ev) => setCurrTodo({ title: ev.target.value })}
+    onClick={(ev) => onToggleTextArea(ev, true)}  >
+
+</textarea> */}
+{/* <AiOutlineDelete className="delete-icon" onClick={() => onRemoveTodo(todo.id)} /> */ }
+{/* Editing */ }
