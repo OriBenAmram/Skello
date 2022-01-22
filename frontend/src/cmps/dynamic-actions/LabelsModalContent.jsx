@@ -20,7 +20,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
 
     // Toggle labels on main labels modal
     const onClickLabel = (labelId) => {
-        if (!task.labelIds.includes(labelId)) {
+        if (!task.labelIds?.includes(labelId)) {
             const newLabelIds = [...task.labelIds, labelId]
             const taskToUpdate = { ...task, labelIds: newLabelIds }
             dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
@@ -157,8 +157,14 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
         setAddEditText(ev.target.value)
     }
 
-    const onSubmitSearchLabels = () => {
-        console.log('searchLabelText:', searchLabelText);
+    const getBoardLabelsForDisplay = () => { 
+        if (searchLabelText) {
+            return board.labels.filter(label => {
+                console.log('label:', label);
+                return label.title?.includes(searchLabelText)
+            })
+        }
+        return board.labels
     }
 
     return (
@@ -172,13 +178,13 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                     {/* Only Labels */}
                     {modalType.type === 'labels' && <div>
                         <div className='modal-title'>
-                            <form onSubmit={() => onSubmitSearchLabels()}>
-                                <input placeholder={`Search Labels...`} type="text" className='modal-main-input' onChange={(ev) => setSearchLabel(ev.target.name)} autoFocus />
-                            </form>
+                                <input placeholder={`Search Labels...`} type="text" className='modal-main-input' onChange={(ev) => {
+                                    setSearchLabel(ev.target.value)
+                                }} autoFocus />
                             <h4>Labels</h4>
                         </div>
                         <section className='modal-items-to-edit'>
-                            {board.labels.map(label => {
+                            {getBoardLabelsForDisplay().map(label => {
                                 return <div key={label.id} className='label-container'>
                                     <button className='edit-label-btn'><BiPencil onClick={() => {
                                         onChangeModal('edit', label)
@@ -186,7 +192,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                                     <div style={{ backgroundColor: label.color, hover: `box-shadow: -8px 0 ${label.color}` }} className='label-box' onClick={() => {
                                         onClickLabel(label.id)
                                     }}>{label.title}
-                                        {task.labelIds.includes(label.id) && <BsCheckLg className='checked-label-icon' />}
+                                        {task.labelIds?.includes(label.id) && <BsCheckLg className='checked-label-icon' />}
                                     </div>
                                 </div>
                             })}

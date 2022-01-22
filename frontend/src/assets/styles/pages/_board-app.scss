@@ -1,5 +1,7 @@
 .board-app{
     height: 100vh;
     overflow-y: hidden;
-    position: fixed;
+    body.task-details-page & { 
+        position: fixed;
+    }
 }

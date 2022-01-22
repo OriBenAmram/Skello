@@ -10,8 +10,9 @@
         position: relative;
 
         &:hover{
-            .starred-container{
+            .starred-container .star-icon{
                 opacity: 1;
+                color: rgb(253, 236, 0);
             }
         }
     }
@@ -19,17 +20,21 @@
 .starred-container{
     transition: 0.3s ease-in-out;
     position: absolute;
-    background-color: gray;
     padding: 3px;
     border-radius: 7px;
-    opacity: 0;
-    bottom: 5px;
+    // opacity: 0;
+    bottom: 0px;
     right: 5px;
     .star-icon{
+        height: 17px;
+        width: 17px;
+        opacity: 0;
         font-size: 1.3rem;
         &.starred{
+            opacity: 1;
             color: gold
         }
+
     }
 
 }
