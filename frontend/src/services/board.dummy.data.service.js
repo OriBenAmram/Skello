@@ -129,18 +129,21 @@ const DUMMY_BOARDS = [
                                 "imgUrl": "url",
                                 "fullname": "Ori Ben Amram",
                                 "username": "ori8",
+                                "color": "#3a637a"
                             },
                             {
                                 "_id": "u102",
                                 "imgUrl": "url",
                                 "fullname": "Yuval Shai",
                                 "username": "yuval22",
+                                "color": "#5d3270"
                             },
                             {
                                 "_id": "u103",
                                 "imgUrl": "url",
                                 "fullname": "Daniel Shaked",
                                 "username": "daniel98",
+                                "color": "#296c41"
                             }],
                         "dueDate": 1589983468418,
                         "isDone": false,
@@ -189,7 +192,8 @@ const DUMMY_BOARDS = [
             {
                 "_id": "u404",
                 "fullname": "Daniel Shaked",
-                "imgUrl": "https://www.google.com"
+                "imgUrl": "https://www.google.com",
+                "color" : "blue"
             }
         ],
         "groups": [
