@@ -8,26 +8,38 @@ import { GoMention } from "react-icons/go"
 import React, { useState, useEffect } from 'react';
 
 
-export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo }) {
-    const [isTextAreaOpen, toggleTextArea] = useState(false);
+export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }) {
+    const [isTextAreaOpen, toggleTextArea] = useState(true);
+    const [currTodo, setCurrTodo] = useState(todo)
 
+    const onToggleTextArea = (ev, isShownTextArea) => {
+        ev.stopPropagation();
+        console.log(isShownTextArea)
+        toggleTextArea(isShownTextArea)
+    }
 
-
-    return (<div className='todo-preview' key={todo.id}>
+    return (<div className='todo-preview' key={todo.id} onBlur={(ev) => onToggleTextArea(ev, false)}>
         {/* ICON */}
         {(todo.isDone) ? <IoCheckbox className='checkbox-icon'
             onClick={() => onToggleTodo(todo.id)} />
             : <MdCheckBoxOutlineBlank className='checkbox-icon' onClick={() => onToggleTodo(todo.id)} />}
 
         {/* TEXT-AREA */}
-        <textarea defaultValue={todo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} >
+        <textarea
+            defaultValue={todo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`}
+            onChange={(ev) => setCurrTodo({ title: ev.target.value })}
+            onClick={(ev) => onToggleTextArea(ev, true)}  >
 
         </textarea>
         <AiOutlineDelete className="delete-icon" onClick={() => onRemoveTodo(todo.id)} />
         {/* Editing */}
         {isTextAreaOpen && <section className='edit-todo-controllers'>
             <div>
-                <button className='save-btn'>Save</button>
+                <button
+                    className='save-btn'
+                    onClick={() => onSaveTodo(todo.id, todo)}>
+                    Save
+                </button>
                 <button className="primary-close-btn">X</button>
             </div>
             <div className='edit-iconts-options'>

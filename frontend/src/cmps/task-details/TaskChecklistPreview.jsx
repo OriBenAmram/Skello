@@ -30,6 +30,21 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
         console.log(taskToUpdate);
         onUpdateTask(taskToUpdate);
     }
+    function onToggleTodo(todoId) {
+        const todoIdx = checklist.todos.findIndex(todo => todo.id === todoId);
+        checklistData.todos[todoIdx].isDone = !checklist.todos[todoIdx].isDone
+        setChecklistData({ ...checklistData })
+    }
+    function onSaveTodo(todoId, updatedTodo) {
+        console.log('onSaveTodo!');
+        const checklistId = checklist.id;
+        const updatedChecklist = { ...checklist, todos: checklist.todos.map(todo => todo.id === todoId ? updatedTodo : todo) }
+        const taskToUpdate = {
+            ...task,
+            checklists: task.checklists.map(checklist => (checklist.id !== checklistId ? checklist : updatedChecklist))
+        }
+        // onUpdateTask(taskToUpdate);
+    }
 
     function saveChecklist(checklistId) {
         task.checklists = task.checklists.map(checklist => (checklist.id === checklistId ? checklistData : checklist));
@@ -40,11 +55,9 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
         dispatch(updateTask(boardId, groupId, task.id, task))
     }
 
-    function onToggleTodo(todoId) {
-        const todoIdx = checklist.todos.findIndex(todo => todo.id === todoId);
-        checklistData.todos[todoIdx].isDone = !checklist.todos[todoIdx].isDone
-        setChecklistData({ ...checklistData })
-    }
+
+
+
 
 
 
@@ -84,6 +97,7 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
             </div>
             {/* CHECKLIST-LIST */}
             <TaskTodoList
+                onSaveTodo={onSaveTodo}
                 onRemoveTodo={onRemoveTodo}
                 onToggleTodo={onToggleTodo}
                 checklist={checklist} />
