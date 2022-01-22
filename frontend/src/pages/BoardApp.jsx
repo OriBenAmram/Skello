@@ -15,6 +15,7 @@ import {loadBoard, handleDrag} from '../store/board/board.action';
 export function BoardApp(props) {
   const dispatch = useDispatch();
   const board = useSelector(state => state.boardModule.board);
+  console.log('🚀 ~ file: BoardApp.jsx ~ line 18 ~ BoardApp ~ board', board);
   const {id} = props.match.params;
 
   useEffect(async () => {

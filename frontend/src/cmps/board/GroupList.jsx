@@ -20,7 +20,14 @@ export function GroupList({board}) {
       {provided => (
         <section className="group-list-container flex" {...provided.droppableProps} ref={provided.innerRef}>
           {board.groups.map((group, index) => (
-            <GroupPreview key={group.id} boardId={board._id} group={group} id={group.id} index={index} />
+            <GroupPreview
+              key={group.id}
+              boardId={board._id}
+              group={group}
+              id={group.id}
+              index={index}
+              boardLabels={board.labels}
+            />
           ))}
           {provided.placeholder}
           <DynamicAddAction isList boardId={board._id} />
