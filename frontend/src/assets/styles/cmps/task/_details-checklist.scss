@@ -14,11 +14,24 @@
         border-radius: 3px;
         height: 32px;
         padding: 6px 12px;
+        &.delete-btn:hover{
+            color: red;
+        }
     }
 
     .title-container {
         display: flex;
         justify-content: space-between;
+
+        .edit-checklist-controllers{
+            .save-btn{
+                background-color: #0079bf;
+                border: none;
+                box-shadow: none;
+                color: #fff;
+                            padding: 6px 12px;
+            }
+        }
 
         // ICON
         .checkbox-icon {
@@ -55,12 +68,27 @@
             position: relative;
             padding-left: 40px;
             width: 100%;
+            transition: 0.3s ease-in-out;
+            
+            .delete-icon{
+                position: absolute;
+                right: 20px;
+                cursor: pointer;
+                color: red;
+                opacity: 0;
+            }
+            
+                        &:hover{
+                            .delete-icon{
+                                opacity: 1;
+                            }
+                        }
 
             .save-btn {
-                background-color: #091e420a;
-                border: none;
-                color: #a5adba;
-                display: inline-block;
+                background-color: #0079bf;
+    border: none;
+    box-shadow: none;
+    color: #fff;
                 padding: 6px 12px;
             }
 

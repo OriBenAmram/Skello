@@ -1,7 +1,7 @@
 import { TaskTodoPreview } from './TaskTodoPreview.jsx'
 
 
-export function TaskTodoList({ checklist, onToggleTodo, onRemoveTodo }) {
+export function TaskTodoList({ checklist, onToggleTodo, onRemoveTodo, onSaveTodo }) {
 
 
     const elTodos = () => {
@@ -9,6 +9,7 @@ export function TaskTodoList({ checklist, onToggleTodo, onRemoveTodo }) {
             <TaskTodoPreview
                 key={todo.id}
                 todo={todo}
+                onSaveTodo={onSaveTodo}
                 onToggleTodo={onToggleTodo}
                 onRemoveTodo={onRemoveTodo}
             />)
