@@ -86,7 +86,11 @@ class _DynamicAddAction extends React.Component {
     const buttonText = isList ? 'Add another list' : 'Add a card';
 
     return (
-      <div className={`add-task-container flex ${isList ? 'group' : ''}`} onClick={this.toggleForm}>
+      <div
+        className={`add-task-container flex ${isList ? 'group' : ''}`}
+        onClick={() => {
+          this.toggleForm();
+        }}>
         <GrAdd className="icon" />
         <p>{buttonText}</p>
       </div>
@@ -100,16 +104,9 @@ class _DynamicAddAction extends React.Component {
   }
 }
 
-// function mapStateToProps({ boardModule }) {
-//   return {
-//     board: boardModule.board,
-//   };
-// }
-
 const mapDispatchToProps = {
   addTask,
   addGroup,
 };
 
 export const DynamicAddAction = connect(null, mapDispatchToProps)(_DynamicAddAction);
-// export const ActionButton = connect(mapStateToProps, mapDispatchToProps)(_ActionButton)
