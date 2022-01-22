@@ -14,10 +14,8 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
 
     const dispatch = useDispatch()
 
-
     function handleChange({ target }) {
         const { name, value } = target
-        console.log('checklistData', checklistData);
         setChecklistData({ ...checklistData, [name]: value })
     }
 
@@ -29,7 +27,6 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
             checklists: task.checklists.map(checklist => (checklist.id !== checklistId ? checklist : updatedChecklist))
         }
 
-        console.log(taskToUpdate);
         onUpdateTask(taskToUpdate);
     }
     function onToggleTodo(todoId) {
@@ -63,14 +60,6 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
     function onUpdateTask(task) {
         dispatch(updateTask(boardId, groupId, task.id, task))
     }
-
-
-
-
-
-
-
-
 
     return (
         <div className='checklist-container'>

@@ -21,6 +21,12 @@ export function TaskSideBar({ task, group, board }) {
         setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
     }
 
+    const onSetModalType = (modalType) => { 
+        console.log('onSetModalType')
+        console.log('change to modalType:', modalType);
+        
+    }
+
     return (
         <section className='side-bar'>
             <section className='add-to-card'>
@@ -45,7 +51,7 @@ export function TaskSideBar({ task, group, board }) {
                 <button className="button-link" onClick={(event) => {
                     toggleModal({ event, type: 'attachment' })
                 }} > <MdOutlineAttachment /> Attachment</button>
-                {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
+                {modal.isModalOpen && <DynamicActionModal onSetModalType={onSetModalType} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
             </section>
             <section className='actions'>
                 <h3>Actions</h3>

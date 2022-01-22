@@ -8,6 +8,16 @@
         margin: 4px 0px 8px;
     }
 
+    .modal-main-input { 
+        line-height: 20px;
+    }
+
+    .checked-label-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
     // Lower div
     .new-label-btn {
         width: 100%;
@@ -46,12 +56,6 @@
                 min-height: 32px;
                 position: relative;
 
-                .checked-label-icon {
-                    position: absolute;
-                    right: 10px;
-                    top: 10px;
-                }
-
                 // &:hover {
                 //     box-shadow: -8px 0 ;
                 // }
@@ -59,8 +63,43 @@
         }
     }
 
+    // Add Edit Modal
 
-    // Edit Modal
-    
+    .add-edit-modal {
+        .back-btn {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background-color: inherit;
+            border: none;
+            padding: 10px 8px 10px 12px;
+        }
 
+        .color-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 48px);
+            gap: 8px;
+        }
+        .color-option {
+            height: 32px;
+            border-radius: 4px;
+            color: white;
+            position: relative;
+            cursor: pointer;
+        }
+        .no-color-section {
+            display: flex;
+
+            .no-color-selection-info {
+                flex: 1;
+            }
+        }
+
+        .add-edit-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+        }
+    }
 }

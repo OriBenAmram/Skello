@@ -23,15 +23,12 @@ export function TaskDetails(props) {
     
     useEffect(async () => {
         const { boardId, groupId, taskId } = props.match.params;
-        console.log('boardm from useEffect:', board);
-
-        const currGroup = board?.groups.find(group => group.id === groupId);
+        const currGroup =  board?.groups.find(group => group.id === groupId);
         setGroup(currGroup);
         const currTask = currGroup?.tasks?.find(task => task.id === taskId);
+        console.log('currTask:', currTask);
         setTask(currTask);
     }, [board]);
-    // console.log('board from useEffect:', board);
-    
     const onCloseModal = () => {
         props.history.push(`/board/${board._id}`)
     }

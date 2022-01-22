@@ -4,6 +4,17 @@ import {DynamicAddAction} from './DynamicAddAction.jsx';
 import {GroupPreview} from './GroupPreview.jsx';
 
 export function GroupList({board}) {
+  // const inputRef = React.createRef();
+
+  // const scrollToRef = () => {
+  //   console.log('test');
+  //   console.log('this.inputRef', inputRef);
+  //   this.inputRef.current.scrollTo({
+  //     top: inputRef.current.scrollHeight,
+  //     behavior: 'smooth',
+  //   });
+  // };
+
   return (
     <Droppable droppableId={'all-groups'} type="group" direction="horizontal">
       {provided => (
