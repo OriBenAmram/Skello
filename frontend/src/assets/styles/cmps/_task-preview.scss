@@ -1,4 +1,9 @@
 // Task
+// Dnd dropable area need height
+.task-list-container{
+    min-height: 1px;
+}
+
 .task-preview {
     word-wrap: break-word;
     display: flex;
