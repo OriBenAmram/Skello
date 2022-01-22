@@ -1,6 +1,6 @@
-import {storageService} from './async-storage.service.js';
+import { storageService } from './async-storage.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
-import {utilService} from '../services/util.service.js';
+import { utilService } from '../services/util.service.js';
 import axios from 'axios';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
@@ -81,10 +81,26 @@ function addTask(taskTitle, groupId, boardId) {
     attachments: [],
   };
 
+
   const board = gBoards.find(board => board._id === boardId);
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   board.groups[groupIdx].tasks.push(taskToAdd);
 
+  return storageService.put(STORAGE_KEY, board);
+}
+
+
+function addChecklist(title, groupId, board, taskId) {
+  console.log('board', board);
+
+  const checklistToAdd = {
+    id: utilService.makeId(),
+    title,
+    todos: [],
+  }
+  const groupIdx = board.groups.findIndex(group => group.id === groupId);
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
+  board.groups[groupIdx].tasks[taskIdx].checklists.push(checklistToAdd);
   return storageService.put(STORAGE_KEY, board);
 }
 
@@ -106,6 +122,7 @@ export const boardService = {
   queryImages,
   addTask,
   updateTask,
+  addChecklist
 };
 
 // const idx = entities.findIndex(entity => entity._id === updatedEntity._id)

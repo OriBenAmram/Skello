@@ -27,9 +27,9 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board,
             // case 'labels-to-edit':
             //     return <EditLabelModal task={task} group={group} board={board} />
             case 'checklist':
-                return <CheckListModalContent />
+                return <CheckListModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'attachment':
-                return <AttachmentModalContent task={task} group={group} board={board} />
+                return <AttachmentModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
         }
     }
 

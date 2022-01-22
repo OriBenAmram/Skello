@@ -1,0 +1,47 @@
+.checklist-modal{
+
+
+    .pop-over-content{
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 0 12px 12px;
+
+
+        label{
+            color: #5e6c84;
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+        line-height: 16px;
+        margin-bottom: 4px;
+        margin-top: 4px;
+    }
+
+    input{
+           
+            background-color: #fafbfc;
+            border: none;
+            border-radius: 3px;
+            box-shadow: inset 0 0 0 2px #dfe1e6;
+            box-sizing: border-box;
+            display: block;
+            line-height: 20px;
+            margin-bottom: 12px;
+            outline: none;
+            padding: 8px 12px;
+            transition-duration: 85ms;
+            transition-property: background-color,border-color,box-shadow;
+            transition-timing-function: ease;
+    }
+
+    .add-button{
+        padding-left: 24px;
+    padding-right: 24px;
+    background-color: #0079bf;
+    border: none;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    }
+}
+}

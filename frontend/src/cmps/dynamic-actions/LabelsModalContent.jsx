@@ -157,7 +157,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
         setAddEditText(ev.target.value)
     }
 
-    const onSubmitSearchLabels = () => { 
+    const onSubmitSearchLabels = () => {
         console.log('searchLabelText:', searchLabelText);
     }
 
