@@ -25,6 +25,8 @@
 @import "cmps/dynamic-action-modal.scss";
 @import "cmps/dynamic-modal-content.scss";
 @import "cmps/popover-side-menu.scss";
+@import "cmps/dynamic-modal-checklist.scss";
+@import "cmps/dynamic-modal-attachment.scss";
 
 
 // details
@@ -37,6 +39,7 @@
 
 // checklists cmps
 @import "cmps/task/task-checklist-preview.scss";
+@import "cmps/task/task-checklist-progress-bar.scss";
 
 // Dynamic-Modal
 @import "cmps/dynamic-modal/labels.scss";

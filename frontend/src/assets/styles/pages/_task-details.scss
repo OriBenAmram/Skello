@@ -1,7 +1,7 @@
 .task-details-page {
     background-color: #000000a3;
-    min-height: 100vh;
-    position: fixed;
+    min-height: 130vh;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
@@ -16,8 +16,8 @@
     .task-details-modal {
         z-index: 20;
         width: rem(768px);
-        position: fixed;
-        transform: translate(-50%);
+        position: relative;
+        transform: translate(-67%);
         left: 50%;
         top: 50px;
         min-height: 600px;
@@ -30,6 +30,7 @@
         .close-modal-btn {
             border-radius: 50%;
             color: #42526e;
+            background-color: #00000014;
             height: 40px;
             width: 40px;
             margin: 4px;
@@ -42,6 +43,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            &:hover { 
+                background-color: #00000029;
+            }
 
             &.dark {
                 background-color: #00000014;

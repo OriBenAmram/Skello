@@ -25,9 +25,9 @@ export class _AppHeader extends React.Component {
           <NavLink className='logo-container clean-link' exact to="/workspace">
             <ImTrello className='trello-icon' /><p className='logo'>Skello</p>
           </NavLink>
-          {board && <NavLink className='boards-selector clean-link' exact to={`/board/${board._id}`}>
-            Boards
-          </NavLink>}
+          {/* <NavLink className='boards-selector clean-link' exact to={`/workspace`}>
+            Workspace
+          </NavLink> */}
         </section>
 
         {/* {!user && <section className='user-general-options'>

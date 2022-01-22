@@ -48,7 +48,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
             onClick={(ev) => onToggleTextArea(ev, true)}  >
 
         </textarea>
-        {/* <AiOutlineDelete className="delete-icon" onClick={() => onRemoveTodo(todo.id)} /> */}
+        <AiOutlineDelete className="delete-icon" onClick={() => onRemoveTodo(todo.id)} />
         {/* Editing */}
         {isTextAreaOpen && <section className='edit-todo-controllers'>
             <div>

@@ -4,7 +4,7 @@ import { BsCheck2Square } from "react-icons/bs";
 import { updateTask } from '../../store/board/board.action.js';
 
 import { TaskTodoList } from './TaskTodoList.jsx'
-
+import { TaskChecklistProgressbar } from './TaskChecklistProgressbar.jsx';
 
 export function TaskChecklistPreview({ boardId, groupId, task, checklist, checklist: { title, id, } }) {
     const [isAddingItem, setAddingItem] = useState(false);
@@ -62,74 +62,77 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
     }
 
     return (
-        <div className='checklist-container'>
-            {/* TITLE */}
+        <React.Fragment>
+            <TaskChecklistProgressbar checklist={checklist} />
+            <div className='checklist-container'>
+                {/* TITLE */}
 
-            {/* Normal */}
-            {!isEditingTitle && <section>
-                <div className='title-container'>
-                    <BsCheck2Square className='primary-icon main-content-icon' />
-                    <textarea
-                        name="title"
-                        defaultValue={title}
-                        onClick={(ev) => toggleTextArea(true)}
-                        onChange={(ev) => handleChange(ev)}>
-                    </textarea>
+                {/* Normal */}
+                {!isEditingTitle && <section>
+                    <div className='title-container'>
+                        <BsCheck2Square className='primary-icon main-content-icon' />
+                        <textarea
+                            name="title"
+                            defaultValue={title}
+                            onClick={(ev) => toggleTextArea(true)}
+                            onChange={(ev) => handleChange(ev)}>
+                        </textarea>
 
-                    {(isTextAreaOpen) && <section className='edit-checklist-controllers'>
-                        <div>
+                        {(isTextAreaOpen) && <section className='edit-checklist-controllers'>
+                            <div>
+                                <button
+                                    onClick={() => saveChecklist(checklist.id)}
+                                    className='save-btn'
+                                >
+                                    Save
+                                </button>
+                                <button className="primary-close-btn">X</button>
+                            </div>
+                        </section>}
+
+                        <div className='btns-container'>
+                            <button className="checklist-main-btn">Hide checked Items</button>
                             <button
-                                onClick={() => saveChecklist(checklist.id)}
-                                className='save-btn'
-                            >
-                                Save
-                            </button>
-                            <button className="primary-close-btn">X</button>
+                                className="checklist-main-btn delete-btn"
+                                onClick={() => onDeleteChecklist(checklist.id)}
+                            >Delete</button>
                         </div>
-                    </section>}
-
-                    <div className='btns-container'>
-                        <button className="checklist-main-btn">Hide checked Items</button>
-                        <button
-                            className="checklist-main-btn delete-btn"
-                            onClick={() => onDeleteChecklist(checklist.id)}
-                        >Delete</button>
                     </div>
+                </section>}
+
+                {/* Editing */}
+                {isEditingTitle && <section>
+
+
+                </section>}
+                {/* <textarea className='checklist-title-textarea' name='title' onChange={(event) => handleChange(event)} defaultValue={title} ></textarea>
+
+{/* PROGRESS-BAR */}
+                <div className='progress-bar' >
                 </div>
-            </section>}
+                {/* CHECKLIST-LIST */}
+                <TaskTodoList
+                    onSaveTodo={onSaveTodo}
+                    onRemoveTodo={onRemoveTodo}
+                    onToggleTodo={onToggleTodo}
+                    checklist={checklist} />
 
-            {/* Editing */}
-            {isEditingTitle && <section>
 
-
-            </section>}
-            {/* <textarea className='checklist-title-textarea' name='title' onChange={(event) => handleChange(event)} defaultValue={title} ></textarea>
-
-            {/* PROGRESS-BAR */}
-            <div className='progress-bar' >
+                {/* ADD-AN-ITEM */}
+                {!isAddingItem && <button className='details-primary-btn add-item-btn' onClick={() => {
+                    setAddingItem(true)
+                }}>Add an Item</button>}
+                {isAddingItem && <section className='adding-item-section'>
+                    <textarea autoFocus onBlur={() => {
+                        setAddingItem(false)
+                    }}></textarea>
+                    <div className='add-item-controllers'>
+                        <button>Add</button>
+                        <button>X</button>
+                    </div>
+                </section>}
             </div>
-            {/* CHECKLIST-LIST */}
-            <TaskTodoList
-                onSaveTodo={onSaveTodo}
-                onRemoveTodo={onRemoveTodo}
-                onToggleTodo={onToggleTodo}
-                checklist={checklist} />
-
-
-            {/* ADD-AN-ITEM */}
-            {!isAddingItem && <button className='details-primary-btn add-item-btn' onClick={() => {
-                setAddingItem(true)
-            }}>Add an Item</button>}
-            {isAddingItem && <section className='adding-item-section'>
-                <textarea autoFocus onBlur={() => {
-                    setAddingItem(false)
-                }}></textarea>
-                <div className='add-item-controllers'>
-                    <button>Add</button>
-                    <button>X</button>
-                </div>
-            </section>}
-        </div>
+        </React.Fragment>
     );
 }
 
@@ -137,7 +140,7 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
     value={currTodo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`}
     onChange={(ev) => setCurrTodo({ title: ev.target.value })}
     onClick={(ev) => onToggleTextArea(ev, true)}  >
-
+    
 </textarea> */}
 {/* <AiOutlineDelete className="delete-icon" onClick={() => onRemoveTodo(todo.id)} /> */ }
 {/* Editing */ }
