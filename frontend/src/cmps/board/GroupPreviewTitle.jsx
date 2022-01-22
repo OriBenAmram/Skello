@@ -22,7 +22,7 @@ export function GroupPreviewTitle({group}) {
     const newBoard = {...board};
     const groupIdx = newBoard.groups.findIndex(group => group.id === newGroup.id);
     // Same title - no change
-    if (newBoard.groups[groupIdx].title === title) return;
+    if (newBoard.groups[groupIdx].title === title || !title) return;
     newBoard.groups[groupIdx].title = title;
     try {
       await dispatch(onSaveBoard(newBoard));

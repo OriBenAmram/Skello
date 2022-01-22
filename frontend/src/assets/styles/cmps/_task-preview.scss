@@ -1,5 +1,5 @@
 // Task
-// Dnd dropable area need height
+// Dnd droppable area need height
 .task-list-container{
     min-height: 1px;
 }
@@ -17,7 +17,7 @@
     border-radius: 3px;
     font-size: 0.875rem;
     transition: background-color 0.1s;
-    cursor: pointer;
+    cursor: pointer !important;
     margin-bottom: 4px;
 }
 

@@ -14,8 +14,15 @@ export function GroupPreview({group, boardId, index}) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className="group-preview">
+          {/* TITLE */}
           <GroupPreviewTitle group={group} />
-          <TaskList groupId={group.id} boardId={boardId} tasks={group.tasks} />
+
+          {/* BODY-MAIN */}
+          <div className="group-preview-main">
+            <TaskList groupId={group.id} boardId={boardId} tasks={group.tasks} />
+          </div>
+
+          {/* FOOTER */}
           <DynamicAddAction groupId={group.id} boardId={boardId} />
         </article>
       )}
