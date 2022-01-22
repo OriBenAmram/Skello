@@ -21,10 +21,10 @@
         align-items: center;
         // HOME CONTAINER
         .home-icon-container {
-            padding: 4px 6px;
-            &:hover {
-                background-color: lighten(#026aa7, 5%);
-                border-radius: 5px;
+            padding: 6px 6px 0px;
+            border-radius: 5px;
+            &:hover { 
+                background-color: rgba(255, 255, 255, 0.2);
             }
             .home-icon {
                 color: whitesmoke;
@@ -37,9 +37,9 @@
             display: flex;
             align-items: center;
             padding: 6px;
-            &:hover {
-                background-color: lighten(#026aa7, 5%);
-                border-radius: 5px;
+            border-radius: 5px;
+            &:hover { 
+                background-color: rgba(255, 255, 255, 0.2);
             }
             p {
                 margin-bottom: 0;
@@ -56,23 +56,33 @@
         }
         .boards-selector {
             padding: 6px;
+            border-radius: 5px;
             color: whitesmoke;
-            &:hover {
-                background-color: lighten(#026aa7, 5%);
-                border-radius: 5px;
+            &:hover { 
+                background-color: rgba(255, 255, 255, 0.2);
             }
         }
     }
     .signup-btn {
-        padding: 4px 8px;
+        padding: 9px 8px;
         border-radius: 5px;
         border: none;
         background-color: inherit;
         color: whitesmoke;
+
+        &:hover { 
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     }
     .login-btn {
-        padding: 4px 8px;
+        padding: 9px 8px;
         border-radius: 5px;
         border: none;
+        background-color: inherit;
+        color: whitesmoke;
+
+        &:hover { 
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     }
 }
