@@ -7,11 +7,33 @@ import { MdOutlineAttachment } from "react-icons/md"
 import { GoMention } from "react-icons/go"
 import React, { useState, useEffect } from 'react';
 
+import Picker from 'emoji-picker-react';
 
-export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo }) {
+
+export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }) {
     const [isTextAreaOpen, toggleTextArea] = useState(false);
+    const [currTodo, setCurrTodo] = useState(todo)
+    const [showPicker, setShowPicker] = useState(false);
 
+    const onToggleTextArea = (ev, isShownTextArea) => {
+        ev.stopPropagation();
+        ev.preventDefault();
 
+        console.log('ev:', ev);
+
+        console.log(isShownTextArea)
+        toggleTextArea(isShownTextArea)
+    }
+
+    const onEmojiClick = (event, emojiObject) => {
+        console.log('baba');
+        console.log('emojiObject:', emojiObject);
+
+        setCurrTodo({ ...currTodo, title: currTodo.title + emojiObject.emoji });
+        setShowPicker(false);
+        console.log(currTodo)
+
+    };
 
     return (<div className='todo-preview' key={todo.id}>
         {/* ICON */}
@@ -20,18 +42,32 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo }) {
             : <MdCheckBoxOutlineBlank className='checkbox-icon' onClick={() => onToggleTodo(todo.id)} />}
 
         {/* TEXT-AREA */}
-        <textarea defaultValue={todo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} >
+        <textarea
+            value={currTodo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`}
+            onChange={(ev) => setCurrTodo({ title: ev.target.value })}
+            onClick={(ev) => onToggleTextArea(ev, true)}  >
 
         </textarea>
-        <AiOutlineDelete onClick={() => onRemoveTodo(todo.id)} />
+        {/* <AiOutlineDelete className="delete-icon" onClick={() => onRemoveTodo(todo.id)} /> */}
         {/* Editing */}
         {isTextAreaOpen && <section className='edit-todo-controllers'>
             <div>
-                <button className='save-btn'>Save</button>
+                <button
+                    className='save-btn'
+                    onClick={(ev) => {
+                        onSaveTodo(ev, todo.id, currTodo)
+                        onToggleTextArea(ev, false)
+                    }
+                    }>
+                    Save
+                </button>
                 <button className="primary-close-btn">X</button>
             </div>
             <div className='edit-iconts-options'>
-                <BiSmile />
+                <BiSmile onClick={() => setShowPicker(val => !val)} />
+                {showPicker && (
+                    <Picker pickerStyle={{ width: '100%' }} onEmojiClick={onEmojiClick} />
+                )}
                 <GoMention />
             </div>
         </section>}
