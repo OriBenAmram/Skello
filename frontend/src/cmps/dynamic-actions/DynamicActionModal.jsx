@@ -6,6 +6,7 @@ import { GrClose } from "react-icons/gr";
 import { MembersModalContent } from './MembersModalContent.jsx'
 import { LabelsModalContent } from './LabelsModalContent.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
+import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
 
 export function DynamicActionModal({ toggleModal, type, pos, task, group, board }) {
 
@@ -25,6 +26,8 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board 
                 return <LabelsModalContent task={task} group={group} board={board} />
             case 'checklist':
                 return <CheckListModalContent />
+            case 'attachment':
+                return <AttachmentModalContent task={task} group={group} board={board} />
         }
     }
 
@@ -35,7 +38,7 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board 
         switch (type) {
             case 'labels':
                 return { clientY: clientY - 300, clientX: 770 }
-            
+
             default:
                 return { clientY, clientX: 732 }
         }
@@ -49,7 +52,7 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board 
         // <section className='dynamic-action-modal' style={{ top: `${pos.clientY}px`, left: `${pos.clientX}px` }} >
         <section className='dynamic-action-modal' style={{ top: `${modalPosition.clientY}px`, left: `${modalPosition.clientX}px` }} >
             <section className='modal-header'>
-                <button className='simple-close-btn' onClick={toggleModal}><GrClose className='btn-content'/></button>
+                <button className='simple-close-btn' onClick={toggleModal}><GrClose className='btn-content' /></button>
                 {type.charAt(0).toUpperCase() + type.slice(1)}
             </section>
             <section className='modal-content'>
