@@ -7,6 +7,7 @@ import {Route} from 'react-router-dom';
 import {GroupList} from '../cmps/board/GroupList.jsx';
 import {Loader} from '../cmps/Loader.jsx';
 import {TaskDetails} from './TaskDetails.jsx';
+import {BoardHeader} from '../cmps/board/BoardHeader.jsx';
 
 // ACTIONS
 import {loadBoard, handleDrag} from '../store/board/board.action';
@@ -41,8 +42,7 @@ export function BoardApp(props) {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="board-app" style={{background: `${board.style.background}  center center / cover`}}>
-        <h1>board app</h1>
-        {/* <BoardHeader /> */}
+        <BoardHeader board={board} />
         <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
       </div>
       <Route path="/board/:boardId/:groupId/:taskId" component={TaskDetails} />
