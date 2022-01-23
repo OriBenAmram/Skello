@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+// Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 export function TaskAdditionsShow({ board, group, task }) {
@@ -14,7 +16,6 @@ export function TaskAdditionsShow({ board, group, task }) {
     }
 
     const onClickLabel = (label) => {
-
     }
 
     const getLabelById = (labelId) => {
@@ -22,7 +23,6 @@ export function TaskAdditionsShow({ board, group, task }) {
     }
 
     const setLabels = () => {
-
         if (!task.labelIds?.length) return;
         let labels = task.labelIds.map(labelId => {
             const label = getLabelById(labelId)
@@ -35,7 +35,6 @@ export function TaskAdditionsShow({ board, group, task }) {
 
 
     const toggleModal = ({ event, type }) => {
-        // In case the modal is open somewhere
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
             return

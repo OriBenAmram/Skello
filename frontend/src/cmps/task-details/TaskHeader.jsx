@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React from 'react';
 import { AiOutlineCreditCard } from "react-icons/ai";
 
-
-export function TaskHeader({ title }) {
+export function TaskHeader({ title, group }) {
     return (
         <section className='details-header'>
             <AiOutlineCreditCard className='primary-icon header-icon' />
-            <textarea defaultValue={title}></textarea>
+            <textarea defaultValue={title} className='basic-textarea'></textarea>
             <div className="header-sub-title">
-                in list <span> todo </span>
+                in list <span> {group.title} </span>
             </div>
         </section>
     );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import { GrClose } from "react-icons/gr";
+import { Loader } from '../cmps/Loader.jsx';
 
 // CPMS
 import { TaskCover } from '../cmps/task-details/TaskCover.jsx';
@@ -9,17 +9,11 @@ import { TaskHeader } from '../cmps/task-details/TaskHeader.jsx';
 import { TaskAdditionsShow } from '../cmps/task-details/TaskAdditionsShow.jsx';
 import { TaskDescription } from '../cmps/task-details/TaskDescription.jsx';
 import { TaskChecklists } from '../cmps/task-details/TaskChecklists.jsx';
+import { TaskAttachments } from '../cmps/task-details/TaskAttachments.jsx';
 import { TaskActivities } from '../cmps/task-details/TaskActivities.jsx';
 import { TaskSideBar } from '../cmps/task-details/TaskSideBar.jsx';
 
-import { Loader } from '../cmps/Loader.jsx';
-import { TaskAttachments } from '../cmps/task-details/TaskAttachments.jsx';
-import { TaskTodoList } from '../cmps/task-details/TaskTodoList.jsx';
-
-// const [board, setBoard] = useState(null);
-
 export function TaskDetails(props) {
-    const dispatch = useDispatch();
     const [group, setGroup] = useState(null);
     const [task, setTask] = useState(null);
     const board = useSelector(state => state.boardModule.board);
@@ -41,7 +35,6 @@ export function TaskDetails(props) {
 
     }
 
-
     if (!task) return <Loader />;
     return (
         <section className="task-details-page" onClick={() => {
@@ -56,7 +49,7 @@ export function TaskDetails(props) {
                 {/* Cover */}
                 <TaskCover />
                 {/* Details-header */}
-                <TaskHeader title={task.title} />
+                <TaskHeader group={group} title={task.title} />
 
                 <section className="main-content">
                     {/* Main-Col */}

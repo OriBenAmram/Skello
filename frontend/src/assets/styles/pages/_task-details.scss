@@ -67,22 +67,13 @@
             margin-bottom: 4px;
         }
 
-        .details-primary-btn {
+        .details-primary-link-btn {
             background-color: #091e420a;
             color: $clr1;
             border: none;
             border-radius: 3px;
             height: 32px;
             padding: 6px 12px;
-        }
-
-        textarea {
-            border: none;
-            border-radius: 3px;
-            text-decoration: none;
-            resize: none;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
-                Helvetica Neue, sans-serif;
         }
 
         .main-input {
@@ -152,7 +143,7 @@
                     padding: 8px 0;
                     position: relative;
 
-                    .details-primary-btn {
+                    .details-primary-link-btn {
                         position: absolute;
                         right: 5px;
                     }
@@ -193,6 +184,10 @@
 
                     :first-child {
                         margin-right: 10px;
+                    }
+
+                    &:hover { 
+                        background-color: #091e4214;
                     }
                 }
             }

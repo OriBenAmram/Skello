@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useState } from 'react';
+import { MdClose } from "react-icons/md";
 import { BsTextLeft } from "react-icons/bs";
 
 
 export function TaskDescription({ description }) {
+
+    const [isTextAreaOpen, toggleTextArea] = useState(false);
+
     return (
         <div className='description-container'>
             <div className="title-container">
                 <BsTextLeft className='primary-icon main-content-icon' />
                 <h3>Description</h3>
             </div>
-            <textarea placeholder={description} className="description-text-area"></textarea>
-            <div className="description-edit-container">
-                <div>
-                    <button className="save-btn">Save</button>
-                    <button className="primary-close-btn">X</button>
+            <textarea placeholder={description} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className="basic-textarea description-text-area"></textarea>
+            {isTextAreaOpen && <div className="description-edit-container">
+                <div className='left-btns-container'>
+                    <button className="secondary-btn">Save</button>
+                    <button className="primary-close-btn"><MdClose className='details-secondary-close-btn-icon' /></button>
                 </div>
-                <button className="details-primary-btn">Formatting help</button>
-            </div>
+                <button className="details-primary-link-btn">Formatting help</button>
+            </div>}
         </div>
     );
 }

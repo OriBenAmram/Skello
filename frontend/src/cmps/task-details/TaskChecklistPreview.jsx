@@ -70,6 +70,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
         task.checklists = task.checklists.map(checklist =>
             (checklist.id === checklistId ? checklistData : checklist));
         onUpdateTask(task)
+
     }
 
     function onUpdateTask(task) {
@@ -144,7 +145,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
 
 
                 {/* ADD-AN-ITEM */}
-                {!isAddingItem && <button className='details-primary-btn add-item-btn' onClick={() => {
+                {!isAddingItem && <button className='details-primary-link-btn add-item-btn' onClick={() => {
                     setAddingItem(true)
                 }}>Add an Item</button>}
                 {isAddingItem && <section className='adding-item-section'>
@@ -153,16 +154,14 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                         value={newTodoTitle}
                         onChange={(ev) => setNewTodoTitle(ev.target.value)}
                         placeholder='Add an item'
-                    // onBlur={() => {
-                    //     setAddingItem(false)
-                    // }
-                    // }
+
                     ></textarea>
                     <div className='add-item-controllers'>
                         <button className='secondary-btn' onClick={(ev) => {
                             // ev.preventDefault()
                             console.log('baba', newTodoTitle)
                             if (!newTodoTitle) return
+                            setAddingItem(false)
                             dispatch(addNewTodo(board, groupId, task.id, checklist.id, newTodoTitle))
                             setNewTodoTitle('')
                         }}>

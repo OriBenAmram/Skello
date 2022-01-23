@@ -198,7 +198,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                             })}
                         </section>
                         <div className='edit-submit-option'>
-                            <button className='details-primary-btn new-label-btn' onClick={() => {
+                            <button className='details-primary-link-btn new-label-btn' onClick={() => {
                                 onChangeModal('add')
                             }}>Create a new label</button>
                         </div>
