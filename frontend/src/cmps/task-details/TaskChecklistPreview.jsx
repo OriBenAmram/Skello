@@ -75,7 +75,6 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
         setEditingTitle(false)
     }
 
-    console.log('isEditingTitle:', isEditingTitle);
 
     return (
         <React.Fragment>
@@ -148,13 +147,15 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                         value={newTodoTitle}
                         onChange={(ev) => setNewTodoTitle(ev.target.value)}
                         placeholder='Add an item'
-                        onBlur={() => {
-                            setAddingItem(false)
-                        }}
+                    // onBlur={() => {
+                    //     setAddingItem(false)
+                    // }
+                    // }
                     ></textarea>
                     <div className='add-item-controllers'>
                         <button className='secondary-btn' onClick={(ev) => {
                             // ev.preventDefault()
+                            console.log('baba', newTodoTitle)
                             if (!newTodoTitle) return
                             dispatch(addNewTodo(board, groupId, task.id, checklist.id, newTodoTitle))
                             setNewTodoTitle('')

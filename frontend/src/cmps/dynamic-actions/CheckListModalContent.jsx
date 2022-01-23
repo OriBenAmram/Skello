@@ -29,10 +29,10 @@ export function CheckListModalContent({ board, group, task, toggleModal }) {
             </section>
             <div className="pop-over-content">
                 {!isEditingTitle && <section>
-                    
-                    
-                    </section>}
-                {/* <form>
+
+
+                </section>}
+                <form>
                     <label className="title-checklist">Title</label>
                     <input
                         className="checklist-sub-title"
@@ -43,7 +43,7 @@ export function CheckListModalContent({ board, group, task, toggleModal }) {
 
                     />
                     <input className="add-button" type="submit" value="Add" onClick={(ev) => onAddChecklist(ev)} />
-                </form> */}
+                </form>
             </div>
         </section>
 
