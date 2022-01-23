@@ -22,11 +22,9 @@ export function TaskAdditionsShow({ board, task }) {
     }
 
     const setLabels = () => {
-        console.log('board:', board);
-        console.log('task:', task);
+
         if (!task.labelIds?.length) return;
         let labels = task.labelIds.map(labelId => {
-            console.log('labelId:', labelId);
             const label = getLabelById(labelId)
             return label
         })

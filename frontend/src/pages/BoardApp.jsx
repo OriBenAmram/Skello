@@ -1,27 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {DragDropContext} from 'react-beautiful-dnd';
-import {Route} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { Route } from 'react-router-dom';
 
 // CMPS
-import {GroupList} from '../cmps/board/GroupList.jsx';
-import {Loader} from '../cmps/Loader.jsx';
-import {TaskDetails} from './TaskDetails.jsx';
-import {BoardHeader} from '../cmps/board/BoardHeader.jsx';
+import { GroupList } from '../cmps/board/GroupList.jsx';
+import { Loader } from '../cmps/Loader.jsx';
+import { TaskDetails } from './TaskDetails.jsx';
+import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
 
 // ACTIONS
-import {loadBoard, handleDrag} from '../store/board/board.action';
+import { loadBoard, handleDrag } from '../store/board/board.action';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
   const board = useSelector(state => state.boardModule.board);
-  console.log('🚀 ~ file: BoardApp.jsx ~ line 18 ~ BoardApp ~ board', board);
-  const {id} = props.match.params;
+  const { id } = props.match.params;
 
   useEffect(async () => {
     try {
       await dispatch(loadBoard(id));
-    } catch (err) {}
+    } catch (err) { }
   }, []);
 
   const onDragEnd = result => {
@@ -30,10 +29,9 @@ export function BoardApp(props) {
     // Destination - end index(where was it dropped)
     // DraggableId - wich element was dragged by id
     // Type - group or task
-    const {destination, source, draggableId, type} = result;
+    const { destination, source, draggableId, type } = result;
 
     if (!destination) {
-      console.log('No Destination');
       return;
     }
 
@@ -45,7 +43,7 @@ export function BoardApp(props) {
   if (!board) return <Loader />;
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="board-app" style={{background: `${board.style.background}  center center / cover`}}>
+      <div className="board-app" style={{ background: `${board.style.background}  center center / cover` }}>
         <BoardHeader board={board} />
         <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
       </div>

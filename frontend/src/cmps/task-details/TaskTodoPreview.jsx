@@ -19,15 +19,11 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
         ev.stopPropagation();
         ev.preventDefault();
 
-        console.log('ev:', ev);
 
-        console.log(isShownTextArea)
         toggleTextArea(isShownTextArea)
     }
 
     const onEmojiClick = (event, emojiObject) => {
-        console.log('baba');
-        console.log('emojiObject:', emojiObject);
 
         setCurrTodo({ ...currTodo, title: currTodo.title + emojiObject.emoji });
         setShowPicker(false);

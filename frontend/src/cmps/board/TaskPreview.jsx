@@ -19,9 +19,6 @@ export function TaskPreview(props) {
     style,
     title,
   } = task;
-  console.log('🚀 ~ file: TaskPreview.jsx ~ line 22 ~ TaskPreview ~ task', task);
-  console.log('boardLabels:', boardLabels);
-
 
   return (
     <Draggable draggableId={task.id} index={index}>

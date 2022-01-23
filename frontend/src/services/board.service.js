@@ -113,6 +113,20 @@ function updateTask(boardId, groupId, taskId, taskToUpdate) {
   return storageService.put(STORAGE_KEY, board);
 }
 
+
+function addTodo(board, groupId, taskId, checklistId, title) {
+  const todoToAdd = {
+    id: utilService.makeId(),
+    title,
+    isDone: false
+  }
+  const groupIdx = board.groups.findIndex(group => group.id === groupId);
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
+  const checklistIdx = board.groups[groupIdx].tasks[taskIdx].checklists.findIndex(checklist => checklist.id === checklistId);
+  board.groups[groupIdx].tasks[taskIdx].checklists[checklistIdx].todos.push(todoToAdd);
+  return storageService.put(STORAGE_KEY, board);
+}
+
 export const boardService = {
   query,
   getById,
@@ -122,7 +136,8 @@ export const boardService = {
   queryImages,
   addTask,
   updateTask,
-  addChecklist
+  addChecklist,
+  addTodo
 };
 
 // const idx = entities.findIndex(entity => entity._id === updatedEntity._id)

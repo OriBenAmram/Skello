@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsCheck2Square } from "react-icons/bs";
-import { updateTask } from '../../store/board/board.action.js';
+import { updateTask, addNewTodo } from '../../store/board/board.action.js';
 
 import { TaskTodoList } from './TaskTodoList.jsx'
 import { TaskChecklistProgressbar } from './TaskChecklistProgressbar.jsx';
 
-export function TaskChecklistPreview({ boardId, groupId, task, checklist, checklist: { title, id, } }) {
+export function TaskChecklistPreview({ board, boardId, groupId, task, checklist, checklist: { title, id, } }) {
     const [isAddingItem, setAddingItem] = useState(false);
     const [isEditingTitle, setEditingTitle] = useState(false);
     const [checklistData, setChecklistData] = useState(checklist)
     const [isTextAreaOpen, toggleTextArea] = useState(false);
+    const [newTodoTitle, setNewTodoTitle] = useState(null)
+
 
     const dispatch = useDispatch()
 
@@ -123,11 +125,19 @@ export function TaskChecklistPreview({ boardId, groupId, task, checklist, checkl
                     setAddingItem(true)
                 }}>Add an Item</button>}
                 {isAddingItem && <section className='adding-item-section'>
-                    <textarea autoFocus onBlur={() => {
-                        setAddingItem(false)
-                    }}></textarea>
+                    <textarea autoFocus value={newTodoTitle} onChange={(ev) => setNewTodoTitle(ev.target.value)}
+                    // onBlur={() => {
+                    //     setAddingItem(false)
+                    // }}
+                    ></textarea>
                     <div className='add-item-controllers'>
-                        <button>Add</button>
+                        <button onClick={() => {
+                            if (!newTodoTitle) return
+                            dispatch(addNewTodo(board, groupId, task.id, checklist.id, newTodoTitle))
+                            setNewTodoTitle('')
+                        }}>
+                            Add</button>
+
                         <button>X</button>
                     </div>
                 </section>}
