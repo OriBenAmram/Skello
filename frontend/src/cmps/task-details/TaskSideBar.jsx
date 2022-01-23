@@ -1,12 +1,11 @@
 import { useState } from "react";
-
 import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
 import { BsPersonPlus, BsArrowRight, BsArchive } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md";
 
-// CMPS
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
+
 
 export function TaskSideBar({ task, group, board }) {
 

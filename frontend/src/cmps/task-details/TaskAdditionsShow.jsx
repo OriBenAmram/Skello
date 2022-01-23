@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {DynamicActionModal} from '../dynamic-actions/DynamicActionModal.jsx'
+import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 export function TaskAdditionsShow({ board, group, task }) {
     const [taskLabels, setTaskLabels] = useState([]);

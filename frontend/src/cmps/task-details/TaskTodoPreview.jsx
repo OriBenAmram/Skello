@@ -3,7 +3,7 @@ import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiSmile } from "react-icons/bi";
 import { GoMention } from "react-icons/go"
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Picker from 'emoji-picker-react';
 

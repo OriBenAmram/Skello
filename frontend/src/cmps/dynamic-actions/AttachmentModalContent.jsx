@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GrClose } from "react-icons/gr";
+
+
 import { utilService } from '../../services/util.service.js';
 import { addFile } from '../../store/board/board.action.js'
 
@@ -21,10 +23,6 @@ export function AttachmentModalContent({ board, group, task, toggleModal }) {
         const isValid = utilService.isValidUrl(linkTxt)
         if (isValid) onAddFile(linkTxt)
     }
-
-    // const onFileUpload = (fileUrl) => {
-    //     addFile(fileUrl)
-    // }
 
     const onAddFile = (fileUrl) => {
         console.log('adding');

@@ -1,15 +1,11 @@
-import { useState } from "react";
-
-
-
 // CMPS
 import { MembersModalContent } from './MembersModalContent.jsx'
 import { LabelsModalContent } from './LabelsModalContent.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
 import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
 
-export function DynamicActionModal({ toggleModal, type, pos, task, group, board}) {
-    
+export function DynamicActionModal({ toggleModal, type, pos, task, group, board }) {
+
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':

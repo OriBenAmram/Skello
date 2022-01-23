@@ -2,7 +2,6 @@ import React from "react"
 
 export function AttachmentPreview({ attachment }) {
 
-    console.log('attachment:', attachment);
 
     return (
         <React.Fragment>

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
 import { GrClose } from "react-icons/gr";
+
 
 import { addChecklist } from '../../store/board/board.action';
 

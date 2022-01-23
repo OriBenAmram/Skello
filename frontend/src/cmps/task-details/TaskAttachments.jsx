@@ -1,4 +1,5 @@
 import { ImAttachment } from "react-icons/im";
+
 import { AttachmentPreview } from "./AttachmentPreview";
 
 
@@ -15,10 +16,8 @@ export function TaskAttachments({ task }) {
             </div>
 
             <div className="attachments-container">
-                {/* <div> */}
                 <div className="attachment-list">
                     {elAttachments}
-                    {/* </div> */}
                 </div>
             </div>
         </div>

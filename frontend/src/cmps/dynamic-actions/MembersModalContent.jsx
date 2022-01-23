@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export function MembersModalContent(props) {
 
-    // const [modalContent, setModalContent] = useState({ isSearch: true });
 
 
     return (
