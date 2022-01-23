@@ -26,7 +26,7 @@ export function GroupList({board}) {
             />
           ))}
           {provided.placeholder}
-          <DynamicAddAction isList boardId={board._id} />
+          <DynamicAddAction isList boardId={board._id} isOpenForm={false} />
         </section>
       )}
     </Droppable>

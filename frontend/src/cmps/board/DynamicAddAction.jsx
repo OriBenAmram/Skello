@@ -6,8 +6,9 @@ import {GrAdd, GrClose} from 'react-icons/gr';
 import {addTask, addGroup} from '../../store/board/board.action.js';
 
 class _DynamicAddAction extends React.Component {
+  // props:
   state = {
-    isFormOpen: false,
+    isFormOpen: this.props.isFormOpen,
     title: '',
   };
 
@@ -22,20 +23,22 @@ class _DynamicAddAction extends React.Component {
 
   onAddGroup = async () => {
     const {title} = this.state;
-    const {boardId} = this.props;
+    const {boardId, toggleDynamicBodyAction} = this.props;
     if (!title) return;
     await this.props.addGroup(title, boardId);
     this.cleanForm();
     this.toggleForm();
+    // toggleDynamicBodyAction();
   };
 
   onAddTask = async () => {
     const {title} = this.state;
-    const {groupId, boardId} = this.props;
+    const {groupId, boardId, toggleDynamicBodyAction} = this.props;
     if (!title) return;
     await this.props.addTask(title, groupId, boardId);
     this.cleanForm();
     this.toggleForm();
+    toggleDynamicBodyAction();
   };
 
   cleanForm = () => {
@@ -44,7 +47,7 @@ class _DynamicAddAction extends React.Component {
 
   // Form
   renderTaskInput = () => {
-    const {isList} = this.props;
+    const {isList, toggleDynamicBodyAction} = this.props;
     const {title} = this.state;
     const placeholder = isList ? 'Enter list title...' : 'Enter a title for this card...';
     const btnText = isList ? 'Add List' : 'Add Card';
@@ -72,6 +75,7 @@ class _DynamicAddAction extends React.Component {
             onClick={() => {
               this.toggleForm();
               this.cleanForm();
+              toggleDynamicBodyAction();
             }}
             className="task-btn close-task">
             <GrClose />
@@ -83,7 +87,7 @@ class _DynamicAddAction extends React.Component {
 
   // Add group/task
   renderAddButton = () => {
-    const {isList} = this.props;
+    const {isList, groupId, toggleDynamicBodyAction} = this.props;
 
     const buttonText = isList ? 'Add another list' : 'Add a card';
 
@@ -91,6 +95,7 @@ class _DynamicAddAction extends React.Component {
       <div
         className={`add-task-container flex ${isList ? 'group' : ''}`}
         onClick={() => {
+          if (!isList) toggleDynamicBodyAction();
           this.toggleForm();
         }}>
         <GrAdd className="icon" />

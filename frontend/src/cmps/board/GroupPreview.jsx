@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Draggable} from 'react-beautiful-dnd';
 
 // Cmps
@@ -7,6 +7,12 @@ import {TaskList} from './TaskList';
 import {GroupPreviewTitle} from './GroupPreviewTitle';
 
 export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown, setLabelsShown}) {
+  const [dynamicBodyAction, setDynamicBodyAction] = useState(false);
+
+  const toggleDynamicBodyAction = () => {
+    setDynamicBodyAction(dynamicBodyAction => !dynamicBodyAction);
+  };
+
   return (
     <Draggable draggableId={group.id} index={index}>
       {provided => (
@@ -28,10 +34,27 @@ export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown
               tasks={group.tasks}
               boardLabels={boardLabels}
             />
+            {dynamicBodyAction && (
+              <DynamicAddAction
+                groupId={group.id}
+                boardId={boardId}
+                toggleDynamicBodyAction={toggleDynamicBodyAction}
+                dynamicBodyAction={dynamicBodyAction}
+                isFormOpen={true}
+              />
+            )}
           </div>
 
           {/* FOOTER */}
-          <DynamicAddAction groupId={group.id} boardId={boardId} />
+          {!dynamicBodyAction && (
+            <DynamicAddAction
+              groupId={group.id}
+              boardId={boardId}
+              toggleDynamicBodyAction={toggleDynamicBodyAction}
+              dynamicBodyAction={dynamicBodyAction}
+              isFormOpen={false}
+            />
+          )}
         </article>
       )}
     </Draggable>

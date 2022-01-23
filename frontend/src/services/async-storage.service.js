@@ -23,7 +23,6 @@ function get(entityType, entityId) {
   return query(entityType).then(entities => entities.find(entity => entity._id === entityId));
 }
 
-
 function post(entityType, newEntity) {
   newEntity._id = _makeId();
   return query(entityType).then(entities => {
@@ -51,7 +50,6 @@ function remove(entityType, entityId) {
 }
 
 function _save(entityType, entities) {
-  console.log('entities:', entities);
   localStorage.setItem(entityType, JSON.stringify(entities));
 }
 
