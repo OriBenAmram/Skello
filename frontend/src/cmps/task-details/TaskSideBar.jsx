@@ -21,10 +21,9 @@ export function TaskSideBar({ task, group, board }) {
         setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
     }
 
-    const onSetModalType = (modalType) => { 
-        console.log('onSetModalType')
-        console.log('change to modalType:', modalType);
-        
+    const onSetModalType = (modalType) => {
+
+
     }
 
     return (

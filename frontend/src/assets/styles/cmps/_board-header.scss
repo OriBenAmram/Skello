@@ -3,9 +3,12 @@
     position: relative;
     top: 50px;
     margin-bottom: 55px;
-
+    position: absolute;
+    top: 40px;
+    width: 100%;
     .header-title{
         font-size: 18px;
+        font-weight: 700;
         height: 32px;
         border-radius: 3px;
         cursor: text;
@@ -20,6 +23,10 @@
 
     .nav-btn.fav,.add-member{
         margin: 0 5px;
+        svg{
+            color: #fff;
+            font-size: 18px;
+        }
     }
 
 }
@@ -48,8 +55,19 @@
 }
 
 .nav-right{
+
+    .nav-btn{
+        padding: 8px;
+    }
     gap: 10px;
     button{
         border: none;
+        gap: 5px;
+    }
+}
+
+.nav-members{
+    .member-avatar{
+        background-color: #ff7c6a;
     }
 }

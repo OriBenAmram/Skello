@@ -15,24 +15,20 @@ export function EditLabelModal({ board, group, task }) {
     // const [modalContent, setModalContent] = useState({ isSearch: true });
     const onClickLabel = (labelId) => {
         if (!task.labelIds.includes(labelId)) {
-            console.log('Adding Label')
             const newLabelIds = [...task.labelIds, labelId]
             const taskToUpdate = { ...task, labelIds: newLabelIds }
             dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
         } else {
-            console.log('Removing Label!')
             const newLabelIds = task.labelIds.filter(currLabelId => {
                 return currLabelId !== labelId
             })
-            console.log('newLabelIds:', newLabelIds);
             const taskToUpdate = { ...task, labelIds: newLabelIds }
             dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
         }
     }
 
-    const onChangeModal = (actionType, label = null) => { 
-        console.log('actionType:', actionType);
-        console.log('label:', label);
+    const onChangeModal = (actionType, label = null) => {
+
     }
 
     return (
@@ -45,9 +41,9 @@ export function EditLabelModal({ board, group, task }) {
                 <section className='modal-items-to-edit'>
                     {board.labels.map(label => {
                         return <div key={label.id} className='label-container'>
-                            <button className='edit-label-btn'><BiPencil onClick={() => { 
+                            <button className='edit-label-btn'><BiPencil onClick={() => {
                                 onChangeModal('edit', label)
-                            }}/></button>
+                            }} /></button>
                             <div style={{ backgroundColor: label.color, hover: `box-shadow: -8px 0 ${label.color}` }} className='label-box' onClick={() => {
                                 onClickLabel(label.id)
                             }}>{label.title}
@@ -58,7 +54,7 @@ export function EditLabelModal({ board, group, task }) {
                     })}
                 </section>
                 <div className='edit-submit-option'>
-                    <button className='details-primary-btn new-label-btn' onClick={() => { 
+                    <button className='details-primary-btn new-label-btn' onClick={() => {
                         onChangeModal('add')
                     }}>Create a new label</button>
                 </div>

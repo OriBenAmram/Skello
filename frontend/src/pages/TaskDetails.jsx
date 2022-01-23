@@ -20,13 +20,12 @@ export function TaskDetails(props) {
     const [group, setGroup] = useState(null);
     const [task, setTask] = useState(null);
     const board = useSelector(state => state.boardModule.board);
-    
+
     useEffect(async () => {
         const { boardId, groupId, taskId } = props.match.params;
-        const currGroup =  board?.groups.find(group => group.id === groupId);
+        const currGroup = board?.groups.find(group => group.id === groupId);
         setGroup(currGroup);
         const currTask = currGroup?.tasks?.find(task => task.id === taskId);
-        console.log('currTask:', currTask);
         setTask(currTask);
     }, [board]);
     const onCloseModal = () => {
@@ -50,7 +49,7 @@ export function TaskDetails(props) {
             }}>
                 <button className="close-modal-btn" onClick={() => {
                     onCloseModal()
-                }}><GrClose style={{ height: '15px', width: '15px' }}/></button>
+                }}><GrClose style={{ height: '15px', width: '15px' }} /></button>
                 {/* Cover */}
                 <TaskCover />
                 {/* Details-header */}
@@ -71,6 +70,7 @@ export function TaskDetails(props) {
                             boardId={props.match.params.boardId}
                             groupId={props.match.params.groupId}
                             task={task}
+                            board={board}
                             onSaveTaskChecklists={onSaveTaskChecklists}
                         />
                         {/* {task.checklists?.length && <TaskChecklist />} */}
