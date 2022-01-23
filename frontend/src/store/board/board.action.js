@@ -107,6 +107,22 @@ export function addNewTodo(board, groupId, taskId, checklistId, title) {
   };
 }
 
+
+export function addFile(board, groupId, taskId, fileUrl) {
+
+  return async dispatch => {
+    try {
+      const updatedBoard = await boardService.addFile(board, groupId, taskId, fileUrl);
+      dispatch({
+        type: 'SAVE_BOARD',
+        board: updatedBoard,
+      });
+    } catch (err) {
+      console.log('cant add checklist', err);
+    }
+  };
+}
+
 export function handleDrag(
   board,
   droppableIdStart,
