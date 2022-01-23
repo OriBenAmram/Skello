@@ -1,11 +1,11 @@
-import {Link} from 'react-router-dom';
-import {Draggable} from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
+import { Draggable } from 'react-beautiful-dnd';
 
 // CMPS
-import {TaskLabels} from './TaskLabels';
+import { TaskLabels } from './TaskLabels';
 
 export function TaskPreview(props) {
-  const {task, boardId, groupId, index, boardLabels} = props;
+  const { task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown } = props;
   const {
     archiveAt,
     attachments,
@@ -20,6 +20,8 @@ export function TaskPreview(props) {
     title,
   } = task;
   console.log('🚀 ~ file: TaskPreview.jsx ~ line 22 ~ TaskPreview ~ task', task);
+  console.log('boardLabels:', boardLabels);
+
 
   return (
     <Draggable draggableId={task.id} index={index}>
@@ -46,7 +48,7 @@ export function TaskPreview(props) {
             )}
 
             {/* LABELS */}
-            {labelIds?.length > 0 && <TaskLabels labelIds={labelIds} boardLabels={boardLabels} />}
+            {labelIds?.length > 0 && <TaskLabels areLabelsShown={areLabelsShown} setLabelsShown={setLabelsShown} labelIds={labelIds} boardLabels={boardLabels} />}
 
             {/* TITLE */}
             <div className="task-title">

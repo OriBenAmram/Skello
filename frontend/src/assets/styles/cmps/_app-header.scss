@@ -23,7 +23,7 @@
         .home-icon-container {
             padding: 6px 6px 0px;
             border-radius: 5px;
-            &:hover { 
+            &:hover {
                 background-color: rgba(255, 255, 255, 0.2);
             }
             .home-icon {
@@ -38,7 +38,7 @@
             align-items: center;
             padding: 6px;
             border-radius: 5px;
-            &:hover { 
+            &:hover {
                 background-color: rgba(255, 255, 255, 0.2);
             }
             p {
@@ -51,14 +51,18 @@
                 margin-right: 5px;
             }
             .logo {
-                font-size: 20px;
+                font-size: rem(20px);
+                font-family: Secular, sans-serif;
+                letter-spacing: 0.02em;
+                font-weight: 400;
+                color: whitesmoke;
             }
         }
         .boards-selector {
             padding: 6px;
             border-radius: 5px;
             color: whitesmoke;
-            &:hover { 
+            &:hover {
                 background-color: rgba(255, 255, 255, 0.2);
             }
         }
@@ -70,7 +74,7 @@
         background-color: inherit;
         color: whitesmoke;
 
-        &:hover { 
+        &:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
     }
@@ -81,7 +85,7 @@
         background-color: inherit;
         color: whitesmoke;
 
-        &:hover { 
+        &:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
     }

@@ -1,7 +1,7 @@
 import {TaskPreview} from './TaskPreview';
 import {Droppable} from 'react-beautiful-dnd';
 
-export function TaskList({tasks, groupId, boardId, boardLabels}) {
+export function TaskList({tasks, groupId, boardId, boardLabels, areLabelsShown, setLabelsShown}) {
   return (
     <Droppable droppableId={groupId}>
       {provided => (
@@ -14,6 +14,8 @@ export function TaskList({tasks, groupId, boardId, boardLabels}) {
               task={task}
               index={index}
               boardLabels={boardLabels}
+              areLabelsShown={areLabelsShown}
+              setLabelsShown={setLabelsShown}
             />
           ))}
           {provided.placeholder}
