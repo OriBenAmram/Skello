@@ -141,6 +141,24 @@ function addFile(board, groupId, taskId, fileUrl) {
   board.groups[groupIdx].tasks[taskIdx].attachments.push(attachmentToAdd);
   return storageService.put(STORAGE_KEY, board);
 }
+
+
+
+
+// CR : CHECK OPTION TO USE IT
+// export function updateTaskInBoard(board, updatedTask) {
+//   board.groups.forEach(group => {
+//     group.tasks.forEach((task, idx) => {
+//       if (task.id === updatedTask.id) groups.tasks[idx] = updatedTask
+//     })
+//   })
+//   return { ...board }
+// }
+
+
+
+
+
 export const boardService = {
   query,
   getById,
