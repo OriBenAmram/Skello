@@ -35,7 +35,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
 
         {/* TEXT-AREA */}
         <textarea
-            value={currTodo.title} className={`todo-item  ${(todo.isDone) ? 'checked' : ''}`}
+            value={currTodo.title} className={`basic-textarea todo-item  ${(todo.isDone) ? 'checked' : ''}`}
             onChange={(ev) => setCurrTodo({ title: ev.target.value })}
             onClick={(ev) => onToggleTextArea(ev, true)}  >
 

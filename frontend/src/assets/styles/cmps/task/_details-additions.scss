@@ -18,6 +18,10 @@
                 color: #42526e;
                 font-size: 16px;
                 background-color: #eaecf0;
+
+                &:hover { 
+                    background-color: #091e4214;
+                }
             }
 
             .label-box { 
@@ -36,6 +40,10 @@
 
                 &.plus-item {
                     color: #42526e;
+                }
+
+                &:hover { 
+                    opacity: .8;
                 }
             }
         }

@@ -110,6 +110,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                             console.log('blur')
                             onBlurTextArea(ev)
                         }}
+                        className='basic-textarea'
                         onChange={(ev) => handleChange(ev)}>
                     </textarea>
                     <section className='edit-checklist-controllers'>
@@ -138,7 +139,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
 
 
                 {/* ADD-AN-ITEM */}
-                {!isAddingItem && <button className='details-primary-btn add-item-btn' onClick={() => {
+                {!isAddingItem && <button className='details-primary-link-btn add-item-btn' onClick={() => {
                     setAddingItem(true)
                 }}>Add an Item</button>}
                 {isAddingItem && <section className='adding-item-section'>
