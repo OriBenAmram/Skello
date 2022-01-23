@@ -1,7 +1,7 @@
-import { IoPersonAddOutline } from 'react-icons/io5';
-import { IoBarChart } from 'react-icons/io5';
-import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
-import { IoStarOutline } from 'react-icons/io5';
+import { IoPersonAddOutline, IoBarChart, IoEllipsisHorizontalSharp, IoStarOutline } from 'react-icons/io5';
+// import { IoBarChart } from 'react-icons/io5';
+// import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
+// import { IoStarOutline } from 'react-icons/io5';
 
 export function BoardHeader({ board }) {
   const { title, members } = board;

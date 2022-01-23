@@ -13,9 +13,6 @@ export function PopoverSideMenu() {
             <div className="popover-header flex align-center">
                 <span>menu</span>
             </div>
-
-            
-
         </section>
     )
 }
