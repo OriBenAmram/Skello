@@ -42,11 +42,11 @@
 
     form{
         min-height: 40px;
-        padding: 6px 6px;
+        padding-top: 6px;
     }
 
     .group-preview-title{
-        padding: 4px 0;
+        padding: 4px 8px;
         height: 28px;
         width: 100%;
         color: $clr1;
@@ -66,6 +66,12 @@
     .group-preview-main{
         overflow-y: auto;
         overflow-x: hidden;
+    }
+
+    .task-title{
+        p{
+            margin:0
+        }
     }
 }
 
