@@ -1,9 +1,7 @@
 import { IoCheckbox } from "react-icons/io5";
-import { FiMoreHorizontal } from "react-icons/fi";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
-import { AiOutlineCreditCard, AiOutlineBars, AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import { BiSmile } from "react-icons/bi";
-import { MdOutlineAttachment } from "react-icons/md"
 import { GoMention } from "react-icons/go"
 import React, { useState, useEffect } from 'react';
 
@@ -18,8 +16,6 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
     const onToggleTextArea = (ev, isShownTextArea) => {
         ev.stopPropagation();
         ev.preventDefault();
-
-
         toggleTextArea(isShownTextArea)
     }
 
