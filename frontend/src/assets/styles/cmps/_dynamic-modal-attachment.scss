@@ -20,7 +20,7 @@
     }
 
     .upload-url-container{
-        label{color: #5e6c84;
+        label{color: $clr2;
         display: block;
         font-size: 12px;
         font-weight: 700;
@@ -39,7 +39,7 @@
             display: block;
             line-height: 20px;
             padding: 8px 12px;
-            color: #172b4d;
+            color: $clr1;
             font-size: 14px;
         }
     }

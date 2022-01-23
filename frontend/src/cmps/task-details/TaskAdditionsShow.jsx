@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {DynamicActionModal} from '../dynamic-actions/DynamicActionModal.jsx'
 
-
-export function TaskAdditionsShow({ board, task }) {
+export function TaskAdditionsShow({ board, group, task }) {
     const [taskLabels, setTaskLabels] = useState([]);
+    const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
 
     useEffect(() => {
         setLabels()
@@ -33,6 +34,16 @@ export function TaskAdditionsShow({ board, task }) {
         setTaskLabels(labels)
     }
 
+
+    const toggleModal = ({ event, type }) => {
+        // In case the modal is open somewhere
+        if (modal.isModalOpen) {
+            setModal({ ...modal, isModalOpen: false })
+            return
+        }
+        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
+    }
+
     return (
         <section className='details-additions-container'>
             {/* Members */}
@@ -56,10 +67,12 @@ export function TaskAdditionsShow({ board, task }) {
                     }}>
                         {label.title}
                     </div>)}
-                    <div className='label-box plus-item'>+</div>
+                    <div className='label-box plus-item' onClick={(event) => {
+                        toggleModal({ event, type: 'labels' })
+                    }}>+</div>
                 </div>
             </section>}
-
+            {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
         </section>
     );
 }

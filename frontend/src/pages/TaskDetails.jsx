@@ -63,7 +63,7 @@ export function TaskDetails(props) {
                     <section className="main-col">
 
                         {/* Potential members, labels and dueDate */}
-                        <TaskAdditionsShow board={board} task={task} />
+                        <TaskAdditionsShow board={board} group={group} task={task} />
 
                         {/* Description */}
                         <TaskDescription description={task.description} />
