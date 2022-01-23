@@ -11,7 +11,10 @@ import { TaskDescription } from '../cmps/task-details/TaskDescription.jsx';
 import { TaskChecklists } from '../cmps/task-details/TaskChecklists.jsx';
 import { TaskActivities } from '../cmps/task-details/TaskActivities.jsx';
 import { TaskSideBar } from '../cmps/task-details/TaskSideBar.jsx';
+
 import { Loader } from '../cmps/Loader.jsx';
+import { TaskAttachments } from '../cmps/task-details/TaskAttachments.jsx';
+import { TaskTodoList } from '../cmps/task-details/TaskTodoList.jsx';
 
 // const [board, setBoard] = useState(null);
 
@@ -64,7 +67,8 @@ export function TaskDetails(props) {
 
                         {/* Description */}
                         <TaskDescription description={task.description} />
-
+                        {/* Attachments */}
+                        {task.attachments?.length > 0 && <TaskAttachments task={task} />}
                         {/* CheckList */}
                         <TaskChecklists
                             boardId={props.match.params.boardId}

@@ -1,4 +1,4 @@
-import {utilService} from './util.service.js';
+import { utilService } from './util.service.js';
 
 const DUMMY_BOARDS = [
   // Skello Board

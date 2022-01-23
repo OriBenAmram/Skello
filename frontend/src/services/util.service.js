@@ -3,7 +3,8 @@ export const utilService = {
     makeLorem,
     getRandomIntInclusive,
     delay,
-    timeSince
+    timeSince,
+    isValidUrl
 }
 
 function makeId(length = 6) {
@@ -27,6 +28,11 @@ function makeLorem(size = 100) {
     return txt;
 }
 
+function isValidUrl(txt) {
+    const urlExp = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g
+    return urlExp.test(txt)
+}
+
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -39,7 +45,7 @@ function delay(ms = 1500) {
     })
 }
 
-function timeSince(date)  {
+function timeSince(date) {
     var seconds = Math.floor((new Date() - date) / 1000);
 
     var interval = seconds / 31536000;

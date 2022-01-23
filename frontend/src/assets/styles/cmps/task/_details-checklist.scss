@@ -134,8 +134,10 @@
             .delete-icon {
                 position: absolute;
                 right: 20px;
+                top: 10px;
                 cursor: pointer;
-                color: red;
+                color: #303335;
+                font-size: 16px;
                 opacity: 0;
             }
 

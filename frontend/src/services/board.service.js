@@ -130,6 +130,17 @@ function addTodo(board, groupId, taskId, checklistId, title) {
   return storageService.put(STORAGE_KEY, board);
 }
 
+function addFile(board, groupId, taskId, fileUrl) {
+  const attachmentToAdd = {
+    id: utilService.makeId(),
+    name: 'Media url',
+    url: fileUrl
+  }
+  const groupIdx = board.groups.findIndex(group => group.id === groupId);
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
+  board.groups[groupIdx].tasks[taskIdx].attachments.push(attachmentToAdd);
+  return storageService.put(STORAGE_KEY, board);
+}
 export const boardService = {
   query,
   getById,
@@ -140,7 +151,8 @@ export const boardService = {
   addTask,
   updateTask,
   addChecklist,
-  addTodo
+  addTodo,
+  addFile
 };
 
 // const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
