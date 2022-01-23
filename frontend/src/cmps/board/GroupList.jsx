@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Droppable} from 'react-beautiful-dnd';
 import {DynamicAddAction} from './DynamicAddAction.jsx';
 import {GroupPreview} from './GroupPreview.jsx';
@@ -15,6 +15,8 @@ export function GroupList({board}) {
   //   });
   // };
 
+  const [areLabelsShown, setLabelsShown] = useState(false);
+
   return (
     <Droppable droppableId={'all-groups'} type="group" direction="horizontal">
       {provided => (
@@ -27,6 +29,9 @@ export function GroupList({board}) {
               id={group.id}
               index={index}
               boardLabels={board.labels}
+              board={board}
+              areLabelsShown={areLabelsShown}
+              setLabelsShown={setLabelsShown}
             />
           ))}
           {provided.placeholder}

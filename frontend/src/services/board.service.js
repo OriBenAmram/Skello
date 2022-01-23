@@ -67,6 +67,7 @@ function addTask(taskTitle, groupId, boardId) {
     id: utilService.makeId(),
     createdAt: Date.now(),
     title: taskTitle,
+    style: {},
     description: '',
     dueDate: null,
     isDone: false,
@@ -77,6 +78,8 @@ function addTask(taskTitle, groupId, boardId) {
       fullname: 'Muki Pori',
       username: 'muki2',
     },
+    checklists: [],
+    labelIds: [],
     members: [],
     attachments: [],
   };

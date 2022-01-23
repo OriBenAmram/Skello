@@ -5,7 +5,6 @@ import { useState } from "react";
 // CMPS
 import { MembersModalContent } from './MembersModalContent.jsx'
 import { LabelsModalContent } from './LabelsModalContent.jsx'
-import { EditLabelModal } from './EditLabelModal.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
 import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
 
@@ -22,10 +21,6 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board,
                 return <MembersModalContent />
             case 'labels':
                 return <LabelsModalContent toggleModal={toggleModal} onSetModalType={onSetModalType} task={task} group={group} board={board} />
-            // case 'labels-to-add':
-            //     return <AddLabelModal task={task} group={group} board={board} />
-            // case 'labels-to-edit':
-            //     return <EditLabelModal task={task} group={group} board={board} />
             case 'checklist':
                 return <CheckListModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'attachment':

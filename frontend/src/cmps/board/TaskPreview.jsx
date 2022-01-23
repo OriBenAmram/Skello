@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import { Draggable } from 'react-beautiful-dnd';
+import {Link} from 'react-router-dom';
+import {Draggable} from 'react-beautiful-dnd';
 
 // CMPS
-import { TaskLabels } from './TaskLabels';
+import {TaskLabels} from './TaskLabels';
 
 export function TaskPreview(props) {
-  const { task, boardId, groupId, index, boardLabels } = props;
+  const {task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown} = props;
   const {
     archiveAt,
     attachments,
@@ -30,10 +30,9 @@ export function TaskPreview(props) {
             {...provided.dragHandleProps}
             className="task-preview">
             {/* IMG */}
-            {style?.backgroundImage && (
+            {attachments?.length > 0 && (
               <img
-                // src={style.backgroundImage}
-                src="https://images.unsplash.com/photo-1642628658566-1db49cadf78c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0N3x8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
+                src={attachments[0].url}
                 style={{
                   backgroundColor: 'white',
                   borderRadius: '3px',
@@ -41,11 +40,19 @@ export function TaskPreview(props) {
                   maxHeight: 240,
                   marginBottom: 5,
                 }}
+                alt="attachment"
               />
             )}
 
             {/* LABELS */}
-            {labelIds?.length > 0 && <TaskLabels labelIds={labelIds} boardLabels={boardLabels} />}
+            {labelIds?.length > 0 && (
+              <TaskLabels
+                areLabelsShown={areLabelsShown}
+                setLabelsShown={setLabelsShown}
+                labelIds={labelIds}
+                boardLabels={boardLabels}
+              />
+            )}
 
             {/* TITLE */}
             <div className="task-title">

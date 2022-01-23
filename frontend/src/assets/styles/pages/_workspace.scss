@@ -54,15 +54,14 @@
 
         .board-preview {
             border-radius: 3px;
-            padding: 10px;
+            padding: 10px 0 0 10px;
             height: 96px;
             width: 194px;
             .board-preview-details {
                 display: flex;
                 flex-direction: column;
-                height: 80px;
-                justify-content: space-between;
-                position: relative;
+                // height: 80px;
+                // justify-content: space-between;
                 h3 {
                     font-size: 16px;
                     font-weight: 700;

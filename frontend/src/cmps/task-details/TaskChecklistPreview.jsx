@@ -12,6 +12,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
     const [checklistData, setChecklistData] = useState(checklist)
     const [isTextAreaOpen, toggleTextArea] = useState(false);
     const [newTodoTitle, setNewTodoTitle] = useState(null)
+    const [editedChecklist, setEditedChecklist] = useState(null)
 
 
     const dispatch = useDispatch()
@@ -63,34 +64,31 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
         dispatch(updateTask(boardId, groupId, task.id, task))
     }
 
+    function onClickTitle(checklist) {
+        console.log('checklist:', checklist);
+        setEditingTitle(true)
+    }
+
+    function onBlurTextArea(ev) {
+        console.log('Blur')
+        ev.preventDefault();
+        setEditingTitle(false)
+    }
+
+    console.log('isEditingTitle:', isEditingTitle);
+
     return (
         <React.Fragment>
-            <TaskChecklistProgressbar checklist={checklist} />
-            <div className='checklist-container'>
-                {/* TITLE */}
 
+            <div className='checklist-container'>
                 {/* Normal */}
                 {!isEditingTitle && <section>
                     <div className='title-container'>
                         <BsCheck2Square className='primary-icon main-content-icon' />
-                        <textarea
-                            name="title"
-                            defaultValue={title}
-                            onClick={(ev) => toggleTextArea(true)}
-                            onChange={(ev) => handleChange(ev)}>
-                        </textarea>
 
-                        {(isTextAreaOpen) && <section className='edit-checklist-controllers'>
-                            <div>
-                                <button
-                                    onClick={() => saveChecklist(checklist.id)}
-                                    className='save-btn'
-                                >
-                                    Save
-                                </button>
-                                <button className="primary-close-btn">X</button>
-                            </div>
-                        </section>}
+                        <h3 onClick={() => {
+                            onClickTitle(checklist)
+                        }}>{checklist.title}</h3>
 
                         <div className='btns-container'>
                             <button className="checklist-main-btn">Hide checked Items</button>
@@ -103,15 +101,35 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                 </section>}
 
                 {/* Editing */}
-                {isEditingTitle && <section>
-
-
-                </section>}
+                {isEditingTitle && <section className='editing-section'>
+                    <BsCheck2Square className='primary-icon main-content-icon' />
+                    <textarea
+                        name="title"
+                        defaultValue={title}
+                        onClick={(ev) => setEditingTitle(true)}
+                        onBlur={(ev) => {
+                            console.log('blur')
+                            onBlurTextArea(ev)
+                        }}
+                        onChange={(ev) => handleChange(ev)}>
+                    </textarea>
+                    <section className='edit-checklist-controllers'>
+                        <div>
+                            <button
+                                onClick={() => saveChecklist(checklist.id)}
+                                className='save-btn'
+                            >
+                                Save
+                            </button>
+                            <button className="primary-close-btn">X</button>
+                        </div>
+                    </section>
+                </section>
+                }
                 {/* <textarea className='checklist-title-textarea' name='title' onChange={(event) => handleChange(event)} defaultValue={title} ></textarea>
 
 {/* PROGRESS-BAR */}
-                <div className='progress-bar' >
-                </div>
+                <TaskChecklistProgressbar checklist={checklist} />
                 {/* CHECKLIST-LIST */}
                 <TaskTodoList
                     onSaveTodo={onSaveTodo}
@@ -125,20 +143,25 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                     setAddingItem(true)
                 }}>Add an Item</button>}
                 {isAddingItem && <section className='adding-item-section'>
-                    <textarea autoFocus value={newTodoTitle} onChange={(ev) => setNewTodoTitle(ev.target.value)}
-                    // onBlur={() => {
-                    //     setAddingItem(false)
-                    // }}
+                    <textarea
+                        autoFocus
+                        value={newTodoTitle}
+                        onChange={(ev) => setNewTodoTitle(ev.target.value)}
+                        placeholder='Add an item'
+                        onBlur={() => {
+                            setAddingItem(false)
+                        }}
                     ></textarea>
                     <div className='add-item-controllers'>
-                        <button onClick={() => {
+                        <button className='secondary-btn' onClick={(ev) => {
+                            // ev.preventDefault()
                             if (!newTodoTitle) return
                             dispatch(addNewTodo(board, groupId, task.id, checklist.id, newTodoTitle))
                             setNewTodoTitle('')
                         }}>
                             Add</button>
 
-                        <button>X</button>
+                        <button className='primary-blose-btn'>X</button>
                     </div>
                 </section>}
             </div>

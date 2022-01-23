@@ -10,6 +10,7 @@ export function TaskAdditionsShow({ board, task }) {
     }, [board, task]);
 
     const onClickAvatar = (member) => {
+        console.log('member:', member);
     }
 
     const onClickLabel = (label) => {
@@ -38,7 +39,7 @@ export function TaskAdditionsShow({ board, task }) {
             {task.members && <section className='type-container'>
                 <h4>Members</h4>
                 <div className='items-container'>
-                    {task.members.map(member => <div style={{ backgroundColor: 'pink' }} className='member-avatar' key={member._id} onClick={() => {
+                    {task.members.map(member => <div style={{ backgroundColor: member.color }} className='member-avatar' key={member._id} onClick={() => {
                         onClickAvatar(member)
                     }}>
                         {member.fullname.charAt(0).toUpperCase()}
