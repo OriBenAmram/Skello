@@ -33,6 +33,7 @@ export function BoardApp(props) {
     const {destination, source, draggableId, type} = result;
 
     if (!destination) {
+      console.log('no destination');
       return;
     }
 
