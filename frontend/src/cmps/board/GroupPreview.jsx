@@ -5,7 +5,7 @@ import {DynamicAddAction} from './DynamicAddAction';
 import {TaskList} from './TaskList';
 import {GroupPreviewTitle} from './GroupPreviewTitle';
 
-export function GroupPreview({group, boardId, index}) {
+export function GroupPreview({group, boardId, index, boardLabels}) {
   return (
     <Draggable draggableId={group.id} index={index}>
       {provided => (
@@ -19,7 +19,7 @@ export function GroupPreview({group, boardId, index}) {
 
           {/* BODY-MAIN */}
           <div className="group-preview-main">
-            <TaskList groupId={group.id} boardId={boardId} tasks={group.tasks} />
+            <TaskList groupId={group.id} boardId={boardId} tasks={group.tasks} boardLabels={boardLabels} />
           </div>
 
           {/* FOOTER */}

@@ -15,6 +15,7 @@ import {loadBoard, handleDrag} from '../store/board/board.action';
 export function BoardApp(props) {
   const dispatch = useDispatch();
   const board = useSelector(state => state.boardModule.board);
+  console.log('🚀 ~ file: BoardApp.jsx ~ line 18 ~ BoardApp ~ board', board);
   const {id} = props.match.params;
 
   useEffect(async () => {
@@ -31,7 +32,10 @@ export function BoardApp(props) {
     // Type - group or task
     const {destination, source, draggableId, type} = result;
 
-    if (!destination) return;
+    if (!destination) {
+      console.log('No Destination');
+      return;
+    }
 
     dispatch(
       handleDrag(board, source.droppableId, destination.droppableId, source.index, destination.index, type)
