@@ -1,20 +1,11 @@
 import React, {useState} from 'react';
 import {Droppable} from 'react-beautiful-dnd';
+
+// Cmps
 import {DynamicAddAction} from './DynamicAddAction.jsx';
 import {GroupPreview} from './GroupPreview.jsx';
 
 export function GroupList({board}) {
-  // const inputRef = React.createRef();
-
-  // const scrollToRef = () => {
-  //   console.log('test');
-  //   console.log('this.inputRef', inputRef);
-  //   this.inputRef.current.scrollTo({
-  //     top: inputRef.current.scrollHeight,
-  //     behavior: 'smooth',
-  //   });
-  // };
-
   const [areLabelsShown, setLabelsShown] = useState(false);
 
   return (

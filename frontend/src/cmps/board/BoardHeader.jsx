@@ -1,10 +1,7 @@
-import { IoPersonAddOutline } from 'react-icons/io5';
-import { IoBarChart } from 'react-icons/io5';
-import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
-import { IoStarOutline } from 'react-icons/io5';
+import {IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart} from 'react-icons/io5';
 
-export function BoardHeader({ board }) {
-  const { title, members } = board;
+export function BoardHeader({board}) {
+  const {title, members} = board;
   return (
     <header className="board-header ">
       <nav className="main-nav flex align-center justify-space-between">
@@ -18,7 +15,7 @@ export function BoardHeader({ board }) {
             </div>
             <div className="nav-members flex">
               {members.map(member => (
-                <div style={{ backgroundColor: member.color }} className="member-avatar" key={member._id}>
+                <div style={{backgroundColor: member.color}} className="member-avatar" key={member._id}>
                   {member.fullname.charAt(0).toUpperCase()}
                 </div>
               ))}

@@ -1,7 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { GrAdd, GrClose } from 'react-icons/gr';
-import { addTask, addGroup } from '../../store/board/board.action.js';
+import {connect} from 'react-redux';
+import {GrAdd, GrClose} from 'react-icons/gr';
+
+// Action
+import {addTask, addGroup} from '../../store/board/board.action.js';
 
 class _DynamicAddAction extends React.Component {
   state = {
@@ -10,17 +12,17 @@ class _DynamicAddAction extends React.Component {
   };
 
   toggleForm = () => {
-    this.setState({ isFormOpen: !this.state.isFormOpen });
+    this.setState({isFormOpen: !this.state.isFormOpen});
   };
 
-  handleChange = ({ target }) => {
+  handleChange = ({target}) => {
     const value = target.value;
-    this.setState({ title: value });
+    this.setState({title: value});
   };
 
   onAddGroup = async () => {
-    const { title } = this.state;
-    const { boardId } = this.props;
+    const {title} = this.state;
+    const {boardId} = this.props;
     if (!title) return;
     await this.props.addGroup(title, boardId);
     this.cleanForm();
@@ -28,8 +30,8 @@ class _DynamicAddAction extends React.Component {
   };
 
   onAddTask = async () => {
-    const { title } = this.state;
-    const { groupId, boardId } = this.props;
+    const {title} = this.state;
+    const {groupId, boardId} = this.props;
     if (!title) return;
     await this.props.addTask(title, groupId, boardId);
     this.cleanForm();
@@ -37,12 +39,13 @@ class _DynamicAddAction extends React.Component {
   };
 
   cleanForm = () => {
-    this.setState({ title: '' });
+    this.setState({title: ''});
   };
 
+  // Form
   renderTaskInput = () => {
-    const { isList } = this.props;
-    const { title } = this.state;
+    const {isList} = this.props;
+    const {title} = this.state;
     const placeholder = isList ? 'Enter list title...' : 'Enter a title for this card...';
     const btnText = isList ? 'Add List' : 'Add Card';
     return (
@@ -52,10 +55,10 @@ class _DynamicAddAction extends React.Component {
           placeholder={placeholder}
           onChange={this.handleChange}
           value={title}
-        // onBlur={() => {
-        //   this.toggleForm();
-        //   this.cleanForm();
-        // }}
+          // onBlur={() => {
+          //   this.toggleForm();
+          //   this.cleanForm();
+          // }}
         ></textarea>
         <div className="task-btns flex align-center">
           <button
@@ -78,8 +81,9 @@ class _DynamicAddAction extends React.Component {
     );
   };
 
+  // Add group/task
   renderAddButton = () => {
-    const { isList } = this.props;
+    const {isList} = this.props;
 
     const buttonText = isList ? 'Add another list' : 'Add a card';
 
@@ -96,7 +100,7 @@ class _DynamicAddAction extends React.Component {
   };
 
   render() {
-    const { isFormOpen } = this.state;
+    const {isFormOpen} = this.state;
 
     return isFormOpen ? this.renderTaskInput() : this.renderAddButton();
   }

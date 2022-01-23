@@ -1,7 +1,7 @@
-import { storageService } from './async-storage.service.js';
-import DUMMY_BOARDS from './board.dummy.data.service';
-import { utilService } from '../services/util.service.js';
 import axios from 'axios';
+import {storageService} from './async-storage.service.js';
+import {utilService} from '../services/util.service.js';
+import DUMMY_BOARDS from './board.dummy.data.service';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
 
@@ -29,11 +29,11 @@ function getById(boardId) {
 }
 
 function save(board) {
-  console.log('board:', board);
-
+  // Edit
   if (board._id) {
     return storageService.put(STORAGE_KEY, board);
   } else {
+    // Add
     return storageService.post(STORAGE_KEY, board);
   }
 }
@@ -62,6 +62,7 @@ function addGroup(groupTitle, boardId) {
   board.groups.push(newGroup);
   return storageService.put(STORAGE_KEY, board);
 }
+
 function addTask(taskTitle, groupId, boardId) {
   const taskToAdd = {
     id: utilService.makeId(),
@@ -84,7 +85,6 @@ function addTask(taskTitle, groupId, boardId) {
     attachments: [],
   };
 
-
   const board = gBoards.find(board => board._id === boardId);
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   board.groups[groupIdx].tasks.push(taskToAdd);
@@ -92,15 +92,12 @@ function addTask(taskTitle, groupId, boardId) {
   return storageService.put(STORAGE_KEY, board);
 }
 
-
 function addChecklist(title, groupId, board, taskId) {
-  console.log('board', board);
-
   const checklistToAdd = {
     id: utilService.makeId(),
     title,
     todos: [],
-  }
+  };
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
   board.groups[groupIdx].tasks[taskIdx].checklists.push(checklistToAdd);
@@ -116,16 +113,17 @@ function updateTask(boardId, groupId, taskId, taskToUpdate) {
   return storageService.put(STORAGE_KEY, board);
 }
 
-
 function addTodo(board, groupId, taskId, checklistId, title) {
   const todoToAdd = {
     id: utilService.makeId(),
     title,
-    isDone: false
-  }
+    isDone: false,
+  };
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
-  const checklistIdx = board.groups[groupIdx].tasks[taskIdx].checklists.findIndex(checklist => checklist.id === checklistId);
+  const checklistIdx = board.groups[groupIdx].tasks[taskIdx].checklists.findIndex(
+    checklist => checklist.id === checklistId
+  );
   board.groups[groupIdx].tasks[taskIdx].checklists[checklistIdx].todos.push(todoToAdd);
   return storageService.put(STORAGE_KEY, board);
 }
@@ -134,8 +132,8 @@ function addFile(board, groupId, taskId, fileUrl) {
   const attachmentToAdd = {
     id: utilService.makeId(),
     name: 'Media url',
-    url: fileUrl
-  }
+    url: fileUrl,
+  };
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
   board.groups[groupIdx].tasks[taskIdx].attachments.push(attachmentToAdd);
@@ -152,8 +150,5 @@ export const boardService = {
   updateTask,
   addChecklist,
   addTodo,
-  addFile
+  addFile,
 };
-
-// const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
-//             entities.splice(idx, 1, updatedEntity)
