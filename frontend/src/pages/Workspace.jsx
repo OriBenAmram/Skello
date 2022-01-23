@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadBoards } from '../store/board/board.action.js';
-
-import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai';
+import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs';
 
+import { onSaveBoard } from '../store/board/board.action';
 
+import { loadBoards } from '../store/board/board.action.js';
 import { BoardList } from '../cmps/workspace/BoardList.jsx';
 
-import { onSaveBoard } from '../store/board/board.action';
 
 export function Workspace() {
     const dispatch = useDispatch();
@@ -24,7 +23,6 @@ export function Workspace() {
 
     const onToggleStarred = (ev, boardId) => {
         ev.preventDefault();
-
         const board = boards.find(board => board._id === boardId);
         board.isStarred = !board.isStarred;
         dispatch(onSaveBoard(board));
@@ -32,12 +30,7 @@ export function Workspace() {
 
     return (
         <section className="workspace-page">
-            {/* Sidebar */}
-            {/* <section className='home-left-sidebar'>
 
-            </section> */}
-
-            {/* All boards */}
             <section className='all-boards'>
                 <div className='content-all-boards'>
                     <section className='stared-boards-section'>
@@ -59,7 +52,7 @@ export function Workspace() {
                             <h3>Recently viewed</h3>
                         </div>
                         <div className='primary-boards-container-section'>
-                        <BoardList boards={boards} onToggleStarred={onToggleStarred} />
+                            <BoardList boards={boards} onToggleStarred={onToggleStarred} />
                         </div>
                     </section>
                 </div>
@@ -70,19 +63,3 @@ export function Workspace() {
 }
 
 
-//  <div className="boards-wrapper flex column">
-//     <div className="boards-preview flex column">
-//         <div className="boards-preview-title flex align-center">
-//             <BsPerson className='person-icon' />
-//             <h3>staered Boards</h3>
-//         </div>
-//         <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} />
-//     </div>
-//     <div className="boards-preview">
-//         <div className="boards-preview-title flex align-center">
-//             <BsPerson className='person-icon' />
-//             <h3>Workspace</h3>
-//         </div>
-//         <BoardList boards={boards} onToggleStarred={onToggleStarred} />
-//     </div>
-// </div> 

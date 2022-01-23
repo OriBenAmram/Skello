@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
+// Cmps
+import {DynamicActionModal} from '../dynamic-actions/DynamicActionModal.jsx'
 
-export function TaskAdditionsShow({ board, task }) {
+export function TaskAdditionsShow({ board, group, task }) {
     const [taskLabels, setTaskLabels] = useState([]);
+    const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
 
     useEffect(() => {
         setLabels()
@@ -14,7 +16,6 @@ export function TaskAdditionsShow({ board, task }) {
     }
 
     const onClickLabel = (label) => {
-
     }
 
     const getLabelById = (labelId) => {
@@ -22,7 +23,6 @@ export function TaskAdditionsShow({ board, task }) {
     }
 
     const setLabels = () => {
-
         if (!task.labelIds?.length) return;
         let labels = task.labelIds.map(labelId => {
             const label = getLabelById(labelId)
@@ -31,6 +31,15 @@ export function TaskAdditionsShow({ board, task }) {
         // Why do I get undefined in one of them? The Details update happen later on after I activate this cmp, for some reason.
         labels = labels.filter(label => (label))
         setTaskLabels(labels)
+    }
+
+
+    const toggleModal = ({ event, type }) => {
+        if (modal.isModalOpen) {
+            setModal({ ...modal, isModalOpen: false })
+            return
+        }
+        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
     }
 
     return (
@@ -56,10 +65,12 @@ export function TaskAdditionsShow({ board, task }) {
                     }}>
                         {label.title}
                     </div>)}
-                    <div className='label-box plus-item'>+</div>
+                    <div className='label-box plus-item' onClick={(event) => {
+                        toggleModal({ event, type: 'labels' })
+                    }}>+</div>
                 </div>
             </section>}
-
+            {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
         </section>
     );
 }

@@ -5,13 +5,9 @@
     flex-direction: column;
 
     .description-text-area {
-        display: block;
         min-height: rem(40px);
-        padding: 8px 12px;
-        background-color: #091e420a;
         margin: 0 0 12px 40px;
         transition: all 0.4s;
-        cursor: pointer;
 
         &:hover {
             background-color: #091e4214;
@@ -35,14 +31,13 @@
         align-items: center;
         margin: 0 0 0 40px;
 
-        .save-btn {
-            background-color: #0079bf;
-            border: none;
-            color: #fff;
-            margin-right: 4px;
-            padding: 6px 12px;
-            border-radius: 3px;
-            font-size: rem(14px);
+        .left-btns-container { 
+            display: flex;
+            align-items: center;
+        }
+
+        .primary-close-btn { 
+            padding: 8px 10px 4px
         }
     }
 

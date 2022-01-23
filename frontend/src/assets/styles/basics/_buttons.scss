@@ -2,6 +2,7 @@ button {
     cursor: pointer;
 }
 
+// close-icon-btn
 .primary-close-btn {
     font-size: rem(14px);
     padding: 4px 8px;
@@ -17,6 +18,11 @@ button {
     padding: 6px 12px;
     border-radius: 3px;
     font-size: rem(14px);
+
+    &:hover { 
+        background-color: #026aa7;
+        box-shadow: none;
+    }
 }
 
 .delete-primary-btn {
@@ -27,4 +33,17 @@ button {
     padding: 6px 12px;
     border-radius: 3px;
     font-size: rem(14px);
+}
+
+.details-secondary-close-btn-icon {
+    font-size: rem(24px);
+}
+
+.details-primary-link-btn {
+    background-color: #091e420a;
+    color: $clr1;
+    border: none;
+    border-radius: 3px;
+    height: 32px;
+    padding: 6px 12px;
 }

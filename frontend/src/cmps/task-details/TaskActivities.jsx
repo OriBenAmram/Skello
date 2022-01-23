@@ -16,7 +16,7 @@ export function TaskActivities() {
             <div className='title-container'>
                 <AiOutlineBars className='primary-icon main-content-icon' />
                 <h3>Activity</h3>
-                <button className="details-primary-btn">Show details</button>
+                <button className="details-primary-link-btn">Show details</button>
             </div>
             <div className='text-area-container'>
                 <textarea defaultValue="" onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment...">
