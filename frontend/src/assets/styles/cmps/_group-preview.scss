@@ -19,7 +19,7 @@
 
     .add-task-container{
         border-radius: 3px;
-        color: #5e6c84;
+        color: $clr2;
         margin: 2px 0 8px 0;
         padding: 0 8px;
         position: relative;
@@ -40,7 +40,7 @@
 
         &:hover{
             background-color: #091e4214;
-            color: #172b4d;
+            color: $clr1;
         }
     }
 
@@ -53,7 +53,7 @@
         padding: 4px 8px;
         height: 28px;
         width: 100%;
-        color: #172b4d;
+        color: $clr1;
         background: #0000;
         border-radius: 3px;
         font-weight: 600;
@@ -119,5 +119,5 @@
 // height: 35px;
 // width: 262px;
 // gap: 5px;
-// color: #5e6c84;
+// color: $clr2;
 // cursor: pointer;
