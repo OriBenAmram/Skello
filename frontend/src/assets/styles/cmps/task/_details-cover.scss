@@ -1,6 +1,32 @@
 .details-cover {
-    height: 160px;
-    background-color: rgb(55, 95, 168);
+    height: 116px;
+    position: relative;
 
-    
+    &.open { 
+        height: 160px;
+    }
+
+    .image-container { 
+        height: 160px;
+
+        .image-preview { 
+            height: 160px;
+            object-fit: contain;
+        }
+    }
+
+    .cover-btn { 
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #ffffff3d;
+        color: #fff;
+        border-radius: 3px;
+        padding: 6px 12px 6px 6px;
+        border: none;
+
+        .cover-icon { 
+            margin-right: 3px;
+        }
+    }
 }

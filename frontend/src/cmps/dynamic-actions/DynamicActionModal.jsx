@@ -5,11 +5,10 @@ import { CheckListModalContent } from './CheckListModalContent.jsx'
 import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
 import { TodoOptions } from './TodoOptions.jsx';
 import { EditAttachmentModalContent } from './EditAttachmentModalContent.jsx';
+import { CoverModalContent } from './CoverModalContent.jsx'
 
-export function DynamicActionModal({ toggleModal, type, pos, task, group, board, onRemoveTodo, todoId, posYAddition, editTitle, attachmentTitle }) {
 
-
-    console.log('type:', type);
+export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
 
     const getContentForDisplay = () => {
         switch (type) {
@@ -25,26 +24,38 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board,
                 return <TodoOptions toggleModal={toggleModal} onRemoveTodo={onRemoveTodo} todoId={todoId} />
             case 'editAttachment':
                 return <EditAttachmentModalContent editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} />
+            case 'cover':
+                return <CoverModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
         }
     }
 
-    const getPositionByType = () => {
-        const { clientX, clientY } = pos
+    const getYPosByType = () => {
+        let { clientX, clientY } = pos
+
         switch (type) {
             case 'labels':
-                return { clientY: clientY - 300, clientX: 770 }
-            // case 'todoOptions':
-            //     return { clientY, clientX: 650 }
+                const labelModalPos = (isOnDetails) ? -200 : 0
+                return labelModalPos
+            case 'cover':
+                const coverModalPos = (isOnDetails) ? -200 : 0
+                return coverModalPos
             default:
-                return { clientY, clientX: 732 }
+                return clientY - 330
         }
     }
 
-    const modalPosition = getPositionByType()
+    const getModalPositionStyle = () => {
+        const { clientX, clientY } = event
+        if (position === 'absolute') {
+            return { position, left: 0, top: getYPosByType() }
+        }
+        return { position, top: clientY + posYAddition, left: clientX + posXAddition }
+    }
 
-
+    if (!event) return <></>
     return (
-        <section className='dynamic-action-modal' style={{ top: `${modalPosition.clientY}px`, left: `${modalPosition.clientX}px` }} >
+        <section className='dynamic-action-modal' style={getModalPositionStyle()} >
+            {/* <section className='dynamic-action-modal' style={{ position, top: event?.nativeEvent.pageY, left: event?.nativeEvent.pageX}} > */}
             {getContentForDisplay()}
         </section>
     )

@@ -21,8 +21,8 @@
         z-index: 20;
         width: rem(768px);
         position: relative;
-        transform: translate(-100%);
-        left: 50%;
+        // transform: translate(-100%);
+        // left: calc(100vw);
         min-height: 600px;
         margin: auto;
         background-color: whitesmoke;
@@ -47,6 +47,10 @@
             justify-content: center;
             align-items: center;
 
+            path { 
+                color: red;
+                // color: #42526e;
+            }
             &:hover { 
                 background-color: #00000029;
             }
@@ -166,10 +170,12 @@
                 }
 
                 .add-to-card {
+                    position: relative;
                     margin-bottom: 24px;
                 }
 
                 .button-link {
+                    position: relative;
                     background-color: #091e420a;
                     color: $clr1;
                     border: none;

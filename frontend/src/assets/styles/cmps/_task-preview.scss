@@ -4,6 +4,11 @@
     min-height: 1px;
 }
 
+.upper-preview-background { 
+    height: 32px;
+    border-radius: 3px 3px 0 0;
+}
+
 .task-preview {
     word-wrap: break-word;
     display: flex;
@@ -18,13 +23,15 @@
     font-size: 0.875rem;
     transition: background-color 0.1s;
     cursor: pointer !important;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 
     transition: background-color 0.2s;
 
     &:hover {
         background: rgb(243, 243, 243);
     }
+
+    
 }
 
 .add-task-open {
