@@ -14,6 +14,7 @@
 }
 
 .task-preview {
+
     word-wrap: break-word;
     display: flex;
     flex-direction: column;
@@ -22,7 +23,7 @@
     margin: 0;
     box-shadow: 0 1px 0 #c0c6d0;
     background: #fff;
-    padding: 5px 8px 3px;
+    padding: 6px 8px 2px;
     border-radius: 3px;
     font-size: 0.875rem;
     transition: background-color 0.1s;
@@ -32,7 +33,7 @@
     transition: background-color 0.2s;
 
     &:hover {
-        background: rgb(243, 243, 243);
+        background: rgb(236, 236, 236);
     }
 
     
@@ -101,7 +102,7 @@
 .task-labels-container {
     flex-wrap: wrap;
     gap: 4px;
-    margin-bottom: 5px;
+    // margin-bottom: 5px;
 
     .label {
         align-content: center;
@@ -126,3 +127,7 @@
     }
 }
 
+.edit-icon{
+    height: 20px;
+    width: 20px;
+}

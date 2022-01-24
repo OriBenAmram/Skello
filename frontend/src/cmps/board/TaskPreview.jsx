@@ -4,6 +4,7 @@ import {Draggable} from 'react-beautiful-dnd';
 
 // CMPS
 import {TaskLabels} from './TaskLabels';
+import {EditIcon} from '../EditIcon';
 
 export function TaskPreview(props) {
   const {task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown} = props;
@@ -48,7 +49,7 @@ export function TaskPreview(props) {
       if (previewBackgroundImage?.url) {
         // Has an image
         return {
-          backgroundColor: 'white',
+          // backgroundColor: 'white',
           padding: '6px 8px 2px',
           borderTopLeftRadius: '0px',
           borderTopRightRadius: '0px',
@@ -56,7 +57,7 @@ export function TaskPreview(props) {
       } else {
         // Doesnt have an imageborder-top-left-radius
         return {
-          backgroundColor: 'white',
+          // backgroundColor: 'white',
           padding: '6px 8px 2px',
           borderTopLeftRadius: '0px',
           borderTopRightRadius: '0px',
@@ -81,7 +82,7 @@ export function TaskPreview(props) {
       // Doesnt have an imageborder-top-left-radius
       return {backgroundColor: previewBackgroundColor};
     }
-    return {display: 'none'}
+    return {display: 'none'};
   };
 
   return (
@@ -105,7 +106,7 @@ export function TaskPreview(props) {
                     backgroundColor: 'white',
                     borderRadius: '3px',
                     objectFit: 'cover',
-                    maxHeight: 240,
+                    maxHeight: '240px',
                     marginBottom: 5,
                   }}
                   alt="attachment"
@@ -125,6 +126,7 @@ export function TaskPreview(props) {
               {/* TITLE */}
               <div className="task-title" style={getTitleStyleByCover()}>
                 <p>{title}</p>
+                <EditIcon />
               </div>
             </section>
           </div>
