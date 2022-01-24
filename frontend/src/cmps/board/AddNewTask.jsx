@@ -19,8 +19,8 @@ export function AddNewTask({boardId, groupId, toggleIsBodyRender, isForm}) {
     if (!title) return;
     await dispatch(addTask(title, groupId, boardId));
     cleanForm();
-    toggleForm();
-    toggleIsBodyRender();
+    // toggleForm();
+    // toggleIsBodyRender();
   };
 
   const toggleForm = () => {
@@ -46,9 +46,12 @@ export function AddNewTask({boardId, groupId, toggleIsBodyRender, isForm}) {
             // }}
           ></textarea>
           <div className="task-btns flex align-center">
+            {/* ADD */}
             <button onClick={onAddTask} className="task-btn save-task">
               Add Card
             </button>
+
+            {/* CLOSE */}
             <button
               onClick={() => {
                 toggleForm();

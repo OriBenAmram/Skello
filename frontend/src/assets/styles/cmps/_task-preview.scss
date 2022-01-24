@@ -4,16 +4,17 @@
     min-height: 1px;
 }
 
-.upper-preview-background { 
+.upper-preview-background {
     height: 32px;
     border-radius: 3px 3px 0 0;
 }
 
-.task-preview-wrapper{
+.task-preview-wrapper {
     padding-bottom: 8px;
 }
 
 .task-preview {
+    position: relative;
     word-wrap: break-word;
     display: flex;
     flex-direction: column;
@@ -35,7 +36,59 @@
         background: rgb(243, 243, 243);
     }
 
-    
+    .inner-fade-wallpaper {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(whitesmoke, 0) 0%, rgba(whitesmoke, 0) 63%, rgba(whitesmoke, 1) 100%);
+        z-index: 25;
+    }
+
+    &.full-cover-mode {
+        padding: 0px;
+
+        .task-title {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            .title-container {
+                line-height: 20px;
+                padding: 8px;
+            }
+
+            .full-cover-mode-upper-gradient {
+                height: 32px;
+                left: 0;
+                right: 0;
+                mix-blend-mode: normal;
+                width: 100%;
+                padding: 8px 8px 0px;
+            }
+
+            &.dark-text-mode {
+                .title-container {
+                    font-weight: bold;
+                    color: #172b4d;
+                    background: linear-gradient(180deg, #ffffff80, #fff);
+                }
+
+                .full-cover-mode-upper-gradient {
+                    background: linear-gradient(180deg, #fff0, #ffffff80);
+                }
+            }
+
+            &.bright-text-mode {
+                .title-container {
+                    color: white;
+                    font-weight: 500;
+                    background: linear-gradient(180deg, #00000080, #000);
+                }
+
+                .full-cover-mode-upper-gradient {
+                    background: linear-gradient(180deg, #0000, #00000080);
+                }
+            }
+        }
+    }
 }
 
 .add-task-open {
@@ -102,6 +155,7 @@
     flex-wrap: wrap;
     gap: 4px;
     margin-bottom: 5px;
+    // Hello
 
     .label {
         align-content: center;
