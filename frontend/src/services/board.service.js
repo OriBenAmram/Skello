@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {storageService} from './async-storage.service.js';
-import {utilService} from '../services/util.service.js';
+import { storageService } from './async-storage.service.js';
+import { utilService } from '../services/util.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
@@ -124,14 +124,7 @@ function addChecklist(title, groupId, board, taskId) {
   return storageService.put(STORAGE_KEY, board);
 }
 
-// Finds the same task, and replace it - We need to send here the taskToUpdate!!!
-function updateTask(boardId, groupId, taskId, taskToUpdate) {
-  const board = gBoards.find(board => board._id === boardId);
-  const groupIdx = board.groups.findIndex(group => group.id === groupId);
-  const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
-  board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
-  return storageService.put(STORAGE_KEY, board);
-}
+
 
 function addTodo(board, groupId, taskId, checklistId, title) {
   const todoToAdd = {
@@ -161,6 +154,17 @@ function addFile(board, groupId, taskId, fileUrl) {
   return storageService.put(STORAGE_KEY, board);
 }
 
+
+
+// Finds the same task, and replace it - We need to send here the taskToUpdate!!!
+function updateTask(boardId, groupId, taskId, taskToUpdate) {
+  const board = gBoards.find(board => board._id === boardId);
+  const groupIdx = board.groups.findIndex(group => group.id === groupId);
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
+  board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
+  return storageService.put(STORAGE_KEY, board);
+}
+
 // CR : CHECK OPTION TO USE IT
 export function updateTaskTest(board, updatedTask) {
   console.log(board);
@@ -169,7 +173,7 @@ export function updateTaskTest(board, updatedTask) {
       if (task.id === updatedTask.id) group.tasks[idx] = updatedTask;
     });
   });
-  return {...board};
+  return { ...board };
 }
 
 export const boardService = {
