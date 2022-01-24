@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GrClose } from "react-icons/gr";
 
-
+// Actions
 import { addChecklist } from '../../store/board/board.action';
 
 export function CheckListModalContent({ board, group, task, toggleModal }) {
@@ -14,7 +14,7 @@ export function CheckListModalContent({ board, group, task, toggleModal }) {
 
     const onAddChecklist = (ev) => {
         ev.preventDefault();
-        // toggleModal()
+        toggleModal(ev)
         // close modal after add 
         dispatch(addChecklist(checklistTitle, group.id, board, task.id));
     }

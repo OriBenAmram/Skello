@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {storageService} from './async-storage.service.js';
-import {utilService} from '../services/util.service.js';
+import { storageService } from './async-storage.service.js';
+import { utilService } from '../services/util.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
@@ -131,6 +131,7 @@ function addTodo(board, groupId, taskId, checklistId, title) {
 function addFile(board, groupId, taskId, fileUrl) {
   const attachmentToAdd = {
     id: utilService.makeId(),
+    createdAt: Date.now(),
     name: 'Media url',
     url: fileUrl,
   };
@@ -144,14 +145,15 @@ function addFile(board, groupId, taskId, fileUrl) {
 
 
 // CR : CHECK OPTION TO USE IT
-// export function updateTaskInBoard(board, updatedTask) {
-//   board.groups.forEach(group => {
-//     group.tasks.forEach((task, idx) => {
-//       if (task.id === updatedTask.id) groups.tasks[idx] = updatedTask
-//     })
-//   })
-//   return { ...board }
-// }
+export function updateTaskTest(board, updatedTask) {
+  console.log(board)
+  board.groups.forEach(group => {
+    group.tasks.forEach((task, idx) => {
+      if (task.id === updatedTask.id) group.tasks[idx] = updatedTask
+    })
+  })
+  return { ...board }
+}
 
 
 
@@ -169,4 +171,5 @@ export const boardService = {
   addChecklist,
   addTodo,
   addFile,
+  updateTaskTest
 };

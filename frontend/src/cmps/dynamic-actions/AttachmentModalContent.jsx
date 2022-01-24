@@ -4,12 +4,17 @@ import { GrClose } from "react-icons/gr";
 
 
 import { utilService } from '../../services/util.service.js';
-import { addFile } from '../../store/board/board.action.js'
+import { cloudinaryService } from '../../services/cloudinary.service.js'
 
+import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
+
+
+import { addFile } from '../../store/board/board.action.js'
 
 export function AttachmentModalContent({ board, group, task, toggleModal }) {
 
     const [attachData, setAttachData] = useState({ link: null, linkTxt: '' });
+    const [uploadData, setUploadData] = useState({ fileUrl: null, isUploading: false })
     const dispatch = useDispatch();
 
 
@@ -24,10 +29,23 @@ export function AttachmentModalContent({ board, group, task, toggleModal }) {
         if (isValid) onAddFile(linkTxt)
     }
 
+    const onUploadFile = async (ev) => {
+        setUploadData({ isUploading: true })
+        try {
+            const { secure_url } = await cloudinaryService.uploadFile(ev)
+            onAddFile(secure_url)
+        } catch (err) {
+            console.log('error in getting fileUrl From Cloudinary', err)
+        }
+        this.setState({ isUploading: false })
+    }
+
     const onAddFile = (fileUrl) => {
         console.log('adding');
         dispatch(addFile(board, group.id, task.id, fileUrl))
     }
+
+
 
 
     return (
@@ -39,7 +57,11 @@ export function AttachmentModalContent({ board, group, task, toggleModal }) {
 
             <div className="upload-pc-container flex align-center">
                 <label htmlFor="upload-file-pc">Computer</label>
-                <input type="file" accept="img/*" id="upload-file-pc"></input>
+                <input
+                    type="file"
+                    onChange={onUploadFile}
+                    accept="img/*"
+                    id="upload-file-pc"></input>
             </div>
             <div className="upload-url-container ">
                 <label htmlFor="upload-file-url">Attach a link</label>
