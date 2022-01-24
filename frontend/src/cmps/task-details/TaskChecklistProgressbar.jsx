@@ -12,9 +12,9 @@ export function TaskChecklistProgressbar({ checklist }) {
     return (
         <section className="checklist-progress">
             <div className="checklist-progress-bar">
-                <div className={`checklist-progress-bar-current ${(getTodosProgressData() === 100) ? 'done' : ''}`}
+                <div className={`checklist-progress-bar-current
+                 ${(getTodosProgressData() === 100) ? 'done' : ''}`}
                     style={{ width: getTodosProgressData() + '%' }} >
-
                 </div>
             </div>
             <span className="checklist-progress-percentage">

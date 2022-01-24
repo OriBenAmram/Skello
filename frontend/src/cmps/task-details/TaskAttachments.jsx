@@ -1,12 +1,14 @@
 import { ImAttachment } from "react-icons/im";
+
 import { AttachmentPreview } from "./AttachmentPreview";
 
 
-export function TaskAttachments({ task }) {
+export function TaskAttachments({ task, board }) {
 
     const { attachments } = task;
 
-    const elAttachments = attachments.map(attachment => <AttachmentPreview key={attachment.id} attachment={attachment} />)
+    const elAttachments = attachments.map(attachment => <AttachmentPreview board={board} key={attachment.id} task={task} attachment={attachment} />)
+
     return (
         <div className="task-attachments-container">
             <div className="title-container">
@@ -15,10 +17,8 @@ export function TaskAttachments({ task }) {
             </div>
 
             <div className="attachments-container">
-                {/* <div> */}
                 <div className="attachment-list">
                     {elAttachments}
-                    {/* </div> */}
                 </div>
             </div>
         </div>

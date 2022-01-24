@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     delay,
     timeSince,
-    isValidUrl
+    isValidUrl,
+    getTimeDiff
 }
 
 function makeId(length = 6) {
@@ -77,4 +78,34 @@ function timeSince(date) {
     if (Math.floor(seconds) === 0) return "a few seconds ago";
     return Math.floor(seconds) + " seconds ago";
 }
+
+
+const _duration = (difference) => {
+    let secondsInMiliseconds = 1000,
+        minutesInMiliseconds = 60 * secondsInMiliseconds,
+        hoursInMiliseconds = 60 * minutesInMiliseconds;
+    var differenceInHours = difference / hoursInMiliseconds,
+        differenceInMinutes = differenceInHours % 1 * 60,
+        differenceInSeconds = differenceInMinutes % 1 * 60;
+    return {
+        "hours": Math.floor(differenceInHours),
+        "minutes": Math.floor(differenceInMinutes),
+        "seconds": Math.floor(differenceInSeconds)
+    }
+}
+
+function getTimeDiff(createdAt) {
+    const timeDiff = _duration(Date.now() - createdAt)
+    console.log('timeDiff:', timeDiff);
+
+    if (timeDiff.seconds && !timeDiff.minutes && !timeDiff.hours) {
+        return `Added  ${timeDiff.seconds} seconds ago`
+    } else if (timeDiff.minutes && !timeDiff.hours) {
+        return `Added  ${timeDiff.minutes} minutes ago`
+    } else {
+        return `Added  ${timeDiff.hours} hours ago`
+    }
+
+}
+
 

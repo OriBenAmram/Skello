@@ -13,6 +13,10 @@
         background-color: rgba(0, 0, 0, 0.45);
         backdrop-filter: blur(6px);
     }
+
+    body.homepage & {
+        background-color: red;
+    }
     // body.homepage & {
     //     background-color: red;
     // }

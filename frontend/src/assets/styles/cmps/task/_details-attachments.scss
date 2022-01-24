@@ -1,13 +1,14 @@
-.task-attachments-container{
+.task-attachments-container {
     clear: both;
     margin-bottom: 24px;
     position: relative;
 
-    .title-container{
+    .title-container {
         margin: 0 0 4px 40px;
         padding: 8px 0;
         position: relative;
-        .attach-icon{
+
+        .attach-icon {
             left: -40px;
             position: absolute;
             top: 7px;
@@ -24,7 +25,7 @@
             vertical-align: bottom;
         }
 
-        h3{
+        h3 {
             display: inline-block;
             margin: 0;
             min-height: 18px;
@@ -36,37 +37,54 @@
 
     }
 
-    .attachments-container{
+    .attachments-container {
         margin-left: 40px;
 
-        
-        .attachment-list{
-            border-radius: 3px;
-            margin: 0 0 8px;
-            min-height: 80px;
-            overflow: hidden;
-            position: relative;
 
-            
-                .attachment-preview{
-                    background-color: #091e420a;
-                background-position: 50%;
-                background-repeat: no-repeat;
-                background-size: contain;
+        .attachment-list {
+
+
+            .attachment-preview-container {
+
                 border-radius: 3px;
-                height: 80px;
-                left: 0;
-                margin-top: -40px;
-                position: absolute;
-                text-align: center;
-                text-decoration: none;
-                top: 50%;
-                width: 112px;
-                z-index: 1;
+                margin: 0 0 8px;
+                min-height: 80px;
+                overflow: hidden;
+                position: relative;
 
-            
+                &:hover{
+                    background-color: #091e420a;
+                }
 
-                .attachment-details{
+                .attachment-preview-img {
+
+                    background-color: #091e420a;
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    border-radius: 3px;
+                    height: 80px;
+                    left: 0;
+                    margin-top: -40px;
+                    position: absolute;
+                    text-align: center;
+                    text-decoration: none;
+                    top: 50%;
+                    width: 112px;
+                    z-index: 1;
+
+                }
+
+                p {
+                    box-sizing: border-box;
+                    cursor: pointer;
+                    margin: 0;
+                    min-height: 80px;
+                    padding: 8px 8px 8px 128px;
+                    z-index: 0;
+                }
+
+                .attachment-details {
                     box-sizing: border-box;
                     cursor: pointer;
                     margin: 0;
@@ -74,17 +92,30 @@
                     padding: 8px 8px 8px 128px;
                     z-index: 0;
 
-                    .attachment-name{
+                    .attachment-name {
                         word-wrap: break-word;
                         font-weight: 700;
+                    }
+
+                    .actions-container{
+                        margin-bottom: 8px;
+                        color: #5e6c84;
+
+                        .action-btn{
+                            text-decoration: underline;
+
+                            &:hover{
+                                color: #172b4d;
+                            }
+                        }
                     }
                 }
             }
         }
-        
+
     }
-    
-    .add-btn{
+
+    .add-btn {
         align-items: center;
         background-color: #091e420a;
         border: none;
@@ -94,7 +125,7 @@
         color: $clr1;
         cursor: pointer;
         display: inline-flex;
-        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
         font-size: 14px;
         font-weight: 400;
         justify-content: center;
@@ -102,7 +133,7 @@
         padding: 6px 12px;
         text-decoration: none;
         transition-duration: 85ms;
-        transition-property: background-color,border-color,box-shadow;
+        transition-property: background-color, border-color, box-shadow;
         transition-timing-function: ease;
         white-space: normal;
         margin: 8px 0;

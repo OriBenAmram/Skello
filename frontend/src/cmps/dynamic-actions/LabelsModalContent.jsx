@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Services
+// Actions
 import { updateTask, onSaveBoard } from '../../store/board/board.action.js';
 
 // ICONS
@@ -160,7 +160,6 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
     const getBoardLabelsForDisplay = () => { 
         if (searchLabelText) {
             return board.labels.filter(label => {
-                console.log('label:', label);
                 return label.title?.includes(searchLabelText)
             })
         }

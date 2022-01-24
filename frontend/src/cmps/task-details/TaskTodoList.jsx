@@ -1,8 +1,6 @@
 import { TaskTodoPreview } from './TaskTodoPreview.jsx'
 
-
 export function TaskTodoList({ checklist, onToggleTodo, onRemoveTodo, onSaveTodo }) {
-
 
     const elTodos = () => {
         return checklist.todos.map(todo =>
@@ -15,7 +13,6 @@ export function TaskTodoList({ checklist, onToggleTodo, onRemoveTodo, onSaveTodo
             />)
 
     }
-
 
     return (
         <section className="todo-list">

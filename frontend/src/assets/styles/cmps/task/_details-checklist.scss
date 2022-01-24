@@ -132,18 +132,19 @@
             width: 100%;
             transition: 0.3s ease-in-out;
 
-            .delete-icon {
+            
+            .more-icon {
                 position: absolute;
                 right: 20px;
                 top: 10px;
                 cursor: pointer;
-                color: #303335;
+                color: #42526e;
                 font-size: 16px;
                 opacity: 0;
             }
 
             &:hover {
-                .delete-icon {
+                .more-icon {
                     opacity: 1;
                 }
             }
@@ -157,10 +158,22 @@
             }
 
             // ICON
-            .checkbox-icon {
+            .checkbox-checked, .checkbox-blank {
                 position: absolute;
                 left: 0;
                 top: 5px;
+                cursor: pointer;
+                // border-radius: 2px;
+                height: 19px;
+                width: 19px;
+                color: #dfe1e6;
+
+            }
+
+            .checkbox-checked{
+                color: #0079bf;
+                // box-shadow: inset 0 0 0 2px #0079bf;
+
             }
 
             // Normal - no editing - Preview
