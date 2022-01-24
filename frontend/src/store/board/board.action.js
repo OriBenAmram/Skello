@@ -158,11 +158,11 @@ export function handleDrag(
       }
     }
 
-    await boardService.save(newBoard);
+    const savedBoard = await boardService.save(newBoard);
 
     dispatch({
       type: 'SAVE_BOARD',
-      board: newBoard,
+      board: savedBoard,
     });
   };
 }

@@ -28,13 +28,18 @@ function getById(boardId) {
   return storageService.get(STORAGE_KEY, boardId);
 }
 
-function save(board) {
+async function save(newBoard) {
   // Edit
-  if (board._id) {
-    return storageService.put(STORAGE_KEY, board);
+  if (newBoard._id) {
+    // update our gBoards that with the new board
+    const oldBoard = gBoards.find(board => board._id === newBoard._id);
+    const oldBoardIdx = gBoards.findIndex(board => board._id === oldBoard._id);
+    gBoards.splice(oldBoardIdx, 1, newBoard);
+
+    return storageService.put(STORAGE_KEY, newBoard);
   } else {
     // Add
-    return storageService.post(STORAGE_KEY, board);
+    return storageService.post(STORAGE_KEY, newBoard);
   }
 }
 
@@ -140,9 +145,6 @@ function addFile(board, groupId, taskId, fileUrl) {
   return storageService.put(STORAGE_KEY, board);
 }
 
-
-
-
 // CR : CHECK OPTION TO USE IT
 // export function updateTaskInBoard(board, updatedTask) {
 //   board.groups.forEach(group => {
@@ -152,10 +154,6 @@ function addFile(board, groupId, taskId, fileUrl) {
 //   })
 //   return { ...board }
 // }
-
-
-
-
 
 export const boardService = {
   query,

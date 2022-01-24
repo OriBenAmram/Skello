@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {GrAdd, GrClose} from 'react-icons/gr';
+import {BallTriangle} from 'react-loader-spinner';
 
 // Action
 import {addTask} from '../../store/board/board.action';
