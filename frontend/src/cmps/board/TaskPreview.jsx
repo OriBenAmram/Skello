@@ -24,8 +24,7 @@ export function TaskPreview(props) {
 
   const [previewBackgroundColor, setPreviewColor] = useState(null);
   const [previewBackgroundImage, setPreviewImage] = useState(null);
-
-  const {isCover} = task.style;
+  const {isCover, isTextDarkMode = true} = task.style;
 
   useEffect(() => {
     setPreviewImage(task.style.backgroundImage);
@@ -37,8 +36,11 @@ export function TaskPreview(props) {
     if (isCover) {
       if (previewBackgroundImage?.url) {
         // Has an image
-        console.log('Returning a picture - previewBackgroundImage.url', previewBackgroundImage.url);
-        return {background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px'};
+        return {
+          background: `url(${previewBackgroundImage.url}) center center / cover`,
+          width: '100%',
+          minHeight: '180px',
+        };
       } else {
         // Doesnt have an image
         return {backgroundColor: previewBackgroundColor};
@@ -73,8 +75,6 @@ export function TaskPreview(props) {
   };
 
   const getUpperPreviewBackground = () => {
-    console.log('task:', task);
-
     if (previewBackgroundImage?.url) {
       // Has an image
       return {background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px'};
@@ -83,6 +83,13 @@ export function TaskPreview(props) {
       return {backgroundColor: previewBackgroundColor};
     }
     return {display: 'none'};
+  };
+
+  const getPreviewClass = () => {
+    if (task.style.isCover && task.style.backgroundImage?.url) {
+      return 'full-cover-mode';
+    }
+    return '';
   };
 
   return (
@@ -97,7 +104,8 @@ export function TaskPreview(props) {
             {!isCover && (
               <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
             )}
-            <section style={getPreviewStyle()} className="task-preview">
+            <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()}`}>
+              {/* <div className='inner-fade-wallpaper'></div> */}
               {/* IMG */}
               {attachments?.length > 0 && !isCover && (
                 <img
@@ -124,9 +132,14 @@ export function TaskPreview(props) {
               )}
 
               {/* TITLE */}
-              <div className="task-title" style={getTitleStyleByCover()}>
-                <p>{title}</p>
-                <EditIcon />
+              <div
+                className={`task-title ${isTextDarkMode ? 'dark-text-mode' : 'bright-text-mode'}`}
+                style={getTitleStyleByCover()}>
+                <div className="full-cover-mode-upper-gradient"></div>
+                <div className="title-container">
+                  <p>{title}</p>
+                  <EditIcon />
+                </div>
               </div>
             </section>
           </div>

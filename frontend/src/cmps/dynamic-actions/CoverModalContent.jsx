@@ -10,6 +10,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
     const dispatch = useDispatch();
     const [modalType, setModalType] = useState({ header: 'Cover', type: 'cover' });
     const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedTextColor, setSelectedTextColor] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -46,7 +47,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
     ]
 
     useEffect(() => {
-        if (task.style.backgroundImage.url) { 
+        if (task.style.backgroundImage.url) {
             setSelectedImage(task.style.backgroundImage)
         }
         else setSelectedColor(task.style.backgroundColor)
@@ -59,6 +60,12 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         return selectedColor
     }
 
+    const getCoverBackgroundGradient = () => { 
+        if (selectedTextColor === 'bright') return 'rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)'
+        return 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)'
+        // rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)
+    }
+
     const getHalfCoverBackground = () => {
         if (selectedImage?.url) {
             const imageHalfCover = getImageColorByTitle(selectedImage.title)
@@ -67,7 +74,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         return selectedColor
     }
 
-    const getImageColorByTitle = (title) => { 
+    const getImageColorByTitle = (title) => {
         switch (title) {
             case 'forest':
                 return 'rgb(48 124 77)'
@@ -81,21 +88,33 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                 return 'rgb(230 194 147)'
             case 'jerusalem':
                 return 'rgb(15 93 167)'
-            
-            default: 
+
+            default:
                 return '#212427'
         }
     }
 
-    const onSizeClick = (size) => { 
+    const onSizeClick = (size) => {
         let newTaskStyle;
-        if(size === 'cover') { 
+        if (size === 'cover') {
             setSelectedSize('cover')
             newTaskStyle = { ...task.style, isCover: true }
-        }
-        else {
+        } else {
             newTaskStyle = { ...task.style, isCover: false }
             setSelectedSize('uncover')
+        }
+        const taskToUpdate = { ...task, style: newTaskStyle }
+        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
+    }
+
+    const onClickTextColor = (color) => { 
+        let newTaskStyle;
+        if (color === 'bright') {
+            setSelectedTextColor('bright')
+            newTaskStyle = { ...task.style, isTextDarkMode: false }
+        } else { 
+            setSelectedTextColor('dark')
+            newTaskStyle = { ...task.style, isTextDarkMode: true }
         }
         const taskToUpdate = { ...task, style: newTaskStyle }
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
@@ -120,6 +139,16 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
+    const onDeleteCover = () => {
+        console.log('Removing cover')
+        setSelectedImage({ title: null, url: null })
+        setSelectedColor(null)
+        const newTaskStyle = { ...task.style, backgroundImage: { title: null, url: null }, backgroundColor: null }
+        const taskToUpdate = { ...task, style: newTaskStyle }
+        console.log('taskToUpdate:', taskToUpdate);
+        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
+    }
+
     return (
         <div className='cover-modal' >
             <section className='modal-header'>
@@ -131,24 +160,55 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                     <section className='cover-size-section'>
                         <h4>Size</h4>
                         <div className='size-choice-container'>
-                            <div className={`uncover-choice choice ${(selectedSize === 'cover') ? '' : 'selected'}`} choice onClick={() => { 
+                            <div className={`uncover-choice choice ${(selectedSize === 'cover') ? '' : 'selected'}`} choice onClick={() => {
                                 onSizeClick('uncover')
                             }}>
                                 <div className='upper-background' style={{ background: `${getHalfCoverBackground()} center center / cover` }}>
 
                                 </div>
                                 <div className='lower-background'>
-
+                                    <div className='two-text-stripes-module'>
+                                        <div className='upper-stripe'></div>
+                                        <div className='lower-stripe'></div>
+                                        <div className='lower-dumy-btns-area'>
+                                                <div className='flex'>
+                                                    <div className='simple-dumy-short-text'></div>
+                                                    <div className='simple-dumy-short-text'></div>
+                                                </div>
+                                                <div className='dumy-circle'></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className={`cover-choice choice   ${(selectedSize === 'cover') ? 'selected' : ''}`} style={{ background: `${getCoverBackground()} center center / cover` }} onClick={() => {
+                            <div className={`cover-choice choice   ${(selectedSize === 'cover') ? 'selected' : ''}`} style={{ background: ` linear-gradient(${getCoverBackgroundGradient()}), ${getCoverBackground()} center center / cover` }} onClick={() => {
                                 onSizeClick('cover')
                             }}>
-
+                                <div className='two-text-stripes-module'>
+                                    <div className='upper-stripe' style={(selectedTextColor === 'bright' ? { backgroundColor: '#6B778C' } : { backgroundColor: 'white'  })}></div>
+                                    <div className='lower-stripe' style={(selectedTextColor === 'bright' ? { backgroundColor: '#6B778C' } : { backgroundColor: 'white'  })}></div>
+                                </div>
                             </div>
                         </div>
-                        <button className='details-primary-link-btn wide-cover-btn'>Remove cover</button>
+                        {(task.style.backgroundColor) && <button className='details-primary-link-btn wide-cover-btn' onClick={() => {
+                            onDeleteCover()
+                        }}>Remove cover</button>}
                     </section>
+
+                    { task.style.isCover && <section className='text-color-section'>
+                        <h4>Text color</h4>
+                        <section className='text-color-choice-container'>
+                            <div className={`text-color-choice-item ${ (selectedTextColor === 'bright') ? '' : 'selected' }`} style={{ background: ` linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ${getCoverBackground()} center center / cover` }} onClick={() => { 
+                                onClickTextColor('dark')
+                            }}>
+                                <h3 style={{ color: 'white' }}>{task?.title}</h3>
+                            </div>
+                            <div className={`text-color-choice-item ${ (selectedTextColor === 'bright') ? 'selected' : '' }`} style={{ background: ` linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), ${getCoverBackground()} center center / cover` }} onClick={() => { 
+                                onClickTextColor('bright')
+                            }}>
+                            <h3 >{task?.title}</h3>
+                            </div>
+                        </section>
+                    </section>}
                     <section className='color-section'>
                         <h4>Colors</h4>
                         <section className='color-grid-container'>
