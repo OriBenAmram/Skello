@@ -77,11 +77,11 @@ export function TaskPreview(props) {
     if (previewBackgroundImage?.url) {
       // Has an image
       return {background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px'};
-    } else {
+    } else if (previewBackgroundColor) {
       // Doesnt have an imageborder-top-left-radius
-      console.log('previewBackgroundColor:', previewBackgroundColor);
       return {backgroundColor: previewBackgroundColor};
     }
+    return {display: 'none'}
   };
 
   return (
