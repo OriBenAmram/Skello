@@ -101,6 +101,7 @@ export function TaskPreview(props) {
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}>
+              <EditIcon />
             {!isCover && (
               <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
             )}
@@ -138,7 +139,7 @@ export function TaskPreview(props) {
                 <div className="full-cover-mode-upper-gradient"></div>
                 <div className="title-container">
                   <p>{title}</p>
-                  <EditIcon />
+                  
                 </div>
               </div>
             </section>

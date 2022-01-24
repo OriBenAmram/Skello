@@ -11,6 +11,23 @@
 
 .task-preview-wrapper {
     padding-bottom: 8px;
+    position: relative;
+
+    &:hover {
+        .edit-icon {
+            opacity: 1;
+        }
+    }
+
+    .edit-icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 2px;
+        right: 2px;
+        z-index: 15;
+        opacity: 0;
+    }
 }
 
 .task-preview {
@@ -177,14 +194,4 @@
             padding: 0 8px;
         }
     }
-
 }
-.edit-icon{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 2px;
-    right: 2px;
-
-}
-

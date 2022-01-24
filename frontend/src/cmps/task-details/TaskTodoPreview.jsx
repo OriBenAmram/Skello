@@ -76,7 +76,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
                         <Picker pickerStyle={{ width: '100%' }} onEmojiClick={onEmojiClick} />
                     )}
                     <GoMention />
-                </div>0
+                </div>
             </section>}
         </div>
         {modal.isModalOpen && <DynamicActionModal onRemoveTodo={onRemoveTodo} todoId={todo.id} toggleModal={toggleModal} type={modal.type} posYAddition={350} pos={modal.pos} />}
