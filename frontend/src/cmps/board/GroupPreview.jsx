@@ -33,7 +33,9 @@ export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown
             <div
               className="header-more-options"
               onClick={async () => {
-                await dispatch(removeGroup(group.id, boardId));
+                if (window.confirm('Are you sure you want to delete?')) {
+                  await dispatch(removeGroup(group.id, boardId));
+                }
               }}>
               <IoEllipsisHorizontal />
             </div>
