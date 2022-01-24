@@ -27,12 +27,8 @@ export function TaskPreview(props) {
   const {isCover} = task.style;
 
   useEffect(() => {
-    if (task.style?.backgroundImage?.url) {
-      setPreviewImage(task.style.backgroundImage);
-      setPreviewColor(task.style.backgroundColor);
-    } else {
-      setPreviewColor(task.style.backgroundColor);
-    }
+    setPreviewImage(task.style.backgroundImage);
+    setPreviewColor(task.style.backgroundColor);
   }, [task]);
 
   const getPreviewStyle = () => {
@@ -40,6 +36,8 @@ export function TaskPreview(props) {
     if (isCover) {
       if (previewBackgroundImage?.url) {
         // Has an image
+        console.log('Returning a picture - previewBackgroundImage.url', previewBackgroundImage.url);
+        return {background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px'};
       } else {
         // Doesnt have an image
         return {backgroundColor: previewBackgroundColor};
@@ -49,6 +47,12 @@ export function TaskPreview(props) {
     } else {
       if (previewBackgroundImage?.url) {
         // Has an image
+        return {
+          backgroundColor: 'white',
+          padding: '6px 8px 2px',
+          borderTopLeftRadius: '0px',
+          borderTopRightRadius: '0px',
+        };
       } else {
         // Doesnt have an imageborder-top-left-radius
         return {
@@ -68,7 +72,16 @@ export function TaskPreview(props) {
   };
 
   const getUpperPreviewBackground = () => {
-    return {backgroundColor: previewBackgroundColor};
+    console.log('task:', task);
+
+    if (previewBackgroundImage?.url) {
+      // Has an image
+      return {background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px'};
+    } else {
+      // Doesnt have an imageborder-top-left-radius
+      console.log('previewBackgroundColor:', previewBackgroundColor);
+      return {backgroundColor: previewBackgroundColor};
+    }
   };
 
   return (

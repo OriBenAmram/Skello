@@ -33,7 +33,15 @@
                     border: 1px solid rgba(9, 30, 66, 0.08);
 
                     &:hover {
+                        filter: saturate(85%) brightness(85%);
+                    }
+
+                    &.selected {
                         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #5ba4cf;
+
+                        &:hover { 
+                            filter: saturate(100%) brightness(100%);
+                        }
                     }
                 }
 
