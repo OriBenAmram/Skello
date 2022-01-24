@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Draggable} from 'react-beautiful-dnd';
+import {IoEllipsisHorizontal} from 'react-icons/io5';
 
 // Cmps
 import {TaskList} from './TaskList';
 import {GroupPreviewTitle} from './GroupPreviewTitle';
 import {AddNewTask} from './AddNewTask';
+
+// Action
 
 export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown, setLabelsShown}) {
   const [isBodyRender, setIsBodyRender] = useState(false);
@@ -22,7 +25,12 @@ export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown
           {...provided.dragHandleProps}
           className="group-preview flex column">
           {/* TITLE */}
-          <GroupPreviewTitle group={group} />
+          <div className="group-preview-header flex justify-space-between align-center">
+            <GroupPreviewTitle group={group} />
+            <div className="header-more-options">
+              <IoEllipsisHorizontal />
+            </div>
+          </div>
 
           {/* BODY-MAIN */}
           <div className="group-preview-main">

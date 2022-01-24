@@ -41,11 +41,13 @@
     }
 
     form{
+        flex-grow: 1;
         min-height: 40px;
         padding-top: 6px;
     }
 
     .group-preview-title{
+     
         padding: 4px 8px;
         height: 28px;
         width: 100%;
@@ -69,13 +71,30 @@
     }
 
     .task-title{
+        
         p{
             margin:0
         }
     }
 }
 
-// Group
+.group-preview-header{
+    .header-more-options{
+        color: #6b778c;
+        padding: 6px;
+        height: 32px;
+        width: 32px;
+        border-radius: 3px;
+        text-align: center;
+        cursor: pointer;
+        &:hover{
+            background-color: #091e4214;
+            color:#172b4d;
+        }
+    }
+
+}
+
 .add-group-container{
     height: fit-content;
     padding: 4px;
@@ -108,7 +127,7 @@
     }
 }
 
-// Group
+
 .add-group-open  {
     min-width: 17rem;
     background-color: #ebecf0;
