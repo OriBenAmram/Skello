@@ -56,6 +56,15 @@ function _setBoardsToStorage() {
   return boards;
 }
 
+function removeGroup(groupId, boardId) {
+  const boardIdx = gBoards.findIndex(board => board._id === boardId);
+  const board = gBoards[boardIdx];
+  const groupIdx = board.groups.findIndex(group => group.id === groupId);
+  board.groups.splice(groupIdx, 1);
+
+  return storageService.put(STORAGE_KEY, board);
+}
+
 function addGroup(groupTitle, boardId) {
   const newGroup = {
     id: utilService.makeId(),
@@ -73,7 +82,13 @@ function addTask(taskTitle, groupId, boardId) {
     id: utilService.makeId(),
     createdAt: Date.now(),
     title: taskTitle,
-    style: {},
+    style: {
+      backgroundColor: null,
+      backgroundImage: {
+        title: null,
+        url: null
+      },
+    },
     description: '',
     dueDate: null,
     isDone: false,
@@ -152,14 +167,13 @@ function updateTask(boardId, groupId, taskId, taskToUpdate) {
 
 // CR : CHECK OPTION TO USE IT
 export function updateTaskTest(board, updatedTask) {
-  console.log(board)
+  console.log(board);
   board.groups.forEach(group => {
     group.tasks.forEach((task, idx) => {
-      if (task.id === updatedTask.id) group.tasks[idx] = updatedTask
-    })
-  })
-  return storageService.put(STORAGE_KEY, board);
-
+      if (task.id === updatedTask.id) group.tasks[idx] = updatedTask;
+    });
+  });
+  return { ...board };
 }
 
 export const boardService = {
@@ -167,6 +181,7 @@ export const boardService = {
   getById,
   getBoardsFromStorage,
   addGroup,
+  removeGroup,
   save,
   queryImages,
   addTask,
@@ -174,5 +189,5 @@ export const boardService = {
   addChecklist,
   addTodo,
   addFile,
-  updateTaskTest
+  updateTaskTest,
 };
