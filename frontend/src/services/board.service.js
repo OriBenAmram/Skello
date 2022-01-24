@@ -73,7 +73,13 @@ function addTask(taskTitle, groupId, boardId) {
     id: utilService.makeId(),
     createdAt: Date.now(),
     title: taskTitle,
-    style: {},
+    style: {
+      backgroundColor: null,
+      backgroundImage: {
+        title: null,
+        url: null
+      },
+    },
     description: '',
     dueDate: null,
     isDone: false,

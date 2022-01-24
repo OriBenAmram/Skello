@@ -9,6 +9,7 @@ import { updateTask, onSaveBoard } from '../../store/board/board.action.js';
 export function CoverModalContent({ board, group, task, toggleModal }) {
     const dispatch = useDispatch();
     const [modalType, setModalType] = useState({ header: 'Cover', type: 'cover' });
+    const [selectedSize, setSelectedSize] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -52,14 +53,14 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
     }, []);
 
     const getCoverBackground = () => {
-        if (selectedImage) {
+        if (selectedImage?.url) {
             return `url(${selectedImage.url})`
         }
         return selectedColor
     }
 
     const getHalfCoverBackground = () => {
-        if (selectedImage) {
+        if (selectedImage?.url) {
             const imageHalfCover = getImageColorByTitle(selectedImage.title)
             return imageHalfCover
         }
@@ -89,28 +90,33 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
     const onSizeClick = (size) => { 
         let newTaskStyle;
         if(size === 'cover') { 
+            setSelectedSize('cover')
             newTaskStyle = { ...task.style, isCover: true }
         }
-        else  newTaskStyle = { ...task.style, isCover: false }
+        else {
+            newTaskStyle = { ...task.style, isCover: false }
+            setSelectedSize('uncover')
+        }
         const taskToUpdate = { ...task, style: newTaskStyle }
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
     const onColorClick = (color) => {
         setSelectedColor(color)
-        setSelectedImage(null)
+        setSelectedImage({ title: null, url: null })
         const newTaskStyle = { ...task.style, backgroundColor: color, backgroundImage: { title: null, url: null } }
         const taskToUpdate = { ...task, style: newTaskStyle }
+        console.log('taskToUpdate - onColorClick', taskToUpdate);
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
-    const onImageClick = async (image) => {
-        await setSelectedImage(image)
+    const onImageClick = (image) => {
+        setSelectedImage(image)
         setSelectedColor(null)
         const { title, url } = image
         const newTaskStyle = { ...task.style, backgroundImage: { title, url }, backgroundColor: null }
-        console.log('newTaskStyle:', newTaskStyle);
         const taskToUpdate = { ...task, style: newTaskStyle }
+        console.log('taskToUpdate:', taskToUpdate);
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
@@ -125,7 +131,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                     <section className='cover-size-section'>
                         <h4>Size</h4>
                         <div className='size-choice-container'>
-                            <div className={`uncover-choice choice `} choice onClick={() => { 
+                            <div className={`uncover-choice choice ${(selectedSize === 'cover') ? '' : 'selected'}`} choice onClick={() => { 
                                 onSizeClick('uncover')
                             }}>
                                 <div className='upper-background' style={{ background: `${getHalfCoverBackground()} center center / cover` }}>
@@ -135,7 +141,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
 
                                 </div>
                             </div>
-                            <div className={`cover-choice choice  `} style={{ background: `${getCoverBackground()} center center / cover` }} onClick={() => {
+                            <div className={`cover-choice choice   ${(selectedSize === 'cover') ? 'selected' : ''}`} style={{ background: `${getCoverBackground()} center center / cover` }} onClick={() => {
                                 onSizeClick('cover')
                             }}>
 
