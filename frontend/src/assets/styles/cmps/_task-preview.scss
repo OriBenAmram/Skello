@@ -1,5 +1,5 @@
+// Dnd droppable area need height for placeholder
 // Task
-// Dnd droppable area need height
 .task-list-container {
     min-height: 1px;
 }
@@ -100,7 +100,6 @@
     padding: 0 8px;
     margin-bottom: 0;
     max-width: 272px;
-    // margin-inline-end: 8px;
     height: 80px;
     border-radius: 3px;
     textarea {
@@ -115,13 +114,13 @@
     flex-wrap: wrap;
     gap: 4px;
     margin-bottom: 5px;
+
     .label {
-        display: flex;
+        align-content: center;
         height: 8px;
         font-size: 12px;
         border-radius: 4px;
         width: 40px;
-        align-content: center;
         color: #fff;
         font-weight: 700;
         padding: 0;

@@ -1,5 +1,7 @@
-import {TaskPreview} from './TaskPreview';
 import {Droppable} from 'react-beautiful-dnd';
+
+// Cmps
+import {TaskPreview} from './TaskPreview';
 
 export function TaskList({tasks, groupId, boardId, boardLabels, areLabelsShown, setLabelsShown}) {
   return (
