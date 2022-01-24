@@ -26,11 +26,35 @@
                 margin: 0 -4px 4px;
                 overflow-x: hidden;
 
+                .two-text-stripes-module {
+                    position: absolute;
+                    bottom: 4px;
+                    padding: 6px 4px 4px 6px;
+
+                    .upper-stripe {
+                        background-color: white;
+                        width: 116px;
+                        height: 4px;
+                        border-radius: 2em;
+                        border: none;
+                        margin-bottom: 4px;
+                    }
+
+                    .lower-stripe {
+                        background-color: white;
+                        width: 92px;
+                        height: 4px;
+                        border-radius: 2em;
+                        border: none;
+                    }
+                }
+
                 .choice {
                     height: 62px;
                     border-radius: 3px;
                     cursor: pointer;
                     border: 1px solid rgba(9, 30, 66, 0.08);
+                    position: relative;
 
                     &:hover {
                         filter: saturate(85%) brightness(85%);
@@ -39,7 +63,7 @@
                     &.selected {
                         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #5ba4cf;
 
-                        &:hover { 
+                        &:hover {
                             filter: saturate(100%) brightness(100%);
                         }
                     }
@@ -54,16 +78,96 @@
                         border-radius: 3px 3px 0 0;
                         background-color: #212427;
                     }
-                    .lower-background { 
-                        padding: 6px 4px 4px 6px;
+                    .lower-background {
+                        // padding: 6px 4px 4px 6px;
                         position: relative;
-                        background-color: white;
                         flex: 1;
+                    }
+                    .two-text-stripes-module {
+                        position: static;
+
+                        .upper-stripe {
+                            background-color: #6b778c;
+                        }
+
+                        .lower-stripe {
+                            background-color: #6b778c;
+                        }
+                    }
+
+                    .lower-dumy-btns-area {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 4px;
+
+                        .simple-dumy-short-text {
+                            width: 16px;
+                            height: 6px;
+                            background: #6b778c;
+                            border-radius: 2px;
+                            margin-right: 2px;
+                        }
+
+                        .dumy-circle {
+                            width: 10px;
+                            height: 10px;
+                            background: #6b778c;
+                            border-radius: 5px;
+                        }
                     }
                 }
 
                 .cover-choice {
                     position: relative;
+                }
+            }
+        }
+
+        // Text-Color-Section
+
+        .text-color-section {
+            .text-color-choice-container {
+                display: grid;
+                gap: 8px;
+                padding: 4px;
+                margin: 0 -4px;
+                overflow-x: hidden;
+                grid-template-columns: 1fr 1fr;
+
+                .text-color-choice-item {
+                    border-radius: 3px;
+                    cursor: pointer;
+                    // display: flex;
+                    // flex-direction: row;
+                    // align-items: flex-end;
+                    width: unset;
+                    min-height: 20px;
+                    background-size: cover;
+                    background-position: center;
+                    padding: 6px 10px 6px 12px;
+                    overflow: hidden;
+
+                    &.selected { 
+                        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #5ba4cf;
+                    }
+
+                    h3 {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: bold;
+                        letter-spacing: .8px;
+                    }
+                }
+
+                :first-child {
+                }
+
+                :nth-child(2) {
                 }
             }
         }

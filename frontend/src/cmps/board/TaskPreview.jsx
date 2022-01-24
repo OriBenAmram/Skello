@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
-import {Draggable} from 'react-beautiful-dnd';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Draggable } from 'react-beautiful-dnd';
 
 // CMPS
-import {TaskLabels} from './TaskLabels';
+import { TaskLabels } from './TaskLabels';
 
 export function TaskPreview(props) {
-  const {task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown} = props;
+  const { task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown } = props;
   const {
     archiveAt,
     attachments,
@@ -23,8 +23,7 @@ export function TaskPreview(props) {
 
   const [previewBackgroundColor, setPreviewColor] = useState(null);
   const [previewBackgroundImage, setPreviewImage] = useState(null);
-
-  const {isCover} = task.style;
+  const { isCover, isTextDarkMode = true } = task.style;
 
   useEffect(() => {
     setPreviewImage(task.style.backgroundImage);
@@ -36,11 +35,10 @@ export function TaskPreview(props) {
     if (isCover) {
       if (previewBackgroundImage?.url) {
         // Has an image
-        console.log('Returning a picture - previewBackgroundImage.url', previewBackgroundImage.url);
-        return {background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px'};
+        return { background: `url(${previewBackgroundImage.url}) center center / cover`, width: '100%', minHeight: '180px' };
       } else {
         // Doesnt have an image
-        return {backgroundColor: previewBackgroundColor};
+        return { backgroundColor: previewBackgroundColor };
       }
 
       // Not Cover - Half!
@@ -67,22 +65,27 @@ export function TaskPreview(props) {
 
   // Title style by cover
   const getTitleStyleByCover = () => {
-    if (isCover) return {fontSize: '16px', fontWeight: '500'};
+    if (isCover) return { fontSize: '16px', fontWeight: '500' };
     // return { backgroundColor: 'green' }
   };
 
   const getUpperPreviewBackground = () => {
-    console.log('task:', task);
-
     if (previewBackgroundImage?.url) {
       // Has an image
-      return {background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px'};
+      return { background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px' };
     } else if (previewBackgroundColor) {
       // Doesnt have an imageborder-top-left-radius
-      return {backgroundColor: previewBackgroundColor};
+      return { backgroundColor: previewBackgroundColor };
     }
-    return {display: 'none'}
+    return { display: 'none' }
   };
+
+  const getPreviewClass = () => {
+    if (task.style.isCover && task.style.backgroundImage?.url) {
+      return 'full-cover-mode'
+    }
+    return ''
+  }
 
   return (
     <Draggable draggableId={task.id} index={index}>
@@ -96,7 +99,8 @@ export function TaskPreview(props) {
             {!isCover && (
               <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
             )}
-            <section style={getPreviewStyle()} className="task-preview">
+            <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()}`}>
+              {/* <div className='inner-fade-wallpaper'></div> */}
               {/* IMG */}
               {attachments?.length > 0 && !isCover && (
                 <img
@@ -123,8 +127,11 @@ export function TaskPreview(props) {
               )}
 
               {/* TITLE */}
-              <div className="task-title" style={getTitleStyleByCover()}>
-                <p>{title}</p>
+              <div className={`task-title ${(isTextDarkMode) ? 'dark-text-mode' : 'bright-text-mode'}`} style={getTitleStyleByCover()}>
+                <div className='full-cover-mode-upper-gradient'></div>
+                <div className='title-container'>
+                  <p>{title}</p>
+                </div>
               </div>
             </section>
           </div>
