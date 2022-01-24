@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Draggable} from 'react-beautiful-dnd';
 import {IoEllipsisHorizontal} from 'react-icons/io5';
 
@@ -8,8 +9,10 @@ import {GroupPreviewTitle} from './GroupPreviewTitle';
 import {AddNewTask} from './AddNewTask';
 
 // Action
+import {removeGroup} from '../../store/board/board.action';
 
 export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown, setLabelsShown}) {
+  const dispatch = useDispatch();
   const [isBodyRender, setIsBodyRender] = useState(false);
 
   const toggleIsBodyRender = () => {
@@ -27,7 +30,11 @@ export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown
           {/* TITLE */}
           <div className="group-preview-header flex justify-space-between align-center">
             <GroupPreviewTitle group={group} />
-            <div className="header-more-options">
+            <div
+              className="header-more-options"
+              onClick={async () => {
+                await dispatch(removeGroup(group.id, boardId));
+              }}>
               <IoEllipsisHorizontal />
             </div>
           </div>

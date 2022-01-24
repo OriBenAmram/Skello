@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { storageService } from './async-storage.service.js';
-import { utilService } from '../services/util.service.js';
+import {storageService} from './async-storage.service.js';
+import {utilService} from '../services/util.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
@@ -54,6 +54,15 @@ function _setBoardsToStorage() {
   }
   _saveBoardsToStorage(boards);
   return boards;
+}
+
+function removeGroup(groupId, boardId) {
+  const boardIdx = gBoards.findIndex(board => board._id === boardId);
+  const board = gBoards[boardIdx];
+  const groupIdx = board.groups.findIndex(group => group.id === groupId);
+  board.groups.splice(groupIdx, 1);
+
+  return storageService.put(STORAGE_KEY, board);
 }
 
 function addGroup(groupTitle, boardId) {
@@ -148,13 +157,13 @@ function addFile(board, groupId, taskId, fileUrl) {
 
 // CR : CHECK OPTION TO USE IT
 export function updateTaskTest(board, updatedTask) {
-  console.log(board)
+  console.log(board);
   board.groups.forEach(group => {
     group.tasks.forEach((task, idx) => {
-      if (task.id === updatedTask.id) group.tasks[idx] = updatedTask
-    })
-  })
-  return { ...board }
+      if (task.id === updatedTask.id) group.tasks[idx] = updatedTask;
+    });
+  });
+  return {...board};
 }
 
 export const boardService = {
@@ -162,6 +171,7 @@ export const boardService = {
   getById,
   getBoardsFromStorage,
   addGroup,
+  removeGroup,
   save,
   queryImages,
   addTask,
@@ -169,5 +179,5 @@ export const boardService = {
   addChecklist,
   addTodo,
   addFile,
-  updateTaskTest
+  updateTaskTest,
 };
