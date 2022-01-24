@@ -86,22 +86,6 @@
     }
 }
 
-// Group
-.add-task-open.group {
-    min-width: 17rem;
-    background-color: #ebecf0;
-    padding: 0 8px;
-    margin-bottom: 0;
-    max-width: 272px;
-    height: 80px;
-    border-radius: 3px;
-    textarea {
-        margin-top: 4px;
-        height: 32px;
-        box-shadow: inset 0 0 0 2px #0079bf;
-    }
-}
-
 // LABELS
 .task-labels-container {
     flex-wrap: wrap;

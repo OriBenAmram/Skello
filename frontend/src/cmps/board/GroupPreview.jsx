@@ -5,12 +5,13 @@ import {Draggable} from 'react-beautiful-dnd';
 import {DynamicAddAction} from './DynamicAddAction';
 import {TaskList} from './TaskList';
 import {GroupPreviewTitle} from './GroupPreviewTitle';
+import {AddNewTask} from './AddNewTask';
 
 export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown, setLabelsShown}) {
-  const [dynamicBodyAction, setDynamicBodyAction] = useState(false);
+  const [isBodyRender, setIsBodyRender] = useState(false);
 
-  const toggleDynamicBodyAction = () => {
-    setDynamicBodyAction(dynamicBodyAction => !dynamicBodyAction);
+  const toggleIsBodyRender = () => {
+    setIsBodyRender(isBodyRender => !isBodyRender);
   };
 
   return (
@@ -34,25 +35,23 @@ export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown
               tasks={group.tasks}
               boardLabels={boardLabels}
             />
-            {dynamicBodyAction && (
-              <DynamicAddAction
+            {isBodyRender && (
+              <AddNewTask
                 groupId={group.id}
                 boardId={boardId}
-                toggleDynamicBodyAction={toggleDynamicBodyAction}
-                dynamicBodyAction={dynamicBodyAction}
-                isFormOpen={true}
+                toggleIsBodyRender={toggleIsBodyRender}
+                isForm={true}
               />
             )}
           </div>
 
           {/* FOOTER */}
-          {!dynamicBodyAction && (
-            <DynamicAddAction
+          {!isBodyRender && (
+            <AddNewTask
               groupId={group.id}
               boardId={boardId}
-              toggleDynamicBodyAction={toggleDynamicBodyAction}
-              dynamicBodyAction={dynamicBodyAction}
-              isFormOpen={false}
+              toggleIsBodyRender={toggleIsBodyRender}
+              isForm={false}
             />
           )}
         </article>

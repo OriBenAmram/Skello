@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {Droppable} from 'react-beautiful-dnd';
 
 // Cmps
-import {DynamicAddAction} from './DynamicAddAction.jsx';
 import {GroupPreview} from './GroupPreview.jsx';
+import {AddNewGroup} from './AddNewGroup.jsx';
 
 export function GroupList({board}) {
   const [areLabelsShown, setLabelsShown] = useState(false);
@@ -26,7 +26,7 @@ export function GroupList({board}) {
             />
           ))}
           {provided.placeholder}
-          <DynamicAddAction isList boardId={board._id} isOpenForm={false} />
+          <AddNewGroup boardId={board._id} />
         </section>
       )}
     </Droppable>
