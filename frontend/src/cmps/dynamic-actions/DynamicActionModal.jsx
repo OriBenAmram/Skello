@@ -6,6 +6,7 @@ import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
 import { TodoOptions } from './TodoOptions.jsx';
 import { EditAttachmentModalContent } from './EditAttachmentModalContent.jsx';
 import { CoverModalContent } from './CoverModalContent.jsx'
+import { DatesModalContent } from './DatesModalContent.jsx'
 
 
 export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
@@ -26,6 +27,8 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board,
                 return <EditAttachmentModalContent editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} />
             case 'cover':
                 return <CoverModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
+            case 'dates':
+                return <DatesModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
         }
     }
 
