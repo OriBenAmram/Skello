@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {Draggable} from 'react-beautiful-dnd';
 
 // Cmps
-import {DynamicAddAction} from './DynamicAddAction';
 import {TaskList} from './TaskList';
 import {GroupPreviewTitle} from './GroupPreviewTitle';
 import {AddNewTask} from './AddNewTask';
