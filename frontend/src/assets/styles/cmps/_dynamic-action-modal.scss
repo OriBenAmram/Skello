@@ -1,9 +1,9 @@
 .dynamic-action-modal {
     position: fixed;
-    min-height: 100px;
+    min-height: 50px;
     width: 321px;
     z-index: 25;
-    transform: translate(-100%, -7%);
+    // transform: translate(-50%, -50%);
     background-color: white;
     border: 1px solid lightgray;
     box-shadow: rgb(9 30 66 / 25%) 0px 8px 16px -4px, rgb(9 30 66 / 8%) 0px 0px 0px 1px;

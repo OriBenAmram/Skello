@@ -7,9 +7,10 @@ import { MembersModalContent } from './MembersModalContent.jsx'
 import { LabelsModalContent } from './LabelsModalContent.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
 import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
+import { CoverModalContent } from './CoverModalContent.jsx'
 
-export function DynamicActionModal({ toggleModal, type, pos, task, group, board}) {
-    
+export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition=0, isOnDetails = true }) {
+
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':
@@ -20,25 +21,38 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board}
                 return <CheckListModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'attachment':
                 return <AttachmentModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
+            case 'cover':
+                return <CoverModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
         }
     }
 
-    const getPositionByType = () => {
-        const { clientX, clientY } = pos
+    const getYPosByType = () => {
+        let { clientX, clientY } = pos
+
         switch (type) {
             case 'labels':
-                return { clientY: clientY - 300, clientX: 770 }
-
+                const labelModalPos = (isOnDetails) ? -200 : 0
+                return labelModalPos
+            case 'cover':
+                const coverModalPos = (isOnDetails) ? -200 : 0
+                return coverModalPos
             default:
-                return { clientY, clientX: 732 }
+                return clientY - 330
         }
     }
 
-    const modalPosition = getPositionByType()
+    const getModalPositionStyle = () => {
+        const { clientX, clientY } = event
+        if (position === 'absolute') {
+            return { position, left: 0, top: getYPosByType()}
+        }
+        return { position, top: clientY + posYAddition, left: clientX + posXAddition}
+    }
 
-
+    if (!event) return <></>
     return (
-        <section className='dynamic-action-modal' style={{ top: `${modalPosition.clientY}px`, left: `${modalPosition.clientX}px` }} >
+        <section className='dynamic-action-modal' style={getModalPositionStyle()} >
+            {/* <section className='dynamic-action-modal' style={{ position, top: event?.nativeEvent.pageY, left: event?.nativeEvent.pageX}} > */}
             {getContentForDisplay()}
         </section>
     )

@@ -51,7 +51,6 @@ function remove(entityType, entityId) {
 }
 
 function _save(entityType, entities) {
-  console.log('entities:', entities);
   localStorage.setItem(entityType, JSON.stringify(entities));
 }
 

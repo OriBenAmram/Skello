@@ -1,0 +1,107 @@
+.cover-modal {
+    // general content
+    .modal-content {
+        padding-top: 0;
+
+        h4 {
+            margin-bottom: 4px;
+        }
+
+        .wide-cover-btn {
+            width: 100%;
+            margin-bottom: 16px;
+
+            &:hover {
+                background-color: #091e4214;
+            }
+        }
+
+        // Size
+        .cover-size-section {
+            .size-choice-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                padding: 4px;
+                margin: 0 -4px 4px;
+                overflow-x: hidden;
+
+                .choice {
+                    height: 62px;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    border: 1px solid rgba(9, 30, 66, 0.08);
+
+                    &:hover {
+                        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #5ba4cf;
+                    }
+                }
+
+                .uncover-choice {
+                    display: flex;
+                    flex-direction: column;
+
+                    .upper-background {
+                        height: 28px;
+                        border-radius: 3px 3px 0 0;
+                        background-color: #212427;
+                    }
+                    .lower-background { 
+                        padding: 6px 4px 4px 6px;
+                        position: relative;
+                        background-color: white;
+                        flex: 1;
+                    }
+                }
+
+                .cover-choice {
+                    position: relative;
+                }
+            }
+        }
+
+        // Colors
+        .color-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 48px);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .color-option {
+            height: 32px;
+            border-radius: 4px;
+            color: white;
+            position: relative;
+            cursor: pointer;
+
+            &.selected {
+                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #5ba4cf;
+            }
+        }
+
+        .checked-color-icon {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        // Images
+        .images-section {
+            .images-grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 8px;
+                padding: 4px;
+                margin: 0 -4px;
+                overflow-x: hidden;
+            }
+
+            .image-option {
+                border-radius: 3px;
+                height: 48px;
+                width: 88px;
+                cursor: pointer;
+            }
+        }
+    }
+}

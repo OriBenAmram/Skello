@@ -201,15 +201,14 @@ const DUMMY_BOARDS = [
           // Create git
           {
             id: utilService.makeId(),
-            title: 'create git repo',
+            title: `Test for Cover!!!!`,
             description: 'create git repo',
             createdAt: Date.now(),
             labelIds: ['l102'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1188&q=80)',
-              isCover: false,
+              backgroundColor: '#c377e0',
+              backgroundImage: null,
+              isCover: true,
             },
             byMember: {
               _id: 'u103',
@@ -333,9 +332,12 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l101', 'l102'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
-              isCover: false,
+              backgroundColor: '#c377e0',
+              backgroundImage: {
+                title: 'forest',
+                url: 'https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+              },
+              isCover: true,
             },
             byMember: {
               _id: 'u103',

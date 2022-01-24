@@ -47,9 +47,9 @@ export function TaskDetails(props) {
                     onCloseModal()
                 }}><GrClose style={{ height: '15px', width: '15px' }} /></button>
                 {/* Cover */}
-                <TaskCover />
+                <TaskCover board={board} group={group} task={task} />
                 {/* Details-header */}
-                <TaskHeader group={group} title={task.title} />
+                <TaskHeader board={board} group={group} task={task} title={task.title} />
 
                 <section className="main-content">
                     {/* Main-Col */}
@@ -59,7 +59,7 @@ export function TaskDetails(props) {
                         <TaskAdditionsShow board={board} group={group} task={task} />
 
                         {/* Description */}
-                        <TaskDescription description={task.description} />
+                        <TaskDescription board={board} group={group} task={task} description={task.description} />
                         {/* Attachments */}
                         {task.attachments?.length > 0 && <TaskAttachments task={task} />}
                         {/* CheckList */}

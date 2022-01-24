@@ -5,8 +5,6 @@ export function TaskLabels({labelIds, boardLabels, areLabelsShown, setLabelsShow
     setLabelsShown(!areLabelsShown)
   }
 
-  console.log('areLabelsShown:', areLabelsShown);
-  
   return (
     <div className="task-labels-container flex">
       {labelIds.map((labelId, index) => {

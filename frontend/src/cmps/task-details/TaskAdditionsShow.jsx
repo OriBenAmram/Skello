@@ -36,10 +36,10 @@ export function TaskAdditionsShow({ board, group, task }) {
 
     const toggleModal = ({ event, type }) => {
         if (modal.isModalOpen) {
-            setModal({ ...modal, isModalOpen: false })
+            setModal({ ...modal, isModalOpen: false})
             return
         }
-        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
+        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type, event })
     }
 
     return (
@@ -70,7 +70,7 @@ export function TaskAdditionsShow({ board, group, task }) {
                     }}>+</div>
                 </div>
             </section>}
-            {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
+            {modal.isModalOpen && <DynamicActionModal event={modal.event} posYAddition={300} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
         </section>
     );
 }
