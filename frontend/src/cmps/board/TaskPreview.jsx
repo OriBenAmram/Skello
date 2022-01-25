@@ -22,33 +22,33 @@ export function TaskPreview(props) {
     title,
   } = task;
 
-  const [previewBackgroundColor, setPreviewColor] = useState(null);
-  const [previewBackgroundImage, setPreviewImage] = useState(null);
+  // const [previewBackgroundColor, setPreviewColor] = useState(null);
+  // const [previewBackgroundImage, setPreviewImage] = useState(null);
   const { isCover, isTextDarkMode = true } = task.style;
 
-  useEffect(() => {
-    setPreviewImage(task.style.backgroundImage);
-    setPreviewColor(task.style.backgroundColor);
-  }, [task]);
+  // useEffect(() => {
+    //   setPreviewColor(task.style.backgroundColor);
+  //   setPreviewImage(task.style.backgroundImage);
+  // }, [task]);
 
   const getPreviewStyle = () => {
     // Cover !
     if (isCover) {
-      if (previewBackgroundImage?.url) {
+      if (task.style.backgroundImage.url) {
         // Has an image
         return {
-          background: `url(${previewBackgroundImage.url}) center center / cover`,
+          background: `url(${task.style.backgroundImage.url}) center center / cover`,
           width: '100%',
           minHeight: '180px',
         };
       } else {
         // Doesnt have an image
-        return { backgroundColor: previewBackgroundColor };
+        return { backgroundColor: task.style.backgroundColor };
       }
 
       // Not Cover - Half!
     } else {
-      if (previewBackgroundImage?.url) {
+      if (task.style.backgroundImage.url) {
         // Has an image
         return {
           // backgroundColor: 'white',
@@ -82,12 +82,13 @@ export function TaskPreview(props) {
   };
 
   const getUpperPreviewBackground = () => {
-    if (previewBackgroundImage?.url) {
+    if (isCover) return { height: '0px' }
+    if (task.style.backgroundImage.url) {
       // Has an image
-      return { background: `url(${previewBackgroundImage.url}) center center / cover`, height: '160px' };
-    } else if (previewBackgroundColor) {
+      return { background: `url(${task.style.backgroundImage.url}) center center / cover`, height: '160px' };
+    } else if (task.style.backgroundColor) {
       // Doesnt have an imageborder-top-left-radius
-      return { backgroundColor: previewBackgroundColor };
+      return { backgroundColor: task.style.backgroundColor, height: '32px' };
     }
     return { display: 'none' };
   };
@@ -109,9 +110,9 @@ export function TaskPreview(props) {
             {...provided.draggableProps}
             {...provided.dragHandleProps}>
             <EditIcon />
-            {!isCover && (
+            {/* {!isCover && ( */}
               <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
-            )}
+            {/* )} */}
             <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()}`}>
               {/* <div className='inner-fade-wallpaper'></div> */}
               {/* IMG */}

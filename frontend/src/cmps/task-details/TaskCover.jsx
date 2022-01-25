@@ -76,7 +76,7 @@ export function TaskCover({ board, group, task }) {
             {(task.style.backgroundColor || task.style.backgroundImage.url) && <button className='cover-btn' style={ getModifiedTextColor() } onClick={(event) => {
                 toggleModal({ event, type: 'cover' })
             }}> <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} className='cover-icon'/> Cover</button>}
-            {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} posXAddition={-200} posYAddition={20} toggleModal={toggleModal} type={modal.type} pos={modal.pos} event={modal.event} />}
+            {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} isDetails={true} posYAddition={20} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
         </section>
     );
 }
