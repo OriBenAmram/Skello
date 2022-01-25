@@ -36,44 +36,48 @@ export function LoginSignup(props) {
 
     return (
         <div className="login-signup">
-            <div className='login flex'>
-                <ImTrello />
-                <h1>Skello</h1>
+            <div className='login-header'>
+                <ImTrello className="trello-icon" />
+                <h1 className="logo">Skello</h1>
             </div>
-            <div className="login-signup-container flex column">
-                <h3>
-                    {isLogin ? "Login in to Skello" : "Sign up"}
-                </h3>
-                <form className="flex column" onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(evt) => setUsername(evt.target.value)}
-                        placeholder="Enter Username"
-                    />
-                    {!isLogin && (
-                        <input
-                            type="txt"
-                            value={fullname}
-                            onChange={(ev) => setFullname(ev.target.value)}
-                            placeholder="Enter Full Name"
-                        />
-                    )}
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(ev) => setPassword(ev.target.value)}
-                        placeholder="Enter Password"
-                        autoComplete="off"
-                    />
-                    <button type="submit" className="login-signup-submit">
-                        {isLogin ? "Log in" : "Sign up"}
-                    </button>
-                </form>
+            <div className="login-signup-inner-section">
+                <div className="main-content-modal">
 
-                <Link to={isLogin ? '/signup' : '/login'}>
-                    {isLogin ? "Sign up for an account" : "Already have an account? Log In"}
-                </Link>
+                    <h1>
+                        {isLogin ? "Login to Skello" : "Sign up for your account"}
+                    </h1>
+                    <form className="login-signup-form" onSubmit={handleSubmit}>
+                        <input
+                            type="email"
+                            value={username}
+                            onChange={(ev) => setUsername(ev.target.value)}
+                            placeholder="Enter Username"
+                        />
+                        {!isLogin && (
+                            <input
+                                type="txt"
+                                value={fullname}
+                                onChange={(ev) => setFullname(ev.target.value)}
+                                placeholder="Enter Full Name"
+                            />
+                        )}
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(ev) => setPassword(ev.target.value)}
+                            placeholder="Enter Password"
+                            autoComplete="off"
+                        />
+                        <button type="submit" className={`login-signup-submit-btn ${(isLogin) ? 'login' : 'signup'}`}>
+                            {isLogin ? "Log in" : "Sign up"}
+                        </button>
+                    </form>
+
+                    <Link to={isLogin ? '/signup' : '/login'}>
+                        {isLogin ? "Sign up for an account" : "Already have an account? Log In"}
+                    </Link>
+
+                </div>
 
             </div>
 

@@ -67,7 +67,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         else if (selectedColor) { 
             return selectedColor
         } else { 
-            return '#5E6C84'
+            return '#cfd3da'
         }
     }
 
@@ -82,7 +82,16 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
             const imageHalfCover = getImageColorByTitle(selectedImage.title)
             return imageHalfCover
         }
-        return selectedColor
+        else if (selectedColor) { 
+            return selectedColor
+        } else { 
+            return '#cfd3da'
+        }
+    }
+
+    const getStripesColor = () => { 
+        if(!task.style.backgroundColor && !task.style.backgroundImage.url) return { backgroundColor: '#cfd3da' }
+        return { }
     }
 
     const getImageColorByTitle = (title) => {
@@ -179,14 +188,14 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                                 </div>
                                 <div className='lower-background'>
                                     <div className='two-text-stripes-module'>
-                                        <div className='upper-stripe'></div>
-                                        <div className='lower-stripe'></div>
+                                        <div className='upper-stripe' style={(getStripesColor())}></div>
+                                        <div className='lower-stripe' style={(getStripesColor())}></div>
                                         <div className='lower-dumy-btns-area'>
                                                 <div className='flex'>
-                                                    <div className='simple-dumy-short-text'></div>
-                                                    <div className='simple-dumy-short-text'></div>
+                                                    <div className='simple-dumy-short-text' style={(getStripesColor())}></div>
+                                                    <div className='simple-dumy-short-text' style={(getStripesColor())}></div>
                                                 </div>
-                                                <div className='dumy-circle'></div>
+                                                <div className='dumy-circle' style={(getStripesColor())}></div>
                                         </div>
                                     </div>
                                 </div>

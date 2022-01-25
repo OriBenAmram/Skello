@@ -30,7 +30,6 @@ export function TaskPreview(props) {
   // const [task.style.backgroundColor, setPreviewColor] = useState(null);
   // const [task.style.backgroundImage, setPreviewImage] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
-  console.log('🚀 ~ file: TaskPreview.jsx ~ line 28 ~ TaskPreview ~ isEdit', isEdit);
   const {isCover, isTextDarkMode = true} = task.style;
 
   // useEffect(() => {
@@ -41,12 +40,10 @@ export function TaskPreview(props) {
   const getPreviewStyle = () => {
     // Cover !
     if (isCover) {
-      // if (task.style.backgroundImage?.url) {
-      if (task.style.backgroundImage?.url) {
+      if (task.style.backgroundImage.url) {
         // Has an image
         return {
-          // background: `url(${task.style.backgroundImage.url}) center center / cover`,
-          background: `url(${task.style.backgroundColor.url}) center center / cover`,
+          background: `url(${task.style.backgroundImage.url}) center center / cover`,
           width: '100%',
           minHeight: '180px',
         };
@@ -57,7 +54,7 @@ export function TaskPreview(props) {
 
       // Not Cover - Half!
     } else {
-      if (task.style.backgroundImage?.url) {
+      if (task.style.backgroundImage.url) {
         // Has an image
         return {
           // backgroundColor: 'white',
@@ -93,7 +90,7 @@ export function TaskPreview(props) {
 
   const getUpperPreviewBackground = () => {
     if (isCover) return {height: '0px'};
-    if (task.style.backgroundImage?.url) {
+    if (task.style.backgroundImage.url) {
       // Has an image
       return {background: `url(${task.style.backgroundImage.url}) center center / cover`, height: '160px'};
     } else if (task.style.backgroundColor) {
