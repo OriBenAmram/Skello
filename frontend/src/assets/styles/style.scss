@@ -5,11 +5,11 @@
 @import "setup/mixins.scss";
 
 // Basics
+@import "basics/icons.scss";
 @import "basics/helpers.scss";
 @import "basics/layout.scss";
 @import "basics/base.scss";
 @import "basics/buttons.scss";
-@import "basics/icons.scss";
 
 // PAGES
 @import "pages/home-page.scss";

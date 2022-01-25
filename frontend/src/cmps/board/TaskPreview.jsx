@@ -74,7 +74,7 @@ export function TaskPreview(props) {
       if (task.style.backgroundImage?.url) {
         return { fontSize: '16px', fontWeight: '500' };
       } else {
-        if(task.style.backgroundColor === '#344563') return { fontSize: '16px', fontWeight: '500', color: 'white' };
+        if (task.style.backgroundColor === '#344563') return { fontSize: '16px', fontWeight: '500', color: 'white' };
         return { fontSize: '16px', fontWeight: '500' };
       }
     }

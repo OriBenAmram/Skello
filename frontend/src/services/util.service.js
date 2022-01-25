@@ -5,7 +5,8 @@ export const utilService = {
     delay,
     timeSince,
     isValidUrl,
-    getTimeDiff
+    getTimeDiff,
+    getDateByTimestamp
 }
 
 function makeId(length = 6) {
@@ -109,3 +110,15 @@ function getTimeDiff(createdAt) {
 }
 
 
+function getDateByTimestamp(timestamp) {
+    const currYear = new Date().getFullYear()
+    const dueYear = new Date(timestamp).getFullYear()
+    let strDate = ''
+    strDate += `${new Date(timestamp).toLocaleString('en-GB', { day: 'numeric' })} `
+    strDate += `${new Date(timestamp).toLocaleString('en-GB', { month: 'short' })} at `
+    if (dueYear !== currYear) {
+        strDate += `${dueYear} `
+    }
+    strDate += `${new Date(timestamp).toLocaleString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true }).toLocaleUpperCase()}`
+    return strDate
+}

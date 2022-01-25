@@ -3,15 +3,17 @@ import { MdCheckBoxOutlineBlank, MdMoreHoriz } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiSmile } from "react-icons/bi";
 import { GoMention } from "react-icons/go"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Picker from 'emoji-picker-react';
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 
 export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }) {
-    const [isTextAreaOpen, toggleTextArea] = useState(true);
+    const [isTextAreaOpen, toggleTextArea] = useState(false);
     const [currTodo, setCurrTodo] = useState(todo)
+    console.log('currTodo.isDone:', currTodo.isDone);
+
     const [showPicker, setShowPicker] = useState(false);
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
@@ -20,6 +22,10 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
         ev.preventDefault();
         toggleTextArea(isShownTextArea)
     }
+
+    useEffect(() => {
+        setCurrTodo(todo);
+    }, [todo]);
 
     const onEmojiClick = (event, emojiObject) => {
 
@@ -38,13 +44,23 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
         setModal({ isModalOpen: true, type, event })
     }
 
-    return (<div className='todo-preview' key={todo.id}>
+    console.log('todo.isDone:', todo.isDone);
+
+
+    return (<div className='todo-preview' key={todo.id} onBlur={(ev) => {
+        if (!showPicker) {
+            onToggleTextArea(ev, false)
+        }
+    }}>
         {/* ICON */}
         {(todo.isDone) ? <IoCheckbox className='checkbox-checked'
-            onClick={() => onToggleTodo(todo.id)} />
-            : <MdCheckBoxOutlineBlank className='checkbox-blank ' onClick={() => onToggleTodo(todo.id)} />}
+            onClick={(ev) => {
+                ev.preventDefault()
+                onToggleTodo(ev, todo.id)
+            }} />
+            : <MdCheckBoxOutlineBlank className='checkbox-blank ' onClick={(ev) => onToggleTodo(ev, todo.id)} />}
         {/* TEXT-AREA */}
-        <div onBlur={(ev) => onToggleTextArea(ev, false)}>
+        <div>
 
             <textarea
                 value={currTodo.title} className={`basic-textarea todo-item  ${(todo.isDone) ? 'checked' : ''}`}
@@ -68,10 +84,15 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
                     </button>
                     <button className="primary-close-btn">X</button>
                 </div>
-                <div className='edit-iconts-options'>
-                    <BiSmile onClick={() => setShowPicker(val => !val)} />
+                <div className='edit-icons-options'>
+                    <BiSmile onMouseDown={() => {
+                        console.log('booo')
+                        setShowPicker(val => !val)
+                    }} />
                     {showPicker && (
-                        <Picker pickerStyle={{ width: '100%' }} onEmojiClick={onEmojiClick} />
+                        <Picker pickerStyle={{
+                            width: '400px', height: '260px', position: 'absolute', top: '17px', right: '0', zIndex: 20
+                        }} onEmojiClick={onEmojiClick} />
                     )}
                     <GoMention />
                 </div>

@@ -15,10 +15,11 @@ export function DatesModalContent({ toggleModal, board, task, group }) {
         setSelectedDate(date);
     };
 
-    const onSetDate = () => {
+    const onSetDate = (ev) => {
         console.log('selectedDate:', selectedDate);
         task.dueDate = selectedDate ? Date.parse(selectedDate) : 0;
         console.log('task', task)
+        toggleModal(ev)
         dispatch(updateTaskTest(board, task))
     }
 
@@ -48,7 +49,7 @@ export function DatesModalContent({ toggleModal, board, task, group }) {
                 </MuiPickersUtilsProvider>
 
                 <button className='secondary-btn'
-                    onClick={onSetDate}
+                    onClick={(ev) => onSetDate(ev)}
                 >
                     Save
                 </button>

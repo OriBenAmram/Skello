@@ -39,14 +39,28 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
         onUpdateTask(taskToUpdate);
     }
 
-    function onToggleTodo(todoId) {
-        const todoIdx = checklist.todos.findIndex(todo => todo.id === todoId);
-        checklistData.todos[todoIdx].isDone = !checklist.todos[todoIdx].isDone;
+    function onToggleTodo(ev, todoId) {
+        ev.preventDefault()
+        console.log('m toggeling');
+        const { id } = checklist;
+        const updatedChecklist = {
+            ...checklist, todos: checklist.todos.map(todo =>
+                todo.id !== todoId ? todo : { ...todo, isDone: !todo.isDone })
+        }
+        const taskToUpdate = {
+            ...task,
+            checklists: task.checklists.map(checklist => (checklist.id !== id ?
+                checklist : updatedChecklist))
+        }
         setChecklistData({ ...checklistData })
+        onUpdateTask(taskToUpdate)
+
     }
 
 
     function onSaveTodo(ev, todoId, updatedTodo) {
+        console.log('updatedTodo:', updatedTodo);
+
         const { id } = checklist;
         const updatedChecklist = {
             ...checklist, todos: checklist.todos.map(todo =>
@@ -150,7 +164,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                 }}>Add an Item</button>}
                 {isAddingItem && <section className='adding-item-section'>
                     <textarea
-                        autoFocus
+                        // autoFocus
                         value={newTodoTitle}
                         onChange={(ev) => setNewTodoTitle(ev.target.value)}
                         placeholder='Add an item'
@@ -167,7 +181,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                         }}>
                             Add</button>
 
-                        <button className='primary-blose-btn'>X</button>
+                        <button className='primary-blose-btn' onClick={() => setAddingItem(false)} >X</button>
                     </div>
                 </section>}
             </div>

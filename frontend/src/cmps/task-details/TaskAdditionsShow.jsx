@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { IoCheckbox } from "react-icons/io5";
-import { MdCheckBoxOutlineBlank } from "react-icons/md";
+
 
 // Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
+import { DatePreview } from '../dynamic-actions/DatePreview.jsx';
 
 export function TaskAdditionsShow({ board, group, task }) {
     const [taskLabels, setTaskLabels] = useState([]);
@@ -37,6 +37,10 @@ export function TaskAdditionsShow({ board, group, task }) {
 
 
     const toggleModal = ({ event, type }) => {
+        console.log('type:', type);
+        console.log('event:', event);
+
+
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
             return
@@ -75,14 +79,31 @@ export function TaskAdditionsShow({ board, group, task }) {
 
             {/* DueDate */}
 
-            {task.dueDate && <section className="type-container">
-                <h4>Due date</h4>
-                <div className="items-container">
+            {task.dueDate &&
 
-                    <span>{(task.isDone) ? <IoCheckbox className='checkbox-checked' /> : <MdCheckBoxOutlineBlank className='checkbox-blank' />}</span>
-                </div>
-            </section>}
+                <section className="type-container">
+                    <h4>Due date</h4>
+                    <div className="items-container flex align-center" >
+
+                        <DatePreview
+                            toggleModal={toggleModal}
+                            board={board}
+                            groupId={group.id}
+                            task={task}
+                        // onClick={(ev) => {
+                        //     console.log('baba')
+
+                        // }
+
+
+
+
+                        />
+
+                    </div>
+                </section>}
             {modal.isModalOpen && <DynamicActionModal event={modal.event} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} />}
         </section>
     );
 }
+
