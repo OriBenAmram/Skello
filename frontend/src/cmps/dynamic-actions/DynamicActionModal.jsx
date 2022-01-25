@@ -14,9 +14,12 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
 
     console.log('isDetails:', isDetails);
 
-    console.log(event.target.getBoundingClientRect())
+    console.log('modalType', type)
+    console.log(event)
+
 
     const getContentForDisplay = () => {
+        console.log('baba')
         switch (type) {
             case 'members':
                 return <MembersModalContent />
@@ -29,6 +32,7 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
             case 'todoOptions':
                 return <TodoOptions toggleModal={toggleModal} onRemoveTodo={onRemoveTodo} todoId={todoId} />
             case 'editAttachment':
+                console.log('im here!')
                 return <EditAttachmentModalContent editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} />
             case 'cover':
                 return <CoverModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
@@ -42,13 +46,13 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
         if ((type === 'dates' || type === 'labels' || type === 'cover') && isDetails) {
             return { top: top / 2, left: left + posXAddition }
         }
-        return { top: top + height, left: left + posXAddition }
+        return { top: top + height, left: left }
     }
 
     if (!event) return <></>
+    console.log('check')
     return (
         <section className='dynamic-action-modal' style={getModalPositionStyle()} >
-            {/* <section className='dynamic-action-modal' style={{ position, top: event?.nativeEvent.pageY, left: event?.nativeEvent.pageX}} > */}
             {getContentForDisplay()}
         </section>
     )

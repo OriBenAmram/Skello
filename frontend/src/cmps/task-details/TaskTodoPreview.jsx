@@ -13,7 +13,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
     const [isTextAreaOpen, toggleTextArea] = useState(true);
     const [currTodo, setCurrTodo] = useState(todo)
     const [showPicker, setShowPicker] = useState(false);
-    const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
+    const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
     const onToggleTextArea = (ev, isShownTextArea) => {
         ev.stopPropagation();
@@ -30,14 +30,12 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
 
     const toggleModal = ({ event, type }) => {
         if (modal.isModalOpen) {
-            console.log('om here');
-            console.log(modal);
+
             setModal({ ...modal, isModalOpen: false })
             return
         }
-        console.log('baba');
-        console.log(type);
-        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
+
+        setModal({ isModalOpen: true, type, event })
     }
 
     return (<div className='todo-preview' key={todo.id}>
@@ -79,7 +77,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
                 </div>
             </section>}
         </div>
-        {modal.isModalOpen && <DynamicActionModal onRemoveTodo={onRemoveTodo} todoId={todo.id} toggleModal={toggleModal} type={modal.type} posYAddition={350} pos={modal.pos} />}
+        {modal.isModalOpen && <DynamicActionModal onRemoveTodo={onRemoveTodo} todoId={todo.id} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
     </div>
     )
 }

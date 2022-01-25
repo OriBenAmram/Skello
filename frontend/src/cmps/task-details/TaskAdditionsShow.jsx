@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { IoCheckbox } from "react-icons/io5";
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 // Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
@@ -68,6 +70,16 @@ export function TaskAdditionsShow({ board, group, task }) {
                     <div className='label-box plus-item' onClick={(event) => {
                         toggleModal({ event, type: 'labels' })
                     }}>+</div>
+                </div>
+            </section>}
+
+            {/* DueDate */}
+
+            {task.dueDate && <section className="type-container">
+                <h4>Due date</h4>
+                <div className="items-container">
+
+                    <span>{(task.isDone) ? <IoCheckbox className='checkbox-checked' /> : <MdCheckBoxOutlineBlank className='checkbox-blank' />}</span>
                 </div>
             </section>}
             {modal.isModalOpen && <DynamicActionModal event={modal.event} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} />}
