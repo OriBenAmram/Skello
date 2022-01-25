@@ -13,15 +13,16 @@ export class _AppHeader extends React.Component {
 
   render() {
     const isHome = this.props.location.pathname === '/'
+    const isLoginSignup = (this.props.location.pathname === '/login' || this.props.location.pathname === '/signup' ) ? true : false
     const isBoard = this.props.location.pathname.includes('board');
-    const { user, board } = this.props;
-
+    const { user, board } = this.props;    
+    
     return (
-      <header className={`app-header ${(isBoard) ? 'board' : ''}`}>
+      <header className={`app-header ${(isBoard) ? 'board' : ''} ${(isHome) ? 'home' : 'general'} ${(isLoginSignup) ? 'login-signup' : ''}`}>
         <section className='nav-options'>
-          <NavLink className='home-icon-container' exact to="/">
+          {!isHome && <NavLink className='home-icon-container' exact to="/">
             <AiFillHome className='home-icon' />
-          </NavLink>
+          </NavLink>}
           <NavLink className='logo-container clean-link' exact to="/workspace">
             <ImTrello className='trello-icon' /><p className='logo'>Skello</p>
           </NavLink>
@@ -40,7 +41,7 @@ export class _AppHeader extends React.Component {
         {/* HOME */}
         {<section className='login-signup-container'>
           <Link to={('/login')}>
-            <button className='login-btn'>Login</button>
+            <button className='login-btn'>Log in</button>
           </Link>
           <Link to={('/signup')}>
             <button className='signup-btn'>Signup</button>

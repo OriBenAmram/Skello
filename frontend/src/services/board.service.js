@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { storageService } from './async-storage.service.js';
-import { utilService } from '../services/util.service.js';
+import {storageService} from './async-storage.service.js';
+import {utilService} from '../services/util.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
@@ -86,7 +86,7 @@ function addTask(taskTitle, groupId, boardId) {
       backgroundColor: null,
       backgroundImage: {
         title: null,
-        url: null
+        url: null,
       },
     },
     description: '',
@@ -103,6 +103,7 @@ function addTask(taskTitle, groupId, boardId) {
     labelIds: [],
     members: [],
     attachments: [],
+    comments: [],
   };
 
   const board = gBoards.find(board => board._id === boardId);
@@ -123,8 +124,6 @@ function addChecklist(title, groupId, board, taskId) {
   board.groups[groupIdx].tasks[taskIdx].checklists.push(checklistToAdd);
   return storageService.put(STORAGE_KEY, board);
 }
-
-
 
 function addTodo(board, groupId, taskId, checklistId, title) {
   const todoToAdd = {
@@ -154,8 +153,6 @@ function addFile(board, groupId, taskId, fileUrl) {
   return storageService.put(STORAGE_KEY, board);
 }
 
-
-
 // Finds the same task, and replace it - We need to send here the taskToUpdate!!!
 function updateTask(boardId, groupId, taskId, taskToUpdate) {
   const board = gBoards.find(board => board._id === boardId);
@@ -173,7 +170,7 @@ export function updateTaskTest(board, updatedTask) {
       if (task.id === updatedTask.id) group.tasks[idx] = updatedTask;
     });
   });
-  return { ...board };
+  return {...board};
 }
 
 export const boardService = {

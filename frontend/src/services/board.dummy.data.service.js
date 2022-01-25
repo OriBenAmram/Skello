@@ -15,7 +15,7 @@ const DUMMY_BOARDS = [
     },
     style: {
       background:
-        'url(https://images.unsplash.com/photo-1640106339245-0048dfcce913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)',
+        'url(https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)',
     },
     // "areLabelsOpen" : false,
     labels: [
@@ -90,10 +90,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -171,10 +171,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: 'https://images.unsplash.com/photo-1604537466158-719b1972feb8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80',
-                title: 'kayak'
+                title: 'kayak',
               },
               isCover: true,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -216,10 +216,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -297,10 +297,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -318,6 +318,19 @@ const DUMMY_BOARDS = [
               },
             ],
             checklists: [],
+            comments: [
+              {
+                byMember: {
+                  _id: 'u103',
+                  // TODO
+                  imgUrl: 'url',
+                  fullname: 'Zinadin Zidan',
+                  username: 'zinadin.bold@gmail.com',
+                },
+                createdAt: Date.now(),
+                txt: 'WOW what a great task!',
+              },
+            ],
             members: [
               {
                 _id: 'u104',
@@ -349,10 +362,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -423,10 +436,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -468,10 +481,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -513,7 +526,7 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
               // isTextDarkMode: true
@@ -587,10 +600,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -625,10 +638,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -677,10 +690,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -751,10 +764,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -825,10 +838,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -912,10 +925,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u103',
@@ -997,10 +1010,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             attachments: [
               {
@@ -1099,10 +1112,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             attachments: [
               {
@@ -1201,10 +1214,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             attachments: [
               {
@@ -1303,10 +1316,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             attachments: [
               {
@@ -1405,10 +1418,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             attachments: [
               {
@@ -1507,10 +1520,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             attachments: [
               {
@@ -1608,10 +1621,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u101',
@@ -1715,10 +1728,10 @@ const DUMMY_BOARDS = [
               backgroundColor: null,
               backgroundImage: {
                 url: null,
-                title: null
+                title: null,
               },
               isCover: false,
-              isTextDarkMode: true
+              isTextDarkMode: true,
             },
             byMember: {
               _id: 'u101',
