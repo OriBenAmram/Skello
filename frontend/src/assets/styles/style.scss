@@ -25,6 +25,7 @@
 @import 'cmps/board-header.scss';
 @import "cmps/dynamic-action-modal.scss";
 @import "cmps/dynamic-cover-modal.scss";
+@import "cmps/dynamic-profile-modal.scss";
 @import "cmps/popover-side-menu.scss";
 @import "cmps/dynamic-modal-checklist.scss";
 @import "cmps/dynamic-modal-attachment.scss";
@@ -35,8 +36,9 @@
 // details
 @import "cmps/task/details-cover.scss";
 @import "cmps/task/details-header.scss";
-@import "cmps/task/details-additions.scss";
 @import "cmps/task/details-description.scss";
+@import "cmps/task/details-members.scss";
+@import "cmps/task/details-additions.scss";
 @import "cmps/task/details-checklist.scss";
 @import "cmps/task/details-activities.scss";
 @import "cmps/task/details-attachments.scss";

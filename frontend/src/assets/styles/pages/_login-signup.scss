@@ -4,6 +4,23 @@
     flex-direction: column;
     align-items: center;
     background-color: #fbfbfb;
+    position: relative;
+
+    .left-hero {
+        position: absolute;
+        width: 400px;
+        bottom: 0;
+        left: 0;
+        max-width: 30%;
+    }
+
+    .right-hero {
+        position: absolute;
+        width: 400px;
+        bottom: 0;
+        right: 0;
+        max-width: 30%;
+    }
 
     .login-header {
         margin: rem(40px) 0;
@@ -70,6 +87,13 @@
                     padding: 0.5em;
                     max-width: 400px;
                     margin-bottom: 16.8px;
+                    outline: none;
+
+                    &:focus {
+                        background-color: white;
+                        border: 2px solid #4c9aff;
+                        box-shadow: 0 0 0;
+                    }
                 }
 
                 .login-signup-submit-btn {
@@ -80,12 +104,89 @@
                     position: relative;
                     border: 0px;
                     min-height: 40px;
+
                     &.login {
                         background-color: #5aac44;
                     }
                     &.signup {
                         background-color: #0052cc;
                     }
+                }
+            }
+
+            .other-login-options {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                span {
+                    text-align: center;
+                    font-size: 12px;
+                    margin-top: 16px;
+                    margin-bottom: 16px;
+                    color: #4d4d4d;
+                    font-weight: 300;
+                    line-height: 1.44em;
+                }
+
+                button {
+                    background: #fff;
+                    color: rgba(0, 0, 0, 0.54);
+                    box-shadow: rgb(0 0 0 / 20%) 1px 1px 5px 0;
+                    border-color: transparent;
+                    text-align: center;
+                    border-radius: 3px;
+                    width: 99%;
+                    height: 39px;
+                    padding-top: 0;
+                    margin-bottom: 12px;
+                    &:hover { 
+                        background-color: #F9FAFC;
+                    }
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .button-icon-image { 
+                        height: 20px;
+                        width: 20px;
+                        margin: 0 10px 0 0;
+
+                        &.guest { 
+                            height: 30px;
+                            width: 30px;
+                        }
+                    }
+                }
+            }
+
+            .seperate-switch-link-hr {
+                display: block;
+                height: 1px;
+                border: 0;
+                border-top: 1px solid hsl(0, 0%, 80%);
+                margin: 1em 0;
+                padding: 0;
+            }
+
+            .lower-nav-links-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+
+                :first-child {
+                    margin-right: 20px;
+                }
+            }
+
+            .switch-link {
+                color: hsl(202, 40%, 55%);
+                font-size: 14px;
+                font-family: "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Fira Sans",
+                    "Droid Sans", "Helvetica Neue", sans-serif;
+                text-align: center;
+                &:hover {
+                    text-decoration: underline;
                 }
             }
         }

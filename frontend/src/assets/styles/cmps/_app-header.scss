@@ -69,8 +69,38 @@
     body.homepage & {
     }
 
+    .user-section {
+        display: flex;
+        align-items: center;
+
+        :not(:last-child) {
+            margin-right: 13px;
+        }
+
+        .bell-icon-container {
+            background-color: inherit;
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+            .bell-icon {
+                padding: 9px 8px;
+                border-radius: 5px;
+                border: none;
+                color: whitesmoke;
+                font-size: 15px;
+            }
+        }
+
+        .avatar-image { 
+            border-radius: 25em;
+            height: 35px;
+            width: 35px;
+            cursor: pointer;
+        }
+    }
+
     // Login- Signup
-    &.login-signup { 
+    &.login-signup {
         display: none;
     }
 
@@ -101,8 +131,8 @@
             font-size: 1.09375rem;
             line-height: 1.5;
             border-radius: 0.2rem;
-            font-weight: 500;
-            font-family: 'Charlie Text',sans-serif;
+            font-weight: bold;
+            font-family: "Charlie Text", sans-serif;
             &:hover {
                 background-color: #0051cc;
             }
@@ -116,7 +146,7 @@
             line-height: 1.5;
             border-radius: 0.2rem;
             font-weight: 400;
-            font-family: 'Charlie Text',sans-serif;
+            font-family: "Charlie Text", sans-serif;
 
             &:hover {
                 text-decoration: underline #0065ff;
@@ -145,6 +175,8 @@
 
             .logo {
                 color: whitesmoke;
+                font-size: 20px;
+
             }
         }
         .signup-btn {
