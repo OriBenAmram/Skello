@@ -1,0 +1,80 @@
+.profile-modal {
+    // general content
+    .modal-content {
+        padding: 0;
+        color: rgb(36, 36, 36);
+
+        button {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            border: none;
+            background: inherit;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 6px 12px;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            outline: 0;
+
+            &:hover {
+                background-color: rgba(9, 30, 66, 0.04);
+                color: #172b4d;
+            }
+        }
+
+        .user-details-section {
+            border-bottom: 1px solid #091e4221;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 12px;
+            padding-bottom: 9px;
+
+            button {
+                margin-top: 4px;
+            }
+
+            .user-info-container {
+                display: flex;
+                align-items: center;
+                margin: 0px 12px;
+
+                .expended-user-avatar {
+                    height: 40px;
+                    width: 40px;
+                    background-color: #eb5a46;
+                    border-radius: 50%;
+                    margin-right: 8px;
+                }
+
+                .user-info {
+                    h2 {
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: 400;
+                        margin-bottom: 0;
+                    }
+
+                    span {
+                        font-size: 9pt;
+                        color: #b3bac5;
+                        display: block;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        max-width: 230px;
+                    }
+                }
+            }
+        }
+
+        .logout-section {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            button {
+                
+            }
+        }
+    }
+}

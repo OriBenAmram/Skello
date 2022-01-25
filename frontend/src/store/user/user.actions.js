@@ -1,6 +1,5 @@
 import { userService } from '../../services/user.service.js'
 
-
 export function login(credentials) {
     return async (dispatch) => {
         try {
@@ -15,7 +14,6 @@ export function login(credentials) {
     }
 }
 
-
 export function signup(credentials) {
     return async (dispatch) => {
         try {
@@ -26,8 +24,22 @@ export function signup(credentials) {
             })
 
         } catch (err) {
-            console.log('error when signing up', err)
+            console.log('Error with signing up', err)
         }
 
+    }
+}
+export function logout() {
+    return async (dispatch) => {
+        try { 
+            await userService.logout()
+            dispatch({
+                type: 'SET_USER',
+                user: null
+            })
+            console.log('Logged out')
+        } catch (err) { 
+            console.log('Cannot logout')
+        }
     }
 }

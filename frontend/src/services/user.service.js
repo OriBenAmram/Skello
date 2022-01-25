@@ -8,8 +8,6 @@ export const userService = {
   logout,
   signup,
   getLoggedinUser,
-  emptyUser,
-  chargeAmount,
 };
 
 function login(credentials) {
@@ -17,9 +15,9 @@ function login(credentials) {
     const user = users.find(
       user => user.username === credentials.username && user.password === credentials.password
     );
-
+    console.log('user - users.find - login user.service', user);
+    
     _setLoggedinUser(user);
-
     return user;
   });
 }
@@ -30,36 +28,15 @@ function signup(userInfo) {
   });
 }
 function logout() {
-  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null);
+  localStorage.setItem(STORAGE_KEY_LOGGEDIN, null);
+  console.log('User is deleted from storage')
   return Promise.resolve();
 }
 
 function getLoggedinUser() {
-  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));
-}
-
-function chargeAmount(amount) {
-  const user = getLoggedinUser();
-  user.score -= amount;
-  if (user.score < 0) return Promise.reject('Not enough score');
-  _setLoggedinUser(user);
-  return Promise.resolve(user);
-  // TODO: need to also update the user, in the user array in localStorage
-}
-
-function emptyUser() {
-  return {
-    username: '',
-    password: '',
-    fullname: '',
-    score: 10000,
-  };
+  return JSON.parse(localStorage.getItem(STORAGE_KEY_LOGGEDIN));
 }
 
 function _setLoggedinUser(user) {
-  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
+  localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
 }
-
-// Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22})
-// userService.login({ username: 'muki', password: 'muki1' })

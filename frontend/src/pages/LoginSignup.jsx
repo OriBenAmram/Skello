@@ -4,10 +4,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ImTrello } from "react-icons/im";
 
-import { userService } from "../services/user.service.js";
+// Actions
 import { login, signup } from '../store/user/user.actions'
-
-
 
 export function LoginSignup(props) {
     const dispatch = useDispatch()
@@ -18,10 +16,8 @@ export function LoginSignup(props) {
     // const [isLogin, setIsLogin] = useState(true);
     const isLogin = props.location.pathname.includes("login");
 
-
-
-    const handleSubmit = async (evt) => {
-        evt.preventDefault();
+    const handleSubmit = async (ev) => {
+        ev.preventDefault();
         if (username.trim() && password.trim()) {
             if (!isLogin) {
                 await dispatch(signup({ username, password, fullname, imgUrl: "" }))
@@ -33,7 +29,6 @@ export function LoginSignup(props) {
         }
     }
 
-
     return (
         <div className="login-signup">
             <div className='login-header'>
@@ -42,12 +37,12 @@ export function LoginSignup(props) {
             </div>
             <div className="login-signup-inner-section">
                 <div className="main-content-modal">
-
                     <h1>
                         {isLogin ? "Login to Skello" : "Sign up for your account"}
                     </h1>
                     <form className="login-signup-form" onSubmit={handleSubmit}>
                         <input
+                            required
                             type="email"
                             value={username}
                             onChange={(ev) => setUsername(ev.target.value)}
@@ -55,6 +50,7 @@ export function LoginSignup(props) {
                         />
                         {!isLogin && (
                             <input
+                                required
                                 type="txt"
                                 value={fullname}
                                 onChange={(ev) => setFullname(ev.target.value)}
@@ -62,6 +58,7 @@ export function LoginSignup(props) {
                             />
                         )}
                         <input
+                            required
                             type="password"
                             value={password}
                             onChange={(ev) => setPassword(ev.target.value)}
@@ -72,15 +69,20 @@ export function LoginSignup(props) {
                             {isLogin ? "Log in" : "Sign up"}
                         </button>
                     </form>
-
-                    <Link to={isLogin ? '/signup' : '/login'}>
-                        {isLogin ? "Sign up for an account" : "Already have an account? Log In"}
-                    </Link>
+                    <hr className="seperate-switch-link-hr" />
+                    <div className="lower-nav-links-container">
+                        <Link to={'/'} className="switch-link">
+                            Back Home
+                        </Link>
+                        <Link to={isLogin ? '/signup' : '/login'} className="switch-link">
+                            {isLogin ? "Sign up for an account" : "Log In"}
+                        </Link>
+                    </div>
 
                 </div>
 
             </div>
-
+            <img src="" alt="" />
         </div >
     )
 
