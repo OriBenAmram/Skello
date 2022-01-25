@@ -40,10 +40,12 @@ export function BoardApp(props) {
   if (!board) return <Loader />;
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="board-app" style={{ background: `${board.style.background}  center center / cover` }}>
+      <div className='board-app-wrapper'  style={{ background: `${board.style.background}  center center / cover` }}>
+        <div className="board-app">
 
-        <BoardHeader board={board} />
-        <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
+          <BoardHeader board={board} />
+          <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
+        </div>
       </div>
       <Route path="/board/:boardId/:groupId/:taskId" component={TaskDetails} />
     </DragDropContext>
