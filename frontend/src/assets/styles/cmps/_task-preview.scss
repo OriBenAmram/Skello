@@ -214,6 +214,58 @@
     }
 }
 
+// Badges
+.task-badges{
+    flex-wrap: wrap;
+
+    .badges-icons{
+        gap: 4px;
+        .svg-icon{
+            width: 13px;
+            height: 13px;
+        }
+    }
+
+    // .badge{
+    //     // height: 20px;
+    // }
+
+    .badge-icon{
+        // border: 1px solid orange;
+        filter: invert(48%) sepia(7%) saturate(1059%) hue-rotate(180deg) brightness(94%) contrast(89%);
+    }
+
+    .checklists,.attachments,.comments{
+        gap: 4px;
+        border-radius: 3px;
+        padding: 2px 5px;
+        font-size: 12px;
+        // line-height: 16px;
+
+        &.all-done{
+            background-color: #61bd4f;
+            border-radius: 3px;
+            color: #fff;
+            
+            .svg-icon{
+                // filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(254deg) brightness(110%) contrast(110%);
+            }
+           
+        }
+
+       
+    }
+
+    
+    
+
+    .badges-members{
+        flex: 1;
+        margin-bottom: 4px;
+    }
+}
+
+
 // EDIT
 .screen-overlay{
     position: fixed;

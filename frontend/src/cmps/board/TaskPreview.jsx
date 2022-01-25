@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Draggable} from 'react-beautiful-dnd';
-import {IoReorderFourOutline, IoAttachSharp, IoChatboxSharp} from 'react-icons/io5';
+
+// Icons
+import {GrTextAlignFull} from 'react-icons/gr';
 import {BsCheck2Square} from 'react-icons/bs';
+import attachmentIcon from '../../assets/imgs/attachmentIcon.svg';
+import editIcon from '../../assets/imgs/editIcon.svg';
+import commentIcon from '../../assets/imgs/commentIcon.svg';
+import descriptionIcon from '../../assets/imgs/descriptionIcon.svg';
+import checklistIcon from '../../assets/imgs/checklistIcon.svg';
+import {IoCheckbox} from 'react-icons/io5';
 
 // CMPS
 import {TaskLabels} from './TaskLabels';
-import {EditIcon} from '../EditIcon';
 import {QuickCardEditor} from './QuickCardEditor';
 import {DueDatePreview} from './DueDatePreview';
 
@@ -25,17 +32,11 @@ export function TaskPreview(props) {
     style,
     title,
     checklists,
+    comments,
   } = task;
 
-  // const [task.style.backgroundColor, setPreviewColor] = useState(null);
-  // const [task.style.backgroundImage, setPreviewImage] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const {isCover, isTextDarkMode = true} = task.style;
-
-  // useEffect(() => {
-  //   setPreviewColor(task.style.backgroundColor);
-  //   setPreviewImage(task.style.backgroundImage);
-  // }, [task]);
 
   const getPreviewStyle = () => {
     // Cover !
@@ -106,6 +107,7 @@ export function TaskPreview(props) {
     return '';
   };
 
+  // task checklist todo globals
   let todos;
   let finishedTodos;
 
@@ -137,7 +139,7 @@ export function TaskPreview(props) {
                   ev.preventDefault();
                   setIsEdit(isEdit => !isEdit);
                 }}>
-                <EditIcon />
+                <img src={editIcon} alt="" />
               </div>
 
               {/* {!isCover && (
@@ -183,10 +185,10 @@ export function TaskPreview(props) {
                 </div>
 
                 {/* BADGES */}
-                <div className="task-badges">
-                  <div className="badges-icons flex">
+                <div className="task-badges flex">
+                  <div className="badges-icons flex justify-center align-center">
                     {/* DUE DATE */}
-                    {dueDate && (
+                    {!isCover && dueDate && (
                       <div>
                         <DueDatePreview
                           dueDate={dueDate}
@@ -197,36 +199,61 @@ export function TaskPreview(props) {
                       </div>
                     )}
                     {/* DESCRIPTION */}
-                    {description?.length > 0 && (
-                      <div className="badge description">
+                    {!isCover && description?.length > 0 && (
+                      <div className="badge description flex justify-center align-center">
                         <div className="badge-icon">
-                          <IoReorderFourOutline />
+                          <GrTextAlignFull className="svg-icon" />
                         </div>
                       </div>
                     )}
                     {/* COMMENTS */}
+                    {!isCover && comments?.length > 0 && (
+                      <div className="badge comments flex justify-center align-center">
+                        <div className="badge-icon">
+                          <img className="svg-icon" src={commentIcon} alt="" />
+                        </div>
+                        <div className="badge-txt">{comments.length}</div>
+                      </div>
+                    )}
 
                     {/* ATTACHMENTS  */}
-                    {attachments?.length > 0 && (
-                      <div className="badge attachments flex">
+                    {!isCover && attachments?.length > 0 && (
+                      <div className="badge attachments flex justify-center align-center">
                         <div className="badge-icon">
-                          <IoAttachSharp />
+                          <img className="svg-icon" src={attachmentIcon} alt="" />
                         </div>
-                        <div>{attachments.length}</div>
+                        <div className="badge-txt">{attachments.length}</div>
                       </div>
                     )}
 
                     {/* CHECKLIST */}
-                    {checklists?.length > 0 && (
-                      <div className="badge checklists flex">
+                    {!isCover && checklists?.length > 0 && (
+                      <div
+                        className={`badge checklists flex justify-center align-center ${
+                          todos === finishedTodos ? 'all-done' : ''
+                        }`}>
                         <div className="badge-icon">
-                          <BsCheck2Square />
+                          {/* <IoCheckbox className="svg-icon" /> */}
+                          <img className="svg-icon" src={checklistIcon} alt="" />
                         </div>
-                        <div> {getCheckListsInfo()}</div>
+                        <div className="badge-txt"> {getCheckListsInfo()}</div>
                       </div>
                     )}
                   </div>
-                  <div className="badges-members"></div>
+
+                  {/* MEMBERS */}
+                  {!isCover && members?.length > 0 && (
+                    <div className="badges-members flex justify-flex-end">
+                      {members.map(member => (
+                        <div
+                          style={{backgroundColor: member.color}}
+                          className="member-avatar"
+                          key={member._id}>
+                          {member.fullname.charAt(0).toUpperCase()}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </section>
             </div>
