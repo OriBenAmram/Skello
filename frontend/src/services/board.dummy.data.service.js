@@ -7,7 +7,7 @@ const DUMMY_BOARDS = [
     title: 'Skello Demo',
     isStarred: true,
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u101',
       fullname: 'Asaf Margalit',
@@ -87,10 +87,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l101', 'l102', 'l106'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1642628658566-1db49cadf78c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0N3x8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60)',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -153,7 +156,7 @@ const DUMMY_BOARDS = [
                 color: '#296c41',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -161,13 +164,17 @@ const DUMMY_BOARDS = [
           {
             id: utilService.makeId(),
             title: 'Add login,and register page with email',
-            description: 'Add login,and register page with email,username and password',
+            description: 'Covers are great thing to work on',
             createdAt: Date.now(),
             labelIds: ['l104'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
-              isCover: false,
+              backgroundColor: null,
+              backgroundImage: {
+                url: 'https://images.unsplash.com/photo-1604537466158-719b1972feb8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80',
+                title: 'kayak'
+              },
+              isCover: true,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -187,7 +194,7 @@ const DUMMY_BOARDS = [
                 color: '#3a637a',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -206,9 +213,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l102'],
             style: {
-              backgroundColor: '#c377e0',
-              backgroundImage: null,
-              isCover: true,
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -271,7 +282,7 @@ const DUMMY_BOARDS = [
                 color: '#296c41',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -283,10 +294,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l104'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -313,7 +327,7 @@ const DUMMY_BOARDS = [
                 color: '#3a637a',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -332,12 +346,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l101', 'l102'],
             style: {
-              backgroundColor: '#c377e0',
+              backgroundColor: null,
               backgroundImage: {
-                title: 'forest',
-                url: 'https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+                url: null,
+                title: null
               },
-              isCover: true,
+              isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -393,7 +408,7 @@ const DUMMY_BOARDS = [
                 color: '#296c41',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -405,10 +420,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l104', 'l106'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage:
-                'url(https://silvawebdesigns.com/wp-content/uploads/2020/10/useful-sass-scss-mixins-for-every-website.jpg)',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -435,7 +453,7 @@ const DUMMY_BOARDS = [
                 color: '#3a637a',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -447,9 +465,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l103'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -469,7 +491,7 @@ const DUMMY_BOARDS = [
                 color: '#3a637a',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -488,9 +510,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l105'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              // isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -546,7 +572,7 @@ const DUMMY_BOARDS = [
                 color: '#296c41',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -558,9 +584,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l103'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -580,7 +610,7 @@ const DUMMY_BOARDS = [
                 color: '#3a637a',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -592,10 +622,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l104', 'l103'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage:
-                'url(https://webimages.mongodb.com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png)',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -622,7 +655,7 @@ const DUMMY_BOARDS = [
                 color: '#3a637a',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -641,9 +674,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l106', 'l105'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -699,7 +736,7 @@ const DUMMY_BOARDS = [
                 color: '#296c41',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -711,9 +748,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: [],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -769,7 +810,7 @@ const DUMMY_BOARDS = [
                 color: '#296c41',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -781,9 +822,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: ['l101', 'l102'],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: '',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -839,7 +884,7 @@ const DUMMY_BOARDS = [
                 color: '#296c41',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -864,9 +909,13 @@ const DUMMY_BOARDS = [
             createdAt: Date.now(),
             labelIds: [],
             style: {
-              backgroundColor: '#4c78b7',
-              backgroundImage: 'url(https://i.redd.it/8ba2g2q00rd71.png)',
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
               isCover: false,
+              isTextDarkMode: true
             },
             byMember: {
               _id: 'u103',
@@ -893,7 +942,7 @@ const DUMMY_BOARDS = [
                 color: '#3a637a',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -908,7 +957,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'Sprint4',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u545',
       fullname: 'Yuval Shai',
@@ -944,12 +993,14 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
-            byMember: {
-              _id: 'u101',
-              imgUrl: 'url',
-              fullname: 'Muki Pori',
-              username: 'muki2',
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
             },
             attachments: [
               {
@@ -979,7 +1030,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -1009,7 +1060,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'Sprint 5',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u109',
       fullname: 'Yuval Shai',
@@ -1044,12 +1095,14 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
-            byMember: {
-              _id: 'u101',
-              imgUrl: 'url',
-              fullname: 'Muki Pori',
-              username: 'muki2',
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
             },
             attachments: [
               {
@@ -1079,7 +1132,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -1109,7 +1162,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'Sprint 6',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u109',
       fullname: 'Yuval Shai',
@@ -1144,12 +1197,14 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
-            byMember: {
-              _id: 'u101',
-              imgUrl: 'url',
-              fullname: 'Muki Pori',
-              username: 'muki2',
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
             },
             attachments: [
               {
@@ -1179,7 +1234,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -1209,7 +1264,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'Vacation',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u109',
       fullname: 'Yuval Shai',
@@ -1244,12 +1299,14 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
-            byMember: {
-              _id: 'u101',
-              imgUrl: 'url',
-              fullname: 'Muki Pori',
-              username: 'muki2',
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
             },
             attachments: [
               {
@@ -1279,7 +1336,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -1309,7 +1366,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'Games',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u109',
       fullname: 'Yuval Shai',
@@ -1344,12 +1401,14 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
-            byMember: {
-              _id: 'u101',
-              imgUrl: 'url',
-              fullname: 'Muki Pori',
-              username: 'muki2',
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
             },
             attachments: [
               {
@@ -1379,7 +1438,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -1409,7 +1468,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'School Project',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u109',
       fullname: 'Yuval Shai',
@@ -1444,12 +1503,14 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
-            byMember: {
-              _id: 'u101',
-              imgUrl: 'url',
-              fullname: 'Muki Pori',
-              username: 'muki2',
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
             },
             attachments: [
               {
@@ -1479,7 +1540,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -1509,7 +1570,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'Gym Ideas',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u109',
       fullname: 'Yuval Shai',
@@ -1543,7 +1604,15 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
+            },
             byMember: {
               _id: 'u101',
               imgUrl: 'url',
@@ -1578,7 +1647,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },
@@ -1608,7 +1677,7 @@ const DUMMY_BOARDS = [
     isStarred: false,
     title: 'My Todos',
     isPublic: false,
-    createdAt: 1589983468418,
+    createdAt: null,
     createdBy: {
       _id: 'u109',
       fullname: 'Yuval Shai',
@@ -1642,7 +1711,15 @@ const DUMMY_BOARDS = [
             description: 'Replace logo',
             createdAt: Date.now(),
             labelIds: ['l101'],
-            style: {},
+            style: {
+              backgroundColor: null,
+              backgroundImage: {
+                url: null,
+                title: null
+              },
+              isCover: false,
+              isTextDarkMode: true
+            },
             byMember: {
               _id: 'u101',
               imgUrl: 'url',
@@ -1677,7 +1754,7 @@ const DUMMY_BOARDS = [
                 username: 'daniel98',
               },
             ],
-            dueDate: 1589983468418,
+            dueDate: null,
             isDone: false,
             archiveAt: null,
           },

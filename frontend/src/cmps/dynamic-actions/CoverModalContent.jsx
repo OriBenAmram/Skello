@@ -46,24 +46,35 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         { title: 'jerusalem', url: 'https://images.unsplash.com/photo-1593019612399-86daa4d18cd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' }
     ]
 
-    useEffect(() => {
+    useEffect( async () => {
         if (task.style.backgroundImage.url) {
             setSelectedImage(task.style.backgroundImage)
         }
         else setSelectedColor(task.style.backgroundColor)
+        if(task.style.isCover) { 
+            await setSelectedSize('cover')
+            if (task.style?.isTextDarkMode) { 
+                setSelectedTextColor('dark')
+            } else setSelectedTextColor('bright')
+        }
+        else setSelectedSize('uncover')
     }, []);
 
     const getCoverBackground = () => {
         if (selectedImage?.url) {
             return `url(${selectedImage.url})`
         }
-        return selectedColor
+        else if (selectedColor) { 
+            return selectedColor
+        } else { 
+            return '#5E6C84'
+        }
     }
 
     const getCoverBackgroundGradient = () => { 
-        if (selectedTextColor === 'bright') return 'rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)'
+        if(!selectedImage || !selectedImage.url) return 'rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)'
+        else if (selectedTextColor === 'bright') return 'rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)'
         return 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)'
-        // rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)
     }
 
     const getHalfCoverBackground = () => {
@@ -194,7 +205,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                         }}>Remove cover</button>}
                     </section>
 
-                    { task.style.isCover && <section className='text-color-section'>
+                    {( task.style.isCover && selectedImage?.url )&& <section className='text-color-section'>
                         <h4>Text color</h4>
                         <section className='text-color-choice-container'>
                             <div className={`text-color-choice-item ${ (selectedTextColor === 'bright') ? '' : 'selected' }`} style={{ background: ` linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ${getCoverBackground()} center center / cover` }} onClick={() => { 

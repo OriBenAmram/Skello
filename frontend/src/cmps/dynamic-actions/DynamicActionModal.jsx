@@ -41,30 +41,9 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
         }
     }
 
-    // const getYPosByType = () => {
-    //     let { clientX, clientY } = event
-
-    //     switch (type) {
-    //         case 'labels':
-    //             const labelModalPos = (isOnDetails) ? -200 : 0
-    //             return labelModalPos
-    //         case 'cover':
-    //             const coverModalPos = (isOnDetails) ? -200 : 0
-    //             return coverModalPos
-    //         default:
-    //             return clientY - 330
-    //     }
-    // }
-
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
-        console.log('top,left:', top, left);
-
-        // const { clientX, clientY } = event
-        // if (position === 'absolute') {
-        //     return { position, left: 0, top: getYPosByType() }
-        // }
-        if ((type === 'dates' || type === 'labels') && isDetails) {
+        if ((type === 'dates' || type === 'labels' || type === 'cover') && isDetails) {
             return { top: top / 2, left: left + posXAddition }
         }
         return { top: top + height, left: left }
