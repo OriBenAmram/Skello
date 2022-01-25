@@ -1,13 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Draggable } from 'react-beautiful-dnd';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {Draggable} from 'react-beautiful-dnd';
+
+// Icons
+import {GrTextAlignFull} from 'react-icons/gr';
+import {BsCheck2Square} from 'react-icons/bs';
+import attachmentIcon from '../../assets/imgs/attachmentIcon.svg';
+import editIcon from '../../assets/imgs/editIcon.svg';
+import commentIcon from '../../assets/imgs/commentIcon.svg';
+import descriptionIcon from '../../assets/imgs/descriptionIcon.svg';
+import checklistIcon from '../../assets/imgs/checklistIcon.svg';
+import {IoCheckbox} from 'react-icons/io5';
 
 // CMPS
-import { TaskLabels } from './TaskLabels';
-import { EditIcon } from '../EditIcon';
+import {TaskLabels} from './TaskLabels';
+import {QuickCardEditor} from './QuickCardEditor';
+import {DueDatePreview} from './DueDatePreview';
 
 export function TaskPreview(props) {
-  const { task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown } = props;
+  const {task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown} = props;
   const {
     archiveAt,
     attachments,
@@ -20,16 +31,12 @@ export function TaskPreview(props) {
     members,
     style,
     title,
+    checklists,
+    comments,
   } = task;
 
-  // const [previewBackgroundColor, setPreviewColor] = useState(null);
-  // const [previewBackgroundImage, setPreviewImage] = useState(null);
-  const { isCover, isTextDarkMode = true } = task.style;
-
-  // useEffect(() => {
-    //   setPreviewColor(task.style.backgroundColor);
-  //   setPreviewImage(task.style.backgroundImage);
-  // }, [task]);
+  const [isEdit, setIsEdit] = useState(false);
+  const {isCover, isTextDarkMode = true} = task.style;
 
   const getPreviewStyle = () => {
     // Cover !
@@ -43,7 +50,7 @@ export function TaskPreview(props) {
         };
       } else {
         // Doesnt have an image
-        return { backgroundColor: task.style.backgroundColor };
+        return {backgroundColor: task.style.backgroundColor};
       }
 
       // Not Cover - Half!
@@ -72,25 +79,25 @@ export function TaskPreview(props) {
   const getTitleStyleByCover = () => {
     if (isCover) {
       if (task.style.backgroundImage?.url) {
-        return { fontSize: '16px', fontWeight: '500' };
+        return {fontSize: '16px', fontWeight: '500'};
       } else {
-        if(task.style.backgroundColor === '#344563') return { fontSize: '16px', fontWeight: '500', color: 'white' };
-        return { fontSize: '16px', fontWeight: '500' };
+        if (task.style.backgroundColor === '#344563')
+          return {fontSize: '16px', fontWeight: '500', color: 'white'};
+        return {fontSize: '16px', fontWeight: '500'};
       }
     }
     // return {fontSize: '16px', fontWeight: '500'};
   };
 
   const getUpperPreviewBackground = () => {
-    if (isCover) return { height: '0px' }
+    if (isCover) return {height: '0px'};
     if (task.style.backgroundImage.url) {
       // Has an image
-      return { background: `url(${task.style.backgroundImage.url}) center center / cover`, height: '160px' };
+      return {background: `url(${task.style.backgroundImage.url}) center center / cover`, height: '160px'};
     } else if (task.style.backgroundColor) {
       // Doesnt have an imageborder-top-left-radius
-      return { backgroundColor: task.style.backgroundColor, height: '32px' };
+      return {backgroundColor: task.style.backgroundColor, height: '32px'};
     }
-    return { display: 'none' };
   };
 
   const getPreviewClass = () => {
@@ -100,60 +107,166 @@ export function TaskPreview(props) {
     return '';
   };
 
-  return (
-    <Draggable draggableId={task.id} index={index}>
-      {provided => (
-        <Link to={`/board/${boardId}/${groupId}/${task.id}`}>
-          <div
-            className="task-preview-wrapper"
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}>
-            <EditIcon />
-            {/* {!isCover && ( */}
-              <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
-            {/* )} */}
-            <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()}`}>
-              {/* <div className='inner-fade-wallpaper'></div> */}
-              {/* IMG */}
-              {attachments?.length > 0 && !isCover && (
-                <img
-                  src={attachments[0].url}
-                  style={{
-                    backgroundColor: 'white',
-                    borderRadius: '3px',
-                    objectFit: 'cover',
-                    maxHeight: '240px',
-                    marginBottom: 5,
-                  }}
-                  alt="attachment"
-                />
-              )}
+  // task checklist todo globals
+  let todos;
+  let finishedTodos;
 
-              {/* LABELS */}
-              {labelIds?.length > 0 && !isCover && (
-                <TaskLabels
-                  areLabelsShown={areLabelsShown}
-                  setLabelsShown={setLabelsShown}
-                  labelIds={labelIds}
-                  boardLabels={boardLabels}
-                />
-              )}
+  const getCheckListsInfo = () => {
+    todos = 0;
+    finishedTodos = 0;
+    checklists.forEach(checklist => {
+      todos += checklist.todos.length;
+      checklist.todos.forEach(todo => {
+        if (todo.isDone) finishedTodos++;
+      });
+    });
+    return `${finishedTodos}/${todos}`;
+  };
 
-              {/* TITLE */}
+  if (!isEdit) {
+    return (
+      <Draggable draggableId={task.id} index={index}>
+        {provided => (
+          <Link to={`/board/${boardId}/${groupId}/${task.id}`}>
+            <div
+              className="task-preview-wrapper"
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}>
               <div
-                className={`task-title ${isTextDarkMode ? 'dark-text-mode' : 'bright-text-mode'}`}
-                style={getTitleStyleByCover()}>
-                <div className="full-cover-mode-upper-gradient"></div>
-                <div className="title-container">
-                  <p>{title}</p>
-
-                </div>
+                className="edit-icon"
+                onClick={ev => {
+                  ev.preventDefault();
+                  setIsEdit(isEdit => !isEdit);
+                }}>
+                <img src={editIcon} alt="" />
               </div>
-            </section>
-          </div>
-        </Link>
-      )}
-    </Draggable>
-  );
+
+              {/* {!isCover && (
+                <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
+              )} */}
+              <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
+
+              <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()}`}>
+                {/* <div className='inner-fade-wallpaper'></div> */}
+                {/* IMG */}
+                {attachments?.length > 0 && !isCover && (
+                  <img
+                    src={attachments[0].url}
+                    style={{
+                      backgroundColor: 'white',
+                      borderRadius: '3px',
+                      objectFit: 'cover',
+                      maxHeight: '240px',
+                      marginBottom: 5,
+                    }}
+                    alt="attachment"
+                  />
+                )}
+
+                {/* LABELS */}
+                {labelIds?.length > 0 && !isCover && (
+                  <TaskLabels
+                    areLabelsShown={areLabelsShown}
+                    setLabelsShown={setLabelsShown}
+                    labelIds={labelIds}
+                    boardLabels={boardLabels}
+                  />
+                )}
+
+                {/* TITLE */}
+                <div
+                  className={`task-title ${isTextDarkMode ? 'dark-text-mode' : 'bright-text-mode'}`}
+                  style={getTitleStyleByCover()}>
+                  <div className="full-cover-mode-upper-gradient"></div>
+                  <div className="title-container">
+                    <p>{title}</p>
+                  </div>
+                </div>
+
+                {/* BADGES */}
+                <div className="task-badges flex">
+                  <div className="badges-icons flex justify-center align-center">
+                    {/* DUE DATE */}
+                    {!isCover && dueDate && (
+                      <div>
+                        <DueDatePreview
+                          dueDate={dueDate}
+                          isDone={isDone}
+                          taskId={task.id}
+                          groupId={groupId}
+                        />
+                      </div>
+                    )}
+                    {/* DESCRIPTION */}
+                    {!isCover && description?.length > 0 && (
+                      <div className="badge description flex justify-center align-center">
+                        <div className="badge-icon">
+                          <GrTextAlignFull className="svg-icon" />
+                        </div>
+                      </div>
+                    )}
+                    {/* COMMENTS */}
+                    {!isCover && comments?.length > 0 && (
+                      <div className="badge comments flex justify-center align-center">
+                        <div className="badge-icon">
+                          <img className="svg-icon" src={commentIcon} alt="" />
+                        </div>
+                        <div className="badge-txt">{comments.length}</div>
+                      </div>
+                    )}
+
+                    {/* ATTACHMENTS  */}
+                    {!isCover && attachments?.length > 0 && (
+                      <div className="badge attachments flex justify-center align-center">
+                        <div className="badge-icon">
+                          <img className="svg-icon" src={attachmentIcon} alt="" />
+                        </div>
+                        <div className="badge-txt">{attachments.length}</div>
+                      </div>
+                    )}
+
+                    {/* CHECKLIST */}
+                    {!isCover && checklists?.length > 0 && (
+                      <div
+                        className={`badge checklists flex justify-center align-center ${
+                          todos === finishedTodos ? 'all-done' : ''
+                        }`}>
+                        <div className="badge-icon">
+                          {/* <IoCheckbox className="svg-icon" /> */}
+                          <img className="svg-icon" src={checklistIcon} alt="" />
+                        </div>
+                        <div className="badge-txt"> {getCheckListsInfo()}</div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* MEMBERS */}
+                  {!isCover && members?.length > 0 && (
+                    <div className="badges-members flex justify-flex-end">
+                      {members.map(member => (
+                        <div
+                          style={{backgroundColor: member.color}}
+                          className="member-avatar"
+                          key={member._id}>
+                          {member.fullname.charAt(0).toUpperCase()}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </section>
+            </div>
+          </Link>
+        )}
+      </Draggable>
+    );
+  } else {
+    return (
+      //Edit mode
+      <div className={`screen-overlay ${isEdit ? 'covered' : ''}`}>
+        <QuickCardEditor task={task} groupId={groupId} boardId={boardId} boardLabels={boardLabels} />
+      </div>
+    );
+  }
 }

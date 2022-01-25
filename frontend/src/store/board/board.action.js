@@ -184,7 +184,6 @@ export function handleDrag(
         groupEnd.tasks.splice(droppableIndexEnd, 0, ...task);
       }
     }
-
     const savedBoard = await boardService.save(newBoard);
 
     dispatch({
