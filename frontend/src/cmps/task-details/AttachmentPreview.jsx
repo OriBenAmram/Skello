@@ -12,7 +12,7 @@ import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 export function AttachmentPreview({ task, attachment, board }) {
     const dispatch = useDispatch()
     const [attachmentTitle, setAttachmentTitle] = useState(attachment.name)
-    const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
+    const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
 
     console.log(task, 'task!')
@@ -30,7 +30,7 @@ export function AttachmentPreview({ task, attachment, board }) {
             return
         }
 
-        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type })
+        setModal({ isModalOpen: true, type, event })
     }
 
     const editTitle = (name) => {
@@ -49,7 +49,7 @@ export function AttachmentPreview({ task, attachment, board }) {
                     target={"_blank"}
                     title={"hero.jpg"}
                 ></a>
-                <p className="attachment-details">
+                <div className="attachment-details">
                     <span className="attachment-name">{attachment.name + '.jpg'}</span>
                     <div className="actions-container">
                         <span>{utilService.getTimeDiff(attachment.createdAt)}</span>
@@ -59,8 +59,8 @@ export function AttachmentPreview({ task, attachment, board }) {
                         <span className="action-btn" onClick={(event) => toggleModal({ event, type: 'editAttachment' })}>Edit</span>
 
                     </div>
-                </p>
-                {modal.isModalOpen && <DynamicActionModal editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} type={modal.type} posYAddition={350} pos={modal.pos} />}
+                </div>
+                {modal.isModalOpen && <DynamicActionModal editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
             </div>
         </React.Fragment>
     )
