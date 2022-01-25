@@ -3,63 +3,59 @@ import { storageService } from './async-storage.service.js';
 const STORAGE_KEY = 'user';
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser';
 
+signupGuest()
+
 export const userService = {
   login,
   logout,
   signup,
   getLoggedinUser,
-  emptyUser,
-  chargeAmount,
 };
 
 function login(credentials) {
   return storageService.query(STORAGE_KEY).then(users => {
-    const user = users.find(
-      user => user.username === credentials.username && user.password === credentials.password
+    const user = users.find((user) => {
+      return (user.username === credentials.username && user.password === credentials.password)
+    }
     );
-
     _setLoggedinUser(user);
-
     return user;
   });
 }
+
 function signup(userInfo) {
   return storageService.post(STORAGE_KEY, userInfo).then(user => {
     _setLoggedinUser(user);
     return user;
   });
 }
+
+async function signupGuest() {
+  const userInfo = {
+    fullname: 'Guest',
+    imgUrl: '../assets/imgs/female-guest.svg',
+    username: 'guest.skello@gmail.com',
+    password: '13579',
+  }
+  let user = null;
+  try { 
+    user = await storageService.post(STORAGE_KEY, userInfo)
+  } catch { 
+  }
+  // _setLoggedinUser(user);
+  return user
+}
+
 function logout() {
-  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null);
+  localStorage.setItem(STORAGE_KEY_LOGGEDIN, null);
+  console.log('User is deleted from storage')
   return Promise.resolve();
 }
 
 function getLoggedinUser() {
-  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));
-}
-
-function chargeAmount(amount) {
-  const user = getLoggedinUser();
-  user.score -= amount;
-  if (user.score < 0) return Promise.reject('Not enough score');
-  _setLoggedinUser(user);
-  return Promise.resolve(user);
-  // TODO: need to also update the user, in the user array in localStorage
-}
-
-function emptyUser() {
-  return {
-    username: '',
-    password: '',
-    fullname: '',
-    score: 10000,
-  };
+  return JSON.parse(localStorage.getItem(STORAGE_KEY_LOGGEDIN));
 }
 
 function _setLoggedinUser(user) {
-  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
+  localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
 }
-
-// Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22})
-// userService.login({ username: 'muki', password: 'muki1' })

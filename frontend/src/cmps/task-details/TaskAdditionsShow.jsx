@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { IoCheckbox } from "react-icons/io5";
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import femaleGuest from '../../assets/imgs/female-guest.svg';
 
 
 // Cmps
@@ -48,16 +51,28 @@ export function TaskAdditionsShow({ board, group, task }) {
         setModal({ isModalOpen: true, type, event })
     }
 
+    const getAvatarInnerText = (member) => {
+        if (member.imgUrl) return ''
+        return member.fullname.charAt(0).toUpperCase()
+    }
+
+    const getAvatarBackground = (member) => {
+        if (!member) return {}
+        if (member.fullname === 'Guest') return { background: `url(${femaleGuest}) center center / cover` }
+        if (member.url) return { background: `url(${member.url}) center center / cover` }
+        return { backgroundColor: member.color }
+    }
+
     return (
         <section className='details-additions-container'>
             {/* Members */}
             {task.members && <section className='type-container'>
                 <h4>Members</h4>
                 <div className='items-container'>
-                    {task.members.map(member => <div style={{ backgroundColor: member.color }} className='member-avatar' key={member._id} onClick={() => {
+                    {task.members.map(member => <div key={member.fullname} className={`member-avatar ${(member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(member)} onClick={() => {
                         onClickAvatar(member)
                     }}>
-                        {member.fullname.charAt(0).toUpperCase()}
+                        {getAvatarInnerText(member)}
                     </div>)}
                     <div className='plus-item member-avatar'>+</div>
                 </div>

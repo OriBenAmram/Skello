@@ -59,18 +59,31 @@ const DUMMY_BOARDS = [
     members: [
       {
         _id: 'u101',
-        fullname: 'Asaf Margalit',
-        imgUrl: 'https://www.google.com',
+        imgUrl: null,
+        fullname: 'Guest',
+        username: 'guest.skello@gmail.com',
+        color: '#3a637a',
+      },
+      {
+        _id: 'u104',
+        imgUrl: null,
+        fullname: 'Ori Ben Amram',
+        username: 'ori8',
+        color: '#3a637a',
       },
       {
         _id: 'u102',
-        fullname: 'Harry Potter',
-        imgUrl: 'https://www.google.com',
+        imgUrl: null,
+        fullname: 'Yuval Shai',
+        username: 'yuval22',
+        color: '#5d3270',
       },
       {
         _id: 'u103',
-        fullname: 'Zinadin Zidan',
-        imgUrl: 'https://www.google.com',
+        imgUrl: null,
+        fullname: 'Daniel Shaked',
+        username: 'daniel98',
+        color: '#296c41',
       },
     ],
     groups: [
@@ -98,7 +111,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -136,21 +149,21 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
                 color: '#5d3270',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
                 color: '#296c41',
@@ -179,7 +192,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -188,7 +201,7 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
@@ -224,7 +237,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -262,21 +275,21 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
                 color: '#5d3270',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
                 color: '#296c41',
@@ -305,7 +318,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -323,7 +336,7 @@ const DUMMY_BOARDS = [
                 byMember: {
                   _id: 'u103',
                   // TODO
-                  imgUrl: 'url',
+                  imgUrl: null,
                   fullname: 'Zinadin Zidan',
                   username: 'zinadin.bold@gmail.com',
                 },
@@ -334,7 +347,7 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
@@ -370,7 +383,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -401,21 +414,21 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
                 color: '#5d3270',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
                 color: '#296c41',
@@ -444,7 +457,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -460,7 +473,7 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
@@ -489,7 +502,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -498,7 +511,7 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
@@ -534,7 +547,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -565,21 +578,21 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
                 color: '#5d3270',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
                 color: '#296c41',
@@ -608,7 +621,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -617,7 +630,7 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
@@ -646,7 +659,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -662,7 +675,7 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
@@ -698,7 +711,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -729,21 +742,21 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
                 color: '#5d3270',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
                 color: '#296c41',
@@ -772,7 +785,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -803,21 +816,21 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
                 color: '#5d3270',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
                 color: '#296c41',
@@ -846,7 +859,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -877,21 +890,21 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
                 color: '#5d3270',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
                 color: '#296c41',
@@ -933,7 +946,7 @@ const DUMMY_BOARDS = [
             byMember: {
               _id: 'u103',
               // TODO
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Zinadin Zidan',
               username: 'zinadin.bold@gmail.com',
             },
@@ -949,7 +962,7 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u104',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
                 color: '#3a637a',
@@ -1026,19 +1039,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u101',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u102',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u103',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },
@@ -1128,19 +1141,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u777',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u555',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u999',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },
@@ -1230,19 +1243,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u1545',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u35445',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u54555',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },
@@ -1332,19 +1345,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u1545',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u35445',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u54555',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },
@@ -1434,19 +1447,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u1545',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u35445',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u54555',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },
@@ -1536,19 +1549,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u1545',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u35445',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u54555',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },
@@ -1628,7 +1641,7 @@ const DUMMY_BOARDS = [
             },
             byMember: {
               _id: 'u101',
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Muki Pori',
               username: 'muki2',
             },
@@ -1643,19 +1656,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u1545',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u35445',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u54555',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },
@@ -1735,7 +1748,7 @@ const DUMMY_BOARDS = [
             },
             byMember: {
               _id: 'u101',
-              imgUrl: 'url',
+              imgUrl: null,
               fullname: 'Muki Pori',
               username: 'muki2',
             },
@@ -1750,19 +1763,19 @@ const DUMMY_BOARDS = [
             members: [
               {
                 _id: 'u1545',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Ori Ben Amram',
                 username: 'ori8',
               },
               {
                 _id: 'u35445',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Yuval Shai',
                 username: 'yuval22',
               },
               {
                 _id: 'u54555',
-                imgUrl: 'url',
+                imgUrl: null,
                 fullname: 'Daniel Shaked',
                 username: 'daniel98',
               },

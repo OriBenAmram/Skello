@@ -7,22 +7,16 @@ import { TodoOptions } from './TodoOptions.jsx';
 import { EditAttachmentModalContent } from './EditAttachmentModalContent.jsx';
 import { CoverModalContent } from './CoverModalContent.jsx'
 import { DatesModalContent } from './DatesModalContent.jsx'
+import { ProfileModalContent } from './ProfileModalContent.jsx'
 
 
 // export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
 export function DynamicActionModal({ toggleModal, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
 
-    console.log('isDetails:', isDetails);
-
-    console.log('modalType', type)
-    console.log(event)
-
-
     const getContentForDisplay = () => {
-        console.log('baba')
         switch (type) {
             case 'members':
-                return <MembersModalContent />
+                return <MembersModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'labels':
                 return <LabelsModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'checklist':
@@ -32,12 +26,13 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
             case 'todoOptions':
                 return <TodoOptions toggleModal={toggleModal} onRemoveTodo={onRemoveTodo} todoId={todoId} />
             case 'editAttachment':
-                console.log('im here!')
                 return <EditAttachmentModalContent editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} />
             case 'cover':
                 return <CoverModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'dates':
                 return <DatesModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
+            case 'profile':
+                return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
         }
     }
 
@@ -46,11 +41,10 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
         if ((type === 'dates' || type === 'labels' || type === 'cover') && isDetails) {
             return { top: top / 2, left: left + posXAddition }
         }
-        return { top: top + height, left: left }
+        return { top: top + height + posYAddition, left: left + posXAddition }
     }
 
     if (!event) return <></>
-    console.log('check')
     return (
         <section className='dynamic-action-modal' style={getModalPositionStyle()} >
             {getContentForDisplay()}
