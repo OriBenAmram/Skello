@@ -16,7 +16,7 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':
-                return <MembersModalContent />
+                return <MembersModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'labels':
                 return <LabelsModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'checklist':
@@ -32,7 +32,7 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
             case 'dates':
                 return <DatesModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'profile':
-                return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition}  type={type}/>
+                return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
         }
     }
 

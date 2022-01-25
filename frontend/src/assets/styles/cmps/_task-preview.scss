@@ -233,6 +233,8 @@
     .badge-icon{
         // border: 1px solid orange;
         filter: invert(48%) sepia(7%) saturate(1059%) hue-rotate(180deg) brightness(94%) contrast(89%);
+        height: 13px;
+        line-height: 13px;
     }
 
     .checklists,.attachments,.comments{
@@ -247,8 +249,9 @@
             border-radius: 3px;
             color: #fff;
             
-            .svg-icon{
-                // filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(254deg) brightness(110%) contrast(110%);
+            .badge-icon{
+                filter: none;
+                color: #fff;
             }
            
         }

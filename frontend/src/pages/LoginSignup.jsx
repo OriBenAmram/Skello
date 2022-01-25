@@ -2,6 +2,10 @@ import { useState } from "react";
 import { connect } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import googleIcon from '../assets/imgs/google-icon.svg';
+import femaleGuest from '../assets/imgs/female-guest.svg';
+import leftHero from '../assets/imgs/left-loginsignup-hero.svg';
+import rightHero from '../assets/imgs/right-loginsignup-hero.svg';
 import { ImTrello } from "react-icons/im";
 
 // Actions
@@ -27,6 +31,14 @@ export function LoginSignup(props) {
                 props.history.push("/workspace");
             }
         }
+    }
+
+    const onClickGuest = async () => {
+        await dispatch(login({ 
+            username : 'guest.skello@gmail.com',
+            password : '13579'
+        }))
+        props.history.push("/workspace");
     }
 
     return (
@@ -69,6 +81,19 @@ export function LoginSignup(props) {
                             {isLogin ? "Log in" : "Sign up"}
                         </button>
                     </form>
+                    <section className='other-login-options'>
+                        <span>OR</span>
+                        <button >
+                            <img src={googleIcon} className='button-icon-image' />
+                            Continue with Google
+                        </button>
+                        <button onClick={() => {
+                            onClickGuest()
+                        }}>
+                            <img src={femaleGuest} className='button-icon-image guest' />
+                            Continue as Guest
+                        </button>
+                    </section>
                     <hr className="seperate-switch-link-hr" />
                     <div className="lower-nav-links-container">
                         <Link to={'/'} className="switch-link">
@@ -82,7 +107,8 @@ export function LoginSignup(props) {
                 </div>
 
             </div>
-            <img src="" alt="" />
+            <img src={leftHero} className="left-hero" />
+            <img src={rightHero} className="right-hero" />
         </div >
     )
 

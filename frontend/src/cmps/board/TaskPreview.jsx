@@ -4,14 +4,10 @@ import {Draggable} from 'react-beautiful-dnd';
 
 // Icons
 import {GrTextAlignFull} from 'react-icons/gr';
-import {BsCheck2Square} from 'react-icons/bs';
+import {IoMdCheckboxOutline} from 'react-icons/io';
 import attachmentIcon from '../../assets/imgs/attachmentIcon.svg';
 import editIcon from '../../assets/imgs/editIcon.svg';
 import commentIcon from '../../assets/imgs/commentIcon.svg';
-import descriptionIcon from '../../assets/imgs/descriptionIcon.svg';
-import checklistIcon from '../../assets/imgs/checklistIcon.svg';
-import {IoCheckbox} from 'react-icons/io5';
-
 // CMPS
 import {TaskLabels} from './TaskLabels';
 import {QuickCardEditor} from './QuickCardEditor';
@@ -233,8 +229,7 @@ export function TaskPreview(props) {
                           todos === finishedTodos ? 'all-done' : ''
                         }`}>
                         <div className="badge-icon">
-                          {/* <IoCheckbox className="svg-icon" /> */}
-                          <img className="svg-icon" src={checklistIcon} alt="" />
+                          <IoMdCheckboxOutline className='svg-icon' style={{ filter: 'none' }}/>
                         </div>
                         <div className="badge-txt"> {getCheckListsInfo()}</div>
                       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import femaleGuest from '../assets/imgs/female-guest.svg';
 import { NavLink, Link } from 'react-router-dom';
 import { AiFillHome } from "react-icons/ai";
 import { BiBell } from "react-icons/bi";
@@ -15,7 +16,6 @@ export function AppHeader() {
   const user = useSelector(state => state.userModule.loggedinUser);
   const [modal, setModal] = useState({ isModalOpen: false, type: null });
   let location = useLocation();
-  let history = useHistory();
 
   const toggleModal = (props) => {
     const { event, type } = props
@@ -30,8 +30,16 @@ export function AppHeader() {
     toggleModal({ event, type: 'profile' })
   }
 
-  const onBellClick = (user) => {
+  const onBellClick = () => {
 
+  }
+
+  const getAvatarByUser = () => { 
+    if(user?.imgUrl) {
+      if(user.fullname === 'Guest') return { background: `url(${femaleGuest}) center center / cover` }
+      return { background: `url(${user.imgUrl}) center center / cover` }
+    }
+    return { backgroundColor: '#eb5a46' }
   }
 
   const isHome = location.pathname === '/'
@@ -62,7 +70,7 @@ export function AppHeader() {
         {/* <div className='bell-icon-container' onClick={() => { 
             onBellClick()
           }}><BiBell className='bell-icon'/></div> */}
-        <div className='member-avatar' style={{ backgroundColor: '#eb5a46' }} onClick={(event) => {
+        <div className={`${(user?.imgUrl) ? 'avatar-image' : 'member-avatar'}`} style={getAvatarByUser()} onClick={(event) => {
           onUserClick(event)
         }}>
           {user.fullname.charAt(0).toUpperCase}
