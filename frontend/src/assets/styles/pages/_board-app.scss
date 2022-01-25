@@ -1,11 +1,13 @@
 .board-app-wrapper { 
     height: 100vh;
-
+    padding-bottom: 10px;
 
     .board-app {
-        padding-bottom: 10px;
         overflow-y: hidden;
-    
+        height: 100%;
+        display: flex;
+        padding: 0px 13px 8px 13px;
+
                 /* Track */
                 &::-webkit-scrollbar-track {
                     background: #00000026;

@@ -1,5 +1,6 @@
 .group-list-container{
     margin-top: 95px;
+    max-height: 100%;
 }
 
 .group-preview { 
@@ -10,7 +11,8 @@
     padding: 0 4px;
     height: fit-content;
     width: 272px;
-    max-height: 86vh;
+    // max-height: 86vh;
+    max-height: 100%;
     margin-inline-end: 8px;
 
     .add-task-container{
