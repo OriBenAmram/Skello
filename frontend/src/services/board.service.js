@@ -5,6 +5,22 @@ import DUMMY_BOARDS from './board.dummy.data.service';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
 
+export const boardService = {
+  query,
+  getById,
+  getBoardsFromStorage,
+  addGroup,
+  removeGroup,
+  save,
+  queryImages,
+  addTask,
+  updateTask,
+  addChecklist,
+  addTodo,
+  addFile,
+  updateTaskTest,
+};
+
 const STORAGE_KEY = 'boards';
 const gBoards = _setBoardsToStorage();
 
@@ -172,19 +188,3 @@ export function updateTaskTest(board, updatedTask) {
   });
   return {...board};
 }
-
-export const boardService = {
-  query,
-  getById,
-  getBoardsFromStorage,
-  addGroup,
-  removeGroup,
-  save,
-  queryImages,
-  addTask,
-  updateTask,
-  addChecklist,
-  addTodo,
-  addFile,
-  updateTaskTest,
-};
