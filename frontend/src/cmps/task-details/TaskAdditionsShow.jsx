@@ -5,7 +5,7 @@ import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 export function TaskAdditionsShow({ board, group, task }) {
     const [taskLabels, setTaskLabels] = useState([]);
-    const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
+    const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
     useEffect(() => {
         setLabels()
@@ -36,10 +36,10 @@ export function TaskAdditionsShow({ board, group, task }) {
 
     const toggleModal = ({ event, type }) => {
         if (modal.isModalOpen) {
-            setModal({ ...modal, isModalOpen: false})
+            setModal({ ...modal, isModalOpen: false })
             return
         }
-        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type, event })
+        setModal({ isModalOpen: true, type, event })
     }
 
     return (
@@ -70,7 +70,7 @@ export function TaskAdditionsShow({ board, group, task }) {
                     }}>+</div>
                 </div>
             </section>}
-            {modal.isModalOpen && <DynamicActionModal event={modal.event} posYAddition={300} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} />}
+            {modal.isModalOpen && <DynamicActionModal event={modal.event} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} />}
         </section>
     );
 }

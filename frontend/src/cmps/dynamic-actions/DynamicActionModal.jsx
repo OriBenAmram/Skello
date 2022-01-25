@@ -9,7 +9,12 @@ import { CoverModalContent } from './CoverModalContent.jsx'
 import { DatesModalContent } from './DatesModalContent.jsx'
 
 
-export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+// export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+export function DynamicActionModal({ toggleModal, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+
+    console.log('isDetails:', isDetails);
+
+    console.log(event.target.getBoundingClientRect())
 
     const getContentForDisplay = () => {
         switch (type) {
@@ -32,27 +37,33 @@ export function DynamicActionModal({ toggleModal, type, pos, task, group, board,
         }
     }
 
-    const getYPosByType = () => {
-        let { clientX, clientY } = pos
+    // const getYPosByType = () => {
+    //     let { clientX, clientY } = event
 
-        switch (type) {
-            case 'labels':
-                const labelModalPos = (isOnDetails) ? -200 : 0
-                return labelModalPos
-            case 'cover':
-                const coverModalPos = (isOnDetails) ? -200 : 0
-                return coverModalPos
-            default:
-                return clientY - 330
-        }
-    }
+    //     switch (type) {
+    //         case 'labels':
+    //             const labelModalPos = (isOnDetails) ? -200 : 0
+    //             return labelModalPos
+    //         case 'cover':
+    //             const coverModalPos = (isOnDetails) ? -200 : 0
+    //             return coverModalPos
+    //         default:
+    //             return clientY - 330
+    //     }
+    // }
 
     const getModalPositionStyle = () => {
-        const { clientX, clientY } = event
-        if (position === 'absolute') {
-            return { position, left: 0, top: getYPosByType() }
+        const { top, left, height } = event.target.getBoundingClientRect();
+        console.log('top,left:', top, left);
+
+        // const { clientX, clientY } = event
+        // if (position === 'absolute') {
+        //     return { position, left: 0, top: getYPosByType() }
+        // }
+        if ((type === 'dates' || type === 'labels') && isDetails) {
+            return { top: top / 2, left: left + posXAddition }
         }
-        return { position, top: clientY + posYAddition, left: clientX + posXAddition }
+        return { top: top + height, left: left + posXAddition }
     }
 
     if (!event) return <></>

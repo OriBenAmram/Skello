@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
-import { BsPersonPlus, BsArrowRight, BsArchive, BsSquareHalf } from "react-icons/bs";   
+import { BsPersonPlus, BsArrowRight, BsArchive, BsSquareHalf } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md";
 
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
@@ -9,7 +9,7 @@ import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 export function TaskSideBar({ task, group, board }) {
 
-    const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
+    const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
     const toggleModal = ({ event, type }) => {
 
@@ -19,7 +19,8 @@ export function TaskSideBar({ task, group, board }) {
             setModal({ ...modal, isModalOpen: false })
             return
         }
-        setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type , event})
+        // setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type , event})
+        setModal({ isModalOpen: true, type, event })
     }
 
     return (
@@ -49,7 +50,7 @@ export function TaskSideBar({ task, group, board }) {
                 {(!task.style.backgroundColor && !task.style?.backgroundImage?.url) && <button className="button-link" onClick={(event) => {
                     toggleModal({ event, type: 'cover' })
                 }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>}
-                {modal.isModalOpen && <DynamicActionModal task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} position={'absolute'} event={modal.event} />}
+                {modal.isModalOpen && <DynamicActionModal isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} position={'absolute'} event={modal.event} />}
             </section>
             <section className='actions'>
                 <h3>Actions</h3>

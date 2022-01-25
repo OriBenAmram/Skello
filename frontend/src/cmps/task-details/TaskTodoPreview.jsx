@@ -10,7 +10,7 @@ import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 
 export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }) {
-    const [isTextAreaOpen, toggleTextArea] = useState(false);
+    const [isTextAreaOpen, toggleTextArea] = useState(true);
     const [currTodo, setCurrTodo] = useState(todo)
     const [showPicker, setShowPicker] = useState(false);
     const [modal, setModal] = useState({ isModalOpen: false, pos: null, type: null });
