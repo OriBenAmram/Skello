@@ -47,7 +47,7 @@ export function TaskSideBar({ task, group, board }) {
                 <button className="button-link" onClick={(event) => {
                     toggleModal({ event, type: 'attachment' })
                 }} > <MdOutlineAttachment />Attachment</button>
-                {(!task.style.backgroundColor && !task.style?.backgroundImage?.url) && <button className="button-link" onClick={(event) => {
+                {(!task.style.backgroundColor && !task.style.backgroundImage?.url) && <button className="button-link" onClick={(event) => {
                     toggleModal({ event, type: 'cover' })
                 }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>}
                 {modal.isModalOpen && <DynamicActionModal isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} position={'absolute'} event={modal.event} />}

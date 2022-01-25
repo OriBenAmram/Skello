@@ -1,25 +1,29 @@
-.board-app {
+.board-app-wrapper { 
     height: 100vh;
-    overflow-y: hidden;
-    position: fixed;
-    width: 100vw;
 
-            /* Track */
-            &::-webkit-scrollbar-track {
-                background: #00000026;
-                border-radius: 10px;
 
-            }
-            
-            /* Handle */
-            &::-webkit-scrollbar-thumb {
-                background-color: #7e8386b7;
-                border-radius: 4px;
-
-            }
+    .board-app {
+        padding-bottom: 10px;
+        overflow-y: hidden;
     
-            &::-webkit-scrollbar {
-                height: 12px;
-                width: 12px;
-              }
+                /* Track */
+                &::-webkit-scrollbar-track {
+                    background: #00000026;
+                    border-radius: 10px;
+    
+                }
+                
+                /* Handle */
+                &::-webkit-scrollbar-thumb {
+                    background-color: #7e8386b7;
+                    border-radius: 4px;
+    
+                }
+        
+                &::-webkit-scrollbar {
+                    height: 12px;
+                    width: 12px;
+                  }
+    }
 }
+

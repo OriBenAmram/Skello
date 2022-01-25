@@ -1,6 +1,6 @@
 .task-details-page {
     background-color: #000000a3;
-    min-height: 130vh;
+    overflow-y: auto;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -12,10 +12,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-
-    body .board-app { 
-        position: fixed;
-    }
+    padding-bottom: 80px;
 
     .task-details-modal {
         z-index: 20;
