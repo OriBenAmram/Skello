@@ -13,17 +13,17 @@ const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
 export const boardService = {
   query,
   getById,
-  getBoardsFromStorage,
+  // getBoardsFromStorage,
   addGroup,
   removeGroup,
-  save,
+  // save,
   queryImages,
   addTask,
   updateTask,
   addChecklist,
   addTodo,
   addFile,
-  updateTaskTest,
+  // updateTaskTest,
   update,
   add,
 };
@@ -32,7 +32,7 @@ export const boardService = {
 // const STORAGE_KEY = 'boards';
 // const gBoards = _setBoardsToStorage();
 
-function query() {
+async function query() {
   const boards = await httpService.get('board');
   return boards;
 }
@@ -53,7 +53,7 @@ async function queryImages(query = 'random') {
 //   return boards;
 // }
 
-function getById(boardId) {
+async function getById(boardId) {
   try {
     const board = await httpService.get(`board/${boardId}`);
     return board;
@@ -166,11 +166,11 @@ async function add(title, background) {
 //   storageService.saveToStorage(STORAGE_KEY, boards);
 // }
 
-function removeGroup(groupId, boardId) {
+async function removeGroup(groupId, boardId) {
   try {
     const board = await getById(boardId);
     board.groups = board.groups.filter(group => group.id !== groupId);
-    save(board);
+    update(board);
   } catch (err) {
     console.log('Cant remove group', err);
   }
@@ -185,7 +185,7 @@ function removeGroup(groupId, boardId) {
 //   return storageService.put(STORAGE_KEY, board);
 // }
 
-function addGroup(title, boardId) {
+async function addGroup(title, boardId) {
   const newGroup = {
     id: utilService.makeId(),
     title,
@@ -214,7 +214,7 @@ function addGroup(title, boardId) {
 //   return storageService.put(STORAGE_KEY, board);
 // }
 
-function addTask(title, groupId, boardId) {
+async function addTask(title, groupId, boardId) {
   const taskToAdd = {
     id: utilService.makeId(),
     createdAt: Date.now(),
@@ -286,7 +286,7 @@ function addTask(title, groupId, boardId) {
 //   return storageService.put(STORAGE_KEY, board);
 // }
 
-function addChecklist(title, groupId, boardId, taskId) {
+async function addChecklist(title, groupId, boardId, taskId) {
   const checklistToAdd = {
     id: utilService.makeId(),
     title,
@@ -317,7 +317,7 @@ function addChecklist(title, groupId, boardId, taskId) {
 //   return storageService.put(STORAGE_KEY, board);
 // }
 
-function addTodo(boardId, groupId, taskId, checklistId, title) {
+async function addTodo(boardId, groupId, taskId, checklistId, title) {
   const todoToAdd = {
     id: utilService.makeId(),
     title,
@@ -355,7 +355,7 @@ function addTodo(boardId, groupId, taskId, checklistId, title) {
 //   return storageService.put(STORAGE_KEY, board);
 // }
 
-function addFile(boardId, groupId, taskId, fileUrl) {
+async function addFile(boardId, groupId, taskId, fileUrl) {
   const attachmentToAdd = {
     id: utilService.makeId(),
     createdAt: Date.now(),
@@ -390,7 +390,7 @@ function addFile(boardId, groupId, taskId, fileUrl) {
 // }
 
 // Finds the same task, and replace it - We need to send here the taskToUpdate!!!
-function updateTask(boardId, groupId, taskId, taskToUpdate) {
+async function updateTask(boardId, groupId, taskId, taskToUpdate) {
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
