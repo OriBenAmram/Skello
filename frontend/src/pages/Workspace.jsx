@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs';
 
+// Actions
 import { onSaveBoard } from '../store/board/board.action';
-
 import { loadBoards } from '../store/board/board.action.js';
+
+// Cmps
+import { CreateNewBoard } from '../cmps/workspace/CreateNewBoard.jsx';
 import { BoardList } from '../cmps/workspace/BoardList.jsx';
 
 
@@ -52,6 +55,9 @@ export function Workspace() {
                             <h3>Recently viewed</h3>
                         </div>
                         <div className='primary-boards-container-section'>
+                            <div>
+                                
+                            </div>
                             <BoardList boards={boards} onToggleStarred={onToggleStarred} />
                         </div>
                     </section>

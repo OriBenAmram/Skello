@@ -10,6 +10,10 @@ import { BiPencil } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
 import { GrClose } from "react-icons/gr";
 
+// Blind
+import redBlindColorSign from '../../assets/imgs/blind-color/red.svg';
+
+
 
 export function LabelsModalContent({ board, group, task, toggleModal }) {
     const dispatch = useDispatch();
@@ -157,7 +161,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
         setAddEditText(ev.target.value)
     }
 
-    const getBoardLabelsForDisplay = () => { 
+    const getBoardLabelsForDisplay = () => {
         if (searchLabelText) {
             return board.labels.filter(label => {
                 return label.title?.includes(searchLabelText)
@@ -165,7 +169,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
         }
         return board.labels
     }
-
+    
     return (
         <div>
             <section className='modal-header'>
@@ -177,9 +181,9 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                     {/* Only Labels */}
                     {modalType.type === 'labels' && <div>
                         <div className='modal-title'>
-                                <input placeholder={`Search Labels...`} type="text" className='modal-main-input' onChange={(ev) => {
-                                    setSearchLabel(ev.target.value)
-                                }} autoFocus />
+                            <input placeholder={`Search Labels...`} type="text" className='modal-main-input' onChange={(ev) => {
+                                setSearchLabel(ev.target.value)
+                            }} autoFocus />
                             <h4>Labels</h4>
                         </div>
                         <section className='modal-items-to-edit'>
@@ -190,7 +194,9 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                                     }} /></button>
                                     <div style={{ backgroundColor: label.color, hover: `box-shadow: -8px 0 ${label.color}` }} className='label-box' onClick={() => {
                                         onClickLabel(label.id)
-                                    }}>{label.title}
+                                    }}>
+                                        {/* <img className='blind-color-sign-expended-svg' src={redBlindColorSign} /> */}
+                                        {label.title}
                                         {task.labelIds?.includes(label.id) && <BsCheckLg className='checked-label-icon' />}
                                     </div>
                                 </div>
