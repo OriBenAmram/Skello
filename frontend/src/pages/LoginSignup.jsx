@@ -9,7 +9,7 @@ import rightHero from '../assets/imgs/right-loginsignup-hero.svg';
 import {ImTrello} from 'react-icons/im';
 
 // Services
-import { userService } from '../services/user.service';
+import {userService} from '../services/user.service';
 
 // Actions
 import {login, signup} from '../store/user/user.actions';
@@ -38,7 +38,8 @@ export function LoginSignup(props) {
   };
 
   const onClickGuest = async () => {
-    await dispatch(login({
+    await dispatch(
+      login({
         username: 'guest',
         password: 'guest123',
       })
@@ -90,6 +91,7 @@ export function LoginSignup(props) {
               <img src={googleIcon} className="button-icon-image" />
               Continue with Google
             </button>
+
             <button
               onClick={() => {
                 onClickGuest();

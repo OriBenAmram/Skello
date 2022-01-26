@@ -1,7 +1,7 @@
-import {storageService} from './async-storage.service.js';
+// import {storageService} from './async-storage.service.js';
 import {httpService} from './http.service.js';
 
-const STORAGE_KEY = 'user';
+// const STORAGE_KEY = 'user';
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser';
 
 export const userService = {
@@ -10,9 +10,11 @@ export const userService = {
   signup,
   getLoggedinUser,
   getUsers,
+  loginAsGuest,
 };
 
 async function login(userCred) {
+  console.log('🚀 ~ file: user.service.js ~ line 17 ~ login ~ userCred', userCred);
   try {
     const user = await httpService.post('auth/login', userCred);
     if (user) return _saveLocalUser(user);
@@ -35,20 +37,34 @@ async function signup(userCred) {
   }
 }
 
-async function signupGuest() {
+async function loginAsGuest() {
   const userCred = {
-    fullname: 'Guest',
-    imgUrl: '../assets/imgs/female-guest.svg',
-    username: 'guest.skello@gmail.com',
-    password: '13579',
+    username: 'guest',
+    password: 'guest123',
   };
   try {
-    const user = signup(userCred);
-    login(JSON.stringify(user));
+    const user = await login(userCred);
+    console.log('user from get guest', user);
+    return user;
   } catch (err) {
-    console.log('Cannot signup guest', err);
+    console.log('Cant login as guest', err);
   }
 }
+
+// async function signupGuest() {
+//   const userCred = {
+//     fullname: 'Guest',
+//     imgUrl: '../assets/imgs/female-guest.svg',
+//     username: 'guest.skello@gmail.com',
+//     password: '13579',
+//   };
+//   try {
+//     const user = signup(userCred);
+//     login(JSON.stringify(user));
+//   } catch (err) {
+//     console.log('Cannot signup guest', err);
+//   }
+// }
 
 async function logout() {
   sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN);
@@ -70,5 +86,7 @@ async function getUsers() {
 }
 
 function getLoggedinUser() {
-  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));
+  const loggedinUser = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN) || null);
+  console.log('loggedinUser from service', loggedinUser);
+  return loggedinUser;
 }

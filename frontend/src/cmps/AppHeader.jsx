@@ -67,7 +67,7 @@ export function AppHeader() {
             onClick={event => {
               onUserClick(event);
             }}>
-            {user.fullname.charAt(0).toUpperCase}
+            {/* {user.fullname.charAt(0).toUpperCase} */}
           </div>
         </section>
       )}

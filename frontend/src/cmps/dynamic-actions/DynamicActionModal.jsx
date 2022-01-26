@@ -20,17 +20,17 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
     console.log('ref:', wrapperRef);
     console.log('ref:', wrapperRef.current);
 
-    const handleClickOutside = (ev) => { 
+    const handleClickOutside = (ev) => {
         console.log('Event outside is', ev)
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
+    //     document.addEventListener("mousedown", handleClickOutside);
+    //     return () => {
+    //         document.removeEventListener("mousedown", handleClickOutside);
+    //     };
+    // }, [ref]);
 
     console.log('we are in!')
     const getContentForDisplay = () => {
