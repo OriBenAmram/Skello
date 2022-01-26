@@ -80,10 +80,10 @@ export function removeGroup(groupId, boardId) {
   };
 }
 
-export function addChecklist(checklistTitle, groupId, board, taskId) {
+export function addChecklist(checklistTitle, groupId, board, taskId, activityTxt = null) {
   return async dispatch => {
     try {
-      const updatedBoard = await boardService.addChecklist(checklistTitle, groupId, board, taskId);
+      const updatedBoard = await boardService.addChecklist(checklistTitle, groupId, board, taskId, activityTxt);
       dispatch({
         type: 'SAVE_BOARD',
         board: updatedBoard,
@@ -95,9 +95,6 @@ export function addChecklist(checklistTitle, groupId, board, taskId) {
 }
 
 export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
-  console.log('avtivityTxt.. ', activityTxt)
-  // console.log('boardId, groupId, taskId, taskToUpdate:', boardId, groupId, taskId, taskToUpdate);
-
   return async dispatch => {
     try {
       const board = await boardService.updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt);

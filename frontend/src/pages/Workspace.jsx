@@ -67,8 +67,7 @@ export function Workspace() {
                         </div>
                         <div className='primary-boards-container-section'>
                             <div className="add-board-preview flex align-center justify-center"
-                                onClick={(ev) => toggleModal(ev, 'createBoard')}
-                            >
+                                onClick={(ev) => toggleModal(ev, 'createBoard')}>
                                 <span>Create new board</span>
                             </div>
                             <BoardList boards={boards} onToggleStarred={onToggleStarred} />

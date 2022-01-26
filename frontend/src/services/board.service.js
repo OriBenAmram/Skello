@@ -132,7 +132,7 @@ function addTask(taskTitle, groupId, boardId) {
   return storageService.put(STORAGE_KEY, board);
 }
 
-function addChecklist(title, groupId, board, taskId) {
+function addChecklist(title, groupId, board, taskId, activityTxt = null) {
   // Cr name
   const checklistToAdd = {
     id: utilService.makeId(),
@@ -141,7 +141,12 @@ function addChecklist(title, groupId, board, taskId) {
   };
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
-  board.groups[groupIdx].tasks[taskIdx].checklists.push(checklistToAdd);
+  const updatedTask = board.groups[groupIdx].tasks[taskIdx]
+  updatedTask.checklists.push(checklistToAdd);
+  if (activityTxt) {
+    const formattedActivity = _getFormattedActivity(updatedTask, activityTxt)
+    board.activities.unshift(formattedActivity);
+  }
   return storageService.put(STORAGE_KEY, board);
 }
 
@@ -177,15 +182,15 @@ function addFile(board, groupId, taskId, fileUrl) {
 function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
   console.log('activityTxt:', activityTxt);
 
-  if (activityTxt) {
-    const formattedActivity = _getFormattedActivity(taskToUpdate, activityTxt)
-    console.log('formattedActivity:', formattedActivity);
-
-  }
   const board = gBoards.find(board => board._id === boardId);
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
   board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
+  if (activityTxt) {
+    const formattedActivity = _getFormattedActivity(taskToUpdate, activityTxt)
+    console.log('formattedActivity:', formattedActivity);
+    board.activities.unshift(formattedActivity);
+  }
   return storageService.put(STORAGE_KEY, board);
 }
 
