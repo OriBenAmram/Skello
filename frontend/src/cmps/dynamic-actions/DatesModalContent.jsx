@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { GrClose } from 'react-icons/gr';
 
-import { updateTaskTest } from '../../store/board/board.action'
+import { updateTask } from '../../store/board/board.action'
 
 export function DatesModalContent({ toggleModal, board, task, group }) {
 
@@ -16,11 +16,9 @@ export function DatesModalContent({ toggleModal, board, task, group }) {
     };
 
     const onSetDate = (ev) => {
-        console.log('selectedDate:', selectedDate);
         task.dueDate = selectedDate ? Date.parse(selectedDate) : 0;
-        console.log('task', task)
         toggleModal(ev)
-        dispatch(updateTaskTest(board, task))
+        dispatch(updateTask(board._id, group.id, task.id, task))
     }
 
 

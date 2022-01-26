@@ -23,7 +23,6 @@ export function AttachmentModalContent({ board, group, task, toggleModal }) {
         ev.preventDefault();
         const { linkTxt } = attachData;
         if (!linkTxt) return;
-        console.log('linkTxt:', linkTxt);
 
         const isValid = utilService.isValidUrl(linkTxt)
         if (isValid) onAddFile(linkTxt)

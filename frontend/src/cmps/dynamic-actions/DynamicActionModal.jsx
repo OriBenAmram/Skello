@@ -8,6 +8,7 @@ import { EditAttachmentModalContent } from './EditAttachmentModalContent.jsx';
 import { CoverModalContent } from './CoverModalContent.jsx'
 import { DatesModalContent } from './DatesModalContent.jsx'
 import { ProfileModalContent } from './ProfileModalContent.jsx'
+import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 
 
 // export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
@@ -31,6 +32,8 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
                 return <CoverModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'dates':
                 return <DatesModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
+            case 'stt':
+                return <SpeechToTextModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'profile':
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
         }

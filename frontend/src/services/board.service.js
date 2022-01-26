@@ -178,7 +178,7 @@ function updateTask(boardId, groupId, taskId, taskToUpdate) {
   return storageService.put(STORAGE_KEY, board);
 }
 
-// CR : CHECK OPTION TO USE IT
+//  : CHECK OPTION TO USE IT
 export function updateTaskTest(board, updatedTask) {
   console.log(board);
   board.groups.forEach(group => {

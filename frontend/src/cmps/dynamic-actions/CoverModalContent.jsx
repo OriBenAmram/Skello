@@ -144,7 +144,6 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         setSelectedImage({ title: null, url: null })
         const newTaskStyle = { ...task.style, backgroundColor: color, backgroundImage: { title: null, url: null } }
         const taskToUpdate = { ...task, style: newTaskStyle }
-        console.log('taskToUpdate - onColorClick', taskToUpdate);
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
@@ -154,17 +153,14 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         const { title, url } = image
         const newTaskStyle = { ...task.style, backgroundImage: { title, url }, backgroundColor: null }
         const taskToUpdate = { ...task, style: newTaskStyle }
-        console.log('taskToUpdate:', taskToUpdate);
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
     const onDeleteCover = () => {
-        console.log('Removing cover')
         setSelectedImage({ title: null, url: null })
         setSelectedColor(null)
         const newTaskStyle = { ...task.style, backgroundImage: { title: null, url: null }, backgroundColor: null }
         const taskToUpdate = { ...task, style: newTaskStyle }
-        console.log('taskToUpdate:', taskToUpdate);
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
