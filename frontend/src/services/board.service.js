@@ -40,6 +40,7 @@ async function query() {
 //   return storageService.query(STORAGE_KEY);
 // }
 
+// Img
 async function queryImages(query = 'random') {
   const photos = await axios.get(
     `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
@@ -412,6 +413,16 @@ async function updateTask(boardId, groupId, taskId, taskToUpdate) {
 //   board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
 //   return storageService.put(STORAGE_KEY, board);
 // }
+
+function _getFormattedActivity(task, txt) {
+  return {
+    id: utilService.makeId(),
+    txt,
+    task,
+    createdAt: Date.now(),
+    member: userService.getLoggedinUser(),
+  };
+}
 
 //  : CHECK OPTION TO USE IT
 // export function updateTaskTest(board, updatedTask) {

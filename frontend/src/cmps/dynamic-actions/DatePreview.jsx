@@ -6,18 +6,15 @@ import { utilService } from '../../services/util.service.js';
 import { DatesModalContent } from './DatesModalContent.jsx'
 
 import { updateTask } from '../../store/board/board.action';
-export function DatePreview({ board, toggleModal, groupId, task, task: { dueDate, isDone } }) {
+export function DatePreview({ board, toggleModal, groupId, task, task: { dueDate } }) {
 
     const dispatch = useDispatch()
 
-
-
-
     const toggleIsDone = () => {
-        const { id, isDone } = task;
-        const groupIdx = board.groups.findIndex(group => group.id === groupId);
+        const { isDone } = task;
         const taskToUpdate = { ...task, isDone: !isDone }
-        dispatch(updateTask(board._id, groupId, task.id, taskToUpdate))
+        const activityTxt = `marked the due date ${(isDone) ? 'complete' : 'incomplete'} `
+        dispatch(updateTask(board._id, groupId, task.id, taskToUpdate, activityTxt));
     }
 
     return (<div className='date-preview-container'>

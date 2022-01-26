@@ -61,7 +61,7 @@ export function TaskDetails(props) {
                         {/* Description */}
                         <TaskDescription board={board} group={group} task={task} description={task.description} />
                         {/* Attachments */}
-                        {task.attachments?.length > 0 && <TaskAttachments board={board} task={task} />}
+                        {task.attachments?.length > 0 && <TaskAttachments board={board} group={group} task={task} />}
                         {/* CheckList */}
                         <TaskChecklists
                             boardId={props.match.params.boardId}

@@ -3,11 +3,11 @@ import { ImAttachment } from "react-icons/im";
 import { AttachmentPreview } from "./AttachmentPreview";
 
 
-export function TaskAttachments({ task, board }) {
+export function TaskAttachments({ task, group, board }) {
 
     const { attachments } = task;
 
-    const elAttachments = attachments.map(attachment => <AttachmentPreview board={board} key={attachment.id} task={task} attachment={attachment} />)
+    const elAttachments = attachments.map(attachment => <AttachmentPreview board={board} group={group} key={attachment.id} task={task} attachment={attachment} />)
 
     return (
         <div className="task-attachments-container">

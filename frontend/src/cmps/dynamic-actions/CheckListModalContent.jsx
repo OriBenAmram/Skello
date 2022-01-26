@@ -14,7 +14,7 @@ export function CheckListModalContent({board, group, task, toggleModal}) {
     ev.preventDefault();
     toggleModal(ev);
     // close modal after add
-    dispatch(addChecklist(checklistTitle, group.id, board._id, task.id));
+    dispatch(addChecklist(checklistTitle, group.id, board, task.id, `Added checklist`));
   };
 
   return (
