@@ -49,7 +49,7 @@ export function AppHeader() {
   return (
     <header className={`app-header ${(isBoard) ? 'board' : ''} ${(isHome) ? 'home' : 'general'} ${(isLoginSignup) ? 'login-signup' : ''}`}>
       <section className='nav-options'>
-        {!isHome && <NavLink className='home-icon-container' exact to="/">
+        {!isHome && !user && <NavLink className='home-icon-container' exact to="/">
           <AiFillHome className='home-icon' />
         </NavLink>}
         <NavLink className='logo-container clean-link' exact to="/workspace">
