@@ -5,7 +5,7 @@ export function PopoverSideMenu({ isModalOpen, toggleSideMenu }) {
     console.log('isModalOpen:', isModalOpen);
     
     return (
-        <section className="popover-side-menu" style={(isModalOpen) ? { right: '-10px' } : { right: '-400px'}}>
+        <section className="popover-side-menu" style={(isModalOpen) ? { right: '0px' } : { right: '-400px'}}>
             <div className="popover-header flex align-center">
                 <button onClick={() => {toggleSideMenu()}}>close</button>
                 <span>menu</span>

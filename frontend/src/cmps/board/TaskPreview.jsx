@@ -241,9 +241,9 @@ export function TaskPreview(props) {
                   </div>
 
                   {/* MEMBERS */}
-                  {!isCover && members?.length > 0 && (
+                  {!isCover && task.members?.length > 0 && (
                     <div className="badges-members flex justify-flex-end">
-                      {members.map(member => (
+                      {task.members.map(member => (
                         <div
                           style={getAvatarBackground(member)}
                           className="member-avatar"
