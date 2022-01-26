@@ -1,4 +1,4 @@
-import {utilService} from './util.service.js';
+import { utilService } from './util.service.js';
 
 const DUMMY_BOARDS = [
   // Skello Board
@@ -172,6 +172,7 @@ const DUMMY_BOARDS = [
             dueDate: null,
             isDone: false,
             archiveAt: null,
+
           },
           // Add login
           {

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs';
@@ -10,11 +10,13 @@ import { loadBoards } from '../store/board/board.action.js';
 // Cmps
 import { CreateNewBoard } from '../cmps/workspace/CreateNewBoard.jsx';
 import { BoardList } from '../cmps/workspace/BoardList.jsx';
+import { DynamicActionModal } from '../cmps/dynamic-actions/DynamicActionModal';
 
 
 export function Workspace() {
     const dispatch = useDispatch();
     const boards = useSelector(state => state.boardModule.boards);
+    const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
     useEffect(() => {
         dispatch(loadBoards());
@@ -29,6 +31,15 @@ export function Workspace() {
         const board = boards.find(board => board._id === boardId);
         board.isStarred = !board.isStarred;
         dispatch(onSaveBoard(board));
+    }
+
+    const toggleModal = ({ event, type }) => {
+        if (modal.isModalOpen) {
+            setModal({ ...modal, isModalOpen: false })
+            return
+        }
+
+        setModal({ isModalOpen: true, type, event })
     }
 
     return (
@@ -55,15 +66,17 @@ export function Workspace() {
                             <h3>Recently viewed</h3>
                         </div>
                         <div className='primary-boards-container-section'>
-                            <div>
-                                
+                            <div className="add-board-preview flex align-center justify-center"
+                                onClick={(ev) => toggleModal(ev, 'createBoard')}
+                            >
+                                <span>Create new board</span>
                             </div>
                             <BoardList boards={boards} onToggleStarred={onToggleStarred} />
                         </div>
                     </section>
                 </div>
             </section>
-
+            {modal.isModalOpen && <DynamicActionModal toggleModal={toggleModal} type={modal.type} event={modal.event} />}
         </section>
     );
 }

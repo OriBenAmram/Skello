@@ -1,7 +1,8 @@
 import axios from 'axios';
-import {storageService} from './async-storage.service.js';
-import {utilService} from '../services/util.service.js';
+import { storageService } from './async-storage.service.js';
+import { utilService } from '../services/util.service.js';
 import DUMMY_BOARDS from './board.dummy.data.service';
+import { userService } from './user.service.js';
 
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
 
@@ -28,6 +29,7 @@ function query() {
   return storageService.query(STORAGE_KEY);
 }
 
+// Img
 async function queryImages(query = 'random') {
   const photos = await axios.get(
     `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
@@ -44,6 +46,7 @@ function getById(boardId) {
   return storageService.get(STORAGE_KEY, boardId);
 }
 
+// CR: names - (newBoard)
 async function save(newBoard) {
   // Edit
   if (newBoard._id) {
@@ -130,6 +133,7 @@ function addTask(taskTitle, groupId, boardId) {
 }
 
 function addChecklist(title, groupId, board, taskId) {
+  // Cr name
   const checklistToAdd = {
     id: utilService.makeId(),
     title,
@@ -170,13 +174,35 @@ function addFile(board, groupId, taskId, fileUrl) {
 }
 
 // Finds the same task, and replace it - We need to send here the taskToUpdate!!!
-function updateTask(boardId, groupId, taskId, taskToUpdate) {
+function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
+  console.log('activityTxt:', activityTxt);
+
+  if (activityTxt) {
+    const formattedActivity = _getFormattedActivity(taskToUpdate, activityTxt)
+    console.log('formattedActivity:', formattedActivity);
+
+  }
   const board = gBoards.find(board => board._id === boardId);
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
   board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
   return storageService.put(STORAGE_KEY, board);
 }
+
+
+
+
+function _getFormattedActivity(task, txt) {
+  return {
+    id: utilService.makeId(),
+    txt,
+    task,
+    createdAt: Date.now(),
+    member: userService.getLoggedinUser()
+  }
+}
+
+
 
 //  : CHECK OPTION TO USE IT
 export function updateTaskTest(board, updatedTask) {
@@ -186,5 +212,5 @@ export function updateTaskTest(board, updatedTask) {
       if (task.id === updatedTask.id) group.tasks[idx] = updatedTask;
     });
   });
-  return {...board};
+  return { ...board };
 }

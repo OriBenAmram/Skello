@@ -13,6 +13,19 @@ export function loadBoards() {
   };
 }
 
+
+export function addActivity(boardId, task, txt) {
+  return async dispatch => {
+    try {
+      const board = await boardService.addActivity(boardId, task, txt);
+      dispatch({ type: 'SET_BOARD', board });
+      return board;
+    } catch (err) {
+      console.log('BoardActions: err in loadBoard', err);
+    }
+  };
+}
+
 export function loadBoard(boardId) {
   return async dispatch => {
     try {
@@ -59,7 +72,7 @@ export function removeGroup(groupId, boardId) {
       const board = await boardService.removeGroup(groupId, boardId);
       dispatch({
         type: 'SAVE_BOARD',
-        board: board,
+        board,
       });
     } catch (err) {
       console.log('Cant remove group', err);
@@ -81,12 +94,13 @@ export function addChecklist(checklistTitle, groupId, board, taskId) {
   };
 }
 
-export function updateTask(boardId, groupId, taskId, taskToUpdate) {
-  console.log('boardId, groupId, taskId, taskToUpdate:', boardId, groupId, taskId, taskToUpdate);
+export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
+  console.log('avtivityTxt.. ', activityTxt)
+  // console.log('boardId, groupId, taskId, taskToUpdate:', boardId, groupId, taskId, taskToUpdate);
 
   return async dispatch => {
     try {
-      const board = await boardService.updateTask(boardId, groupId, taskId, taskToUpdate);
+      const board = await boardService.updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt);
       dispatch({
         type: 'SAVE_BOARD',
         board: board,
@@ -110,6 +124,7 @@ export function updateTaskTest(board, taskToUpdate) {
   };
 }
 
+// change to saveBoard 
 export function onSaveBoard(board) {
   console.log('board:', board);
 
@@ -173,7 +188,7 @@ export function handleDrag(
         const task = group.tasks.splice(droppableIndexStart, 1);
         group.tasks.splice(droppableIndexEnd, 0, ...task);
       }
-      // Moving task between differents groups
+      // Moving task between differents groups // CR: also refactor name
       if (droppableIdStart !== droppableIdEnd) {
         // Find the group where drag happened
         const groupStart = newBoard.groups.find(group => group.id === droppableIdStart);
