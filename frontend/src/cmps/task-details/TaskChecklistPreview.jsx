@@ -17,8 +17,6 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
     // const [editedChecklist, setEditedChecklist] = useState(null)
     const dispatch = useDispatch()
 
-
-
     function handleChange({ target }) {
         const { name, value } = target
         setChecklistData({ ...checklistData, [name]: value })
@@ -77,14 +75,13 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
     const onDeleteChecklist = (checklistId) => {
         task.checklists = task.checklists.filter(checklist =>
             (checklist.id !== checklistId));
-        onUpdateTask(task, `removed checklist ${checklist.title}`)
+        onUpdateTask(task, `removed the checklist ${checklist.title}`)
     }
 
     function saveChecklist(checklistId) {
         task.checklists = task.checklists.map(checklist =>
             (checklist.id === checklistId ? checklistData : checklist));
-        onUpdateTask(task)
-
+        onUpdateTask(task, `renamed ${checklistData.title} (from checklist)`)
     }
 
     function onUpdateTask(task, activityTxt) {

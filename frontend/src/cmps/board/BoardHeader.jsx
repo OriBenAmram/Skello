@@ -1,7 +1,23 @@
-import {IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart} from 'react-icons/io5';
+import React, { useState, useEffect } from 'react';
+import { IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
 
-export function BoardHeader({board}) {
-  const {title, members} = board;
+// Cmps
+
+// action
+
+import { toggleSideMenu } from '../../store/app/app.action';
+
+export function BoardHeader({ board }) {
+  const { title, members } = board;
+  const dispatch = useDispatch()
+
+
+  const onToggleMenu = () => {
+    dispatch(toggleSideMenu())
+  }
+
+
   return (
     <header className="board-header ">
       <nav className="main-nav flex align-center justify-space-between">
@@ -15,7 +31,7 @@ export function BoardHeader({board}) {
             </div>
             <div className="nav-members flex">
               {members.map(member => (
-                <div style={{backgroundColor: member.color}} className="member-avatar" key={member._id}>
+                <div style={{ backgroundColor: member.color }} className="member-avatar" key={member._id}>
                   {member.fullname.charAt(0).toUpperCase()}
                 </div>
               ))}
@@ -31,7 +47,9 @@ export function BoardHeader({board}) {
           <button className="nav-btn flex">
             <IoBarChart /> Dashbaord
           </button>
-          <button className="nav-btn flex">
+          <button className="nav-btn flex" onClick={() => {
+            onToggleMenu()
+          }}>
             <IoEllipsisHorizontalSharp /> Show Menu
           </button>
         </div>

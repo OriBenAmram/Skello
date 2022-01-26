@@ -17,12 +17,14 @@ export function MembersModalContent({ board, group, task, toggleModal }) {
         if (isExists) {
             const newTaskMembers = task.members.filter(currMember => currMember.fullname !== member.fullname)
             const taskToUpdate = { ...task, members: newTaskMembers }
-            dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
+            const activityTxt = `removed ${member.fullname}`
+            dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
 
         } else {
             const newTaskMembers = [...task.members, member]
             const taskToUpdate = { ...task, members: newTaskMembers }
-            dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
+            const activityTxt = `added ${member.fullname}`
+            dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
         }
     }
 

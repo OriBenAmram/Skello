@@ -2,29 +2,25 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { updateTaskTest } from '../../store/board/board.action'
+import { updateTaskTest, updateTask } from '../../store/board/board.action'
 
 import { utilService } from "../../services/util.service";
 
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 
-export function AttachmentPreview({ task, attachment, board }) {
+export function AttachmentPreview({ task, group,  attachment, board }) {
     const dispatch = useDispatch()
     const [attachmentTitle, setAttachmentTitle] = useState(attachment.name)
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
-
-    console.log(task, 'task!')
-
     function onDeleteAttachment() {
-        const { id } = attachment;
+        const { id, name } = attachment;
         const taskToUpdate = { ...task, attachments: task.attachments.filter(attachment => attachment.id !== id) }
-        dispatch(updateTaskTest(board, taskToUpdate))
+        const activityTxt = `deleted the ${name} attachment`
+        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
     }
     const toggleModal = ({ event, type }) => {
-        console.log('event:', event);
-
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
             return

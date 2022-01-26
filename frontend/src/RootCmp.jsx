@@ -1,5 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
+
+// Routes
+import routes from './routes.js';
+
 // Cmps
 import { AppHeader } from './cmps/AppHeader';
 import { PopoverSideMenu } from './cmps/PopoverSideMenu.jsx'
@@ -7,17 +12,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from './cmps/Loader';
 
 
+// Action
+import { toggleSideMenu } from './store/app/app.action.js'
 
-// Routes
-import routes from './routes.js';
 
 export function RootCmp() {
 
+  const isModalOpen = useSelector(state => state.appModule.isModalOpen);
+  const dispatch = useDispatch();
 
-  // const board = useSelector(state => state.boardModule.board);
-  // console.log('board:', board);
-
-
+  const onToggleSideMenu = () => {
+    dispatch(toggleSideMenu())
+  }
 
   return (
     <div className='root-cmp'>
@@ -30,7 +36,7 @@ export function RootCmp() {
         </Switch>
       </main>
 
-      {/* <PopoverSideMenu /> */}
+      <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isModalOpen={isModalOpen} />
     </div >
   );
 

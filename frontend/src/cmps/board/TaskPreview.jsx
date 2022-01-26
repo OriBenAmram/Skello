@@ -116,6 +116,7 @@ export function TaskPreview(props) {
         if (todo.isDone) finishedTodos++;
       });
     });
+    if (!finishedTodos / todos) return;
     return `${finishedTodos}/${todos}`;
   };
 
@@ -225,7 +226,7 @@ export function TaskPreview(props) {
                     {/* CHECKLIST */}
                     {!isCover && checklists?.length > 0 && (
                       <div
-                        className={`badge checklists flex justify-center align-center ${todos === finishedTodos ? 'all-done' : ''
+                        className={`badge checklists flex justify-center align-center ${((todos === finishedTodos) && todos) ? 'all-done' : ''
                           }`}>
                         <div className="badge-icon">
                           <IoMdCheckboxOutline className='svg-icon' style={{ filter: 'none' }} />

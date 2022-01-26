@@ -37,6 +37,9 @@ export function BoardApp(props) {
     );
   };
 
+  console.log('board - BoardApp', board);
+  
+
   if (!board) return <Loader />;
   return (
     <DragDropContext onDragEnd={onDragEnd}>

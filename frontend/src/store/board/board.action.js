@@ -14,6 +14,18 @@ export function loadBoards() {
 }
 
 
+export function addBoard(boardToAdd) {
+  return async dispatch => {
+    try {
+      const savedBoard = await boardService.add(boardToAdd.title, boardToAdd.style);
+      const action = { type: 'ADD_BOARD', board: savedBoard };
+      dispatch(action);
+    } catch (err) {
+      console.log('Cant load boards', err);
+    }
+  };
+}
+
 export function addActivity(boardId, task, txt) {
   return async dispatch => {
     try {
@@ -80,10 +92,16 @@ export function removeGroup(groupId, boardId) {
   };
 }
 
-export function addChecklist(checklistTitle, groupId, board, taskId) {
+export function addChecklist(checklistTitle, groupId, board, taskId, activityTxt = null) {
   return async dispatch => {
     try {
-      const updatedBoard = await boardService.addChecklist(checklistTitle, groupId, board, taskId);
+      const updatedBoard = await boardService.addChecklist(
+        checklistTitle,
+        groupId,
+        board._id,
+        taskId,
+        activityTxt
+      );
       dispatch({
         type: 'SAVE_BOARD',
         board: updatedBoard,
@@ -94,10 +112,21 @@ export function addChecklist(checklistTitle, groupId, board, taskId) {
   };
 }
 
-export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
-  console.log('avtivityTxt.. ', activityTxt)
-  // console.log('boardId, groupId, taskId, taskToUpdate:', boardId, groupId, taskId, taskToUpdate);
+// function addBoard(board) {
+//   return async dispatch => {
+//     try {
+//       const boards = await boardService.addBoard(boardId, groupId, taskId, taskToUpdate, activityTxt);
+//       dispatch({
+//         type: 'SAVE_BOARD',
+//         board: board,
+//       });
+//     } catch (err) {
+//       console.log('Cant update task', err);
+//     }
+//   };
+// }
 
+export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
   return async dispatch => {
     try {
       const board = await boardService.updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt);
@@ -113,7 +142,7 @@ export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt =
 export function updateTaskTest(board, taskToUpdate) {
   return async dispatch => {
     try {
-      const boardToSave = await boardService.updateTaskTest(board, taskToUpdate);
+      const boardToSave = await boardService.updateTaskTest(board._id, taskToUpdate);
       dispatch({
         type: 'SAVE_BOARD',
         board: boardToSave,
@@ -124,7 +153,7 @@ export function updateTaskTest(board, taskToUpdate) {
   };
 }
 
-// change to saveBoard 
+// change to saveBoard
 export function onSaveBoard(board) {
   console.log('board:', board);
 
@@ -141,7 +170,7 @@ export function onSaveBoard(board) {
 export function addNewTodo(board, groupId, taskId, checklistId, title) {
   return async dispatch => {
     try {
-      const updatedBoard = await boardService.addTodo(board, groupId, taskId, checklistId, title);
+      const updatedBoard = await boardService.addTodo(board._id, groupId, taskId, checklistId, title);
       dispatch({
         type: 'SAVE_BOARD',
         board: updatedBoard,
@@ -155,7 +184,7 @@ export function addNewTodo(board, groupId, taskId, checklistId, title) {
 export function addFile(board, groupId, taskId, fileUrl) {
   return async dispatch => {
     try {
-      const updatedBoard = await boardService.addFile(board, groupId, taskId, fileUrl);
+      const updatedBoard = await boardService.addFile(board._id, groupId, taskId, fileUrl);
       dispatch({
         type: 'SAVE_BOARD',
         board: updatedBoard,
@@ -203,7 +232,7 @@ export function handleDrag(
         groupEnd.tasks.splice(droppableIndexEnd, 0, ...task);
       }
     }
-    const savedBoard = await boardService.save(newBoard);
+    const savedBoard = await boardService.update(newBoard);
 
     dispatch({
       type: 'SAVE_BOARD',
