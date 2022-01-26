@@ -180,15 +180,12 @@ function addFile(board, groupId, taskId, fileUrl) {
 
 // Finds the same task, and replace it - We need to send here the taskToUpdate!!!
 function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
-  console.log('activityTxt:', activityTxt);
-
   const board = gBoards.find(board => board._id === boardId);
   const groupIdx = board.groups.findIndex(group => group.id === groupId);
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
   board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
   if (activityTxt) {
     const formattedActivity = _getFormattedActivity(taskToUpdate, activityTxt)
-    console.log('formattedActivity:', formattedActivity);
     board.activities.unshift(formattedActivity);
   }
   return storageService.put(STORAGE_KEY, board);

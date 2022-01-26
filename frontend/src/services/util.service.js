@@ -104,7 +104,6 @@ function getTimeDiff(createdAt) {
     } else {
         return `Added  ${timeDiff.hours} hours ago`
     }
-
 }
 
 

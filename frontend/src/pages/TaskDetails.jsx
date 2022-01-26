@@ -73,7 +73,7 @@ export function TaskDetails(props) {
                         {/* {task.checklists?.length && <TaskChecklist />} */}
 
                         {/* Activities */}
-                        <TaskActivities />
+                        <TaskActivities board={board} group={group} task={task} />
                     </section>
 
                     {/* Side-Bar */}

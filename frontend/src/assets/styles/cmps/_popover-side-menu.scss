@@ -1,12 +1,15 @@
 .popover-side-menu{
     background-color: $clr1;
     position: absolute;
-    top: 100px;
-    right: 0px;
+    top: 85px;
+    right: 200px;
     width: 400px;
     height: calc(100vh - 100px);
     border: 1px solid lightgray;
     border-radius: 3px;
+    z-index: 1000;
+
+    transition: right .5s;
 
     .popover-header{
         text-align: center;
@@ -18,7 +21,6 @@
         overflow: hidden;
         position: relative;
         border-bottom: 1px solid rgba(9,30,66,.13);
-       
         
         span{
             text-align: center;

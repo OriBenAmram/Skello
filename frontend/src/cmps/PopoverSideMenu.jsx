@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-
-export function PopoverSideMenu() {
-
-
-
-
+export function PopoverSideMenu({ isModalOpen, toggleSideMenu }) {
+    console.log('isModalOpen:', isModalOpen);
+    
     return (
-        <section className="popover-side-menu" >
+        <section className="popover-side-menu" style={(isModalOpen) ? { right: '-10px' } : { right: '-400px'}}>
             <div className="popover-header flex align-center">
+                <button onClick={() => {toggleSideMenu()}}>close</button>
                 <span>menu</span>
             </div>
         </section>
