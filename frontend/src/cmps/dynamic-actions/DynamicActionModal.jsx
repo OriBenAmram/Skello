@@ -1,3 +1,6 @@
+import { useRef, useEffect, useState } from "react"
+
+
 // CMPS
 import { MembersModalContent } from './MembersModalContent.jsx'
 import { LabelsModalContent } from './LabelsModalContent.jsx'
@@ -12,14 +15,24 @@ import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 
 
-// export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
 export function DynamicActionModal({ toggleModal, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+    const wrapperRef = useRef(null)
+    console.log('ref:', wrapperRef);
+    console.log('ref:', wrapperRef.current);
 
+    const handleClickOutside = (ev) => { 
+        console.log('Event outside is', ev)
+    }
 
-    console.log('type:', type);
-    console.log('event:', event);
+    useEffect(() => {
 
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref]);
 
+    console.log('we are in!')
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':
@@ -43,7 +56,6 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
             case 'profile':
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
-                console.log('babam')
                 return <CreateBoardContent toggleModal={toggleModal} ask={task} group={group} board={board} type={type} />
         }
     }
@@ -58,7 +70,7 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
 
     if (!event) return <></>
     return (
-        <section className='dynamic-action-modal' style={getModalPositionStyle()} >
+        <section className='dynamic-action-modal' style={getModalPositionStyle()} ref={wrapperRef} >
             {getContentForDisplay()}
         </section>
     )
