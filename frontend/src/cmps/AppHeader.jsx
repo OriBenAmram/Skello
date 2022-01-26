@@ -7,38 +7,23 @@ import {AiFillHome} from 'react-icons/ai';
 import {BiBell} from 'react-icons/bi';
 import {ImTrello} from 'react-icons/im';
 
-// CMPS
-import {DynamicActionModal} from '../cmps/dynamic-actions/DynamicActionModal.jsx';
+// Actions
+import {toggleModal} from '../store/app/app.action';
 
 export function AppHeader() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.userModule.loggedinUser);
-  const [modal, setModal] = useState({isModalOpen: false, type: null});
   let location = useLocation();
 
-  const toggleModal = props => {
-    const {event, type} = props;
-    if (modal.isModalOpen) {
-      setModal({...modal, isModalOpen: false});
-      return;
-    }
-    setModal({isModalOpen: true, type, event});
-  };
-
   const onUserClick = event => {
-    toggleModal({event, type: 'profile'});
-  };
+    console.log('event:', event);
 
-  const onBellClick = () => {};
+    dispatch(toggleModal({event, type: 'profile', posXAddition: -300}));
+  };
 
   const getAvatarByUser = () => {
-    if (user?.imgUrl) {
-      if (user.fullname === 'Guest') return {background: `url(${femaleGuest}) center center / cover`};
-      return {background: `url(${user.imgUrl}) center center / cover`};
-    }
-    return {backgroundColor: '#eb5a46'};
+    return {background: `url(${user.imgUrl}) center center / cover`};
   };
-
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
@@ -49,7 +34,7 @@ export function AppHeader() {
         isLoginSignup ? 'login-signup' : ''
       }`}>
       <section className="nav-options">
-        {!isHome && (
+        {!isHome && !user && (
           <NavLink className="home-icon-container" exact to="/">
             <AiFillHome className="home-icon" />
           </NavLink>
@@ -82,18 +67,9 @@ export function AppHeader() {
             onClick={event => {
               onUserClick(event);
             }}>
-            {/* {user.fullname.charAt(0).toUpperCase} */}
+            {user.fullname.charAt(0).toUpperCase}
           </div>
         </section>
-      )}
-      {modal.isModalOpen && (
-        <DynamicActionModal
-          posXAddition={-290}
-          posYAddition={10}
-          toggleModal={toggleModal}
-          type={'profile'}
-          event={modal.event}
-        />
       )}
     </header>
   );
