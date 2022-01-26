@@ -40,10 +40,6 @@ export function TaskAdditionsShow({ board, group, task }) {
 
 
     const toggleModal = ({ event, type }) => {
-        console.log('type:', type);
-        console.log('event:', event);
-
-
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
             return
@@ -57,10 +53,7 @@ export function TaskAdditionsShow({ board, group, task }) {
     }
 
     const getAvatarBackground = (member) => {
-        if (!member) return {}
-        if (member.fullname === 'Guest') return { background: `url(${femaleGuest}) center center / cover` }
-        if (member.url) return { background: `url(${member.url}) center center / cover` }
-        return { backgroundColor: member.color }
+        if (member.imgUrl) return { background: `url(${member.imgUrl}) center center / cover` }
     }
 
     return (

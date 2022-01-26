@@ -35,6 +35,9 @@ export function TaskDetails(props) {
 
     }
 
+    console.log('task:', task);
+    
+
     if (!task) return <Loader />;
     return (
         <section className="task-details-page" onClick={() => {
