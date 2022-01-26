@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {utilService} from '../services/util.service.js';
 import {httpService} from './http.service.js';
+import {socketService} from './socket.service.js';
 import {userService} from './user.service.js';
 
 // Localstorage
@@ -70,6 +71,7 @@ async function getById(boardId) {
 async function update(board) {
   try {
     const updatedBoard = await httpService.put('board', board);
+    socketService.emit('board-change', board);
     return updatedBoard;
   } catch (err) {
     console.log('Cannot update board', err);
@@ -398,7 +400,7 @@ async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = 
     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
     board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
     if (activityTxt) {
-      const formattedActivity = _getFormattedActivity(taskToUpdate, activityTxt)
+      const formattedActivity = _getFormattedActivity(taskToUpdate, activityTxt);
       board.activities.unshift(formattedActivity);
     }
 
@@ -421,7 +423,6 @@ async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = 
 //   }
 //   return storageService.put(STORAGE_KEY, board);
 // }
-
 
 function _getFormattedActivity(task, txt) {
   return {
