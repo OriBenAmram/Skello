@@ -67,7 +67,10 @@ export function Workspace() {
                         </div>
                         <div className='primary-boards-container-section'>
                             <div className="add-board-preview flex align-center justify-center"
-                                onClick={(ev) => toggleModal(ev, 'createBoard')}
+                                onClick={(event) => {
+                                    console.log('baba')
+                                    toggleModal({ event, type: 'createBoard' })
+                                }}
                             >
                                 <span>Create new board</span>
                             </div>
