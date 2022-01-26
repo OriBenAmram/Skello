@@ -8,6 +8,9 @@ import leftHero from '../assets/imgs/left-loginsignup-hero.svg';
 import rightHero from '../assets/imgs/right-loginsignup-hero.svg';
 import {ImTrello} from 'react-icons/im';
 
+// Services
+import { userService } from '../services/user.service';
+
 // Actions
 import {login, signup} from '../store/user/user.actions';
 
@@ -35,10 +38,9 @@ export function LoginSignup(props) {
   };
 
   const onClickGuest = async () => {
-    await dispatch(
-      login({
-        username: 'guest.skello@gmail.com',
-        password: '13579',
+    await dispatch(login({
+        username: 'guest',
+        password: 'guest123',
       })
     );
     props.history.push('/workspace');

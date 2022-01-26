@@ -1,5 +1,15 @@
 import { boardService } from '../../services/board.service.js';
 
+export function setBoard(board) {
+  return async dispatch => {
+    try {
+      dispatch({ type: 'SET_BOARD', board });
+    } catch (err) {
+      console.log('Cannot set board', err);
+    }
+  };
+}
+
 // TODO: add filterby support
 export function loadBoards() {
   return async dispatch => {
@@ -30,7 +40,7 @@ export function addActivity(boardId, task, txt) {
   return async dispatch => {
     try {
       const board = await boardService.addActivity(boardId, task, txt);
-      dispatch({ type: 'SET_BOARD', board });
+      dispatch({ type: 'SAVE_BOARD', board });
       return board;
     } catch (err) {
       console.log('BoardActions: err in loadBoard', err);
@@ -155,11 +165,9 @@ export function updateTaskTest(board, taskToUpdate) {
 
 // change to saveBoard
 export function onSaveBoard(board) {
-  console.log('board:', board);
-
   return async dispatch => {
     try {
-      const savedBoard = await boardService.save(board);
+      const savedBoard = await boardService.update(board);
       dispatch({ type: 'SAVE_BOARD', board: savedBoard });
     } catch (err) {
       console.log('BoardActions: err in onSaveBoard', err);

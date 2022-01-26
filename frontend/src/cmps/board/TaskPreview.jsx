@@ -103,6 +103,11 @@ export function TaskPreview(props) {
     return '';
   };
 
+
+  const getAvatarBackground = (member) => {
+    return { background: `url(${member.imgUrl}) center center / cover` }
+  }
+
   // task checklist todo globals
   let todos;
   let finishedTodos;
@@ -237,14 +242,13 @@ export function TaskPreview(props) {
                   </div>
 
                   {/* MEMBERS */}
-                  {!isCover && members?.length > 0 && (
+                  {!isCover && task.members?.length > 0 && (
                     <div className="badges-members flex justify-flex-end">
-                      {members.map(member => (
+                      {task.members.map(member => (
                         <div
-                          style={{ backgroundColor: member.color }}
+                          style={getAvatarBackground(member)}
                           className="member-avatar"
                           key={member._id}>
-                          {member.fullname.charAt(0).toUpperCase()}
                         </div>
                       ))}
                     </div>

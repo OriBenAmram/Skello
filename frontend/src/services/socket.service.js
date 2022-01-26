@@ -1,9 +1,9 @@
 import io from 'socket.io-client';
 
-export const SOCKET_EMIT_JOIN_BOARD = 'join-board';
-export const SOCKET_EMIT_JOIN_BOARD = 'new-board';
-export const SOCKET_EVENT_UPDATED_BOARD = 'updated-board';
-export const SOCKET_EVENT_BOARD_ADDED = 'new-board-added';
+// export const SOCKET_EMIT_JOIN_BOARD = 'join-board';
+// export const SOCKET_EMIT_JOIN_BOARD = 'new-board';
+// export const SOCKET_EVENT_UPDATED_BOARD = 'updated-board';
+// export const SOCKET_EVENT_BOARD_ADDED = 'new-board-added';
 
 const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030';
 export const socketService = createSocketService();
