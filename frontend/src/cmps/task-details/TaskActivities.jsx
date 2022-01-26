@@ -78,7 +78,7 @@ export function TaskActivities({ board, group, task, description }) {
                         </div>
                         <div className='activity-info'>
                             <h2> <span>{activity.member.fullname}</span> {activity.txt}</h2>
-                            <p>{utilService.getTimeDiff(activity.createdAt)}</p>
+                            <p>{utilService.getTimeDiff(activity.createdAt, 'occured')}</p>
                         </div>
                     </section>
                 })}

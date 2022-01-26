@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {utilService} from '../services/util.service.js';
-import {httpService} from './http.service.js';
-import {socketService} from './socket.service.js';
-import {userService} from './user.service.js';
+import { utilService } from '../services/util.service.js';
+import { httpService } from './http.service.js';
+import { socketService } from './socket.service.js';
+import { userService } from './user.service.js';
 
 // Localstorage
 // import DUMMY_BOARDS from './board.dummy.data.service';
@@ -78,7 +78,7 @@ async function update(board) {
   }
 }
 
-async function add(title, background) {
+async function add(title, style) {
   const loggedUser = userService.getLoggedinUser();
   const board = {
     isStarred: false,
@@ -86,9 +86,7 @@ async function add(title, background) {
     isPublic: false,
     createdAt: Date.now(),
     createdBy: loggedUser,
-    style: {
-      background,
-    },
+    style,
     labels: [
       // green
       {
@@ -127,7 +125,7 @@ async function add(title, background) {
         color: '#0079bf',
       },
     ],
-    members: [{...loggedUser}],
+    members: [{ ...loggedUser }],
     groups: [],
     activities: [],
   };
