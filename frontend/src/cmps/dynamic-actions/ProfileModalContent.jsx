@@ -16,11 +16,9 @@ export function ProfileModalContent({ toggleModal }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.userModule.loggedinUser);
     const onClickLogout = () => {
-        console.log('logging out')
         dispatch(logout())
     }
     // const [modalType, setModalType] = useState({ header: 'Labels', type: 'labels' });
-    console.log('user:', user);
 
     const getUserAvatarImg = () => {
         if (user?.imgUrl) {
