@@ -32,11 +32,24 @@ export function BoardApp(props) {
       await dispatch(loadBoard(id));
     } catch (err) {}
 
-    return () => {
+    // return () => {
+    //   console.log('UNMOUNT');
+    //   socketService.off('updated-board', () => {
+    //     console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
+    //   });
+    //   socketService.terminate();
+    //   // await dispatch(setBoard(null));
+    // };
+  }, []);
+
+  //TODO: ask illai
+  useEffect(() => {
+    return async () => {
       socketService.off('updated-board', () => {
         console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
       });
       socketService.terminate();
+      await dispatch(setBoard(null));
     };
   }, []);
 

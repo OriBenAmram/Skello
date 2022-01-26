@@ -9,7 +9,7 @@ export const userService = {
   logout,
   signup,
   getLoggedinUser,
-  getUsers
+  getUsers,
 };
 
 async function login(userCred) {
@@ -25,7 +25,6 @@ function _saveLocalUser(user) {
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
   return user;
 }
-
 
 async function signup(userCred) {
   try {
@@ -60,11 +59,11 @@ async function logout() {
   }
 }
 
-async function getUsers() { 
+async function getUsers() {
   try {
     const users = await httpService.get('user');
-    console.log('users:', users);
-    return users
+    if (!users) return [];
+    return users;
   } catch (err) {
     console.log('Cannot logout', err);
   }
