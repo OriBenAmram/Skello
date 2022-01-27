@@ -52,7 +52,6 @@ export function BoardApp(props) {
   }, []);
 
   const onLoadBoard = () => {
-    console.log('im in load board');
     dispatch(loadBoard(id));
   };
 

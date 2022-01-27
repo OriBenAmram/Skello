@@ -48,7 +48,7 @@ export function ProfileModalContent({onToggleModal}) {
             </div>
           </div>
           {/* {user.fullname === 'guest' && <Link to={('/signup')}> */}
-          {true && (
+          {user.fullname === 'Guest' && (
             <Link to={'/signup'}>
               <button
                 onClick={event => {
@@ -60,7 +60,7 @@ export function ProfileModalContent({onToggleModal}) {
           )}
         </section>
         <section className="logout-section">
-          <Link to={'/signup'}>
+          <Link to={'/login'}>
             <button
               onClick={event => {
                 onToggleModal({event, type: 'profile'});
