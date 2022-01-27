@@ -9,15 +9,19 @@ import { ImTrello } from 'react-icons/im';
 import { userService } from '../services/user.service';
 
 // Actions
+import { loadUsers } from '../store/user/user.actions.js';
 import { toggleModal } from '../store/app/app.action';
 
 export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
-  const user = userService.getMiniUser()
+  const user = userService.getMiniUser();
 
-  const onUserClick = (event) => {
-    console.log('user clicked')
+  useEffect(() => {
+    dispatch(loadUsers())
+  }, [])
+
+  const onUserClick = event => {
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300 }));
   };
 

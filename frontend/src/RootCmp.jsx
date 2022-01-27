@@ -21,7 +21,6 @@ export function RootCmp() {
 
   // const isSideBarOpen = useSelector(state => state.appModule.isSideBarOpen);
   const popupModal = useSelector(state => state.appModule.popupModal);
-  console.log('popupModal.isModalOpen:', popupModal.isModalOpen);
 
   // const onToggleSideMenu = () => {
   //   dispatch(toggleSideMenu())

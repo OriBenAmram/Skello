@@ -1,0 +1,47 @@
+.users-modal-content {
+     // general content
+     .modal-content {
+        .users-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .user-preview {
+                border-radius: 3px;
+                height: 32px;
+                line-height: 32px;
+                margin-bottom: 2px;
+                overflow: hidden;
+                padding: 4px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                display: flex;
+                align-items: center;
+                margin-bottom: 7px;
+                cursor: pointer;
+
+                &:hover { 
+                    background-color: #091e420a;
+                }
+
+                .member-avatar { 
+                    margin-right: 10px;
+
+                    &.with-image {
+                        
+                    }
+                }
+
+                p {
+                    margin: 0;
+                    line-height: 32px;
+                    // color: #172b4d;
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

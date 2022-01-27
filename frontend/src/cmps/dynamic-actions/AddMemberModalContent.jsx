@@ -5,58 +5,74 @@ import { GrClose } from 'react-icons/gr';
 
 // Actions
 import { toggleModal } from '../../store/app/app.action';
-
+import { onSaveBoard } from '../../store/board/board.action';
 // ICONS
 
 
 export function AddMemberModalContent({ onToggleModal }) {
     const dispatch = useDispatch();
-        const users = useSelector(state => state.userModule.users);
-        console.log('users:', users);
-    
-    // const onAddUser = 
+    const users = useSelector(state => state.userModule.users);
+    const board = useSelector(state => state.boardModule.board);
+    const [searchedUserText, setSearchedUserText] = useState(null);
+    console.log('users:', users);
+    console.log('searchedUserText:', searchedUserText);
+
+    const onClickUser = (event, user) => {
+        const isExicts = board.members.find(member => { 
+            return member.fullname === user.fullname
+        })
+        console.log('isExicts:', isExicts);
+        board.members.unshift(user)
+        dispatch(onSaveBoard(board))
+        onToggleModal({ event, type: 'addMemberToBoard' })
+    }
+
+    const getAvatarBackground = user => {
+        if (user.imgUrl) return { background: `url(${user.imgUrl}) center center / cover` };
+    };
 
     return (
-        <section className="members-modal-content">
-            {/* <section className="modal-header">
-                <button className="simple-close-btn" onClick={toggleModal}>
+        <section className="users-modal-content">
+            <section className="modal-header">
+                <button className="simple-close-btn" onClick={(event) => {
+                    onToggleModal({ event, type: 'addMemberToBoard' })
+                }}>
                     <GrClose className="btn-content" />
                 </button>
-                Members
+                Invite to board
             </section>
             <section className="modal-content">
                 <div className="modal-title">
                     <input
-                        placeholder={`Search members`}
+                        placeholder={`Search users`}
                         type="text"
                         className="modal-main-input"
-                        onChange={ev => {
-                            setSearchedMemberText(ev.target.value);
+                        onChange={(ev) => {
+                            setSearchedUserText(ev.target.value);
                         }}
                         autoFocus
                     />
-                    <h4>Board members</h4>
-                    <section className="members-list">
-                        {board.members.map((member, index) => {
+                    <h4>Board users</h4>
+                    <section className="users-list">
+                        {users.map((user, index) => {
                             return (
                                 <div
                                     key={index}
-                                    className="member-preview"
-                                    onClick={() => {
-                                        onMemberClick(member);
+                                    className="user-preview"
+                                    onClick={(event) => {
+                                        onClickUser(event, user);
                                     }}>
                                     <div
-                                        className={`member-avatar ${member.imgUrl ? 'with-image' : ''}`}
-                                        style={getAvatarBackground(member)}>
-                                        {getAvatarInnerText(member)}
+                                        className={`member-avatar ${user.imgUrl ? 'with-image' : ''}`}
+                                        style={getAvatarBackground(user)}>
                                     </div>
-                                    <p>{member.fullname}</p>
+                                    <p>{user.fullname}</p>
                                 </div>
                             );
                         })}
                     </section>
                 </div>
-            </section> */}
+            </section>
         </section>
     );
 }
