@@ -34,13 +34,13 @@ export function Workspace() {
         dispatch(onSaveBoard(board));
     };
 
-    const toggleModal = ({ event, type }) => {
+    const toggleModal = ({ event, type, isDetails }) => {
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false });
             return;
         }
 
-        setModal({ isModalOpen: true, type, event });
+        setModal({ isModalOpen: true, type, event, isDetails});
     };
 
     return (
@@ -55,7 +55,7 @@ export function Workspace() {
                             <h3>Starred boards</h3>
                         </div>
                         <div className="primary-boards-container-section">
-                            <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} />
+                            <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} isStarred/>
                         </div>
                     </section>
                     <section className="recent-boards-section">
@@ -66,21 +66,14 @@ export function Workspace() {
                             <h3>Recently viewed</h3>
                         </div>
                         <div className="primary-boards-container-section">
-                            <div
-                                className="add-board-preview flex align-center justify-center"
-                                onClick={event => {
-                                    console.log('baba');
-                                    toggleModal({ event, type: 'createBoard' });
-                                }}>
-                                <span>Create new board</span>
-                            </div>
-                            <BoardList boards={boards} onToggleStarred={onToggleStarred} />
+                            
+                            <BoardList boards={boards} onToggleStarred={onToggleStarred} toggleModal={toggleModal}/>
                         </div>
                     </section>
                 </div>
             </section>
             {modal.isModalOpen && (
-                <DynamicActionModal toggleModal={toggleModal} type={modal.type} event={modal.event} />
+                <DynamicActionModal toggleModal={toggleModal} type={modal.type} event={modal.event} isDetails={true} posXAddition={150}/>
             )}
         </section>
     );

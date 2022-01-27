@@ -42,7 +42,7 @@ export function RootCmp() {
         </Switch>
       </main>
 
-      <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} />
+      {/* <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} /> */}
       {/* {(popupModal.isModalOpen) && <DynamicActionModal isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />} */}
     </div >
   );

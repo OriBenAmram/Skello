@@ -41,12 +41,13 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
             case 'profile':
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
-                return <CreateBoardContent toggleModal={toggleModal} ask={task} group={group} board={board} type={type} />
+                return <CreateBoardContent toggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
         }
     }
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
-        if ((type === 'dates' || type === 'labels' || type === 'cover') && isDetails) {
+        if ((type === 'dates' || type === 'labels' || type === 'cover' || type === 'createBoard') && isDetails) {
+            console.log('here')
             return { top: top / 2, left: left + posXAddition }
         }
         return { top: top + height + posYAddition, left: left + posXAddition }
