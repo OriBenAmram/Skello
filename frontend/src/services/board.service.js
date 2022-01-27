@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { utilService } from '../services/util.service.js';
-import { httpService } from './http.service.js';
-import { socketService } from './socket.service.js';
-import { userService } from './user.service.js';
+import {utilService} from '../services/util.service.js';
+import {httpService} from './http.service.js';
+import {socketService} from './socket.service.js';
+import {userService} from './user.service.js';
 
 // Localstorage
 // import DUMMY_BOARDS from './board.dummy.data.service';
@@ -125,7 +125,7 @@ async function add(title, style) {
         color: '#0079bf',
       },
     ],
-    members: [{ ...loggedUser }],
+    members: [{...loggedUser}],
     groups: [],
     activities: [],
   };
@@ -171,7 +171,9 @@ async function removeGroup(groupId, boardId) {
   try {
     const board = await getById(boardId);
     board.groups = board.groups.filter(group => group.id !== groupId);
+
     update(board);
+    return board;
   } catch (err) {
     console.log('Cant remove group', err);
   }

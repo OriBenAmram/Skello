@@ -23,7 +23,6 @@ export function loadBoards() {
   };
 }
 
-
 export function addBoard(boardToAdd) {
   return async dispatch => {
     try {
@@ -211,44 +210,35 @@ export function handleDrag(
   droppableIndexEnd,
   type
 ) {
-  console.log('board,:', board,);
-  console.log('droppableIdStart:', droppableIdStart);
-  console.log('droppableIdEnd:', droppableIdEnd);
-  console.log('droppableIndexStart:', droppableIndexStart);
-  console.log('droppableIndexEnd:', droppableIndexEnd);
-  console.log('type:', type);
-
-
   return async dispatch => {
-    const newBoard = { ...board };
     if (type === 'group') {
       // take out group from old index
-      const group = newBoard.groups.splice(droppableIndexStart, 1);
+      const group = board.groups.splice(droppableIndexStart, 1);
       // insert group to new index
-      newBoard.groups.splice(droppableIndexEnd, 0, ...group);
+      board.groups.splice(droppableIndexEnd, 0, ...group);
     } else {
       // Moving task in the same group
       if (droppableIdStart === droppableIdEnd) {
-        const group = newBoard.groups.find(group => group.id === droppableIdStart);
+        const group = board.groups.find(group => group.id === droppableIdStart);
         const task = group.tasks.splice(droppableIndexStart, 1);
         group.tasks.splice(droppableIndexEnd, 0, ...task);
       }
       // Moving task between differents groups // CR: also refactor name
       if (droppableIdStart !== droppableIdEnd) {
         // Find the group where drag happened
-        const groupStart = newBoard.groups.find(group => group.id === droppableIdStart);
+        const groupStart = board.groups.find(group => group.id === droppableIdStart);
 
         // Pull out task from this group
         const task = groupStart.tasks.splice(droppableIndexStart, 1);
 
         // Find the group where drag ended
-        const groupEnd = newBoard.groups.find(group => group.id === droppableIdEnd);
+        const groupEnd = board.groups.find(group => group.id === droppableIdEnd);
 
         // Put the task in the new group
         groupEnd.tasks.splice(droppableIndexEnd, 0, ...task);
       }
     }
-    const savedBoard = await boardService.update(newBoard);
+    const savedBoard = await boardService.update(board);
     console.log('savedBoard:', savedBoard);
 
 
