@@ -33,11 +33,6 @@ export function TaskActivities({ board, group, task, description }) {
         setModal({ isModalOpen: true, type, event })
     }
 
-    const getAvatarInnerText = (member) => {
-        if (member.imgUrl) return ''
-        return member.fullname.charAt(0).toUpperCase()
-    }
-
     const getAvatarBackground = (member) => {
         if (!member) return {}
         if (member.fullname === 'Guest') return { background: `url(${femaleGuest}) center center / cover`, height: '35px', width: '35px' }
@@ -73,8 +68,6 @@ export function TaskActivities({ board, group, task, description }) {
                             toggleModal({ event: ev, type: 'profile' })
                         }}>
                             {modal.isModalOpen && <DynamicActionModal posXAddition={0} posYAddition={0} toggleModal={toggleModal} type={'profile'} event={modal.event} />}
-
-                            {getAvatarInnerText(activity.member)}
                         </div>
                         <div className='activity-info'>
                             <h2> <span>{activity.member.fullname}</span> {activity.txt}</h2>

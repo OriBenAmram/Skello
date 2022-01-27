@@ -43,9 +43,6 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
         setModal({ isModalOpen: true, type, event })
     }
 
-    console.log('todo.isDone:', todo.isDone);
-
-
     return (<div className='todo-preview' key={todo.id} onBlur={(ev) => {
         if (!showPicker) {
             onToggleTextArea(ev, false)

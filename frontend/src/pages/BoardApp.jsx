@@ -81,7 +81,7 @@ export function BoardApp(props) {
           <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
         </div>
       </div>
-      <Route path="/board/:boardId/:groupId/:taskId" component={TaskDetails} />
+      <Route path="/board/:boardId/:groupId/:taskId"  component={TaskDetails} />
     </DragDropContext>
   );
 }
