@@ -1,5 +1,5 @@
 // import {storageService} from './async-storage.service.js';
-import {httpService} from './http.service.js';
+import { httpService } from './http.service.js';
 
 // const STORAGE_KEY = 'user';
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser';
@@ -41,6 +41,7 @@ async function loginAsGuest() {
   const userCred = {
     username: 'guest',
     password: 'guest123',
+    imgUrl: 'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg'
   };
   try {
     const user = await login(userCred);

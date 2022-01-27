@@ -124,7 +124,7 @@ export function TaskPreview(props) {
     if (!finishedTodos / todos) return;
     return `${finishedTodos}/${todos}`;
   };
-
+  
   if (!isEdit) {
     return (
       <Draggable draggableId={task.id} index={index}>

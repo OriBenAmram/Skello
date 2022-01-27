@@ -1,23 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
-import femaleGuest from '../assets/imgs/female-guest.svg';
 import {NavLink, Link} from 'react-router-dom';
 import {AiFillHome} from 'react-icons/ai';
-import {BiBell} from 'react-icons/bi';
 import {ImTrello} from 'react-icons/im';
+
+// Services
+import { userService } from '../services/user.service';
 
 // Actions
 import {toggleModal} from '../store/app/app.action';
 
 export function AppHeader() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userModule.loggedinUser);
   let location = useLocation();
-
+  
+    const user =  userService.getLoggedinUser()
   const onUserClick = event => {
-    console.log('event:', event);
-
     dispatch(toggleModal({event, type: 'profile', posXAddition: -300}));
   };
 

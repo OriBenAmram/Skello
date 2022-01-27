@@ -31,12 +31,12 @@ export function AttachmentModalContent({board, group, task, toggleModal}) {
     } catch (err) {
       console.log('error in getting fileUrl From Cloudinary', err);
     }
-    this.setState({isUploading: false});
+    setUploadData({isUploading: false});
   };
 
   const onAddFile = fileUrl => {
     console.log('adding');
-    dispatch(addFile(board._id, group.id, task.id, fileUrl));
+    dispatch(addFile(board, group.id, task.id, fileUrl));
   };
 
   return (
