@@ -1,28 +1,18 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
 import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
 import { BsPersonPlus, BsArrowRight, BsArchive, BsSquareHalf } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md";
 import { BiMicrophone } from "react-icons/bi";
 
-import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
+// Actions
+import { toggleModal } from "../../store/app/app.action";
 
 
 export function TaskSideBar({ task, group, board }) {
-
-    const [modal, setModal] = useState({ isModalOpen: false, type: null });
-
-    const toggleModal = ({ event, type }) => {
-
-        // In case the modal is open somewhere
-
-        if (modal.isModalOpen) {
-            setModal({ ...modal, isModalOpen: false })
-            return
-        }
-        // setModal({ isModalOpen: true, pos: { clientY: event.clientY, clientX: event.clientX }, type , event})
-        setModal({ isModalOpen: true, type, event })
-    }
+    const dispatch = useDispatch();
 
     return (
         <section className='side-bar'>
@@ -34,27 +24,26 @@ export function TaskSideBar({ task, group, board }) {
             <section className='add-to-card'>
                 <h3>Add to card</h3>
                 <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'members' })
+                   dispatch( toggleModal({ event, type: 'members' }))
                 }} > <BsPersonPlus />Members</button>
                 <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'labels' })
+                    dispatch(toggleModal({ event, type: 'labels' }))
                 }} > <AiOutlineTags />Labels</button>
                 <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'checklist' })
+                   dispatch( toggleModal({ event, type: 'checklist' }))
                 }} > <AiOutlineCheckSquare /> Checklist</button>
                 <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'dates' })
+                   dispatch( toggleModal({ event, type: 'dates' }))
                 }} > <AiOutlineFieldTime />Dates</button>
                 <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'attachment' })
+                   dispatch( toggleModal({ event, type: 'attachment' }))
                 }} > <MdOutlineAttachment />Attachment</button>
                 {/* <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'stt' })
+                    dispatch(toggleModal({ event, type: 'stt' }))
                 }} > <BiMicrophone />Speech To Text</button> */}
                 {(!task.style.backgroundColor && !task.style.backgroundImage?.url) && <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'cover' })
+                    dispatch(toggleModal({ event, type: 'cover' }))
                 }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>}
-                {modal.isModalOpen && <DynamicActionModal isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} pos={modal.pos} position={'absolute'} event={modal.event} />}
             </section>
             <section className='actions'>
                 <h3>Actions</h3>

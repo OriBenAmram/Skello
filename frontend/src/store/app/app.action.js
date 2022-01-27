@@ -7,7 +7,7 @@ export function toggleSideMenu() {
   };
 }
 
-export function toggleModal({ event, type, posXAddition = 0, posYAddition = 0 }) {
+export function toggleModal({ event, type = null, posXAddition = 0, posYAddition = 0 }) {
   
   return async dispatch => {
     dispatch({
