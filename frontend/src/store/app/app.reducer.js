@@ -5,7 +5,9 @@ const initialState = {
   popupModal: {
     isModalOpen: false,
     event: null,
-    type: null
+    type: null,
+    posXAddition: null,
+    posYAddition:null,
   }
 };
 
@@ -16,7 +18,13 @@ export function appReducer(state = initialState, action) {
       return (newState = { ...state, isSideBarOpen: !state.isSideBarOpen });
     case 'TOGGLE_MODAL':
       console.log('action.modalInfo:', action.modalInfo);
-      return (newState = { ...state, popupModal: { ...state.popupModal, isModalOpen: !state.popupModal.isModalOpen, event: action.modalInfo.event, type: action.modalInfo.type, posXAddition: action.modalInfo.posXAddition, posYAddition: action.modalInfo.posYAddition } });
+      return (newState = {
+        ...state, popupModal: {
+          ...state.popupModal, isModalOpen: !state.popupModal.isModalOpen,
+          event: action.modalInfo.event, type: action.modalInfo.type, posXAddition: action.modalInfo.posXAddition,
+          posYAddition: action.modalInfo.posYAddition
+        }
+      });
 
     default:
       return newState;
