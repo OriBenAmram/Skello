@@ -87,6 +87,5 @@ async function getUsers() {
 
 function getLoggedinUser() {
   const loggedinUser = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN) || null);
-  console.log('loggedinUser from service', loggedinUser);
   return loggedinUser;
 }
