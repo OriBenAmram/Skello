@@ -8,6 +8,7 @@ const initialState = {
     type: null,
     posXAddition: 0,
     posYAddition: 0,
+    member: null
   }
 };
 
@@ -21,7 +22,7 @@ export function appReducer(state = initialState, action) {
         ...state, popupModal: {
           ...state.popupModal, isModalOpen: !state.popupModal.isModalOpen,
           event: action.modalInfo.event, type: action.modalInfo.type, posXAddition: action.modalInfo.posXAddition,
-          posYAddition: action.modalInfo.posYAddition
+          posYAddition: action.modalInfo.posYAddition, member: action.modalInfo.member
         }
       });
 

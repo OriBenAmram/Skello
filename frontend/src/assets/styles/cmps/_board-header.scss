@@ -66,6 +66,12 @@
 }
 
 .nav-members{
+    display: flex;
+
+    :not(:first-child) { 
+        margin-left: -9px;
+    }
+
     .member-avatar{
         background-color: #ff7c6a;
     }

@@ -47,6 +47,9 @@
         text-decoration: none;
         transition: background-color .15s ease-in;
         margin: 10% 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover{
             background-color: #0056d9;

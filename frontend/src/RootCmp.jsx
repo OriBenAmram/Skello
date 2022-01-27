@@ -19,16 +19,15 @@ import { toggleSideMenu, toggleModal } from './store/app/app.action.js'
 export function RootCmp() {
   const dispatch = useDispatch();
 
-  // const isSideBarOpen = useSelector(state => state.appModule.isSideBarOpen);
+  const isSideBarOpen = useSelector(state => state.appModule.isSideBarOpen);
   const popupModal = useSelector(state => state.appModule.popupModal);
 
-  // const onToggleSideMenu = () => {
-  //   dispatch(toggleSideMenu())
-  // }
+  const onToggleSideMenu = () => {
+    dispatch(toggleSideMenu())
+  }
 
   const onToggleModal = ({ event, type = null }) => {
     dispatch(toggleModal({ event, type }))
-    // console.log('onToggleModal')
   }
 
   return (
@@ -42,8 +41,8 @@ export function RootCmp() {
         </Switch>
       </main>
 
-      {/* <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} /> */}
-      {(popupModal.isModalOpen) && <DynamicBoardActionModal onToggleModal={onToggleModal} isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />}
+      <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} />
+      {(popupModal.isModalOpen) && <DynamicBoardActionModal member={popupModal.member} onToggleModal={onToggleModal} isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />}
     </div >
   );
 

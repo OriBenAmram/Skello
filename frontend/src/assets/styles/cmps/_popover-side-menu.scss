@@ -1,34 +1,90 @@
-.popover-side-menu{
-    background-color: $clr1;
+.popover-side-menu {
+    background-color: #f4f5f7;
     position: absolute;
     top: 85px;
     right: 200px;
-    width: 400px;
+    width: 340px;
     height: calc(100vh - 100px);
     border: 1px solid lightgray;
     border-radius: 3px;
-    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    z-index: 30;
+    transition: right 0.5s;
 
-    transition: right .5s;
+    .primary-close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: $clr1;
+        font-size: 16px;
+    }
 
-    .popover-header{
+    hr {
+        background-color: #091e4221;
+        border: 0;
+        height: 1px;
+        margin: auto 0;
+        padding: 0;
+        width: 100%;
+
+        &.bottom-hr {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+
+    .popover-header {
         text-align: center;
-        margin: 0 auto;
         color: $clr1;
         font-weight: 600;
-        margin: 0 0 12px;
         line-height: 40px;
         overflow: hidden;
         position: relative;
-        border-bottom: 1px solid rgba(9,30,66,.13);
-        
-        span{
+        padding: 0 6px 0 12px;
+        text-overflow: ellipsis;
+        position: relative;
+
+        span {
             text-align: center;
             margin: 0 auto;
         }
+    }
 
-        color: $clr2;
-        padding: 0 32px;
-        text-overflow: ellipsis;
+    .sidemenu-main-content {
+        padding: 12px 6px 12px 12px;
+        // General
+        .primary-link-btn {
+            border-radius: 3px;
+            font-weight: 600;
+            line-height: 20px;
+            text-decoration: none;
+            padding: 6px 6px 6px 40px;
+            position: relative;
+            background-color: initial;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: $clr1;
+            
+            &:hover { 
+                background-color: #091e4214;
+            }
+        }
+
+        .primary-icon {
+            font-size: 20px;
+            height: 20px;
+            left: 12px;
+            line-height: 20px;
+            position: absolute;
+            top: 6px;
+            width: 20px;
+        }
+        // Main content
+        // Upper Options
+        .upper-sidemenu-options {
+            margin: 4px 0;
+        }
     }
 }

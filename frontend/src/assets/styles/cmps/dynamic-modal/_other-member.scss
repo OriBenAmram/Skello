@@ -1,0 +1,76 @@
+.other-member-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 150px;
+    border: none;
+
+    .simple-close-btn { 
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: #0079BF;
+        border:none;
+        color: whitesmoke;
+        font-size: 16px;
+    }
+
+    .upper-section {
+        background-image: linear-gradient(to bottom, #0079bf 0%, #0079bf 100%);
+        color: white;
+        height: 90px;
+        border:none;
+
+        .user-unfo {
+            position: absolute;
+            top: 40px;
+            left: 117px;
+
+            > * {
+                margin: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+            h2 {
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .other-member-expended-avatar {
+        position: absolute;
+        left: 15px;
+        top: 26px;
+        height: 95px;
+        width: 94px;
+        border-radius: 25em;
+    }
+
+    .lower-section {
+        flex: 1;
+
+        button {
+            color: #172b4d;
+            font-size: 14px;
+            line-height: 20px;
+            width: 100%;
+            font-weight: 400;
+            background-color: inherit;
+            text-align: left;
+            border: none;
+            padding: 6px 12px;
+            margin: 40px 0px 15px;
+
+            &:hover { 
+                background-color: rgba(9, 30, 66, 0.04);
+            }
+        }
+    }
+}
