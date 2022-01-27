@@ -18,7 +18,7 @@ export function BoardApp(props) {
   const board = useSelector(state => state.boardModule.board);
   const {id} = props.match.params;
 
-  useEffect(async () => {
+  useEffect(() => {
     try {
       socketService.setup();
       // add to all sockets board id
@@ -29,11 +29,18 @@ export function BoardApp(props) {
         console.log('UPDATED board from backend', updatedBoard);
         await dispatch(setBoard(updatedBoard));
       });
-      await dispatch(loadBoard(id));
+      onLoadBoard();
     } catch (err) {
       console.log('Cannot load board', err);
     }
 
+    return () => {
+      socketService.off('updated-board', () => {
+        console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
+      });
+      socketService.terminate();
+      clearBoard();
+    };
     // return () => {
     //   console.log('UNMOUNT');
     //   socketService.off('updated-board', () => {
@@ -44,18 +51,14 @@ export function BoardApp(props) {
     // };
   }, []);
 
-  //TODO: ask illai
-  // Unmount func
-  useEffect(() => {
-    return async () => {
-      console.log('UNMOUNT');
-      socketService.off('updated-board', () => {
-        console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
-      });
-      socketService.terminate();
-      await dispatch(setBoard(null));
-    };
-  }, []);
+  const onLoadBoard = () => {
+    console.log('im in load board');
+    dispatch(loadBoard(id));
+  };
+
+  const clearBoard = () => {
+    dispatch(setBoard(null));
+  };
 
   const onDragEnd = result => {
     // DroppableId: "all-groups" when group is dropped
