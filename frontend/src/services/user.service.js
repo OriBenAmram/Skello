@@ -89,10 +89,13 @@ async function logout() {
 
 async function getUsers() {
   try {
-    const users = await httpService.get('user');
-    if (!users) return [];
-    console.log('users:', users);
-    return users;
+    const users = await httpService.get('user').
+      then((users => {
+        if (!users) return [];
+        console.log('users:', users);
+        return users;
+        
+      }))
   } catch (err) {
     console.log('Cannot logout', err);
   }
