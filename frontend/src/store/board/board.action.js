@@ -1,9 +1,9 @@
-import {boardService} from '../../services/board.service.js';
+import { boardService } from '../../services/board.service.js';
 
 export function setBoard(board) {
   return async dispatch => {
     try {
-      dispatch({type: 'SET_BOARD', board});
+      dispatch({ type: 'SET_BOARD', board });
     } catch (err) {
       console.log('Cannot set board', err);
     }
@@ -15,7 +15,7 @@ export function loadBoards() {
   return async dispatch => {
     try {
       const boards = await boardService.query();
-      const action = {type: 'SET_BOARDS', boards};
+      const action = { type: 'SET_BOARDS', boards };
       dispatch(action);
     } catch (err) {
       console.log('Cant load boards', err);
@@ -27,7 +27,7 @@ export function addBoard(boardToAdd) {
   return async dispatch => {
     try {
       const savedBoard = await boardService.add(boardToAdd.title, boardToAdd.style);
-      const action = {type: 'ADD_BOARD', board: savedBoard};
+      const action = { type: 'ADD_BOARD', board: savedBoard };
       dispatch(action);
     } catch (err) {
       console.log('Cant load boards', err);
@@ -39,7 +39,7 @@ export function addActivity(boardId, task, txt) {
   return async dispatch => {
     try {
       const board = await boardService.addActivity(boardId, task, txt);
-      dispatch({type: 'SAVE_BOARD', board});
+      dispatch({ type: 'SAVE_BOARD', board });
       return board;
     } catch (err) {
       console.log('BoardActions: err in loadBoard', err);
@@ -51,7 +51,7 @@ export function loadBoard(boardId) {
   return async dispatch => {
     try {
       const board = await boardService.getById(boardId);
-      dispatch({type: 'SET_BOARD', board});
+      dispatch({ type: 'SET_BOARD', board });
       return board;
     } catch (err) {
       console.log('BoardActions: err in loadBoard', err);
@@ -167,7 +167,7 @@ export function onSaveBoard(board) {
   return async dispatch => {
     try {
       const savedBoard = await boardService.update(board);
-      dispatch({type: 'SAVE_BOARD', board: savedBoard});
+      dispatch({ type: 'SAVE_BOARD', board: savedBoard });
     } catch (err) {
       console.log('BoardActions: err in onSaveBoard', err);
     }
@@ -211,7 +211,6 @@ export function handleDrag(
   type
 ) {
   return async dispatch => {
-    // const newBoard = {...board};
     if (type === 'group') {
       // take out group from old index
       const group = board.groups.splice(droppableIndexStart, 1);
@@ -241,6 +240,7 @@ export function handleDrag(
     }
     const savedBoard = await boardService.update(board);
     console.log('savedBoard:', savedBoard);
+
 
     dispatch({
       type: 'SAVE_BOARD',

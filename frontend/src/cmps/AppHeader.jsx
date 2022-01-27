@@ -5,6 +5,8 @@ import { NavLink, Link } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { ImTrello } from 'react-icons/im';
 
+// import { toggleModal } from '../store/app/app.action';
+
 // Services
 import { userService } from '../services/user.service';
 
@@ -68,6 +70,7 @@ export function AppHeader() {
             className={`${user?.imgUrl ? 'avatar-image' : 'member-avatar'}`}
             style={getAvatarByUser()}
             onClick={event => {
+              dispatch(toggleModal({ event, type: 'profile' }))
               onUserClick(event);
             }}>
             {/* {user.fullname.charAt(0).toUpperCase} */}
