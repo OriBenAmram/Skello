@@ -8,11 +8,12 @@ import femaleGuest from '../../assets/imgs/female-guest.svg';
 
 // Actions
 import { logout } from '../../store/user/user.actions.js';
+import { toggleModal } from '../../store/app/app.action';
 
 // ICONS
 
 
-export function ProfileModalContent({ toggleModal }) {
+export function ProfileModalContent({ onToggleModal }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.userModule.loggedinUser);
     const onClickLogout = () => {
@@ -32,7 +33,10 @@ export function ProfileModalContent({ toggleModal }) {
     return (
         <section className='profile-modal'>
             <section className='modal-header'>
-                <button className='simple-close-btn' onClick={toggleModal}><GrClose className='btn-content' /></button>
+                <button className='simple-close-btn' onClick={(event) => { 
+                    dispatch(toggleModal({event, type: 'profile'}))
+                    // onToggleModal({event, type: 'profile' })}
+                }}><GrClose className='btn-content' /></button>
                 Account
             </section>
             <section className='modal-content'>
@@ -48,13 +52,13 @@ export function ProfileModalContent({ toggleModal }) {
                     </div>
                     {/* {user.fullname === 'guest' && <Link to={('/signup')}> */}
                     {true && <Link to={('/signup')}>
-                        <button onClick={toggleModal}>Sign up with your real details</button>
+                        <button onClick={(event) => { onToggleModal({event, type: 'profile' })}}>Sign up with your real details</button>
                     </Link>}
                 </section>
                 <section className='logout-section'>
                     <Link to={('/signup')}>
                         <button onClick={(event) => {
-                            toggleModal(event)
+                            onToggleModal({event, type: 'profile' })
                             onClickLogout()
                         }}>Log out</button>
                     </Link>

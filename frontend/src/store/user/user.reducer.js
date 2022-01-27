@@ -2,7 +2,8 @@ import {userService} from '../../services/user.service.js';
 
 const initialState = {
   loggedinUser: userService.getLoggedinUser() || userService.loginAsGuest(),
-  users: userService.getUsers(),
+  users: [],
+  // users: userService.getUsers(),
 };
 
 export function userReducer(state = initialState, action) {

@@ -14,7 +14,7 @@ export function BoardHeader({board}) {
   };
 
   const onAddMemberToBoard = event => {
-    dispatch(toggleModal({event, type: 'profile'}));
+    dispatch(toggleModal({event, type: 'addMemberToBoard'}));
   };
 
   const getAvatarBackground = member => {

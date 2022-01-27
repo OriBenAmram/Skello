@@ -6,8 +6,8 @@ const initialState = {
     isModalOpen: false,
     event: null,
     type: null,
-    posXAddition: null,
-    posYAddition:null,
+    posXAddition: 0,
+    posYAddition: 0,
   }
 };
 

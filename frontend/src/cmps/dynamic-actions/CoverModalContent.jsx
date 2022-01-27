@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GrClose } from 'react-icons/gr';
 
 // Actions
-import { updateTask, onSaveBoard } from '../../store/board/board.action.js';
+import { updateTask} from '../../store/board/board.action.js';
 
 export function CoverModalContent({ board, group, task, toggleModal }) {
     const dispatch = useDispatch();

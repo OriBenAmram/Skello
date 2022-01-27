@@ -46,7 +46,7 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
     }
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
-        if ((type === 'dates' || type === 'labels' || type === 'cover' || type === 'createBoard') && isDetails) {
+        if ((type === 'dates' || type === 'labels' || type === 'createBoard') && isDetails) {
             console.log('here')
             return { top: top / 2, left: left + posXAddition }
         }

@@ -16,7 +16,8 @@ export function AppHeader() {
   let location = useLocation();
   const user = userService.getMiniUser()
 
-  const onUserClick = event => {
+  const onUserClick = (event) => {
+    console.log('user clicked')
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300 }));
   };
 
