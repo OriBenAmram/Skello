@@ -1,5 +1,5 @@
 // import {storageService} from './async-storage.service.js';
-import { httpService } from './http.service.js';
+import {httpService} from './http.service.js';
 
 // const STORAGE_KEY = 'user';
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser';
@@ -11,10 +11,10 @@ export const userService = {
   getLoggedinUser,
   getUsers,
   loginAsGuest,
+  getMiniUser,
 };
 
 async function login(userCred) {
-  console.log('🚀 ~ file: user.service.js ~ line 17 ~ login ~ userCred', userCred);
   try {
     const user = await httpService.post('auth/login', userCred);
     if (user) return _saveLocalUser(user);
@@ -37,11 +37,22 @@ async function signup(userCred) {
   }
 }
 
+function getMiniUser() {
+  const userCred = {
+    username: 'guest',
+    fullname: 'Guest',
+    imgUrl:
+      'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
+  };
+  return userCred;
+}
+
 async function loginAsGuest() {
   const userCred = {
     username: 'guest',
     password: 'guest123',
-    imgUrl: 'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg'
+    imgUrl:
+      'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
   };
   try {
     const user = await login(userCred);
