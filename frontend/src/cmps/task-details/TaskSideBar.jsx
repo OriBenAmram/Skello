@@ -8,7 +8,6 @@ import { BiMicrophone } from "react-icons/bi";
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 export function TaskSideBar({ task, group, board }) {
-    console.log('task:', task);
 
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
     const toggleModal = ({ event, type }) => {

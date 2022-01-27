@@ -70,7 +70,6 @@ export function AppHeader() {
             className={`${user?.imgUrl ? 'avatar-image' : 'member-avatar'}`}
             style={getAvatarByUser()}
             onClick={event => {
-              dispatch(toggleModal({ event, type: 'profile' }))
               onUserClick(event);
             }}>
             {/* {user.fullname.charAt(0).toUpperCase} */}

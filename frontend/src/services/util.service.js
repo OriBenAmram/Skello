@@ -73,10 +73,10 @@ function timeSince(date) {
     }
     interval = seconds / 60;
     if (interval > 1) {
-        if (Math.floor(interval) === 1) return "an minute ago";
+        if (Math.floor(interval) === 1) return "Just now";
         return Math.floor(interval) + " minutes ago";
     }
-    if (Math.floor(seconds) === 0) return "a few seconds ago";
+    if (Math.floor(seconds) === 0) return "Just now";
     return Math.floor(seconds) + " seconds ago";
 }
 
@@ -96,10 +96,8 @@ const _duration = (difference) => {
 }
 
 function getTimeDiff(createdAt, action = "Added") {
-
     const timeDiff = _duration(Date.now() - createdAt)
-    if (!timeDiff.minutes && !timeDiff.hours) {
-
+    if (timeDiff.seconds && !timeDiff.minutes && !timeDiff.hours) {
         return `${action}  ${timeDiff.seconds} seconds ago`
     } else if (timeDiff.minutes && !timeDiff.hours) {
         return `${action}  ${timeDiff.minutes} minutes ago`

@@ -11,7 +11,6 @@ export function TaskHeader({ board, group, task, title }) {
 
     const onSaveTitle = () => {
         const taskToUpdate = { ...task, title: titleText }
-        console.log('taskToUpdate:', taskToUpdate);
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
@@ -19,7 +18,6 @@ export function TaskHeader({ board, group, task, title }) {
         <section className='details-header'>
             <AiOutlineCreditCard className='primary-icon header-icon' />
             <textarea onBlur={() => {
-                console.log('on blur...')
                 onSaveTitle()
             }} onChange={(ev) => {
                 setTitleText(ev.target.value)

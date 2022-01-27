@@ -21,13 +21,13 @@ import { toggleModal } from '../../store/app/app.action.js'
 export function DynamicBoardActionModal({ isModalOpen, onToggleModal, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
 
-    const wrapperRef = useRef(null)
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside, true);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside, false);
-        };
-    }, []);
+    // const wrapperRef = useRef(null)
+    // useEffect(() => {
+    //     document.addEventListener("mousedown", handleClickOutside, true);
+    //     return () => {
+    //         document.removeEventListener("mousedown", handleClickOutside, false);
+    //     };
+    // }, []);
 
     const handleClickOutside = async (ev) => {
         // dispatch(toggleModal({ event: ev, type: 'profile' }))
@@ -47,15 +47,11 @@ export function DynamicBoardActionModal({ isModalOpen, onToggleModal, type, even
     }
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
-        // if ((type === 'dates' || type === 'labels' || type === 'createBoard') && isDetails) {
-        //     console.log('here')
-        //     return { top: top / 2, left: left + posXAddition }
-        // }
         return { top: top + height + posYAddition, left: left + posXAddition }
     }
     if (!event) return <></>
     return (
-        <section className='dynamic-action-modal' style={getModalPositionStyle()} ref={wrapperRef} >
+        <section className='dynamic-action-modal' style={getModalPositionStyle()}>
             {getContentForDisplay()}
         </section>
     )

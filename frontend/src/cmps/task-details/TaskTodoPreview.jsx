@@ -30,7 +30,6 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
 
         setCurrTodo({ ...currTodo, title: currTodo.title + emojiObject.emoji });
         setShowPicker(false);
-        console.log(currTodo)
     };
 
     const toggleModal = ({ event, type }) => {
@@ -72,7 +71,6 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
                         className='save-btn'
                         onMouseDown={(ev) => {
                             onSaveTodo(ev, todo.id, currTodo)
-                            console.log("save")
                             onToggleTextArea(ev, false)
                         }
                         }>
@@ -82,7 +80,6 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
                 </div>
                 <div className='edit-icons-options'>
                     <BiSmile onMouseDown={() => {
-                        console.log('booo')
                         setShowPicker(val => !val)
                     }} />
                     {showPicker && (

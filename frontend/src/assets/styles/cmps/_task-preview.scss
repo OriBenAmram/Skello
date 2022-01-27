@@ -36,13 +36,13 @@
         border-radius: 3px;
         padding: 4px;
 
-        img{
+        img {
             width: 16px;
             height: 16px;
-            opacity: .5;
+            opacity: 0.5;
         }
 
-        &:hover{
+        &:hover {
             background-color: #f4f5f7;
             opacity: 1;
         }
@@ -215,22 +215,18 @@
 }
 
 // Badges
-.task-badges{
+.task-badges {
     flex-wrap: wrap;
 
-    .badges-icons{
+    .badges-icons {
         gap: 4px;
-        .svg-icon{
+        .svg-icon {
             width: 13px;
             height: 13px;
         }
-
-        
     }
 
-    
-
-    .badge-icon{
+    .badge-icon {
         // border: 1px solid orange;
         filter: invert(48%) sepia(7%) saturate(1059%) hue-rotate(180deg) brightness(94%) contrast(89%);
         height: 13px;
@@ -238,65 +234,58 @@
         // align-items: center;
     }
 
-    .checklists,.attachments,.comments{
+    .checklists,
+    .attachments,
+    .comments {
         gap: 4px;
         border-radius: 3px;
         padding: 2px 5px;
         font-size: 12px;
         // line-height: 16px;
 
-        &.all-done{
+        &.all-done {
             background-color: #61bd4f;
             border-radius: 3px;
             color: #fff;
-            
-            .badge-icon{
+
+            .badge-icon {
                 filter: none;
                 color: #fff;
             }
-           
         }
-
-       
     }
 
-    
-    
-
-    .badges-members{
+    .badges-members {
         flex: 1;
         margin-bottom: 4px;
     }
 }
 
-
 // EDIT
-.screen-overlay{
+.screen-overlay {
     position: fixed;
     // inset: 0;
-    background-color: rgba(0,0,0,.659);
+    background-color: rgba(0, 0, 0, 0.659);
     opacity: 0;
-    transition: opacity .2s ease-out;
+    transition: opacity 0.2s ease-out;
     pointer-events: none;
     width: 100vw;
     height: 100vh;
     // z-index: 100;
     overflow-y: auto;
 
-    &.covered{
+    &.covered {
         opacity: 1;
-    pointer-events: auto;
-    // z-index: 100;
+        pointer-events: auto;
+        // z-index: 100;
     }
 }
 
-
-
-.badge-icon{
+.badge-icon {
     color: #fff;
 }
 
-.badge.due-date{
+.badge.due-date {
     padding: 4px;
     padding-right: 7px;
     margin: 0 4px 4px 0;
@@ -311,20 +300,25 @@
     // text-overflow: ellipsis;
     // vertical-align: top;
 
-
-    &.complete{
+    &.complete {
+        .badge-icon {
+            filter: none;
+        }
         background-color: #61bd4f;
-    border-radius: 3px;
-    color: #fff;
+        border-radius: 3px;
+        color: #fff;
     }
 
-    &.over-due{
+    &.over-due {
+        .badge-icon {
+            filter: none;
+        }
         background-color: #ec9488;
-    border-radius: 3px;
-    color: #fff;
+        border-radius: 3px;
+        color: #fff;
     }
 }
 
-.due-date-str{
+.due-date-str {
     margin-left: 3px;
 }

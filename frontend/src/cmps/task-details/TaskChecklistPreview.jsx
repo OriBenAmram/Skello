@@ -39,7 +39,6 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
 
     function onToggleTodo(ev, todoId) {
         ev.preventDefault()
-        console.log('m toggeling');
         const { id } = checklist;
         const updatedChecklist = {
             ...checklist, todos: checklist.todos.map(todo =>
@@ -57,8 +56,6 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
 
 
     function onSaveTodo(ev, todoId, updatedTodo) {
-        console.log('updatedTodo:', updatedTodo);
-
         const { id } = checklist;
         const updatedChecklist = {
             ...checklist, todos: checklist.todos.map(todo =>
@@ -170,7 +167,6 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                     <div className='add-item-controllers'>
                         <button className='secondary-btn' onClick={(ev) => {
                             // ev.preventDefault()
-                            console.log('baba', newTodoTitle)
                             if (!newTodoTitle) return
                             setAddingItem(false)
                             dispatch(addNewTodo(board, groupId, task.id, checklist.id, newTodoTitle))

@@ -4,15 +4,12 @@ export function DueDatePreview({ dueDate, isDone, taskId, groupId, task }) {
 
 
   const getDueStatus = () => {
-    console.log('dueDate:', dueDate);
-    console.log('task.isDone:', task.isDone);
 
     if (task.isDone) return { txt: 'COMPLETE', className: 'complete' };
     else if (Date.now() > dueDate) {
       return { txt: 'OVERDUE', className: 'over-due' };
     }
     else {
-      console.log('im here!');
       const timeDiff = dueDate - Date.now();
       if (timeDiff < 90000000) return { txt: 'DUE SOON', className: 'due-soon' }
     }

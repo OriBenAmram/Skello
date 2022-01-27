@@ -14,15 +14,12 @@ export function AddMemberModalContent({ onToggleModal }) {
     const users = useSelector(state => state.userModule.users);
     const board = useSelector(state => state.boardModule.board);
     const [searchedUserText, setSearchedUserText] = useState(null);
-    console.log('users:', users);
-    console.log('searchedUserText:', searchedUserText);
 
     const onClickUser = (event, user) => {
         const memberIdx = board.members.findIndex((member) => {
             return member.fullname === user.fullname
         })
         if (memberIdx) {
-            console.log('memberIdx:', memberIdx);
             board.members.splice(1, memberIdx )
             dispatch(onSaveBoard(board))
             onToggleModal({ event, type: 'addMemberToBoard' })

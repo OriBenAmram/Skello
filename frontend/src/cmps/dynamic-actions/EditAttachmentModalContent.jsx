@@ -8,7 +8,6 @@ export function EditAttachmentModalContent({ editTitle, attachmentTitle, toggleM
 
     const onEditTitle = (ev) => {
         ev.preventDefault()
-        console.log(title);
         editTitle(title)
 
     }

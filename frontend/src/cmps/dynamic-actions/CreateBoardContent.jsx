@@ -20,7 +20,6 @@ export function CreateBoardContent({ toggleModal }) {
 
     const onAddBoard = (event) => {
         if (!board.title) return;
-        console.log('adding...');
         dispatch(addBoard(board))
         setBoard({ ...board, title: '' })
         toggleModal({ event, type: 'createBoard' })
