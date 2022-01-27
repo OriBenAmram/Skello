@@ -7,7 +7,7 @@ import { SpeechToText } from '../SpeechToText';
 // Actions
 import { addChecklist } from '../../store/board/board.action';
 
-export function SpeechToTextModalContent({ board, group, task, toggleModal }) {
+export function SpeechToTextModalContent({ board, group, task, toggleModal, event = { event } }) {
 
 
 
@@ -21,7 +21,7 @@ export function SpeechToTextModalContent({ board, group, task, toggleModal }) {
             </section>
 
             <div>
-                <SpeechToText />
+                <SpeechToText event={event} />
 
             </div>
 

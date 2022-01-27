@@ -14,6 +14,8 @@ import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { AddMemberModalContent } from './AddMemberModalContent.jsx'
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 
+
+
 // Actions
 import { toggleModal } from '../../store/app/app.action.js'
 
@@ -43,6 +45,8 @@ export function DynamicBoardActionModal({ isModalOpen, onToggleModal, type, even
                 return <ProfileModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'addMemberToBoard':
                 return <AddMemberModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+            case 'createBoard':
+                return <CreateBoardContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
         }
     }
     const getModalPositionStyle = () => {

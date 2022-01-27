@@ -30,6 +30,8 @@ export function RootCmp() {
     dispatch(toggleModal({ event, type }))
     // console.log('onToggleModal')
   }
+  console.log('popupModal:', popupModal);
+
 
   return (
     <div className='root-cmp'>

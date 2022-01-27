@@ -19,7 +19,7 @@ export function appReducer(state = initialState, action) {
     case 'TOGGLE_MODAL':
       return (newState = {
         ...state, popupModal: {
-          ...state.popupModal, isModalOpen: !state.popupModal.isModalOpen,
+          ...state.popupModal, isModalOpen: action.modalInfo.isShown,
           event: action.modalInfo.event, type: action.modalInfo.type, posXAddition: action.modalInfo.posXAddition,
           posYAddition: action.modalInfo.posYAddition
         }

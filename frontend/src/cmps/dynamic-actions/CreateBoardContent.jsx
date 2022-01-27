@@ -55,7 +55,7 @@ export function CreateBoardContent({ toggleModal }) {
     return (
         <section className="create-board-modal">
             <section className='modal-header'>
-                <button className='simple-close-btn' onClick={toggleModal}><GrClose className='btn-content' /></button>
+                <button className='simple-close-btn' onClick={() => toggleModal()}><GrClose className='btn-content' /></button>
                 Create Board
             </section>
             <section className="modal-details">
