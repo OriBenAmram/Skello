@@ -17,13 +17,7 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
     const handleClickOutside = (ev) => {
         console.log('Event outside is', ev)
     }
-    // useEffect(() => {
-    //     document.addEventListener("mousedown", handleClickOutside);
-    //     return () => {
-    //         document.removeEventListener("mousedown", handleClickOutside);
-    //     };
-    // }, [ref]);
-    console.log('we are in!')
+
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':

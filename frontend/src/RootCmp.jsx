@@ -20,7 +20,7 @@ export function RootCmp() {
 
   const isSideBarOpen = useSelector(state => state.appModule.isSideBarOpen);
   const popupModal = useSelector(state => state.appModule.popupModal);
-  console.log('popupModal in RootCmp', popupModal)
+
 
   const onToggleSideMenu = () => {
     dispatch(toggleSideMenu())

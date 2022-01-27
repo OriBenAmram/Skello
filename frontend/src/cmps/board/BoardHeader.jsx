@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart} from 'react-icons/io5';
+import {useDispatch} from 'react-redux';
 
 // Action
-import { toggleModal, toggleSideMenu } from '../../store/app/app.action';
+import {toggleModal, toggleSideMenu} from '../../store/app/app.action';
 
-export function BoardHeader({ board }) {
-  const { title, members } = board;
+export function BoardHeader({board}) {
+  const {title, members} = board;
   const dispatch = useDispatch();
 
   const onToggleMenu = () => {
     dispatch(toggleSideMenu());
   };
 
-  const onAddMemberToBoard = (event) => {
-    dispatch(toggleModal({ event, type: 'profile' }))
+  const onAddMemberToBoard = event => {
+    dispatch(toggleModal({event, type: 'profile'}));
   };
 
   const getAvatarBackground = member => {
-    return { background: `url(${member.imgUrl}) center center / cover` };
+    return {background: `url(${member.imgUrl}) center center / cover`};
   };
 
   return (
@@ -33,13 +33,13 @@ export function BoardHeader({ board }) {
               </button>
             </div>
             <div className="nav-members flex">
-              {members.map(member => (
-                <div style={getAvatarBackground(member)} className={`member-avatar`} key={member._id}></div>
+              {members.map((member, index) => (
+                <div style={getAvatarBackground(member)} className={`member-avatar`} key={index}></div>
               ))}
             </div>
             <div
               className="nav-btn add-member"
-              onClick={(event) => {
+              onClick={event => {
                 onAddMemberToBoard(event);
               }}>
               <button>
