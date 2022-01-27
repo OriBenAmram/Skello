@@ -63,6 +63,8 @@ export function TaskActivities({ board, group, task, description }) {
             </div>
             {isActivityListShown && <div className='activity-preview-container'>
                 {board.activities && board.activities.map(activity => {
+                    console.log('activity:', activity);
+                    
                     return <section key={activity.id} className='activity-preview'>
                         <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(ev) => {
                             toggleModal({ event: ev, type: 'profile' })

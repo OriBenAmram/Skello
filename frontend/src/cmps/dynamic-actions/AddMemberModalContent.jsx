@@ -18,13 +18,20 @@ export function AddMemberModalContent({ onToggleModal }) {
     console.log('searchedUserText:', searchedUserText);
 
     const onClickUser = (event, user) => {
-        const isExicts = board.members.find(member => { 
+        const memberIdx = board.members.findIndex((member) => {
             return member.fullname === user.fullname
         })
-        console.log('isExicts:', isExicts);
-        board.members.unshift(user)
-        dispatch(onSaveBoard(board))
-        onToggleModal({ event, type: 'addMemberToBoard' })
+        if (memberIdx) {
+            console.log('memberIdx:', memberIdx);
+            board.members.splice(1, memberIdx )
+            dispatch(onSaveBoard(board))
+            onToggleModal({ event, type: 'addMemberToBoard' })
+
+        } else {
+            board.members.unshift(user)
+            dispatch(onSaveBoard(board))
+            onToggleModal({ event, type: 'addMemberToBoard' })
+        }
     }
 
     const getAvatarBackground = user => {
