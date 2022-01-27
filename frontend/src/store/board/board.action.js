@@ -1,9 +1,9 @@
-import { boardService } from '../../services/board.service.js';
+import {boardService} from '../../services/board.service.js';
 
 export function setBoard(board) {
   return async dispatch => {
     try {
-      dispatch({ type: 'SET_BOARD', board });
+      dispatch({type: 'SET_BOARD', board});
     } catch (err) {
       console.log('Cannot set board', err);
     }
@@ -15,7 +15,7 @@ export function loadBoards() {
   return async dispatch => {
     try {
       const boards = await boardService.query();
-      const action = { type: 'SET_BOARDS', boards };
+      const action = {type: 'SET_BOARDS', boards};
       dispatch(action);
     } catch (err) {
       console.log('Cant load boards', err);
@@ -23,12 +23,11 @@ export function loadBoards() {
   };
 }
 
-
 export function addBoard(boardToAdd) {
   return async dispatch => {
     try {
       const savedBoard = await boardService.add(boardToAdd.title, boardToAdd.style);
-      const action = { type: 'ADD_BOARD', board: savedBoard };
+      const action = {type: 'ADD_BOARD', board: savedBoard};
       dispatch(action);
     } catch (err) {
       console.log('Cant load boards', err);
@@ -40,7 +39,7 @@ export function addActivity(boardId, task, txt) {
   return async dispatch => {
     try {
       const board = await boardService.addActivity(boardId, task, txt);
-      dispatch({ type: 'SAVE_BOARD', board });
+      dispatch({type: 'SAVE_BOARD', board});
       return board;
     } catch (err) {
       console.log('BoardActions: err in loadBoard', err);
@@ -52,7 +51,7 @@ export function loadBoard(boardId) {
   return async dispatch => {
     try {
       const board = await boardService.getById(boardId);
-      dispatch({ type: 'SET_BOARD', board });
+      dispatch({type: 'SET_BOARD', board});
       return board;
     } catch (err) {
       console.log('BoardActions: err in loadBoard', err);
@@ -168,7 +167,7 @@ export function onSaveBoard(board) {
   return async dispatch => {
     try {
       const savedBoard = await boardService.update(board);
-      dispatch({ type: 'SAVE_BOARD', board: savedBoard });
+      dispatch({type: 'SAVE_BOARD', board: savedBoard});
     } catch (err) {
       console.log('BoardActions: err in onSaveBoard', err);
     }
@@ -211,46 +210,38 @@ export function handleDrag(
   droppableIndexEnd,
   type
 ) {
-  console.log('board,:', board,);
-  console.log('droppableIdStart:', droppableIdStart);
-  console.log('droppableIdEnd:', droppableIdEnd);
-  console.log('droppableIndexStart:', droppableIndexStart);
-  console.log('droppableIndexEnd:', droppableIndexEnd);
-  console.log('type:', type);
-  
-  
   return async dispatch => {
-    const newBoard = { ...board };
+    // const newBoard = {...board};
     if (type === 'group') {
       // take out group from old index
-      const group = newBoard.groups.splice(droppableIndexStart, 1);
+      const group = board.groups.splice(droppableIndexStart, 1);
       // insert group to new index
-      newBoard.groups.splice(droppableIndexEnd, 0, ...group);
+      board.groups.splice(droppableIndexEnd, 0, ...group);
     } else {
       // Moving task in the same group
       if (droppableIdStart === droppableIdEnd) {
-        const group = newBoard.groups.find(group => group.id === droppableIdStart);
+        const group = board.groups.find(group => group.id === droppableIdStart);
         const task = group.tasks.splice(droppableIndexStart, 1);
         group.tasks.splice(droppableIndexEnd, 0, ...task);
       }
       // Moving task between differents groups // CR: also refactor name
       if (droppableIdStart !== droppableIdEnd) {
         // Find the group where drag happened
-        const groupStart = newBoard.groups.find(group => group.id === droppableIdStart);
+        const groupStart = board.groups.find(group => group.id === droppableIdStart);
 
         // Pull out task from this group
         const task = groupStart.tasks.splice(droppableIndexStart, 1);
 
         // Find the group where drag ended
-        const groupEnd = newBoard.groups.find(group => group.id === droppableIdEnd);
+        const groupEnd = board.groups.find(group => group.id === droppableIdEnd);
 
         // Put the task in the new group
         groupEnd.tasks.splice(droppableIndexEnd, 0, ...task);
       }
     }
-    const savedBoard = await boardService.update(newBoard);
+    const savedBoard = await boardService.update(board);
     console.log('savedBoard:', savedBoard);
-    
+
     dispatch({
       type: 'SAVE_BOARD',
       board: savedBoard,

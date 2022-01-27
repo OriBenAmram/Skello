@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
-import { NavLink, Link } from 'react-router-dom';
-import { AiFillHome } from 'react-icons/ai';
-import { ImTrello } from 'react-icons/im';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory, useLocation} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
+import {AiFillHome} from 'react-icons/ai';
+import {ImTrello} from 'react-icons/im';
 
 // Services
-import { userService } from '../services/user.service';
+import {userService} from '../services/user.service';
 
 // Actions
-import { toggleModal } from '../store/app/app.action';
+import {toggleModal} from '../store/app/app.action';
 
 export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
-  const user = userService.getMiniUser()
+  const user = userService.getMiniUser();
 
   const onUserClick = event => {
-    dispatch(toggleModal({ event, type: 'profile', posXAddition: -300 }));
+    dispatch(toggleModal({event, type: 'profile', posXAddition: -300}));
   };
 
   const getAvatarByUser = () => {
-    return { background: `url(${user.imgUrl}) center center / cover` };
+    return {background: `url(${user.imgUrl}) center center / cover`};
   };
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
@@ -29,8 +29,9 @@ export function AppHeader() {
 
   return (
     <header
-      className={`app-header ${isBoard ? 'board' : ''} ${isHome ? 'home' : 'general'} ${isLoginSignup ? 'login-signup' : ''
-        }`}>
+      className={`app-header ${isBoard ? 'board' : ''} ${isHome ? 'home' : 'general'} ${
+        isLoginSignup ? 'login-signup' : ''
+      }`}>
       <section className="nav-options">
         {!isHome && !user && (
           <NavLink className="home-icon-container" exact to="/">

@@ -56,7 +56,6 @@ async function loginAsGuest() {
   };
   try {
     const user = await login(userCred);
-    console.log('user from get guest', user);
     return user;
   } catch (err) {
     console.log('Cant login as guest', err);
