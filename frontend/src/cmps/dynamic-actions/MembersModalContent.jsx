@@ -1,14 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Icons & SVG
 import femaleGuest from '../../assets/imgs/female-guest.svg';
-import {GrClose} from 'react-icons/gr';
+import { GrClose } from 'react-icons/gr';
+import { useParams, useHistory } from 'react-router-dom'
 
 // Actions
-import {updateTask, onSaveBoard} from '../../store/board/board.action.js';
+import { updateTask, onSaveBoard } from '../../store/board/board.action.js';
 
-export function MembersModalContent({board, group, task, toggleModal}) {
+export function MembersModalContent({ board, group, task, toggleModal }) {
+
+  const { boardId, groupId, taskId } = useParams()
+  console.log('boardId, groupId, taskId:', boardId, groupId, taskId);
+
+
   const dispatch = useDispatch();
   const [searchedMemberText, setSearchedMemberText] = useState(null);
 
@@ -16,12 +22,12 @@ export function MembersModalContent({board, group, task, toggleModal}) {
     const isExists = task.members.find(currMember => currMember.fullname === member.fullname);
     if (isExists) {
       const newTaskMembers = task.members.filter(currMember => currMember.fullname !== member.fullname);
-      const taskToUpdate = {...task, members: newTaskMembers};
+      const taskToUpdate = { ...task, members: newTaskMembers };
       const activityTxt = `removed ${member.fullname}`;
       dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
     } else {
       const newTaskMembers = [...task.members, member];
-      const taskToUpdate = {...task, members: newTaskMembers};
+      const taskToUpdate = { ...task, members: newTaskMembers };
       const activityTxt = `added ${member.fullname}`;
       dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
     }
@@ -33,7 +39,7 @@ export function MembersModalContent({board, group, task, toggleModal}) {
   };
 
   const getAvatarBackground = member => {
-    if (member.imgUrl) return {background: `url(${member.imgUrl}) center center / cover`};
+    if (member.imgUrl) return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
   return (

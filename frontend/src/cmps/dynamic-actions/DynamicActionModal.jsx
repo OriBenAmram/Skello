@@ -12,8 +12,10 @@ import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 
 
+
 // export function DynamicActionModal({ toggleModal, type, pos, task, group, board, event, position = 'fixed', posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
 export function DynamicActionModal({ toggleModal, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+
 
 
     console.log('type:', type);
