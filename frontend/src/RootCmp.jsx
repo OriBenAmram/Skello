@@ -10,19 +10,25 @@ import { AppHeader } from './cmps/AppHeader';
 import { PopoverSideMenu } from './cmps/PopoverSideMenu.jsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from './cmps/Loader';
-
-
+import { DynamicActionModal } from './cmps/dynamic-actions/DynamicActionModal.jsx'
 // Action
-import { toggleSideMenu } from './store/app/app.action.js'
+import { toggleSideMenu, toggleModal } from './store/app/app.action.js'
 
 
 export function RootCmp() {
-
-  const isModalOpen = useSelector(state => state.appModule.isModalOpen);
   const dispatch = useDispatch();
+
+  const isSideBarOpen = useSelector(state => state.appModule.isSideBarOpen);
+  const popupModal = useSelector(state => state.appModule.popupModal);
+  console.log('popupModal in RootCmp', popupModal)
 
   const onToggleSideMenu = () => {
     dispatch(toggleSideMenu())
+  }
+
+  const onToggleModal = () => {
+    // dispatch(toggleModal())
+    console.log('onToggleModal')
   }
 
   return (
@@ -31,12 +37,13 @@ export function RootCmp() {
       <main>
         <Switch>
           {routes.map(route => (
-            <Route key={route.path} component={route.component} path={route.path} />
+            <Route key={route.path}  component={route.component} path={route.path} />
           ))}
         </Switch>
       </main>
 
-      <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isModalOpen={isModalOpen} />
+      <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} />
+      {(popupModal.isModalOpen) && <DynamicActionModal isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />}
     </div >
   );
 

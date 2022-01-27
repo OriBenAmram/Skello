@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineClockCircle } from 'react-icons/ai';
+import { AiOutlineClockCircle, AiOutlineStar } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs';
 
 // Actions
@@ -50,7 +50,7 @@ export function Workspace() {
                     <section className='stared-boards-section'>
                         <div className='title-header'>
                             <div className='title-header-icon-container'>
-                                <BsPerson className='header-icon star-icon' />
+                                <AiOutlineStar className='header-icon star-icon' />
                             </div>
                             <h3>Starred boards</h3>
                         </div>
