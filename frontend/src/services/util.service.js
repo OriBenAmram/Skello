@@ -96,8 +96,10 @@ const _duration = (difference) => {
 }
 
 function getTimeDiff(createdAt, action = "Added") {
+
     const timeDiff = _duration(Date.now() - createdAt)
-    if (timeDiff.seconds && !timeDiff.minutes && !timeDiff.hours) {
+    if (!timeDiff.minutes && !timeDiff.hours) {
+
         return `${action}  ${timeDiff.seconds} seconds ago`
     } else if (timeDiff.minutes && !timeDiff.hours) {
         return `${action}  ${timeDiff.minutes} minutes ago`

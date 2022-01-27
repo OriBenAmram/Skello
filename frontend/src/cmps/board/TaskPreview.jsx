@@ -191,12 +191,13 @@ export function TaskPreview(props) {
                   <div className="badges-icons flex justify-center align-center">
                     {/* DUE DATE */}
                     {!isCover && dueDate && (
-                      <div>
+                      <div className="due-date-container">
                         <DueDatePreview
                           dueDate={dueDate}
                           isDone={isDone}
                           taskId={task.id}
                           groupId={groupId}
+                          task={task}
                         />
                       </div>
                     )}

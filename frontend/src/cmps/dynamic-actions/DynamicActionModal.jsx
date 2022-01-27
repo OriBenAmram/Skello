@@ -13,18 +13,11 @@ import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 export function DynamicActionModal({ toggleModal, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
-    console.log('ref:', wrapperRef);
-    console.log('ref:', wrapperRef.current);
+    
     const handleClickOutside = (ev) => {
         console.log('Event outside is', ev)
     }
-    // useEffect(() => {
-    //     document.addEventListener("mousedown", handleClickOutside);
-    //     return () => {
-    //         document.removeEventListener("mousedown", handleClickOutside);
-    //     };
-    // }, [ref]);
-    console.log('we are in!')
+
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':
@@ -48,12 +41,13 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
             case 'profile':
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
-                return <CreateBoardContent toggleModal={toggleModal} ask={task} group={group} board={board} type={type} />
+                return <CreateBoardContent toggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
         }
     }
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
-        if ((type === 'dates' || type === 'labels' || type === 'cover') && isDetails) {
+        if ((type === 'dates' || type === 'labels' || type === 'cover' || type === 'createBoard') && isDetails) {
+            console.log('here')
             return { top: top / 2, left: left + posXAddition }
         }
         return { top: top + height + posYAddition, left: left + posXAddition }

@@ -20,7 +20,7 @@ export function RootCmp() {
 
   const isSideBarOpen = useSelector(state => state.appModule.isSideBarOpen);
   const popupModal = useSelector(state => state.appModule.popupModal);
-  console.log('popupModal in RootCmp', popupModal)
+  console.log([popupModal])
 
   const onToggleSideMenu = () => {
     dispatch(toggleSideMenu())
@@ -37,13 +37,13 @@ export function RootCmp() {
       <main>
         <Switch>
           {routes.map(route => (
-            <Route key={route.path}  component={route.component} path={route.path} />
+            <Route key={route.path} component={route.component} path={route.path} />
           ))}
         </Switch>
       </main>
 
-      <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} />
-      {/* {(popupModal.isModalOpen) && <DynamicActionModal isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />} */}
+      {/* <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} /> */}
+      {(popupModal.isModalOpen) && <DynamicActionModal isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />}
     </div >
   );
 

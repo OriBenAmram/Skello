@@ -7,7 +7,7 @@ const initialState = {
     event: null,
     type: null,
     posXAddition: null,
-    posYAddition:null,
+    posYAddition: null,
   }
 };
 
@@ -17,7 +17,6 @@ export function appReducer(state = initialState, action) {
     case 'TOGGLE_SIDEBAR':
       return (newState = { ...state, isSideBarOpen: !state.isSideBarOpen });
     case 'TOGGLE_MODAL':
-      console.log('action.modalInfo:', action.modalInfo);
       return (newState = {
         ...state, popupModal: {
           ...state.popupModal, isModalOpen: !state.popupModal.isModalOpen,

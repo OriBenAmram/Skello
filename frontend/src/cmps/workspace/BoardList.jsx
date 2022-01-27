@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 
-export function BoardList({ boards, onToggleStarred }) {
+export function BoardList({ boards, onToggleStarred, toggleModal, isStarred = false }) {
   if (!boards?.length) return <></>;
 
   return (
     <div className="board-list">
+      {!isStarred && <div
+        className="add-board-preview board-preview flex align-center justify-center"
+        onClick={event => {
+          console.log('baba');
+          toggleModal({ event, type: 'createBoard', isDetails: true });
+        }}>
+        <span>Create new board</span>
+      </div>}
       {boards.map(board => {
         return (
           <Link key={board._id} className="clean-link" to={`/board/${board._id}`}>

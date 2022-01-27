@@ -224,17 +224,18 @@
             width: 13px;
             height: 13px;
         }
+
+        
     }
 
-    // .badge{
-    //     // height: 20px;
-    // }
+    
 
     .badge-icon{
         // border: 1px solid orange;
         filter: invert(48%) sepia(7%) saturate(1059%) hue-rotate(180deg) brightness(94%) contrast(89%);
         height: 13px;
         line-height: 13px;
+        // align-items: center;
     }
 
     .checklists,.attachments,.comments{
@@ -289,3 +290,41 @@
     }
 }
 
+
+
+.badge-icon{
+    color: #fff;
+}
+
+.badge.due-date{
+    padding: 4px;
+    padding-right: 7px;
+    margin: 0 4px 4px 0;
+    // display: inline-block;
+    // margin: 0 4px 4px 0;
+    // max-width: 100%;
+    // min-height: 20px;
+    // overflow: hidden;
+    // padding: 2px;
+    // position: relative;
+    // text-decoration: none;
+    // text-overflow: ellipsis;
+    // vertical-align: top;
+
+
+    &.complete{
+        background-color: #61bd4f;
+    border-radius: 3px;
+    color: #fff;
+    }
+
+    &.over-due{
+        background-color: #ec9488;
+    border-radius: 3px;
+    color: #fff;
+    }
+}
+
+.due-date-str{
+    margin-left: 3px;
+}

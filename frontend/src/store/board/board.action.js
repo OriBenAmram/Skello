@@ -211,6 +211,14 @@ export function handleDrag(
   droppableIndexEnd,
   type
 ) {
+  console.log('board,:', board,);
+  console.log('droppableIdStart:', droppableIdStart);
+  console.log('droppableIdEnd:', droppableIdEnd);
+  console.log('droppableIndexStart:', droppableIndexStart);
+  console.log('droppableIndexEnd:', droppableIndexEnd);
+  console.log('type:', type);
+
+
   return async dispatch => {
     const newBoard = { ...board };
     if (type === 'group') {
@@ -242,6 +250,7 @@ export function handleDrag(
     }
     const savedBoard = await boardService.update(newBoard);
     console.log('savedBoard:', savedBoard);
+
 
     dispatch({
       type: 'SAVE_BOARD',

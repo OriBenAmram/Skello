@@ -70,9 +70,9 @@ async function getById(boardId) {
 
 async function update(board) {
   try {
-    const updatedBoard = await httpService.put('board', board);
+    await httpService.put('board', board);
     socketService.emit('board-change', board);
-    return updatedBoard;
+    return board;
   } catch (err) {
     console.log('Cannot update board', err);
   }

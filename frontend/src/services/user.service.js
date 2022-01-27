@@ -1,7 +1,7 @@
-import {storageService} from './async-storage.service.js';
+// import {storageService} from './async-storage.service.js';
 import {httpService} from './http.service.js';
 
-const STORAGE_KEY = 'user';
+// const STORAGE_KEY = 'user';
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser';
 
 export const userService = {
@@ -9,7 +9,9 @@ export const userService = {
   logout,
   signup,
   getLoggedinUser,
-  getUsers
+  getUsers,
+  loginAsGuest,
+  getMiniUser,
 };
 
 async function login(userCred) {
@@ -26,7 +28,6 @@ function _saveLocalUser(user) {
   return user;
 }
 
-
 async function signup(userCred) {
   try {
     await httpService.post('auth/signup', userCred);
@@ -36,20 +37,46 @@ async function signup(userCred) {
   }
 }
 
-async function signupGuest() {
+function getMiniUser() {
   const userCred = {
+    username: 'guest',
     fullname: 'Guest',
-    imgUrl: '../assets/imgs/female-guest.svg',
-    username: 'guest.skello@gmail.com',
-    password: '13579',
+    imgUrl:
+      'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
+  };
+  return userCred;
+}
+
+async function loginAsGuest() {
+  const userCred = {
+    username: 'guest',
+    password: 'guest123',
+    imgUrl:
+      'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
   };
   try {
-    const user = signup(userCred);
-    login(JSON.stringify(user));
+    const user = await login(userCred);
+    console.log('user from get guest', user);
+    return user;
   } catch (err) {
-    console.log('Cannot signup guest', err);
+    console.log('Cant login as guest', err);
   }
 }
+
+// async function signupGuest() {
+//   const userCred = {
+//     fullname: 'Guest',
+//     imgUrl: '../assets/imgs/female-guest.svg',
+//     username: 'guest.skello@gmail.com',
+//     password: '13579',
+//   };
+//   try {
+//     const user = signup(userCred);
+//     login(JSON.stringify(user));
+//   } catch (err) {
+//     console.log('Cannot signup guest', err);
+//   }
+// }
 
 async function logout() {
   sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN);
@@ -60,16 +87,17 @@ async function logout() {
   }
 }
 
-async function getUsers() { 
+async function getUsers() {
   try {
     const users = await httpService.get('user');
-    console.log('users:', users);
-    return users
+    if (!users) return [];
+    return users;
   } catch (err) {
     console.log('Cannot logout', err);
   }
 }
 
 function getLoggedinUser() {
-  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));
+  const loggedinUser = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN) || null);
+  return loggedinUser;
 }
