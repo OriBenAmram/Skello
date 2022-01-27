@@ -85,6 +85,24 @@
         // Upper Options
         .upper-sidemenu-options {
             margin: 4px 0;
+
+            .filter-cards-input { 
+                width: 100%;
+                border: none;
+                transition: all .5s;
+
+                &.open { 
+                    display: block;
+                    height: 60px;
+                    margin: 5px;
+                }
+
+                &.closed { 
+                    display: none;
+                    height: 0px;
+                    margin: 0;
+                }
+            }
         }
     }
 }
