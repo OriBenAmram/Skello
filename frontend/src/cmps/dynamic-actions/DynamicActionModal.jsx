@@ -13,8 +13,7 @@ import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 export function DynamicActionModal({ toggleModal, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
-    console.log('ref:', wrapperRef);
-    console.log('ref:', wrapperRef.current);
+    
     const handleClickOutside = (ev) => {
         console.log('Event outside is', ev)
     }
