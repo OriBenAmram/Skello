@@ -61,13 +61,15 @@ export function TaskAdditionsShow({ board, group, task }) {
             {/* Members */}
             {task.members && <section className='type-container'>
                 <h4>Members</h4>
-                <div className='items-container'>
+                <div className='items-container members-container'>
                     {task.members.map(member => <div key={member.fullname} className={`member-avatar ${(member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(member)} onClick={() => {
                         onClickAvatar(member)
                     }}>
                         {getAvatarInnerText(member)}
                     </div>)}
-                    <div className='plus-item member-avatar'>+</div>
+                    <div className='plus-item member-avatar' onClick={(event) => {
+                        toggleModal({ event, type: 'members' })
+                    }}>+</div>
                 </div>
             </section>}
             {/* Labels */}
@@ -98,14 +100,6 @@ export function TaskAdditionsShow({ board, group, task }) {
                             board={board}
                             groupId={group.id}
                             task={task}
-                        // onClick={(ev) => {
-                        //     console.log('baba')
-
-                        // }
-
-
-
-
                         />
 
                     </div>
