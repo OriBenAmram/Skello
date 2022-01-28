@@ -11,9 +11,11 @@ import { DatesModalContent } from './DatesModalContent.jsx'
 import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
-export function DynamicActionModal({ toggleModal, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
-    
+    console.log('type:', type);
+    console.log('baba:', baba);
+
     const handleClickOutside = (ev) => {
         console.log('Event outside is', ev)
     }
@@ -37,7 +39,7 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
             case 'dates':
                 return <DatesModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'stt':
-                return <SpeechToTextModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
+                return <SpeechToTextModalContent event={event} toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'profile':
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
@@ -46,10 +48,10 @@ export function DynamicActionModal({ toggleModal, type, task, isDetails = false,
     }
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
-        if ((type === 'dates' || type === 'labels' || type === 'createBoard'  || type === 'cover') && isDetails) {
+        if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
             console.log('inside')
             console.log('{ top: top / 2, left: left + posXAddition }:', { top: top / 2, left: left + posXAddition });
-            
+
             return { top: top / 2, left: left + posXAddition }
         }
         console.log('outside')

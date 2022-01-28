@@ -42,7 +42,8 @@ async function query() {
 // }
 
 // Img
-async function queryImages(query = 'random') {
+async function queryImages(query) {
+  if (!query) query = 'random'
   const photos = await axios.get(
     `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
   );

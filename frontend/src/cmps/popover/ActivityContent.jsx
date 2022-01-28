@@ -7,10 +7,10 @@ import { HiOutlineSearch } from 'react-icons/hi';
 import { MdOutlinePhotoCameraBack } from 'react-icons/md';
 
 // Action
-import { toggleModal, toggleSideMenu } from '../store/app/app.action.js';
+import { toggleModal, toggleSideMenu } from '../../store/app/app.action.js';
 
 // Services
-import { utilService } from '../services/util.service.js'
+import { utilService } from '../../services/util.service.js'
 
 export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
   const dispatch = useDispatch();
@@ -36,7 +36,6 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
 
   return (
         <section className='activity-section'>
-          
           <section className='activity-container'>
             <button className='primary-link-btn activity-list-btn' onClick={() => {
               toggleMenuContent('activity')
@@ -56,7 +55,6 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
                     <h2> <span>{activity.member.fullname}</span> {activity.txt} in group <span className='group-link' onClick={() => { 
                       onClickGroup(activity.group.id, activity.task.id)
                     }}>{activity.group.title}</span> </h2> 
-                    {/* <h2> <span>{activity.member.fullname}</span> {`${activity.txt} in group ${(activity.group?.title) ? <span></span> : ''}` }</h2> */}
                     <p>{utilService.timeSince(activity.createdAt)}</p>
                   </div>
                 </section>
