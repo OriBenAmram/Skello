@@ -27,7 +27,15 @@ export function LoginSignup(props) {
     ev.preventDefault();
     if (username.trim() && password.trim()) {
       if (!isLogin) {
-        await dispatch(signup({username, password, fullname, imgUrl: ''}));
+        await dispatch(
+          signup({
+            username,
+            password,
+            fullname,
+            imgUrl:
+              'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
+          })
+        );
         await dispatch(login({username, password}));
         props.history.push('/workspace');
       } else {
@@ -57,13 +65,6 @@ export function LoginSignup(props) {
         <div className="main-content-modal">
           <h1>{isLogin ? 'Login to Skello' : 'Sign up for your account'}</h1>
           <form className="login-signup-form" onSubmit={handleSubmit}>
-            <input
-              required
-              type="txt"
-              value={username}
-              onChange={ev => setUsername(ev.target.value)}
-              placeholder="Enter Username"
-            />
             {!isLogin && (
               <input
                 required
@@ -73,6 +74,13 @@ export function LoginSignup(props) {
                 placeholder="Enter Full Name"
               />
             )}
+            <input
+              required
+              type="txt"
+              value={username}
+              onChange={ev => setUsername(ev.target.value)}
+              placeholder="Enter Username"
+            />
             <input
               required
               type="password"
