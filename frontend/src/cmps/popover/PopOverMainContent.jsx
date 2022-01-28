@@ -58,11 +58,6 @@ export function PopOverMainContent({
                 {/* BG */}
                 <section className="background-teaser-section">
                     <div className="board-backgrounds-section-tile">
-                        <div className="image-container" onClick={() => setPopoverContent('color')}>
-                            <img src={colorTeaser} alt="" />
-                            <div className="title">Colors</div>
-                        </div>
-
                         <div className="image-container" onClick={() => setPopoverContent('color')} >
                             <img src={colorTeaser} alt="" />
                             <div className="title">Colors</div>
