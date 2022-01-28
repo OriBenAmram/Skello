@@ -11,7 +11,15 @@ import {AddNewTask} from './AddNewTask';
 // Action
 import {removeGroup} from '../../store/board/board.action';
 
-export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown, setLabelsShown}) {
+export function GroupPreview({
+  group,
+  boardId,
+  index,
+  boardLabels,
+  areLabelsShown,
+  setLabelsShown,
+  toggleQuickCardEditor,
+}) {
   const dispatch = useDispatch();
   const [isBodyRender, setIsBodyRender] = useState(false);
 
@@ -50,6 +58,7 @@ export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown
               boardId={boardId}
               tasks={group.tasks}
               boardLabels={boardLabels}
+              toggleQuickCardEditor={toggleQuickCardEditor}
             />
             {isBodyRender && (
               <AddNewTask

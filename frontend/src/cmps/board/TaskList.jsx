@@ -3,7 +3,15 @@ import {Droppable} from 'react-beautiful-dnd';
 // Cmps
 import {TaskPreview} from './TaskPreview';
 
-export function TaskList({tasks, groupId, boardId, boardLabels, areLabelsShown, setLabelsShown}) {
+export function TaskList({
+  tasks,
+  groupId,
+  boardId,
+  boardLabels,
+  areLabelsShown,
+  setLabelsShown,
+  toggleQuickCardEditor,
+}) {
   return (
     <Droppable droppableId={groupId}>
       {provided => (
@@ -18,6 +26,7 @@ export function TaskList({tasks, groupId, boardId, boardLabels, areLabelsShown, 
               boardLabels={boardLabels}
               areLabelsShown={areLabelsShown}
               setLabelsShown={setLabelsShown}
+              toggleQuickCardEditor={toggleQuickCardEditor}
             />
           ))}
           {provided.placeholder}

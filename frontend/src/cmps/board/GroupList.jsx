@@ -5,7 +5,7 @@ import {Droppable} from 'react-beautiful-dnd';
 import {GroupPreview} from './GroupPreview.jsx';
 import {AddNewGroup} from './AddNewGroup.jsx';
 
-export function GroupList({board}) {
+export function GroupList({board, toggleQuickCardEditor}) {
   const [areLabelsShown, setLabelsShown] = useState(false);
 
   return (
@@ -23,6 +23,7 @@ export function GroupList({board}) {
               board={board}
               areLabelsShown={areLabelsShown}
               setLabelsShown={setLabelsShown}
+              toggleQuickCardEditor={toggleQuickCardEditor}
             />
           ))}
           {provided.placeholder}

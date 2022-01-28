@@ -18,8 +18,8 @@
     .add-task-container{
         border-radius: 3px;
         color: $clr2;
-        margin: 2px 0 8px 0;
-        padding: 0 8px;
+        margin: 2px 0 8px 4px;
+        padding: 4px 8px;
         position: relative;
         align-items: center;
         cursor: pointer;
@@ -39,6 +39,9 @@
         &:hover{
             background-color: #091e4214;
             color: $clr1;
+            svg.icon{
+                filter: invert(14%) sepia(9%) saturate(7453%) hue-rotate(191deg) brightness(90%) contrast(92%);
+            }
         }
     }
 
@@ -91,6 +94,9 @@
             background: inherit;
           }
 
+          .add-task-open{
+              margin-top: 7px;
+          }
     }
 
     .task-title{

@@ -1,4 +1,4 @@
-export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsShown }) {
+export function TaskLabels({labelIds, boardLabels, areLabelsShown, setLabelsShown}) {
   const onLabelClick = ev => {
     ev.preventDefault();
     setLabelsShown(!areLabelsShown);
@@ -12,10 +12,10 @@ export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsSho
           return (
             <div
               className={`label flex ${areLabelsShown ? 'open' : ''}`}
-              style={{ background: label.color }}
+              style={{background: label.color}}
               key={index}
               onClick={ev => {
-                onLabelClick(ev);
+                if (areLabelsShown) onLabelClick(ev);
               }}>
               {areLabelsShown && <span>{label.title}</span>}
             </div>

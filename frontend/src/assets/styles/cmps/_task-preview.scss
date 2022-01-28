@@ -10,7 +10,6 @@
 }
 
 .task-preview-wrapper {
-    padding-bottom: 8px;
     position: relative;
 
     &:hover {
@@ -267,25 +266,73 @@
 }
 
 // EDIT
-.screen-overlay {
-    position: fixed;
-    // inset: 0;
-    background-color: rgba(0, 0, 0, 0.659);
-    opacity: 0;
-    transition: opacity 0.2s ease-out;
-    pointer-events: none;
-    width: 100vw;
-    height: 100vh;
-    // z-index: 100;
-    overflow-y: auto;
+.quick-card-editor{
+  z-index:20;
 
-    &.covered {
-        opacity: 1;
-        pointer-events: auto;
-        // z-index: 100;
+    .task-preview-edit{
+        // cursor: pointer;
+        word-wrap: break-word;
+        max-width: 300px;
+        min-height: 20px;
+        position: relative;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0 1px 0 #16181b40;
+        border-radius: 3px;
+    }
+    .task-preview-heder{
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        .img-wrapper{
+            height: fit-content;
+   
+        }
+
+        .header-color {
+            height: 32px;
+            // margin-bottom: 5px;
+        }
+    }
+    .clean-textarea{
+        border: none;
+        outline: none;
+        background-color: inherit;
+        font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+        resize: none;
+        width: 100%;
+        height: 90px;
+
+
+    }
+
+    .task-details-wrapper{
+        padding: 6px 8px 2px;
+    }
+
+    .secondary-btn{
+
+        margin: 17px 4px 0 0;
+        width: 65px;
+        height: 34px;
     }
 }
+.screen-overlay {
+    z-index: 15;
+    position: fixed;
+    display: block;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,.6392156862745098);
+    inset: 0;
+    transition: opacity 0.2s ease-out;
+    overflow-y: auto;
+ 
+}
 
+
+// TASK BADGES
 .badge-icon {
     color: #fff;
 }
