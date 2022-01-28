@@ -11,7 +11,6 @@ export function toggleModal({ event, type, posXAddition = 0, posYAddition = 0, i
   return async dispatch => {
     dispatch({
       type: 'TOGGLE_MODAL', modalInfo: { event, type, posXAddition, posYAddition, isShown, member }
-
     });
   };
 }

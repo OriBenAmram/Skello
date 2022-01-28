@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Draggable} from 'react-beautiful-dnd';
 
@@ -11,6 +12,9 @@ import commentIcon from '../../assets/imgs/commentIcon.svg';
 // CMPS
 import {TaskLabels} from './TaskLabels';
 import {DueDatePreview} from './DueDatePreview';
+
+// Action
+import { toggleModal } from '../../store/app/app.action';
 
 export function TaskPreview(props) {
   const {task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor} =
@@ -32,6 +36,7 @@ export function TaskPreview(props) {
   } = task;
 
   const {isCover, isTextDarkMode = true} = task.style;
+  const dispatch = useDispatch();
 
   const getPreviewStyle = () => {
     // Cover !
@@ -69,6 +74,12 @@ export function TaskPreview(props) {
       }
     }
   };
+
+  // Other Member Modal
+  const onMemberClick = (event, member) => {
+    dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: true }));
+  }
+
 
   // Title style by cover
   const getTitleStyleByCover = () => {
@@ -241,7 +252,10 @@ export function TaskPreview(props) {
                 {!isCover && task.members?.length > 0 && (
                   <div className="badges-members flex justify-flex-end">
                     {task.members.map((member, index) => (
-                      <div style={getAvatarBackground(member)} className="member-avatar" key={index}></div>
+                      <div style={getAvatarBackground(member)} className="member-avatar" key={index} onClick={(ev) => { 
+                        ev.preventDefault()
+                        onMemberClick(ev, member)
+                      }}></div>
                     ))}
                   </div>
                 )}
