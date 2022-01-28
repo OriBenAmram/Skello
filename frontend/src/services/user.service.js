@@ -10,8 +10,10 @@ export const userService = {
   signup,
   getLoggedinUser,
   getUsers,
+  getUser,
   loginAsGuest,
   getMiniUser,
+  saveLocalUser
 };
 
 async function login(userCred) {
@@ -21,6 +23,11 @@ async function login(userCred) {
   } catch (err) {
     console.log('Cannot login', err);
   }
+}
+
+function saveLocalUser(user) {
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
+  return user;
 }
 
 function _saveLocalUser(user) {
@@ -56,7 +63,6 @@ async function loginAsGuest() {
   };
   try {
     const user = await login(userCred);
-    console.log('user from get guest', user);
     return user;
   } catch (err) {
     console.log('Cant login as guest', err);
@@ -92,6 +98,15 @@ async function getUsers() {
     const users = await httpService.get('user')
     if (!users) return [];
     return users;
+  } catch (err) {
+    console.log('Cannot logout', err);
+  }
+}
+
+async function getUser(userId) {
+  try {
+    const user = await httpService.get(`user/${userId}`)
+    return user;
   } catch (err) {
     console.log('Cannot logout', err);
   }

@@ -262,6 +262,10 @@
     .badges-members {
         flex: 1;
         padding-bottom: 4px;
+
+        :not(:first-child) { 
+            margin-left: -10px;
+        }
     }
 }
 

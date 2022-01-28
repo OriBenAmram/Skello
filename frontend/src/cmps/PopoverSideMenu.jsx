@@ -46,8 +46,6 @@ export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
     dispatch(toggleModal({ event, type: 'otherMemberModal', member }));
   }
 
-
-
   return (
     <section className="popover-side-menu" style={isSideBarOpen ? { right: '0px' } : { right: '-400px' }}>
       {(popoverContent === 'main') && <PopOverMainContent setSearchText={setSearchText} setSearchState={setSearchState} searchText={searchText} isSearchOpen={isSearchOpen} toggleSideMenu={toggleSideMenu} isSideBarOpen={isSideBarOpen} setPopoverContent={setPopoverContent} />}

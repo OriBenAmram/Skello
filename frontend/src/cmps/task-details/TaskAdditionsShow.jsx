@@ -17,7 +17,6 @@ export function TaskAdditionsShow({ board, group, task }) {
     }, [board, task]);
 
     const onClickAvatar = (member) => {
-        console.log('member:', member);
     }
 
     const onClickLabel = (label) => {
@@ -62,7 +61,7 @@ export function TaskAdditionsShow({ board, group, task }) {
             {task.members && <section className='type-container'>
                 <h4>Members</h4>
                 <div className='items-container members-container'>
-                    {task.members.map(member => <div key={member.fullname} className={`member-avatar ${(member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(member)} onClick={() => {
+                    {task.members.map((member,idx) => <div key={idx} className={`member-avatar ${(member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(member)} onClick={() => {
                         onClickAvatar(member)
                     }}>
                         {getAvatarInnerText(member)}

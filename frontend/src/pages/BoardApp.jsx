@@ -33,12 +33,11 @@ export function BoardApp(props) {
       });
       onLoadBoard();
     } catch (err) {
-      console.log('Cannot load board', err);
+      console.log('Cannot load board', err)
     }
 
     return () => {
       socketService.off('updated-board', () => {
-        console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
       });
       socketService.terminate();
       clearBoard();

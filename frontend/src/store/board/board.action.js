@@ -135,10 +135,10 @@ export function addChecklist(checklistTitle, groupId, board, taskId, activityTxt
 //   };
 // }
 
-export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
+export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null, isComment = false) {
   return async dispatch => {
     try {
-      const board = await boardService.updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt);
+      const board = await boardService.updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt, isComment);
       dispatch({
         type: 'SAVE_BOARD',
         board: board,

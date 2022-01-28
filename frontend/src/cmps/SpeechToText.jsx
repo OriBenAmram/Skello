@@ -1,14 +1,14 @@
-import {Divider} from '@material-ui/core';
-import {useRef, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { Divider } from '@material-ui/core';
+import { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition';
-import {DynamicActionModal} from './dynamic-actions/DynamicActionModal';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { DynamicActionModal } from './dynamic-actions/DynamicActionModal';
 // import { BiMicrophone } from "react-icons/bi";
 
-import {toggleModal} from '../store/app/app.action';
+import { toggleModal } from '../store/app/app.action';
 
-export function SpeechToText({event}) {
+export function SpeechToText({ event }) {
   const [display, setDisplay] = useState(''); //display for our message
   const [isListening, setIsListening] = useState(false);
   const microphoneRef = useRef(null);
@@ -18,11 +18,10 @@ export function SpeechToText({event}) {
     {
       command: 'please create board', //command the user says, * is any input
       callback: () => {
-        console.log('again');
-        dispatch(toggleModal({event, type: 'createBoard', isShown: true}));
-      },
-    },
-  ];
+        dispatch(toggleModal({ event, type: 'createBoard', isShown: true }));
+      }
+    }
+  ]
 
   const handleListing = () => {
     setIsListening(true);
@@ -44,9 +43,7 @@ export function SpeechToText({event}) {
     resetTranscript();
   };
 
-  console.log('useSpeechRecognition({ commands }):', useSpeechRecognition({commands}));
-
-  const {transcript, resetTranscript} = useSpeechRecognition({commands});
+  const { transcript, resetTranscript } = useSpeechRecognition({ commands })
   //pass the commands array to the SpeechRecognition function
 
   return (
@@ -55,12 +52,10 @@ export function SpeechToText({event}) {
         <div className="microphone-icon-container" ref={microphoneRef}>
           {/* <BiMicrophone className="microphone-icon" /> */}
         </div>
-        <div
-          className={`blob ${isListening ? 'recorder' : ''}`}
-          onClick={() => {
-            handleListing();
-            if (isListening) stopHandle();
-          }}></div>
+        <div className={`blob ${(isListening) ? 'recorder' : ''}`} onClick={() => {
+          handleListing()
+          if (isListening) stopHandle()
+        }}></div>
 
         {/* <div className="microphone-status">
           {isListening ? "Listening........." : "Click to start Listening"}
