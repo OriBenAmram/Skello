@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { AiOutlineBars } from 'react-icons/ai';
-import { HiOutlineSearch } from 'react-icons/hi';
-import { MdOutlinePhotoCameraBack } from 'react-icons/md';
+import { MdClose } from "react-icons/md";
+
 // cmps
 import { PopoverBgPicker } from './popover/PopoverBgpicker';
 import { PopOverMainContent } from './popover/PopOverMainContent';

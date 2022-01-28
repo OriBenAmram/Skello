@@ -38,9 +38,13 @@ export function BoardHeader({ board }) {
             </div>
             <div className="nav-members">
               {members.map((member, index) => (
-                <div style={getAvatarBackground(member)} className={`member-avatar`} key={index} onClick={(event) => {
-                  onMemberClick(event, member)
-                }}></div>
+                <div
+                  style={getAvatarBackground(member)}
+                  className={`member-avatar`}
+                  key={index}
+                  onClick={event => {
+                    onMemberClick(event, member);
+                  }}></div>
               ))}
             </div>
             <div

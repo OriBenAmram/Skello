@@ -1,91 +1,112 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { GrClose } from 'react-icons/gr';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {GrClose} from 'react-icons/gr';
 
 // Actions
-import { onSaveBoard } from '../../store/board/board.action';
+import {onSaveBoard} from '../../store/board/board.action';
+import {loadUsers} from '../../store/user/user.actions';
 
 // ICONS
 
+export function AddMemberModalContent({onToggleModal}) {
+  const dispatch = useDispatch();
+  const members = useSelector(state => state.userModule.users);
+  const board = useSelector(state => state.boardModule.board);
+  const [filterBy, setFilterBy] = useState(null);
 
-export function AddMemberModalContent({ onToggleModal }) {
-    const dispatch = useDispatch();
-    const users = useSelector(state => state.userModule.users);
-    const board = useSelector(state => state.boardModule.board);
-    const [searchedUserText, setSearchedUserText] = useState(null);
+  useEffect(() => {
+    onLoadUsers();
+  }, []);
 
-    const onClickUser = (event, user) => {
-        const memberIdx = board.members.findIndex((member) => {
-            return member.fullname === user.fullname
-        })
-        if (memberIdx) {
-            board.members.splice(1, memberIdx )
-            dispatch(onSaveBoard(board))
-            onToggleModal({ event, type: 'addMemberToBoard' })
+  const onLoadUsers = () => {
+    dispatch(loadUsers());
+  };
 
-        } else {
-            board.members.unshift(user)
-            dispatch(onSaveBoard(board))
-            onToggleModal({ event, type: 'addMemberToBoard' })
-        }
+  const onAddMemberToBoard = (event, member) => {
+    const memberIdx = members.findIndex(memberToFind => {
+      return memberToFind._id === member._id;
+    });
+
+    if (memberIdx >= 0) {
+      const newBoard = {...board, members: [...board.members, member]};
+      dispatch(onSaveBoard(newBoard));
+      onToggleModal({event, type: 'addMemberToBoard'});
     }
+  };
 
-    const getAvatarBackground = user => {
-        if (user.imgUrl) return { background: `url(${user.imgUrl}) center center / cover` };
-    };
+  const getAvatarBackground = member => {
+    if (member.imgUrl) return {background: `url(${member.imgUrl}) center center / cover`};
+  };
 
-    const getUsersForDisplay = () => {
-        if (searchedUserText) {
-            return users.filter(user => {
-                return user.fullname.toUpperCase().includes(searchedUserText.toUpperCase())
-            })
+  const isMemberInBoard = id => {
+    return board.members.some(member => {
+      return member._id === id;
+    });
+  };
+
+  const getMembersForDisplay = () => {
+    if (filterBy) {
+      console.log('filterBy', filterBy);
+      return members.filter(member => {
+        if (member._id !== board.createdBy._id && !isMemberInBoard(member._id)) {
+          return member.fullname.toUpperCase().includes(filterBy.toUpperCase());
         }
-        return users
+      });
+    } else {
+      const membersToShow = [];
+      for (let allMember of members) {
+        if (!isMemberInBoard(allMember._id) && allMember._id !== board.createdBy._id) {
+          membersToShow.push(allMember);
+        }
+      }
+      return membersToShow;
     }
+  };
 
-    return (
-        <section className="users-modal-content">
-            <section className="modal-header">
-                <button className="simple-close-btn" onClick={(event) => {
-                    onToggleModal({ event, type: 'addMemberToBoard' })
-                }}>
-                    <GrClose className="btn-content" />
-                </button>
-                Invite to board
-            </section>
-            <section className="modal-content">
-                <div className="modal-title">
-                    <input
-                        placeholder={`Search users`}
-                        type="text"
-                        className="modal-main-input"
-                        onChange={(ev) => {
-                            setSearchedUserText(ev.target.value);
-                        }}
-                        autoFocus
-                    />
-                    <h4>Board users</h4>
-                    <section className="users-list">
-                        {getUsersForDisplay().map((user, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className="user-preview"
-                                    onClick={(event) => {
-                                        onClickUser(event, user);
-                                    }}>
-                                    <div
-                                        className={`member-avatar ${user.imgUrl ? 'with-image' : ''}`}
-                                        style={getAvatarBackground(user)}>
-                                    </div>
-                                    <p>{user.fullname}</p>
-                                </div>
-                            );
-                        })}
-                    </section>
+  return (
+    <section className="users-modal-content">
+      <section className="modal-header">
+        <button
+          className="simple-close-btn"
+          onClick={event => {
+            onToggleModal({event, type: 'addMemberToBoard'});
+          }}>
+          <GrClose className="btn-content" />
+        </button>
+        Invite to board
+      </section>
+      <section className="modal-content">
+        <div className="modal-title">
+          <input
+            placeholder={`Search users`}
+            type="text"
+            className="modal-main-input"
+            onChange={ev => {
+              setFilterBy(ev.target.value);
+            }}
+            autoFocus
+          />
+          <h4>Board Members</h4>
+          <section className="users-list">
+            {getMembersForDisplay().map((member, index) => {
+              return (
+                <div
+                  key={index}
+                  className="user-preview"
+                  onClick={event => {
+                    onAddMemberToBoard(event, member);
+                  }}>
+                  <div
+                    className={`member-avatar ${member.imgUrl ? 'with-image' : ''}`}
+                    style={getAvatarBackground(member)}></div>
+                  <p>{member.fullname}</p>
                 </div>
-            </section>
-        </section>
-    );
+              );
+            })}
+          </section>
+        </div>
+      </section>
+    </section>
+  );
 }

@@ -8,6 +8,7 @@
     border: 1px solid lightgray;
     border-radius: 3px;
     border-top-right-radius: 0px;
+    box-shadow: 0 12px 24px -6px #091e4240, 0 0 0 1px #091e4214;
     display: flex;
     flex-direction: column;
     z-index: 30;
@@ -29,6 +30,13 @@
         transition: transform 0.12s ease-in;
         background-color: inherit;
         border: none;
+    }
+
+    .primary-close-btn {
+        top: 8px;
+        .primary-menu-close-btn {
+            // color: #6b778c;
+        }
     }
 
     // General
@@ -105,7 +113,6 @@
 
         .activity-section {
             .activity-container {
-                
                 .activity-preview {
                     margin-left: 40px;
                     min-height: 32px;

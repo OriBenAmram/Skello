@@ -51,7 +51,7 @@ export function TaskActivities({ board, group, task, description }) {
             <div className='title-container'>
                 <AiOutlineBars className='primary-icon main-content-icon' />
                 <h3>Activity</h3>
-                <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>Show details</button>
+                <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>{(isActivityListShown) ? 'Hide Details' : 'Shown Details' }</button>
             </div>
             <div className='text-area-container'>
                 <textarea defaultValue="" onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => { 

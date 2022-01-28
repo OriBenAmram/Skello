@@ -42,6 +42,19 @@
                 color: #a5adba;
                 display: inline-block;
                 padding: 6px 12px;
+                cursor: auto;
+
+                &.activate {
+                    background-color: #0079bf;
+                    color: #fff;
+                    border-radius: 3px;
+                    font-size: rem(14px);
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #026aa7;
+                    }
+                }
             }
 
             .add-icons-options {
