@@ -14,15 +14,15 @@ export function BoardHeader({ board }) {
   };
 
   const onAddMemberToBoard = event => {
-    dispatch(toggleModal({ event, type: 'addMemberToBoard' }));
+    dispatch(toggleModal({ event, type: 'addMemberToBoard', isShown: true }));
   };
 
   const getAvatarBackground = member => {
     return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
-  const onMemberClick = (event, member) => { 
-    dispatch(toggleModal({ event, type: 'otherMemberModal', member }));
+  const onMemberClick = (event, member) => {
+    dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: true }));
   }
 
   return (
@@ -38,7 +38,7 @@ export function BoardHeader({ board }) {
             </div>
             <div className="nav-members">
               {members.map((member, index) => (
-                <div style={getAvatarBackground(member)} className={`member-avatar`} key={index} onClick={(event) => { 
+                <div style={getAvatarBackground(member)} className={`member-avatar`} key={index} onClick={(event) => {
                   onMemberClick(event, member)
                 }}></div>
               ))}

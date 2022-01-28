@@ -24,7 +24,7 @@ export function AppHeader() {
   }, [])
 
   const onUserClick = event => {
-    dispatch(toggleModal({ event, type: 'profile', posXAddition: -300 }));
+    dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: true }));
   };
 
   const getAvatarByUser = () => {
