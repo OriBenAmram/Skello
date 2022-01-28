@@ -394,14 +394,14 @@ async function addFile(boardId, groupId, taskId, fileUrl) {
 // }
 
 // Finds the same task, and replace it - We need to send here the taskToUpdate!!!
-async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null) {
+async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null, isComment) {
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
     board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
     if (activityTxt) {
-      const formattedActivity = _getFormattedActivity(taskToUpdate, board.groups[groupIdx], activityTxt);
+      const formattedActivity = _getFormattedActivity(taskToUpdate, board.groups[groupIdx], activityTxt, isComment);
       board.activities.unshift(formattedActivity);
     }
 
@@ -425,8 +425,8 @@ async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = 
 //   return storageService.put(STORAGE_KEY, board);
 // }
 
-function _getFormattedActivity(task, group, txt) {
-  return {
+function _getFormattedActivity(task, group, txt, isComment) {
+  const activity =  {
     id: utilService.makeId(),
     txt,
     task,
@@ -434,9 +434,11 @@ function _getFormattedActivity(task, group, txt) {
       id: group.id,
       title: group.title
     },
+    isComment,
     createdAt: Date.now(),
     member: userService.getLoggedinUser(),
   };
+  return activity
 }
 
 //  : CHECK OPTION TO USE IT

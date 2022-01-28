@@ -20,8 +20,8 @@ export function TaskActivities({ board, group, task, description }) {
     const [textAreaContent, setTextAreaContent] = useState('');
     const [isActivityListShown, toggleActivityList] = useState(true);
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
-    console.log('textAreaContent:', textAreaContent);
-    
+    const user = useSelector(state => state.userModule.loggedinUser);
+
     const onToggleActivityList = () => {
         toggleActivityList(!isActivityListShown)
     }
@@ -39,11 +39,29 @@ export function TaskActivities({ board, group, task, description }) {
         return { background: `url(${member.imgUrl}) center center / cover` }
     }
 
-    const getTaskActivity = () => { 
-        const TaskActivities = board.activities.filter(activity => { 
+    const getTaskActivity = () => {
+        const TaskActivities = board.activities.filter(activity => {
             return activity.task.id === task.id
         })
         return TaskActivities
+    }
+
+    const onSaveComment = () => {
+        console.log('textAreaContent:', textAreaContent);
+        const comment = {
+            txt: textAreaContent,
+            byMember: user,
+            createdAt: Date.now()
+        }
+        console.log('comment:', comment);
+        const newTaskComments = task.comments.unshift(comment);
+        
+        const taskToUpdate = { ...task, comments: newTaskComments };
+        console.log('taskToUpdate:', taskToUpdate);
+        
+        // const activityTxt = textAreaContent;
+        // dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt, true));
+        setTextAreaContent('')
     }
 
     return (
@@ -51,15 +69,17 @@ export function TaskActivities({ board, group, task, description }) {
             <div className='title-container'>
                 <AiOutlineBars className='primary-icon main-content-icon' />
                 <h3>Activity</h3>
-                <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>{(isActivityListShown) ? 'Hide Details' : 'Shown Details' }</button>
+                <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>{(isActivityListShown) ? 'Hide Details' : 'Shown Details'}</button>
             </div>
             <div className='text-area-container'>
-                <textarea defaultValue="" onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => { 
+                <textarea defaultValue="" value={textAreaContent} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => {
                     setTextAreaContent(ev.target.value)
                 }}>
                 </textarea>
                 {isTextAreaOpen && <section>
-                    <button className={`save-btn ${(textAreaContent) ? 'activate' : ''}`}>Save</button>
+                    <button className={`save-btn ${(textAreaContent) ? 'activate' : ''}`} onMouseDown={() => {
+                        onSaveComment()
+                    }}>Save</button>
                     <div className='add-icons-options'>
                         <MdOutlineAttachment />
                         <GoMention />
