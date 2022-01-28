@@ -17,9 +17,11 @@ import { GoMention } from "react-icons/go"
 export function TaskActivities({ board, group, task, description }) {
 
     const [isTextAreaOpen, toggleTextArea] = useState(false);
+    const [textAreaContent, setTextAreaContent] = useState('');
     const [isActivityListShown, toggleActivityList] = useState(true);
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
-
+    console.log('textAreaContent:', textAreaContent);
+    
     const onToggleActivityList = () => {
         toggleActivityList(!isActivityListShown)
     }
@@ -34,25 +36,30 @@ export function TaskActivities({ board, group, task, description }) {
     }
 
     const getAvatarBackground = (member) => {
-        if (!member) return {}
-        if (member.fullname === 'Guest') return { background: `url(${femaleGuest}) center center / cover`, height: '35px', width: '35px' }
-        if (member.url) return { background: `url(${member.url}) center center / cover` }
-        return { backgroundColor: member.color }
+        return { background: `url(${member.imgUrl}) center center / cover` }
     }
 
+    const getTaskActivity = () => { 
+        const TaskActivities = board.activities.filter(activity => { 
+            return activity.task.id === task.id
+        })
+        return TaskActivities
+    }
 
     return (
         <div className='activity-container'>
             <div className='title-container'>
                 <AiOutlineBars className='primary-icon main-content-icon' />
                 <h3>Activity</h3>
-                <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>Show details</button>
+                <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>{(isActivityListShown) ? 'Hide Details' : 'Shown Details' }</button>
             </div>
             <div className='text-area-container'>
-                <textarea defaultValue="" onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment...">
+                <textarea defaultValue="" onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => { 
+                    setTextAreaContent(ev.target.value)
+                }}>
                 </textarea>
                 {isTextAreaOpen && <section>
-                    <button className='save-btn'>Save</button>
+                    <button className={`save-btn ${(textAreaContent) ? 'activate' : ''}`}>Save</button>
                     <div className='add-icons-options'>
                         <MdOutlineAttachment />
                         <GoMention />
@@ -62,7 +69,8 @@ export function TaskActivities({ board, group, task, description }) {
                 </section>}
             </div>
             {isActivityListShown && <div className='activity-preview-container'>
-                {board.activities && board.activities.map(activity => {
+                {/* {board.activities && board.activities.map(activity => { */}
+                {getTaskActivity() && getTaskActivity().map(activity => {
                     return <section key={activity.id} className='activity-preview'>
                         <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(ev) => {
                             toggleModal({ event: ev, type: 'profile' })

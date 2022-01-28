@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {utilService} from '../services/util.service.js';
-import {httpService} from './http.service.js';
-import {socketService} from './socket.service.js';
-import {userService} from './user.service.js';
+import { utilService } from '../services/util.service.js';
+import { httpService } from './http.service.js';
+import { socketService } from './socket.service.js';
+import { userService } from './user.service.js';
 
 // Localstorage
 // import DUMMY_BOARDS from './board.dummy.data.service';
@@ -42,7 +42,8 @@ async function query() {
 // }
 
 // Img
-async function queryImages(query = 'random') {
+async function queryImages(query) {
+  if (!query) query = 'random'
   const photos = await axios.get(
     `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
   );
@@ -125,7 +126,7 @@ async function add(title, style) {
         color: '#0079bf',
       },
     ],
-    members: [{...loggedUser}],
+    members: [{ ...loggedUser }],
     groups: [],
     activities: [],
   };
@@ -171,7 +172,7 @@ async function removeGroup(groupId, boardId) {
   try {
     const board = await getById(boardId);
     board.groups = board.groups.filter(group => group.id !== groupId);
-
+    board.activities = board.activities.filter(activity => activity.group.id !== groupId)
     update(board);
     return board;
   } catch (err) {
@@ -400,7 +401,7 @@ async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = 
     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId);
     board.groups[groupIdx].tasks.splice(taskIdx, 1, taskToUpdate);
     if (activityTxt) {
-      const formattedActivity = _getFormattedActivity(taskToUpdate, activityTxt);
+      const formattedActivity = _getFormattedActivity(taskToUpdate, board.groups[groupIdx], activityTxt);
       board.activities.unshift(formattedActivity);
     }
 
@@ -424,11 +425,15 @@ async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = 
 //   return storageService.put(STORAGE_KEY, board);
 // }
 
-function _getFormattedActivity(task, txt) {
+function _getFormattedActivity(task, group, txt) {
   return {
     id: utilService.makeId(),
     txt,
     task,
+    group: {
+      id: group.id,
+      title: group.title
+    },
     createdAt: Date.now(),
     member: userService.getLoggedinUser(),
   };

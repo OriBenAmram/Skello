@@ -11,6 +11,13 @@
         .items-container {
             display: flex;
 
+            &.members-container { 
+                :not(:first-child) { 
+                    margin: 0;
+                    margin-left: -10px;
+                }
+            }
+
             :not(:last-child) {
                 margin-right: 4px;
             }
@@ -19,9 +26,8 @@
                 color: #42526e;
                 font-size: 16px;
                 background-color: #eaecf0;
-
                 &:hover { 
-                    background-color: #091e4214;
+                    background-color: #d9dadd;
                 }
             }
 

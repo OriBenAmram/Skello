@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { AddMemberModalContent } from './AddMemberModalContent.jsx'
 import { OtherMemberModalContent } from './OtherMemberModalContent.jsx'
+import { CreateBoardContent } from "./CreateBoardContent.jsx";
 
 export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
@@ -31,13 +32,15 @@ export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, ty
                 return <ProfileModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'addMemberToBoard':
                 return <AddMemberModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+            case 'createBoard':
+                return <CreateBoardContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'otherMemberModal':
                 return <OtherMemberModalContent member={member} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
         }
     }
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
-        if(type === 'otherMemberModal') return { top: top + height + posYAddition, left: left + posXAddition, border: 'none' }
+        if (type === 'otherMemberModal') return { top: top + height + posYAddition, left: left + posXAddition, border: 'none' }
         return { top: top + height + posYAddition, left: left + posXAddition }
     }
     if (!event) return <></>

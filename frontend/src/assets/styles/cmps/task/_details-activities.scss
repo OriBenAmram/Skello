@@ -1,126 +1,137 @@
-.activity-container {
-    margin-bottom: rem(20px);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-
-    .comment-general-box {
-        overflow: hidden;
-        overflow-wrap: break-word;
-        height: 20px;
-        padding: 8px 12px;
-        border-radius: 3px;
-        border: none;
-        box-shadow: none;
-        background-color: white;
-        box-sizing: initial;
-        min-height: 20px;
-        resize: none;
-        flex: 1;
-        box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
-    }
-
-    .title-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .text-area-container {
+.task-details-modal {
+    .activity-container {
+        margin-bottom: rem(20px);
         position: relative;
         display: flex;
         flex-direction: column;
-        margin: 0 0 0 40px;
 
-        .save-btn {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background-color: #091e420a;
+        .comment-general-box {
+            overflow: hidden;
+            overflow-wrap: break-word;
+            height: 20px;
+            padding: 8px 12px;
+            border-radius: 3px;
             border: none;
-            color: #a5adba;
-            display: inline-block;
-            padding: 6px 12px;
+            box-shadow: none;
+            background-color: white;
+            box-sizing: initial;
+            min-height: 20px;
+            resize: none;
+            flex: 1;
+            box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
         }
 
-        .add-icons-options {
+        .title-container {
             display: flex;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-
-            :not(:last-child) {
-                margin-right: 15px;
-            }
-        }
-    }
-
-    .input-activity-box {
-        cursor: pointer;
-        &:focus {
-            padding-bottom: 56px;
-            transition-duration: 85ms;
-            transition-property: padding-bottom;
-            transition-timing-function: ease;
-            outline: none;
-        }
-    }
-
-    // Activity Preview
-    .activity-preview-container {
-        width: 100%;
-        overflow-y: auto;
-        max-height: 300px;
-        .activity-preview {
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            width: 100%;
-            min-height: 32px;
-            padding: 8px 0;
+        }
 
-            .dynamic-action-modal { 
-                box-shadow: rgb(0 0 0 / 2%) 4px 4px 5px;
-            }
+        .text-area-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 0 40px;
 
-            .member-avatar {
+            .save-btn {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                background-color: #091e420a;
+                border: none;
+                color: #a5adba;
+                display: inline-block;
+                padding: 6px 12px;
+                cursor: auto;
 
-                height: 32px;
-                width: 32px;
-                margin-right: 8px;
-                
-                .with-image { 
-                    
+                &.activate {
+                    background-color: #0079bf;
+                    color: #fff;
+                    border-radius: 3px;
+                    font-size: rem(14px);
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #026aa7;
+                    }
                 }
             }
 
-            .activity-info {
+            .add-icons-options {
                 display: flex;
-                flex-direction: column;
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
 
-                
+                :not(:last-child) {
+                    margin-right: 15px;
+                }
+            }
+        }
 
-                h2 {
-                    word-wrap: break-word;
-                    margin: 0;
-                    font-weight: 500;
-                    font-size: 12px;
+        .input-activity-box {
+            cursor: pointer;
+            &:focus {
+                padding-bottom: 56px;
+                transition-duration: 85ms;
+                transition-property: padding-bottom;
+                transition-timing-function: ease;
+                outline: none;
+            }
+        }
 
-                    span {
-                        font-weight: 700;
-                        color: #172b4d;
-                        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
-                            Helvetica Neue, sans-serif;
-                        font-size: 14px;
-                        line-height: 20px;
+        // Activity Preview
+        .activity-preview-container {
+            width: 100%;
+            overflow-y: auto;
+            max-height: 300px;
+            .activity-preview {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                min-height: 32px;
+                padding: 8px 0;
+
+                .dynamic-action-modal {
+                    box-shadow: rgb(0 0 0 / 2%) 4px 4px 5px;
+                }
+
+                .member-avatar {
+                    height: 32px;
+                    width: 32px;
+                    margin-right: 8px;
+
+                    .with-image {
                     }
                 }
 
-                p {
-                    color: #5e6c84;
-                    font-size: 12px;
-                    font-weight: 400;
-                    line-height: 20px;
-                    margin: 0;
+                .activity-info {
+                    display: flex;
+                    flex-direction: column;
+
+                    h2 {
+                        word-wrap: break-word;
+                        margin: 0;
+                        font-weight: 500;
+                        font-size: 12px;
+
+                        span {
+                            font-weight: 700;
+                            color: #172b4d;
+                            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu,
+                                Droid Sans, Helvetica Neue, sans-serif;
+                            font-size: 14px;
+                            line-height: 20px;
+                        }
+                    }
+
+                    p {
+                        color: #5e6c84;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 20px;
+                        margin: 0;
+                    }
                 }
             }
         }

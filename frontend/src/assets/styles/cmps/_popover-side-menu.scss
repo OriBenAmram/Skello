@@ -4,13 +4,69 @@
     top: 85px;
     right: 200px;
     width: 340px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 80px);
     border: 1px solid lightgray;
     border-radius: 3px;
+    border-top-right-radius: 0px;
+    box-shadow: 0 12px 24px -6px #091e4240, 0 0 0 1px #091e4214;
     display: flex;
     flex-direction: column;
     z-index: 30;
     transition: right 0.5s;
+
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 100%;
+    }
+
+    .back-btn {
+        font-size: 20px;
+        left: 12px;
+        overflow: hidden;
+        position: absolute;
+        top: 25px;
+        transition: transform 0.12s ease-in;
+        background-color: inherit;
+        border: none;
+    }
+
+    .primary-close-btn {
+        top: 8px;
+        .primary-menu-close-btn {
+            // color: #6b778c;
+        }
+    }
+
+    // General
+    .primary-link-btn {
+        border-radius: 3px;
+        font-weight: 600;
+        line-height: 20px;
+        text-decoration: none;
+        padding: 6px 6px 6px 40px;
+        position: relative;
+        background-color: initial;
+        border: none;
+        width: 100%;
+        text-align: left;
+        color: $clr1;
+
+        &:hover {
+            background-color: #091e4214;
+        }
+    }
+
+    .primary-icon {
+        font-size: 20px;
+        height: 20px;
+        left: 12px;
+        line-height: 20px;
+        position: absolute;
+        top: 6px;
+        width: 20px;
+    }
 
     .primary-close-btn {
         position: absolute;
@@ -41,7 +97,7 @@
         line-height: 40px;
         overflow: hidden;
         position: relative;
-        padding: 0 6px 0 12px;
+        padding: 14px 6px 14px 12px;
         text-overflow: ellipsis;
         position: relative;
 
@@ -53,6 +109,54 @@
 
     .sidemenu-main-content {
         padding: 12px 6px 12px 12px;
+        overflow-y: auto;
+
+        .activity-section {
+            .activity-container {
+                .activity-preview {
+                    margin-left: 40px;
+                    min-height: 32px;
+                    padding: 8px 0;
+                    position: relative;
+
+                    h2 {
+                        margin: 0;
+                        font-size: 14px;
+
+                        span {
+                            font-weight: 700;
+                            color: #172b4d;
+                            font-size: 14px;
+                            line-height: 20px;
+
+                            &.group-link {
+                                font-weight: 700;
+                                cursor: pointer;
+                                text-decoration: underline;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    p {
+                        font-size: 12px;
+                        color: #5e6c84;
+                        font-weight: 400;
+                        line-height: 20px;
+                        margin: 0;
+                    }
+
+                    // Avatar
+                    .member-avatar {
+                        height: 32px;
+                        left: -40px;
+                        position: absolute;
+                        top: 8px;
+                        width: 32px;
+                    }
+                }
+            }
+        }
         // General
         .primary-link-btn {
             border-radius: 3px;
@@ -66,9 +170,16 @@
             width: 100%;
             text-align: left;
             color: $clr1;
-            
-            &:hover { 
+
+            &:hover {
                 background-color: #091e4214;
+            }
+
+            &.activity-list-btn {
+                &:hover {
+                    cursor: auto;
+                    background-color: initial;
+                }
             }
         }
 
@@ -85,6 +196,98 @@
         // Upper Options
         .upper-sidemenu-options {
             margin: 4px 0;
+
+            .filter-cards-input {
+                width: 100%;
+                border: none;
+                transition: all 0.5s;
+
+                &.open {
+                    display: block;
+                    height: 60px;
+                    margin: 5px;
+                }
+
+                &.closed {
+                    display: none;
+                    height: 0px;
+                }
+            }
+        }
+
+        .background-teaser-section {
+            .board-backgrounds-section-tile {
+                .image-container {
+                    box-sizing: border-box;
+                    cursor: pointer;
+                    float: left;
+                    padding: 0 4px;
+                    position: relative;
+                    text-align: center;
+                    width: 50%;
+                    font-size: 14px;
+                    color: rgb(23, 43, 77);
+                    margin-bottom: 15px;
+                    transition: 0.2s ease-in-out;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+
+                    img {
+                        border-radius: 8px;
+                        width: 100%;
+                        height: 96px;
+                    }
+                }
+            }
+
+            .background-hr {
+                margin-bottom: 20px;
+                background-color: #091e4221;
+                border: 0;
+                height: 1px;
+                padding: 0;
+                width: 100%;
+            }
+
+            h2 {
+                font-weight: 600;
+                font-size: 20px;
+                color: rgb(23, 43, 77);
+                margin: 0 0 8px;
+            }
+
+            .input-container {
+                background-color: #091e420a;
+                border-radius: 8px;
+                z-index: 0;
+                height: 96px;
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .plus-icon {
+                    font-size: 24px;
+                    height: 32px;
+                    color: rgb(66, 82, 110);
+                }
+
+                .upload-background {
+                    bottom: 0;
+                    cursor: pointer;
+                    height: 96px;
+                    left: 0;
+                    margin: 0;
+                    opacity: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 100%;
+                    z-index: 1;
+                }
+            }
         }
     }
 }
