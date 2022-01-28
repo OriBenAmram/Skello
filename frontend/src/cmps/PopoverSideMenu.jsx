@@ -29,10 +29,6 @@ export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
   let history = useHistory();
   const board = useSelector(state => state.boardModule.board);
 
-  const toggleMenuContent = (menuContent) => {
-    console.log('What did you expect?')
-  }
-
   const getAvatarBackground = (member) => {
     return { background: `url(${member.imgUrl}) center center / cover` }
   }
@@ -50,7 +46,7 @@ export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
     dispatch(toggleModal({ event, type: 'otherMemberModal', member }));
   }
 
-  console.log('popoverContent:', popoverContent);
+
 
   return (
     <section className="popover-side-menu" style={isSideBarOpen ? { right: '0px' } : { right: '-400px' }}>

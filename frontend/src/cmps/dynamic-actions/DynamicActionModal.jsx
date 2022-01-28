@@ -13,12 +13,6 @@ import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
-    console.log('type:', type);
-    console.log('baba:', baba);
-
-    const handleClickOutside = (ev) => {
-        console.log('Event outside is', ev)
-    }
 
     const getContentForDisplay = () => {
         switch (type) {
@@ -49,12 +43,9 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
         if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
-            console.log('inside')
-            console.log('{ top: top / 2, left: left + posXAddition }:', { top: top / 2, left: left + posXAddition });
 
             return { top: top / 2, left: left + posXAddition }
         }
-        console.log('outside')
         return { top: top + height + posYAddition, left: left + posXAddition }
     }
     if (!event) return <></>

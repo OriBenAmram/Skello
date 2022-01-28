@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {GrClose} from 'react-icons/gr';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { GrClose } from 'react-icons/gr';
 
 // Actions
-import {onSaveBoard} from '../../store/board/board.action';
-import {loadUsers} from '../../store/user/user.actions';
+import { onSaveBoard } from '../../store/board/board.action';
+import { loadUsers } from '../../store/user/user.actions';
 
 // ICONS
 
-export function AddMemberModalContent({onToggleModal}) {
+export function AddMemberModalContent({ onToggleModal }) {
   const dispatch = useDispatch();
   const members = useSelector(state => state.userModule.users);
   const board = useSelector(state => state.boardModule.board);
@@ -29,14 +29,14 @@ export function AddMemberModalContent({onToggleModal}) {
     });
 
     if (memberIdx >= 0) {
-      const newBoard = {...board, members: [...board.members, member]};
+      const newBoard = { ...board, members: [...board.members, member] };
       dispatch(onSaveBoard(newBoard));
-      onToggleModal({event, type: 'addMemberToBoard'});
+      onToggleModal({ event, type: 'addMemberToBoard' });
     }
   };
 
   const getAvatarBackground = member => {
-    if (member.imgUrl) return {background: `url(${member.imgUrl}) center center / cover`};
+    if (member.imgUrl) return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
   const isMemberInBoard = id => {
@@ -47,7 +47,6 @@ export function AddMemberModalContent({onToggleModal}) {
 
   const getMembersForDisplay = () => {
     if (filterBy) {
-      console.log('filterBy', filterBy);
       return members.filter(member => {
         if (member._id !== board.createdBy._id && !isMemberInBoard(member._id)) {
           return member.fullname.toUpperCase().includes(filterBy.toUpperCase());
@@ -70,7 +69,7 @@ export function AddMemberModalContent({onToggleModal}) {
         <button
           className="simple-close-btn"
           onClick={event => {
-            onToggleModal({event, type: 'addMemberToBoard'});
+            onToggleModal({ event, type: 'addMemberToBoard' });
           }}>
           <GrClose className="btn-content" />
         </button>
