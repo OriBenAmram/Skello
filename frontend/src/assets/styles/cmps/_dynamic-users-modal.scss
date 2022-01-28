@@ -1,6 +1,13 @@
 .users-modal-content {
-     // general content
-     .modal-content {
+    // general content
+    .modal-content {
+        h4 {
+            color: #5e6c84;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 20px;
+            margin-bottom: 4px;
+        }
         .users-list {
             display: flex;
             flex-direction: column;
@@ -8,7 +15,7 @@
 
             .user-preview {
                 border-radius: 3px;
-                height: 32px;
+                height: 35px;
                 line-height: 32px;
                 margin-bottom: 2px;
                 overflow: hidden;
@@ -22,15 +29,14 @@
                 margin-bottom: 7px;
                 cursor: pointer;
 
-                &:hover { 
+                &:hover {
                     background-color: #091e420a;
                 }
 
-                .member-avatar { 
+                .member-avatar {
                     margin-right: 10px;
 
                     &.with-image {
-                        
                     }
                 }
 

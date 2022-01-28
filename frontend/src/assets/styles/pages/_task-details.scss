@@ -44,11 +44,11 @@
             justify-content: center;
             align-items: center;
 
-            path { 
+            path {
                 color: red;
                 // color: #42526e;
             }
-            &:hover { 
+            &:hover {
                 background-color: #00000029;
             }
 
@@ -164,6 +164,8 @@
 
                 h3 {
                     color: $clr2;
+                    font-size: 12px;
+                    font-weight: 600;
                 }
 
                 .add-to-card {
@@ -189,7 +191,7 @@
                         margin-right: 10px;
                     }
 
-                    &:hover { 
+                    &:hover {
                         background-color: #091e4214;
                     }
                 }

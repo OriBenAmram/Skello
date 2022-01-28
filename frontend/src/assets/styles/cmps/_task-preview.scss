@@ -217,8 +217,13 @@
 // Badges
 .task-badges {
     flex-wrap: wrap;
+    min-height: 23px;
 
     .badges-icons {
+        padding-bottom: 4px;
+        :not(:last-child) { 
+            margin-right: 4px;
+        }
         gap: 4px;
         .svg-icon {
             width: 13px;
@@ -257,7 +262,7 @@
 
     .badges-members {
         flex: 1;
-        margin-bottom: 4px;
+        padding-bottom: 4px;
     }
 }
 
@@ -286,9 +291,7 @@
 }
 
 .badge.due-date {
-    padding: 4px;
     padding-right: 7px;
-    margin: 0 4px 4px 0;
     // display: inline-block;
     // margin: 0 4px 4px 0;
     // max-width: 100%;

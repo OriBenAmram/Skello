@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {utilService} from '../services/util.service.js';
-import {httpService} from './http.service.js';
-import {socketService} from './socket.service.js';
-import {userService} from './user.service.js';
+import { utilService } from '../services/util.service.js';
+import { httpService } from './http.service.js';
+import { socketService } from './socket.service.js';
+import { userService } from './user.service.js';
 
 // Localstorage
 // import DUMMY_BOARDS from './board.dummy.data.service';
@@ -42,7 +42,8 @@ async function query() {
 // }
 
 // Img
-async function queryImages(query = 'random') {
+async function queryImages(query) {
+  if (!query) query = 'random'
   const photos = await axios.get(
     `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
   );
@@ -125,7 +126,7 @@ async function add(title, style) {
         color: '#0079bf',
       },
     ],
-    members: [{...loggedUser}],
+    members: [{ ...loggedUser }],
     groups: [],
     activities: [],
   };

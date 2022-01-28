@@ -2,25 +2,12 @@ import { useRef, useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 
 // CMPS
-import { MembersModalContent } from './MembersModalContent.jsx'
-import { LabelsModalContent } from './LabelsModalContent.jsx'
-import { CheckListModalContent } from './CheckListModalContent.jsx'
-import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
-import { TodoOptions } from './TodoOptions.jsx';
-import { EditAttachmentModalContent } from './EditAttachmentModalContent.jsx';
-import { CoverModalContent } from './CoverModalContent.jsx'
-import { DatesModalContent } from './DatesModalContent.jsx'
 import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { AddMemberModalContent } from './AddMemberModalContent.jsx'
-import { CreateBoardContent } from './CreateBoardContent.jsx';
+import { OtherMemberModalContent } from './OtherMemberModalContent.jsx'
+import { CreateBoardContent } from "./CreateBoardContent.jsx";
 
-
-
-// Actions
-import { toggleModal } from '../../store/app/app.action.js'
-
-
-export function DynamicBoardActionModal({ isModalOpen, onToggleModal, type, event, posXAddition = 0, posYAddition = 0 }) {
+export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
 
     // const wrapperRef = useRef(null)
@@ -47,10 +34,13 @@ export function DynamicBoardActionModal({ isModalOpen, onToggleModal, type, even
                 return <AddMemberModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
                 return <CreateBoardContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+            case 'otherMemberModal':
+                return <OtherMemberModalContent member={member} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
         }
     }
     const getModalPositionStyle = () => {
         const { top, left, height } = event.target.getBoundingClientRect();
+        if (type === 'otherMemberModal') return { top: top + height + posYAddition, left: left + posXAddition, border: 'none' }
         return { top: top + height + posYAddition, left: left + posXAddition }
     }
     if (!event) return <></>

@@ -7,12 +7,13 @@ export function toggleSideMenu() {
   };
 }
 
-export function toggleModal({ event, type, posXAddition = 0, posYAddition = 0, isShown = false }) {
+export function toggleModal({ event, type, posXAddition = 0, posYAddition = 0, isShown = false, member = null }) {
   console.log('!!!!!!!!!!!@@@@@@@');
   console.log('toggeling')
   return async dispatch => {
     dispatch({
-      type: 'TOGGLE_MODAL', modalInfo: { event, type, posXAddition, posYAddition, isShown }
+      type: 'TOGGLE_MODAL', modalInfo: { event, type, posXAddition, posYAddition, isShown, member }
+
     });
   };
 }

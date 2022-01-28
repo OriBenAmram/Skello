@@ -1,0 +1,53 @@
+.sidemenu-main-content.bg-picker{
+    box-sizing: border-box;
+    // display: flex;
+    // flex: 1 1 auto;
+    // height: 100%;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+    padding: 12px 6px 12px 12px;
+    width: 100%;
+
+    .search-imgs{
+        margin: 1px;
+        position: relative;
+    }
+
+    input{
+        border: none;
+        border-radius: 3px;
+        box-shadow: inset 0 0 0 2px #dfe1e6;
+        display: block;
+        line-height: 20px;
+        margin-bottom: 12px;
+        outline: none;
+        padding: 8px 12px;
+        transition-duration: 85ms;
+        transition-property: background-color,border-color,box-shadow;
+        transition-timing-function: ease;
+        background: #fafbfc;
+        width: 100%;
+        padding-left: 32px;
+
+    }
+
+    .search-icon{
+        left: 8px;
+    position: absolute;
+    top: 8px;
+    }
+
+    .bg-options-container{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 8px;
+
+        .bg-preview{
+            height: 96px;
+            width: 152.5px;
+            border-radius: 8px;
+            // margin-bottom: 8px;
+            width: 100%;
+        }
+    }
+}

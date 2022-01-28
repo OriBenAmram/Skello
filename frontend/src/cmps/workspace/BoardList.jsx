@@ -8,6 +8,7 @@ export function BoardList({ boards, onToggleStarred, toggleModal, isStarred = fa
     <div className="board-list">
       {!isStarred && <div
         className="add-board-preview board-preview flex align-center justify-center"
+        style={{ padding: '0' }}
         onClick={event => {
           console.log('baba');
           toggleModal({ event, type: 'createBoard', isDetails: true });

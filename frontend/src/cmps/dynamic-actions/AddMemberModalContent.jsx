@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { GrClose } from 'react-icons/gr';
 
 // Actions
-import { toggleModal } from '../../store/app/app.action';
 import { onSaveBoard } from '../../store/board/board.action';
+
 // ICONS
 
 
@@ -35,6 +35,15 @@ export function AddMemberModalContent({ onToggleModal }) {
         if (user.imgUrl) return { background: `url(${user.imgUrl}) center center / cover` };
     };
 
+    const getUsersForDisplay = () => {
+        if (searchedUserText) {
+            return users.filter(user => {
+                return user.fullname.toUpperCase().includes(searchedUserText.toUpperCase())
+            })
+        }
+        return users
+    }
+
     return (
         <section className="users-modal-content">
             <section className="modal-header">
@@ -58,7 +67,7 @@ export function AddMemberModalContent({ onToggleModal }) {
                     />
                     <h4>Board users</h4>
                     <section className="users-list">
-                        {users.map((user, index) => {
+                        {getUsersForDisplay().map((user, index) => {
                             return (
                                 <div
                                     key={index}
