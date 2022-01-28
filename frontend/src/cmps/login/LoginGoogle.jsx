@@ -24,7 +24,7 @@ export function LoginWithGoogle({ onLoginGoogle, }) {
                 render={renderProps => (
                     <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
                         <img src={googleIcon} className="button-icon-image" />
-                        Continue with Google @
+                        Continue with Google
                     </button>
                 )}
                 buttonText="Log in with Google $$"
@@ -33,7 +33,7 @@ export function LoginWithGoogle({ onLoginGoogle, }) {
                 onFailure={handleFailure}
                 // onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}
-                // isSignedIn={true}
+            // isSignedIn={true}
             >
             </GoogleLogin>
         </div>
