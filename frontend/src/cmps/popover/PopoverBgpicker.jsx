@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoIosArrowBack } from 'react-icons/io'
 
@@ -7,11 +8,23 @@ import { boardService } from '../../services/board.service';
 
 // cmps
 import { Loader } from '../../cmps/Loader';
+import { onSaveBoard } from '../../store/board/board.action';
 
 export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent, setPopoverContent }) {
 
     const [searchTxt, setSearchTxt] = useState('')
-    const [imgs, setImgs] = useState([])
+    const [imgs, setImgs] = useState([]);
+    const dispatch = useDispatch()
+    const board = useSelector(state => state.boardModule.board);
+
+    useEffect(() => {
+        const getUnsplashImgs = async () => {
+            const unsplashImgs = await boardService.queryImages(searchTxt);
+            setImgs(unsplashImgs)
+        }
+        getUnsplashImgs()
+    }, [searchTxt]);
+
 
     const gColors = [
         'rgb(210, 144, 52)',
@@ -26,19 +39,15 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
 
     ]
 
-    useEffect(() => {
-        const getUnsplashImgs = async () => {
-            const unsplashImgs = await boardService.queryImages(searchTxt);
-            setImgs(unsplashImgs)
-        }
-        getUnsplashImgs()
-    }, [searchTxt]);
 
+    const onSaveBg = (background, isImg = false) => {
+        console.log('background:', background);
 
+        board.style = (isImg) ? { background: `url(${background})` } : { background };
+        dispatch(onSaveBoard(board))
+    }
 
-
-    console.log('imgs:', imgs);
-
+    console.log(imgs)
 
 
     if (!imgs?.length) return <Loader />
@@ -66,7 +75,9 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
                     <div className="bg-options-container">
                         {gColors.map((color, idx) =>
 
-                            <div className="bg-preview" key={idx} style={{ background: `${color} center center / cover` }}>
+                            <div className="bg-preview"
+                                onClick={() => onSaveBg(color)}
+                                key={idx} style={{ background: `${color} center center / cover` }}>
 
                             </div>)}
                     </div>
@@ -102,7 +113,9 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
                     <div className="bg-options-container">
                         {imgs.map((img, idx) =>
 
-                            <div className="bg-preview" key={idx} style={{ background: `url(${img.urls.small}) center center / cover` }}>
+                            <div className="bg-preview"
+                                onClick={() => onSaveBg(img.urls.regular, true)}
+                                key={idx} style={{ background: `url(${img.urls.small}) center center / cover` }}>
 
                             </div>)}
                     </div>

@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart} from 'react-icons/io5';
-import {useDispatch} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
 
 // Action
-import {toggleModal, toggleSideMenu} from '../../store/app/app.action';
+import { toggleModal, toggleSideMenu } from '../../store/app/app.action';
 
-export function BoardHeader({board}) {
-  const {title, members} = board;
+export function BoardHeader({ board }) {
+  const { title, members } = board;
   const dispatch = useDispatch();
 
   const onToggleMenu = () => {
@@ -14,16 +14,16 @@ export function BoardHeader({board}) {
   };
 
   const onAddMemberToBoard = event => {
-    dispatch(toggleModal({event, type: 'addMemberToBoard'}));
+    dispatch(toggleModal({ event, type: 'addMemberToBoard', isShown: true }));
   };
 
   const getAvatarBackground = member => {
-    return {background: `url(${member.imgUrl}) center center / cover`};
+    return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
   const onMemberClick = (event, member) => {
-    dispatch(toggleModal({event, type: 'otherMemberModal', member}));
-  };
+    dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: true }));
+  }
 
   return (
     <header className="board-header ">
