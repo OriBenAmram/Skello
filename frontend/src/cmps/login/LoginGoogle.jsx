@@ -19,7 +19,7 @@ export function LoginWithGoogle({ onLoginGoogle, }) {
     return (
         <div>
             <GoogleLogin
-                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                clientId={"349715903171-rm59q64faelu1sivune89lktj8kf78s0.apps.googleusercontent.com"}
                 // clientId={REACT_APP_GOOGLE_CLIENT_ID}
                 render={renderProps => (
                     <button onClick={renderProps.onClick} disabled={renderProps.disabled}>

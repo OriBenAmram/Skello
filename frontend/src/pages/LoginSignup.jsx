@@ -66,12 +66,13 @@ export function LoginSignup(props) {
         }
       }).then(res => res.json()).then(data => {
         dispatch(signup({ username: data.email, password: data.googleId, fullname: data.name, imgUrl: data.picture, googleId: data.googleId }));
+        props.history.push('/');
       });
 
     } catch (err) {
       console.log('Cannot login', err);
     }
-    // props.history.push('/workspace');
+
   }
 
   const onClickGuest = async () => {
@@ -124,7 +125,7 @@ export function LoginSignup(props) {
           </form>
           <section className="other-login-options">
             <span>OR</span>
-            
+
             <LoginWithGoogle onLoginGoogle={onLoginGoogle} />
             {/* <LogoutWithGoogle /> */}
             <button
