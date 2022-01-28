@@ -49,9 +49,6 @@ export function CreateBoardContent({ toggleModal }) {
 
     ]
 
-    console.log(gImages[0])
-
-
     return (
         <section className="create-board-modal">
             <section className='modal-header'>

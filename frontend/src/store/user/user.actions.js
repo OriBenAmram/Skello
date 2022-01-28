@@ -27,6 +27,7 @@ export function signup(credentials) {
     }
   };
 }
+
 export function logout() {
   return async dispatch => {
     try {
@@ -48,6 +49,17 @@ export function loadUsers() {
       dispatch({type: 'SET_USERS', users});
     } catch (err) {
       console.log('Cannot load users', err);
+    }
+  };
+}
+
+export function loadUser(userId) {
+  return async dispatch => {
+    try {
+      const user = await userService.getUser(userId);
+      dispatch({type: 'SET_USER', user});
+    } catch (err) {
+      console.log('Cannot load user', err);
     }
   };
 }

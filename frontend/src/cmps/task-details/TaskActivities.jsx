@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 // Services
+import { updateTask, onSaveBoard } from '../../store/board/board.action.js';
 import { utilService } from '../../services/util.service.js'
 
 // Icons
@@ -15,6 +16,7 @@ import { MdOutlineAttachment } from "react-icons/md"
 import { GoMention } from "react-icons/go"
 
 export function TaskActivities({ board, group, task, description }) {
+    const dispatch = useDispatch();
 
     const [isTextAreaOpen, toggleTextArea] = useState(false);
     const [textAreaContent, setTextAreaContent] = useState('');
@@ -47,20 +49,15 @@ export function TaskActivities({ board, group, task, description }) {
     }
 
     const onSaveComment = () => {
-        console.log('textAreaContent:', textAreaContent);
         const comment = {
             txt: textAreaContent,
             byMember: user,
             createdAt: Date.now()
         }
-        console.log('comment:', comment);
         const newTaskComments = task.comments.unshift(comment);
-        
         const taskToUpdate = { ...task, comments: newTaskComments };
-        console.log('taskToUpdate:', taskToUpdate);
-        
-        // const activityTxt = textAreaContent;
-        // dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt, true));
+        const activityTxt = textAreaContent;
+        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt, true));
         setTextAreaContent('')
     }
 
@@ -91,7 +88,22 @@ export function TaskActivities({ board, group, task, description }) {
             {isActivityListShown && <div className='activity-preview-container'>
                 {/* {board.activities && board.activities.map(activity => { */}
                 {getTaskActivity() && getTaskActivity().map(activity => {
-                    return <section key={activity.id} className='activity-preview'>
+                    // Comment preview
+                    if (activity.isComment) {
+                        return <section key={activity.id} className='activity-preview'>
+                            <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(ev) => {
+                                toggleModal({ event: ev, type: 'profile' })
+                            }}>
+                                {modal.isModalOpen && <DynamicActionModal posXAddition={0} posYAddition={0} toggleModal={toggleModal} type={'profile'} event={modal.event} />}
+                            </div>
+                            <div className='comment-info'>
+                                <p> <span>{activity.member.fullname}</span> {utilService.timeSince(activity.createdAt)}</p>
+                                <div className='comment-preview'>{activity.txt}</div>
+                            </div>
+                        </section>
+                    }
+                    // Activity
+                    else return <section key={activity.id} className='activity-preview'>
                         <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(ev) => {
                             toggleModal({ event: ev, type: 'profile' })
                         }}>

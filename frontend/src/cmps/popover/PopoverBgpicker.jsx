@@ -41,18 +41,11 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
 
 
     const onSaveBg = (background, isImg = false) => {
-        console.log('background:', background);
-
         board.style = (isImg) ? { background: `url(${background})` } : { background };
         dispatch(onSaveBoard(board))
     }
 
-    console.log(imgs)
-
-
     if (!imgs?.length) return <Loader />
-
-
 
     return (
         <div>

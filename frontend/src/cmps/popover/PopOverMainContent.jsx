@@ -40,12 +40,12 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
 
                     <div className="image-container" onClick={() => setPopoverContent('color')} >
                         <img src={colorTeaser} alt="" />
-                        <div class="title">Colors</div>
+                        <div className="title">Colors</div>
                     </div>
 
                     <div className="image-container" onClick={() => setPopoverContent('image')}>
                         <img src={imgsTeaser} alt="" />
-                        <div class="title">Photos</div>
+                        <div className="title">Photos</div>
                     </div>
 
 

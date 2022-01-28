@@ -22,7 +22,6 @@ export function SpeechToText({ event }) {
     {
       command: 'please create board',          //command the user says, * is any input
       callback: () => {
-        console.log('again')
         dispatch(toggleModal({ event, type: 'createBoard', isShown: true }));
       }
     }
@@ -48,12 +47,6 @@ export function SpeechToText({ event }) {
     resetTranscript();
   };
 
-
-
-
-
-  console.log('useSpeechRecognition({ commands }):', useSpeechRecognition({ commands }));
-
   const { transcript, resetTranscript } = useSpeechRecognition({ commands })
   //pass the commands array to the SpeechRecognition function
 
@@ -68,7 +61,7 @@ export function SpeechToText({ event }) {
           {/* <BiMicrophone className="microphone-icon" /> */}
 
         </div>
-        <div class={`blob ${(isListening) ? 'recorder' : ''}`} onClick={() => {
+        <div className={`blob ${(isListening) ? 'recorder' : ''}`} onClick={() => {
           handleListing()
           if (isListening) stopHandle()
         }}></div>

@@ -12,6 +12,7 @@ import { GrClose } from "react-icons/gr";
 
 // Blind
 import redBlindColorSign from '../../assets/imgs/blind-color/red.svg';
+import { LogoutWithGoogle } from '../login/LogoutGoogle.jsx';
 
 
 

@@ -17,7 +17,6 @@ export function TaskAdditionsShow({ board, group, task }) {
     }, [board, task]);
 
     const onClickAvatar = (member) => {
-        console.log('member:', member);
     }
 
     const onClickLabel = (label) => {

@@ -47,7 +47,6 @@ export function AddMemberModalContent({onToggleModal}) {
 
   const getMembersForDisplay = () => {
     if (filterBy) {
-      console.log('filterBy', filterBy);
       return members.filter(member => {
         if (member._id !== board.createdBy._id && !isMemberInBoard(member._id)) {
           return member.fullname.toUpperCase().includes(filterBy.toUpperCase());

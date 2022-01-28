@@ -26,17 +26,15 @@ export function BoardApp(props) {
       // get updated board from backend
       socketService.off('updated-board');
       socketService.on('updated-board', async updatedBoard => {
-        console.log('UPDATED board from backend', updatedBoard);
         await dispatch(setBoard(updatedBoard));
       });
       onLoadBoard();
     } catch (err) {
-      console.log('Cannot load board', err);
+      console.log('Cannot load board', err)
     }
 
     return () => {
       socketService.off('updated-board', () => {
-        console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
       });
       socketService.terminate();
       clearBoard();

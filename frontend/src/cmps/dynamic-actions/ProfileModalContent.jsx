@@ -1,26 +1,36 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {GrClose} from 'react-icons/gr';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { GrClose } from 'react-icons/gr';
 import femaleGuest from '../../assets/imgs/female-guest.svg';
 
 // Actions
-import {logout} from '../../store/user/user.actions.js';
-import {toggleModal} from '../../store/app/app.action';
+import { logout, loadUser } from '../../store/user/user.actions.js';
+import { toggleModal } from '../../store/app/app.action';
 
 // ICONS
 
-export function ProfileModalContent({onToggleModal}) {
+export function ProfileModalContent({ onToggleModal }) {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userModule.loggedinUser);
+  const user = useSelector(state => state.userModule.loggedinUser)
   const onClickLogout = () => {
     dispatch(logout());
   };
   // const [modalType, setModalType] = useState({ header: 'Labels', type: 'labels' });
+  console.log('user - ProfileModal', user);
+
+  // useEffect(() => {
+  //   loadUserFromStore()
+  // }, [user])
+
+  // const loadUserFromStore = async () => {
+  //   if(!user) return
+  //   console.log('user before sending', user)
+  //   dispatch(loadUser(user._id))
+  // }
 
   const getUserAvatarImg = () => {
-    console.log('user', user);
-    return {background: `url(${user.imgUrl}) center center / cover`};
+    return { background: `url(${user.imgUrl}) center center / cover` };
   };
 
   return (
@@ -29,7 +39,7 @@ export function ProfileModalContent({onToggleModal}) {
         <button
           className="simple-close-btn"
           onClick={event => {
-            dispatch(toggleModal({event, type: 'profile'}));
+            dispatch(toggleModal({ event, type: 'profile' }));
             // onToggleModal({event, type: 'profile' })}
           }}>
           <GrClose className="btn-content" />
@@ -52,7 +62,7 @@ export function ProfileModalContent({onToggleModal}) {
             <Link to={'/signup'}>
               <button
                 onClick={event => {
-                  onToggleModal({event, type: 'profile'});
+                  onToggleModal({ event, type: 'profile' });
                 }}>
                 Sign up with your real details
               </button>
@@ -63,7 +73,7 @@ export function ProfileModalContent({onToggleModal}) {
           <Link to={'/login'}>
             <button
               onClick={event => {
-                onToggleModal({event, type: 'profile'});
+                onToggleModal({ event, type: 'profile' });
                 onClickLogout();
               }}>
               Log out
