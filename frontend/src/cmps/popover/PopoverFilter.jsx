@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 // import { IoCheckbox } from "react-icons/io5";
 // import { MdCheckBoxOutlineBlank, MdMoreHoriz } from "react-icons/md";
+import { MdOutlinePhotoCameraBack, MdClose } from 'react-icons/md';
 import { PopoverFilterUser } from './PopoverFilterUser';
 import { PopoverFilterLabels } from './PopoverFilterLabels';
 import { setFilter } from '../../store/board/board.action';
@@ -33,13 +34,9 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                 <button className='back-btn' onClick={() => {
                     setPopoverContent('main')
                 }}><IoIosArrowBack /></button>
-                <button className='primary-close-btn filter-btn'
-                    onClick={() => {
-                        toggleSideMenu();
-                        setPopoverContent('main')
-                    }}>
-                    x
-                </button>
+                <button className="primary-close-btn"><MdClose className='primary-menu-close-btn' onClick={() => {
+                toggleSideMenu()
+            }} /></button>
                 <span>Filter</span>
                 <hr className='bottom-hr' />
             </div >
@@ -70,7 +67,7 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                     </div>
 
                     {board && <ul className="labels-filter-list clean-list">
-                        {board.labels.map(label => <PopoverFilterLabels label={label} setFilterBy={setFilterBy} filterBy={filterBy} />)}
+                        {board.labels.map(label => <PopoverFilterLabels key={label.color}  label={label} setFilterBy={setFilterBy} filterBy={filterBy} />)}
                     </ul>}
                 </section>
             </div>
