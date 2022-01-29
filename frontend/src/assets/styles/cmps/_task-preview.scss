@@ -10,6 +10,7 @@
 }
 
 .task-preview-wrapper {
+    padding-bottom: 8px;
     position: relative;
 
     &:hover {
@@ -55,7 +56,7 @@
     flex-direction: column;
     align-content: center;
     min-height: 32px;
-    margin: 0 0 8px 0;
+    margin:0;
     box-shadow: 0 1px 0 #c0c6d0;
     background: #fff;
     padding: 6px 8px 2px;
