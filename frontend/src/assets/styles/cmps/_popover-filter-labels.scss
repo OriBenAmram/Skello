@@ -9,11 +9,17 @@
 
 
         .check-box-blank{
-
+            cursor: pointer;
+            height: 19px;
+            width: 19px;
+            color: #dfe1e6;
         }
 
         .check-box-checked{
-
+            cursor: pointer;
+            height: 19px;
+            width: 19px;
+          color: #0079bf;
         }
     }
 
@@ -28,3 +34,4 @@
         justify-content: center;
     }
 }}
+

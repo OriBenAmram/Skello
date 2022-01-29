@@ -37,7 +37,7 @@ export function PopoverFilterUser({ member, setFilterBy, filterBy }) {
                 <div className="user-img-container">
                     <img src={member.imgUrl} alt="" />
                 </div>
-                <span>{member.fullname}</span>
+                <span className="user-name">{member.fullname}</span>
             </div>
         </div>
 

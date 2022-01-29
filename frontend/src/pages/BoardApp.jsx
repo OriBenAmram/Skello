@@ -36,6 +36,9 @@ export function BoardApp(props) {
       console.log('Cannot load board', err)
     }
 
+    console.log('board:', board);
+
+
     return () => {
       socketService.off('updated-board', () => {
       });

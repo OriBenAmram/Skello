@@ -68,12 +68,25 @@
 
                 .user-info{
                     display: flex;
-                    width: 40%;
-                    justify-content: space-between;
+                    align-items: center;
+                    flex-grow: 1;
+                    min-width: 0;
                     .user-img-container{
                         height: 24px;
                         width: 24px;
                         line-height: 24px;
+                    }
+
+                    .user-name{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        color: #5e6c84;
+                        font-size: 14px;
+                        font-weight: normal;
+                        line-height: 20px;
+                        flex-grow: 1;
+                        margin-left: 13px
                     }
                 }
 
@@ -102,9 +115,27 @@
                     box-sizing: border-box;
                 }
 
+                .check-box-blank{
+                    cursor: pointer;
+                    height: 19px;
+                    width: 19px;
+                    color: #dfe1e6;
+                }
+
+                .check-box-checked{
+                    cursor: pointer;
+                    height: 19px;
+                    width: 19px;
+                    color: #dfe1e6;
+                color: #0079bf;
+                    
+
+                }
 
 
             }
         }
     }
 }
+
+

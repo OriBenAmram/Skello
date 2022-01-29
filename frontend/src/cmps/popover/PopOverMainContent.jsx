@@ -11,7 +11,7 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
     return (<div className='content-wrapper' >
         {/* Header */}
         <div className="popover-header flex align-center">
-            <button className="primary-close-btn side-bar"><MdClose className='primary-menu-close-btn' onClick={() => {
+            <button className="primary-close-btn"><MdClose className='primary-menu-close-btn' onClick={() => {
                 toggleSideMenu()
             }} /></button>
             <span>Menu</span>

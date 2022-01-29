@@ -33,7 +33,7 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                 <button className='back-btn' onClick={() => {
                     setPopoverContent('main')
                 }}><IoIosArrowBack /></button>
-                <button className='primary-close-btn'
+                <button className='primary-close-btn filter-btn'
                     onClick={() => {
                         toggleSideMenu();
                         setPopoverContent('main')
@@ -78,3 +78,4 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
     );
 
 }
+

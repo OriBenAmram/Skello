@@ -37,8 +37,10 @@
         border: none;
     }
 
-    .primary-close-btn {
-        top: 8px;
+    .primary-close-btn.filter-btn {
+        top: 0;
+        font-size: 32px;
+        opacity: .5;
         .primary-menu-close-btn {
             // color: #6b778c;
         }
