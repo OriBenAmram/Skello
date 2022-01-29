@@ -10,13 +10,30 @@ export function BoardHeader({ board }) {
   const { title, members } = board;
   const dispatch = useDispatch();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
+  const [shownMembers, setShownMembers] = useState('4')
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+  }, [])
+
+  const handleResize = () => {
+    if (window.innerWidth < 671) {
+      setShownMembers(2)
+    } else if (window.innerWidth < 691) {
+      setShownMembers(3)
+    } else if (window.innerWidth < 711) {
+      setShownMembers(4)
+    }
+  }
 
   const onToggleMenu = () => {
     dispatch(toggleSideMenu());
   };
 
   const onAddMemberToBoard = event => {
-    dispatch(toggleModal({ event, type: 'addMemberToBoard',isShown: !isModalOpen }));
+    dispatch(toggleModal({ event, type: 'addMemberToBoard', isShown: !isModalOpen }));
   };
 
   const getAvatarBackground = member => {
@@ -25,6 +42,16 @@ export function BoardHeader({ board }) {
 
   const onMemberClick = (event, member) => {
     dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: !isModalOpen }));
+  }
+
+  const membersToShow = () => {
+    const members = [...board.members]
+    members.splice(shownMembers)
+    return members
+  }
+
+  const getLengthOfExtraMembers = () => {
+    return board.members.length - shownMembers
   }
 
   return (
@@ -39,7 +66,7 @@ export function BoardHeader({ board }) {
               </button>
             </div>
             <div className="nav-members">
-              {members.map((member, index) => (
+              {membersToShow().map((member, index) => (
                 <div
                   style={getAvatarBackground(member)}
                   className={`member-avatar`}
@@ -48,6 +75,11 @@ export function BoardHeader({ board }) {
                     onMemberClick(event, member);
                   }}></div>
               ))}
+              {getLengthOfExtraMembers() > 0 && (
+                <div className="extra-member-avatar">
+                  {`+${getLengthOfExtraMembers()}`}
+                </div>
+              )}
             </div>
             <div
               className="nav-btn add-member"
@@ -62,7 +94,7 @@ export function BoardHeader({ board }) {
         </div>
         <div className="nav-right flex">
           <button className="nav-btn flex">
-            <IoBarChart /> 
+            <IoBarChart />
             <p>Dashbaord</p>
           </button>
           <button
@@ -70,7 +102,7 @@ export function BoardHeader({ board }) {
             onClick={() => {
               onToggleMenu();
             }}>
-            <IoEllipsisHorizontalSharp /> 
+            <IoEllipsisHorizontalSharp />
             <p>Show Menu</p>
           </button>
         </div>
