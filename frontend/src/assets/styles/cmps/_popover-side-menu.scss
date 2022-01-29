@@ -1,8 +1,9 @@
 .popover-side-menu {
     background-color: #f4f5f7;
-    position: absolute;
+    position: fixed;
     top: 85px;
-    right: 200px;
+    right:0;
+    transform: translateX(100%);
     width: 340px;
     height: calc(100vh - 80px);
     border: 1px solid lightgray;
@@ -12,7 +13,11 @@
     display: flex;
     flex-direction: column;
     z-index: 30;
-    transition: right 0.5s;
+    transition: all 0.5s;
+
+    &.open { 
+        transform: translateX(0%);
+    }
 
     .content-wrapper {
         display: flex;

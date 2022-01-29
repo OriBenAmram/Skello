@@ -47,7 +47,7 @@ export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
   }
 
   return (
-    <section className="popover-side-menu" style={isSideBarOpen ? { right: '0px' } : { right: '-400px' }}>
+    <section className={`popover-side-menu ${(isSideBarOpen) ? 'open' : ''}`}>
       {(popoverContent === 'main') && <PopOverMainContent setSearchText={setSearchText} setSearchState={setSearchState} searchText={searchText} isSearchOpen={isSearchOpen} toggleSideMenu={toggleSideMenu} isSideBarOpen={isSideBarOpen} setPopoverContent={setPopoverContent} />}
       {(popoverContent === 'color' || popoverContent === 'image') &&
         < PopoverBgPicker setPopoverContent={setPopoverContent} popoverContent={popoverContent} isSideBarOpen={isSideBarOpen} toggleSideMenu={toggleSideMenu} />}

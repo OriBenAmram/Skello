@@ -80,7 +80,6 @@ export function TaskPreview(props) {
     dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: true }));
   }
 
-
   // Title style by cover
   const getTitleStyleByCover = () => {
     if (isCover) {

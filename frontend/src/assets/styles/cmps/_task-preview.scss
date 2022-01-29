@@ -192,6 +192,7 @@
 
     .label {
         align-content: center;
+        position: relative;
         height: 8px;
         font-size: 12px;
         border-radius: 4px;
@@ -201,7 +202,24 @@
         padding: 0;
         transition: height 0.5s, padding 0.3s;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
-            sans-serif;
+        sans-serif;
+        
+        &.blind-mode {
+            
+            .blind-sign-container { 
+                display: flex;
+                align-items: center;
+                transition: height 0.5s, padding 0.3s;
+                height: 100%;
+                overflow: hidden;
+            }
+            img {
+                margin-right: -1px;
+                height: 100%;
+                transition: height 0.5s, padding 0.3s;
+                overflow: hidden;
+            }
+        }
 
         &.open {
             height: 16px;
@@ -209,6 +227,18 @@
             width: 58px;
             max-width: 198px;
             padding: 0 8px;
+
+            &.blind-mode {
+                padding-left: 20px;
+                width: 58px;
+                img {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                }
+            }
         }
     }
 }
@@ -220,7 +250,7 @@
 
     .badges-icons {
         padding-bottom: 4px;
-        :not(:last-child) { 
+        :not(:last-child) {
             margin-right: 4px;
         }
         gap: 4px;
@@ -263,17 +293,17 @@
         flex: 1;
         padding-bottom: 4px;
 
-        :not(:first-child) { 
+        :not(:first-child) {
             margin-left: -10px;
         }
     }
 }
 
 // EDIT
-.quick-card-editor{
-  z-index:20;
+.quick-card-editor {
+    z-index: 20;
 
-    .task-preview-edit{
+    .task-preview-edit {
         // cursor: pointer;
         word-wrap: break-word;
         max-width: 300px;
@@ -284,14 +314,13 @@
         box-shadow: 0 1px 0 #16181b40;
         border-radius: 3px;
     }
-    .task-preview-heder{
+    .task-preview-heder {
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover;
 
-        .img-wrapper{
+        .img-wrapper {
             height: fit-content;
-   
         }
 
         .header-color {
@@ -299,24 +328,22 @@
             // margin-bottom: 5px;
         }
     }
-    .clean-textarea{
+    .clean-textarea {
         border: none;
         outline: none;
         background-color: inherit;
-        font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+            sans-serif;
         resize: none;
         width: 100%;
         height: 90px;
-
-
     }
 
-    .task-details-wrapper{
+    .task-details-wrapper {
         padding: 6px 8px 2px;
     }
 
-    .secondary-btn{
-
+    .secondary-btn {
         margin: 17px 4px 0 0;
         width: 65px;
         height: 34px;
@@ -328,13 +355,11 @@
     display: block;
     width: 100vw;
     min-height: 100vh;
-    background-color: rgba(0,0,0,.6392156862745098);
+    background-color: rgba(0, 0, 0, 0.6392156862745098);
     inset: 0;
     transition: opacity 0.2s ease-out;
     overflow-y: auto;
- 
 }
-
 
 // TASK BADGES
 .badge-icon {
