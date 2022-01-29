@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Route } from 'react-router-dom';
@@ -9,13 +9,16 @@ import { GroupList } from '../cmps/board/GroupList.jsx';
 import { Loader } from '../cmps/Loader.jsx';
 import { TaskDetails } from './TaskDetails.jsx';
 import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
+import { QuickCardEditor } from '../cmps/board/QuickCardEditor';
 
 // Action
 import { loadBoard, handleDrag, setBoard } from '../store/board/board.action';
+import { toggleModal } from '../store/app/app.action.js';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
   const board = useSelector(state => state.boardModule.board);
+  const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {} });
   const { id } = props.match.params;
 
   useEffect(() => {
@@ -26,17 +29,15 @@ export function BoardApp(props) {
       // get updated board from backend
       socketService.off('updated-board');
       socketService.on('updated-board', async updatedBoard => {
-        console.log('UPDATED board from backend', updatedBoard);
         await dispatch(setBoard(updatedBoard));
       });
       onLoadBoard();
     } catch (err) {
-      console.log('Cannot load board', err);
+      console.log('Cannot load board', err)
     }
 
     return () => {
       socketService.off('updated-board', () => {
-        console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
       });
       socketService.terminate();
       clearBoard();
@@ -50,6 +51,13 @@ export function BoardApp(props) {
     //   // await dispatch(setBoard(null));
     // };
   }, []);
+
+  const toggleQuickCardEditor = (event, task, groupId) => {
+    event.stopPropagation();
+    const parentElement = task ? event.currentTarget.parentNode : null;
+    const position = task ? parentElement.getBoundingClientRect() : {};
+    setQuickCardEditor({ taskToEdit: task, groupId, position });
+  };
 
   const onLoadBoard = () => {
     dispatch(loadBoard(id));
@@ -75,16 +83,40 @@ export function BoardApp(props) {
 
   if (!board) return <Loader />;
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div
-        className="board-app-wrapper"
-        style={{ background: `${board.style.background}  center center / cover` }}>
-        <div className="board-app">
-          <BoardHeader board={board} />
-          <GroupList groups={[...board.groups]} boardId={board._id} board={board} />
+    <React.Fragment>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div
+          className="board-app-wrapper"
+          style={{ background: `${board.style.background}  center center / cover` }}>
+          <div className="board-app">
+            <BoardHeader board={board} />
+            <GroupList
+              groups={[...board.groups]}
+              boardId={board._id}
+              board={board}
+              toggleQuickCardEditor={toggleQuickCardEditor}
+            />
+          </div>
         </div>
-      </div>
-      <Route path="/board/:boardId/:groupId/:taskId" component={TaskDetails} />
-    </DragDropContext>
+        <Route path="/board/:boardId/:groupId/:taskId" component={TaskDetails} />
+      </DragDropContext>
+
+      {quickCardEditor.taskToEdit && (
+        <QuickCardEditor
+          task={quickCardEditor.taskToEdit}
+          groupId={quickCardEditor.groupId}
+          position={quickCardEditor.position}
+          toggleQuickCardEditor={toggleQuickCardEditor}
+        />
+      )}
+      {quickCardEditor.taskToEdit && (
+        <div
+          onClick={event => {
+            toggleQuickCardEditor(event, null, '');
+          }}>
+          <div className="screen-overlay"></div>
+        </div>
+      )}
+    </React.Fragment>
   );
 }

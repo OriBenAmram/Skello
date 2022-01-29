@@ -5,18 +5,29 @@ import { GrClose } from 'react-icons/gr';
 import femaleGuest from '../../assets/imgs/female-guest.svg';
 
 // Actions
-import { logout } from '../../store/user/user.actions.js';
+import { logout, loadUser } from '../../store/user/user.actions.js';
 import { toggleModal } from '../../store/app/app.action';
 
 // ICONS
 
 export function ProfileModalContent({ onToggleModal }) {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userModule.loggedinUser);
+  const user = useSelector(state => state.userModule.loggedinUser)
   const onClickLogout = () => {
     dispatch(logout());
   };
   // const [modalType, setModalType] = useState({ header: 'Labels', type: 'labels' });
+  console.log('user - ProfileModal', user);
+
+  // useEffect(() => {
+  //   loadUserFromStore()
+  // }, [user])
+
+  // const loadUserFromStore = async () => {
+  //   if(!user) return
+  //   console.log('user before sending', user)
+  //   dispatch(loadUser(user._id))
+  // }
 
   const getUserAvatarImg = () => {
     return { background: `url(${user.imgUrl}) center center / cover` };
@@ -62,7 +73,7 @@ export function ProfileModalContent({ onToggleModal }) {
           <Link to={'/login'}>
             <button
               onClick={event => {
-                toggleModal({ event, type: 'profile' });
+                onToggleModal({ event, type: 'profile' });
                 onClickLogout();
               }}>
               Log out

@@ -13,19 +13,21 @@ import { userService } from '../services/user.service';
 
 
 // Actions
-import { loadUsers } from '../store/user/user.actions.js';
+import { loadUsers, loadUser } from '../store/user/user.actions.js';
 import { toggleModal } from '../store/app/app.action';
 
 export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
-  const user = userService.getMiniUser();
-  const popupModal = useSelector(state => state.appModule.popupModal);
-
+  const user = userService.getLoggedinUser();
 
   useEffect(() => {
     dispatch(loadUsers())
   }, [])
+
+  useEffect(() => {
+    if (user?._id) dispatch(loadUser(user._id))
+  }, [user])
 
   const onUserClick = event => {
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: true }));

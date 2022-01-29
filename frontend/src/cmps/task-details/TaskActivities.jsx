@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 // Services
+import { updateTask, onSaveBoard } from '../../store/board/board.action.js';
 import { utilService } from '../../services/util.service.js'
 
 // Icons
@@ -15,11 +16,13 @@ import { MdOutlineAttachment } from "react-icons/md"
 import { GoMention } from "react-icons/go"
 
 export function TaskActivities({ board, group, task, description }) {
+    const dispatch = useDispatch();
 
     const [isTextAreaOpen, toggleTextArea] = useState(false);
     const [textAreaContent, setTextAreaContent] = useState('');
     const [isActivityListShown, toggleActivityList] = useState(true);
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
+    const user = useSelector(state => state.userModule.loggedinUser);
 
     const onToggleActivityList = () => {
         toggleActivityList(!isActivityListShown)
@@ -45,6 +48,19 @@ export function TaskActivities({ board, group, task, description }) {
         return TaskActivities
     }
 
+    const onSaveComment = () => {
+        const comment = {
+            txt: textAreaContent,
+            byMember: user,
+            createdAt: Date.now()
+        }
+        const newTaskComments = task.comments.unshift(comment);
+        const taskToUpdate = { ...task, comments: newTaskComments };
+        const activityTxt = textAreaContent;
+        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt, true));
+        setTextAreaContent('')
+    }
+
     return (
         <div className='activity-container'>
             <div className='title-container'>
@@ -53,12 +69,14 @@ export function TaskActivities({ board, group, task, description }) {
                 <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>{(isActivityListShown) ? 'Hide Details' : 'Shown Details'}</button>
             </div>
             <div className='text-area-container'>
-                <textarea defaultValue="" onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => {
+                <textarea defaultValue="" value={textAreaContent} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => {
                     setTextAreaContent(ev.target.value)
                 }}>
                 </textarea>
                 {isTextAreaOpen && <section>
-                    <button className={`save-btn ${(textAreaContent) ? 'activate' : ''}`}>Save</button>
+                    <button className={`save-btn ${(textAreaContent) ? 'activate' : ''}`} onMouseDown={() => {
+                        onSaveComment()
+                    }}>Save</button>
                     <div className='add-icons-options'>
                         <MdOutlineAttachment />
                         <GoMention />
@@ -70,7 +88,22 @@ export function TaskActivities({ board, group, task, description }) {
             {isActivityListShown && <div className='activity-preview-container'>
                 {/* {board.activities && board.activities.map(activity => { */}
                 {getTaskActivity() && getTaskActivity().map(activity => {
-                    return <section key={activity.id} className='activity-preview'>
+                    // Comment preview
+                    if (activity.isComment) {
+                        return <section key={activity.id} className='activity-preview'>
+                            <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(ev) => {
+                                toggleModal({ event: ev, type: 'profile' })
+                            }}>
+                                {modal.isModalOpen && <DynamicActionModal posXAddition={0} posYAddition={0} toggleModal={toggleModal} type={'profile'} event={modal.event} />}
+                            </div>
+                            <div className='comment-info'>
+                                <p> <span>{activity.member.fullname}</span> {utilService.timeSince(activity.createdAt)}</p>
+                                <div className='comment-preview'>{activity.txt}</div>
+                            </div>
+                        </section>
+                    }
+                    // Activity
+                    else return <section key={activity.id} className='activity-preview'>
                         <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(ev) => {
                             toggleModal({ event: ev, type: 'profile' })
                         }}>

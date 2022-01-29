@@ -11,7 +11,7 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
     return (<div className='content-wrapper' >
         {/* Header */}
         <div className="popover-header flex align-center">
-            <button className="primary-close-btn"><MdClose className='primary-menu-close-btn' onClick={() => {
+            <button className="primary-close-btn side-bar"><MdClose className='primary-menu-close-btn' onClick={() => {
                 toggleSideMenu()
             }} /></button>
             <span>Menu</span>
@@ -35,9 +35,8 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
                 </button>
             </section>
             {/* BG */}
-            <section className='background-teaser-section'>
+            <section className="background-teaser-section">
                 <div className="board-backgrounds-section-tile">
-
                     <div className="image-container" onClick={() => setPopoverContent('color')} >
                         <img src={colorTeaser} alt="" />
                         <div className="title">Colors</div>
@@ -60,9 +59,10 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
                 <input type="file" className="upload-background" accept="image/*" />
             </div> */}
             {/* Activity */}
-            <section className='activity-section'>
+            <section className="activity-section">
                 <ActivityContent />
             </section>
         </section>
-    </div>)
+    </div>
+    );
 }

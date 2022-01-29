@@ -7,7 +7,6 @@ import { IoIosArrowBack } from 'react-icons/io'
 import { boardService } from '../../services/board.service';
 
 // cmps
-import { Loader } from '../../cmps/Loader';
 import { onSaveBoard } from '../../store/board/board.action';
 
 export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent, setPopoverContent }) {
@@ -41,18 +40,9 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
 
 
     const onSaveBg = (background, isImg = false) => {
-
         board.style = (isImg) ? { background: `url(${background})` } : { background };
         dispatch(onSaveBoard(board))
     }
-
-    console.log('imgs:', imgs);
-
-
-
-
-
-
 
     return (
         <div>

@@ -1,18 +1,23 @@
-import {useState} from 'react';
-import {connect} from 'react-redux';
-import {useDispatch} from 'react-redux';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
+import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import googleIcon from '../assets/imgs/google-icon.svg';
 import femaleGuest from '../assets/imgs/female-guest.svg';
 import leftHero from '../assets/imgs/left-loginsignup-hero.svg';
 import rightHero from '../assets/imgs/right-loginsignup-hero.svg';
-import {ImTrello} from 'react-icons/im';
+import { ImTrello } from 'react-icons/im';
+
+// Google Actions
+import { LoginWithGoogle } from '../cmps/login/LoginGoogle';
+import { LogoutWithGoogle } from '../cmps/login/LogoutGoogle';
 
 // Services
-import {userService} from '../services/user.service';
+import { userService } from '../services/user.service';
 
 // Actions
-import {login, signup} from '../store/user/user.actions';
+import { login, signup } from '../store/user/user.actions';
 
 export function LoginSignup(props) {
   const dispatch = useDispatch();
@@ -20,6 +25,7 @@ export function LoginSignup(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullname] = useState('');
+  const [isLoginWithGoogle, setLoginWithGoogle] = useState(false);
   // const [isLogin, setIsLogin] = useState(true);
   const isLogin = props.location.pathname.includes('login');
 
@@ -36,14 +42,38 @@ export function LoginSignup(props) {
               'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
           })
         );
-        await dispatch(login({username, password}));
+
+        await dispatch(login({ username, password }));
         props.history.push('/workspace');
       } else {
-        await dispatch(login({username, password}));
+        await dispatch(login({ username, password }));
         props.history.push('/workspace');
       }
     }
   };
+
+  // Todo: to enable user sign up multiple times with google, even if exists
+  const onLoginGoogle = async (googleData) => {
+    try {
+      await fetch('http://localhost:3030/api/google-login', {
+        method: 'POST',
+        body: JSON.stringify({
+          token: googleData.tokenId,
+          googleId: googleData.googleId
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json()).then(data => {
+        dispatch(signup({ username: data.email, password: data.googleId, fullname: data.name, imgUrl: data.picture, googleId: data.googleId }));
+        props.history.push('/');
+      });
+
+    } catch (err) {
+      console.log('Cannot login', err);
+    }
+
+  }
 
   const onClickGuest = async () => {
     await dispatch(
@@ -95,11 +125,9 @@ export function LoginSignup(props) {
           </form>
           <section className="other-login-options">
             <span>OR</span>
-            <button>
-              <img src={googleIcon} className="button-icon-image" />
-              Continue with Google
-            </button>
 
+            <LoginWithGoogle onLoginGoogle={onLoginGoogle} />
+            {/* <LogoutWithGoogle /> */}
             <button
               onClick={() => {
                 onClickGuest();

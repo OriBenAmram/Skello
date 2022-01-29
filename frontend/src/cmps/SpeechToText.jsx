@@ -1,22 +1,18 @@
-import { Divider } from "@material-ui/core";
-import { useRef, useState } from "react";
+import { Divider } from '@material-ui/core';
+import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { DynamicActionModal } from "./dynamic-actions/DynamicActionModal";
+import { DynamicActionModal } from './dynamic-actions/DynamicActionModal';
 // import { BiMicrophone } from "react-icons/bi";
 
 import { toggleModal } from '../store/app/app.action';
 
-
 export function SpeechToText({ event }) {
-
-
-  const [display, setDisplay] = useState('') //display for our message
+  const [display, setDisplay] = useState(''); //display for our message
   const [isListening, setIsListening] = useState(false);
   const microphoneRef = useRef(null);
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
 
   const commands = [
@@ -24,8 +20,8 @@ export function SpeechToText({ event }) {
       command: 'please create board',          //command the user says, * is any input
       callback: (title) => {
 
-        console.log('title:', title);
-        console.log('im do it');
+        // console.log('title:', title);
+        // console.log('im do it');
         dispatch(toggleModal({ event, type: 'createBoard', isShown: true }));
       }
     }
@@ -33,7 +29,7 @@ export function SpeechToText({ event }) {
 
   const handleListing = () => {
     setIsListening(true);
-    microphoneRef.current.classList.add("listening");
+    microphoneRef.current.classList.add('listening');
     SpeechRecognition.startListening({
       language: 'en-US',
       continuous: true,
@@ -42,7 +38,7 @@ export function SpeechToText({ event }) {
 
   const stopHandle = () => {
     setIsListening(false);
-    microphoneRef.current.classList.remove("listening");
+    microphoneRef.current.classList.remove('listening');
     SpeechRecognition.stopListening();
   };
 
@@ -51,26 +47,16 @@ export function SpeechToText({ event }) {
     resetTranscript();
   };
 
-
-
-
-
-
   const { transcript, resetTranscript } = useSpeechRecognition({ commands })
   //pass the commands array to the SpeechRecognition function
 
   return (
     <div className="microphone-wrapper">
       <div className="mircophone-container">
-        <div
-          className="microphone-icon-container"
-          ref={microphoneRef}
-
-        >
+        <div className="microphone-icon-container" ref={microphoneRef}>
           {/* <BiMicrophone className="microphone-icon" /> */}
-
         </div>
-        <div class={`blob ${(isListening) ? 'recorder' : ''}`} onClick={() => {
+        <div className={`blob ${(isListening) ? 'recorder' : ''}`} onClick={() => {
           handleListing()
           if (isListening) stopHandle()
         }}></div>
@@ -97,7 +83,8 @@ export function SpeechToText({ event }) {
           </button>
         </div>
       )}
-    </div>)
+    </div>
+  );
 }
 
 // const { transcript, resetTranscript } = useSpeechRecognition();
@@ -127,5 +114,3 @@ export function SpeechToText({ event }) {
 //   stopHandle();
 //   resetTranscript();
 // };
-
-

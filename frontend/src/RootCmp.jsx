@@ -30,9 +30,6 @@ export function RootCmp() {
     dispatch(toggleModal({ event, type }))
   }
 
-
-
-
   return (
     <div className='root-cmp'>
       <AppHeader />

@@ -2,6 +2,7 @@ import { appService } from '../../services/board.service';
 
 const initialState = {
   isSideBarOpen: false,
+  isBlindMode: false,
   popupModal: {
     isModalOpen: false,
     event: null,
@@ -17,6 +18,8 @@ export function appReducer(state = initialState, action) {
   switch (action.type) {
     case 'TOGGLE_SIDEBAR':
       return (newState = { ...state, isSideBarOpen: !state.isSideBarOpen });
+    case 'TOGGLE_BLINDMODE':
+      return (newState = { ...state, isBlindMode: !state.isBlindMode });
     case 'TOGGLE_MODAL':
       return (newState = {
         ...state, popupModal: {

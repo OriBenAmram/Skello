@@ -15,16 +15,20 @@ export function Workspace() {
     const boards = useSelector(state => state.boardModule.boards);
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
-    useEffect(async () => {
+    useEffect(() => {
         try {
-            await dispatch(loadBoards());
+            onLoadBoards()
         } catch (err) {
             console.log('Cannot load boards', err);
         }
     }, []);
+    
+    const onLoadBoards = async () => { 
+        await dispatch(loadBoards());
+    }
 
     const getStarredBoards = () => {
-        return boards.filter(board => board.isStarred);
+        return boards?.filter(board => board.isStarred);
     };
 
     const onToggleStarred = (ev, boardId) => {
