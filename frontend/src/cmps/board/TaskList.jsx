@@ -1,17 +1,11 @@
-import {Droppable} from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
+import React from 'react';
 
 // Cmps
-import {TaskPreview} from './TaskPreview';
+import { TaskPreview } from './TaskPreview';
 
-export function TaskList({
-  tasks,
-  groupId,
-  boardId,
-  boardLabels,
-  areLabelsShown,
-  setLabelsShown,
-  toggleQuickCardEditor,
-}) {
+export function TaskList({ tasks, groupId, boardId, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor }) {
+
   return (
     <Droppable droppableId={groupId}>
       {provided => (

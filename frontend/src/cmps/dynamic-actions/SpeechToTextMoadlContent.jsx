@@ -4,11 +4,13 @@ import { GrClose } from "react-icons/gr";
 
 // cmps
 import { SpeechToText } from '../SpeechToText';
+
 // Actions
 import { addChecklist } from '../../store/board/board.action';
 
-export function SpeechToTextModalContent({ board, group, task, toggleModal, event = { event } }) {
+export function SpeechToTextModalContent({ board, group, task, onToggleModal, event }) {
 
+    const dispatch = useDispatch()
 
 
     return (
@@ -16,7 +18,7 @@ export function SpeechToTextModalContent({ board, group, task, toggleModal, even
         <section className="stt-modal">
 
             <section className='modal-header'>
-                <button className='simple-close-btn' onClick={toggleModal}><GrClose className='btn-content' /></button>
+                <button className='simple-close-btn' onClick={() => dispatch(onToggleModal({ event, type: 'stt' }))}><GrClose className='btn-content' /></button>
                 speech to text
             </section>
 

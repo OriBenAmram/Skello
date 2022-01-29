@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Draggable} from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
+import { Draggable } from 'react-beautiful-dnd';
 
 // Icons
-import {GrTextAlignFull} from 'react-icons/gr';
-import {IoMdCheckboxOutline} from 'react-icons/io';
+import { GrTextAlignFull } from 'react-icons/gr';
+import { IoMdCheckboxOutline } from 'react-icons/io';
 import attachmentIcon from '../../assets/imgs/attachmentIcon.svg';
 import editIcon from '../../assets/imgs/editIcon.svg';
 import commentIcon from '../../assets/imgs/commentIcon.svg';
 // CMPS
-import {TaskLabels} from './TaskLabels';
-import {DueDatePreview} from './DueDatePreview';
+import { TaskLabels } from './TaskLabels';
+import { DueDatePreview } from './DueDatePreview';
 
 // Action
 import { toggleModal } from '../../store/app/app.action';
 
 export function TaskPreview(props) {
-  const {task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor} =
+  const { task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor } =
     props;
   const {
     archiveAt,
@@ -35,7 +35,7 @@ export function TaskPreview(props) {
     comments,
   } = task;
 
-  const {isCover, isTextDarkMode = true} = task.style;
+  const { isCover, isTextDarkMode = true } = task.style;
   const dispatch = useDispatch();
 
   const getPreviewStyle = () => {
@@ -50,7 +50,7 @@ export function TaskPreview(props) {
         };
       } else {
         // Doesnt have an image
-        return {backgroundColor: task.style.backgroundColor};
+        return { backgroundColor: task.style.backgroundColor };
       }
 
       // Not Cover - Half!
@@ -84,24 +84,24 @@ export function TaskPreview(props) {
   const getTitleStyleByCover = () => {
     if (isCover) {
       if (task.style.backgroundImage?.url) {
-        return {fontSize: '16px', fontWeight: '500'};
+        return { fontSize: '16px', fontWeight: '500' };
       } else {
         if (task.style.backgroundColor === '#344563')
-          return {fontSize: '16px', fontWeight: '500', color: 'white'};
-        return {fontSize: '16px', fontWeight: '500'};
+          return { fontSize: '16px', fontWeight: '500', color: 'white' };
+        return { fontSize: '16px', fontWeight: '500' };
       }
     }
     // return {fontSize: '16px', fontWeight: '500'};
   };
 
   const getUpperPreviewBackground = () => {
-    if (isCover) return {height: '0px'};
+    if (isCover) return { height: '0px' };
     if (task.style.backgroundImage.url) {
       // Has an image
-      return {background: `url(${task.style.backgroundImage.url}) center center / cover`, height: '160px'};
+      return { background: `url(${task.style.backgroundImage.url}) center center / cover`, height: '160px' };
     } else if (task.style.backgroundColor) {
       // Doesnt have an imageborder-top-left-radius
-      return {backgroundColor: task.style.backgroundColor, height: '32px'};
+      return { backgroundColor: task.style.backgroundColor, height: '32px' };
     }
   };
 
@@ -113,7 +113,7 @@ export function TaskPreview(props) {
   };
 
   const getAvatarBackground = member => {
-    return {background: `url(${member.imgUrl}) center center / cover`};
+    return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
   // task checklist todo globals
@@ -236,11 +236,10 @@ export function TaskPreview(props) {
                   {/* CHECKLIST */}
                   {!isCover && checklists?.length > 0 && (
                     <div
-                      className={`badge checklists flex justify-center align-center ${
-                        todos === finishedTodos && todos ? 'all-done' : ''
-                      }`}>
+                      className={`badge checklists flex justify-center align-center ${todos === finishedTodos && todos ? 'all-done' : ''
+                        }`}>
                       <div className="badge-icon">
-                        <IoMdCheckboxOutline className="svg-icon" style={{filter: 'none'}} />
+                        <IoMdCheckboxOutline className="svg-icon" style={{ filter: 'none' }} />
                       </div>
                       <div className="badge-txt"> {getCheckListsInfo()}</div>
                     </div>
@@ -251,7 +250,7 @@ export function TaskPreview(props) {
                 {!isCover && task.members?.length > 0 && (
                   <div className="badges-members flex justify-flex-end">
                     {task.members.map((member, index) => (
-                      <div style={getAvatarBackground(member)} className="member-avatar" key={index} onClick={(ev) => { 
+                      <div style={getAvatarBackground(member)} className="member-avatar" key={index} onClick={(ev) => {
                         ev.preventDefault()
                         onMemberClick(ev, member)
                       }}></div>

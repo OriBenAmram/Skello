@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import { AiFillHome, AiOutlineDown } from 'react-icons/ai';
+import { BsMic } from 'react-icons/bs'
 import { ImTrello } from 'react-icons/im';
 
 // import { toggleModal } from '../store/app/app.action';
 
 // Services
 import { userService } from '../services/user.service';
+
 
 // Actions
 import { loadUsers, loadUser } from '../store/user/user.actions.js';
@@ -23,9 +25,9 @@ export function AppHeader() {
   useEffect(() => {
     dispatch(loadUsers())
   }, [])
-  
+
   useEffect(() => {
-    if(user?._id) dispatch(loadUser(user._id))
+    if (user?._id) dispatch(loadUser(user._id))
   }, [user])
 
   const onUserClick = event => {
@@ -65,7 +67,17 @@ export function AppHeader() {
         </button>
       </section>
 
+
+      {/* STT */}
+      <button className="mic-btn-modal">
+        <BsMic onClick={(event) => onMic(event)} />
+      </button>
+
+
+
       {/* HOME */}
+
+
       {(!user || isHome) && (
         <section className="login-signup-container">
           <Link to={'/login'}>

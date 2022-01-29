@@ -88,6 +88,7 @@ async function add(title, style) {
     createdAt: Date.now(),
     createdBy: loggedUser,
     style,
+    archive: [],
     labels: [
       // green
       {
@@ -426,7 +427,7 @@ async function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = 
 // }
 
 function _getFormattedActivity(task, group, txt, isComment) {
-  const activity =  {
+  const activity = {
     id: utilService.makeId(),
     txt,
     task,
