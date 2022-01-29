@@ -17,8 +17,6 @@ export function ProfileModalContent({ onToggleModal }) {
     dispatch(logout());
   };
   // const [modalType, setModalType] = useState({ header: 'Labels', type: 'labels' });
-  console.log('user - ProfileModal', user);
-
   // useEffect(() => {
   //   loadUserFromStore()
   // }, [user])

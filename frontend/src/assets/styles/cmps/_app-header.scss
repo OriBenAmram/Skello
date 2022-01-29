@@ -66,6 +66,35 @@
         border: none;
     }
 
+    .app-header-primary-btn { 
+        background-color: inherit;
+        padding: 12px 15px 6px 8px;
+        border-radius: 5px;
+        border: none;
+        color: whitesmoke;
+        display: flex;
+        align-items: center;
+        display: none;
+        font-size: rem(16px);
+
+        // @include for-wide-layout { 
+        //     display: block;
+        // }
+
+        
+        .dropdown-icon { 
+            margin-left: 5px;
+        }
+
+        &:hover { 
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        &.selected { 
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
     body.homepage & {
     }
 

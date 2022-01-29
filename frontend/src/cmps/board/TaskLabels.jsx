@@ -18,7 +18,6 @@ export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsSho
 
   const onLabelClick = ev => {
     ev.preventDefault();
-    console.log('Open labels please')
     setLabelsShown(!areLabelsShown);
   };
 
@@ -59,8 +58,6 @@ export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsSho
         return redBlindColorSign
     }
   }
-
-  console.log('isBlindMode:', isBlindMode);
 
   return (
     <div className="task-labels-container flex">
