@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // CMPS
 import { ProfileModalContent } from './ProfileModalContent.jsx'
+import { BoardsModalContent } from './BoardsModalContent.jsx'
 import { AddMemberModalContent } from './AddMemberModalContent.jsx'
 import { OtherMemberModalContent } from './OtherMemberModalContent.jsx'
 import { CreateBoardContent } from "./CreateBoardContent.jsx";
@@ -44,6 +45,8 @@ export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, ty
         switch (type) {
             case 'profile':
                 return <ProfileModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+            // case 'boards':
+            //     return <BoardsModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'addMemberToBoard':
                 return <AddMemberModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':

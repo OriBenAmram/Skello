@@ -251,7 +251,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                                         {isBlindMode && <div>
                                             <img className='blind-color-sign-expended-svg' src={getColorBlindSignByColor(label.color)} />
                                             <img className='blind-color-sign-expended-svg' style={{ top: '16px' }} src={getColorBlindSignByColor(label.color)} />
-                                            </div>}
+                                        </div>}
                                         {label.title}
                                         {task.labelIds?.includes(label.id) && <BsCheckLg className='checked-label-icon' />}
                                     </div>
@@ -262,7 +262,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                             <button className='details-primary-link-btn new-label-btn' onClick={() => {
                                 onChangeModal('add')
                             }}>Create a new label</button>
-                            <hr className='lower-modal-hr'/>
+                            <hr className='lower-modal-hr' />
                             <button className='details-primary-link-btn new-label-btn' onClick={() => {
                                 onToggleBlindMode()
                             }}>{(isBlindMode) ? 'Disable' : 'Enable'} color blind friendly mode</button>
@@ -311,11 +311,3 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
 
     );
 }
-
-{/* <section className='no-color-section'>
-                            <div style={{ backgroundColor: '#b3bac5' }} className='color-option'></div>
-                            <div className='no-color-selection-info'>
-                            <p>No color</p>
-                            <p>This won't show up on the front of cards.</p>
-                            </div>
-                        </section> */}

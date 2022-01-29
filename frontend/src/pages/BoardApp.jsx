@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import { socketService } from '../services/socket.service.js';
 
 // Cmps
@@ -13,10 +13,10 @@ import { QuickCardEditor } from '../cmps/board/QuickCardEditor';
 
 // Action
 import { loadBoard, handleDrag, setBoard } from '../store/board/board.action';
-import { toggleModal } from '../store/app/app.action.js';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
+  let history = useHistory();
   const board = useSelector(state => state.boardModule.board);
   const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {} });
   const { id } = props.match.params;
@@ -36,23 +36,14 @@ export function BoardApp(props) {
       console.log('Cannot load board', err)
     }
 
-    console.log('board:', board);
-
-
+    // Unmount
     return () => {
       socketService.off('updated-board', () => {
       });
       socketService.terminate();
       clearBoard();
     };
-    // return () => {
-    //   console.log('UNMOUNT');
-    //   socketService.off('updated-board', () => {
-    //     console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
-    //   });
-    //   socketService.terminate();
-    //   // await dispatch(setBoard(null));
-    // };
+
   }, []);
 
   const toggleQuickCardEditor = (event, task, groupId) => {
@@ -61,6 +52,10 @@ export function BoardApp(props) {
     const position = task ? parentElement.getBoundingClientRect() : {};
     setQuickCardEditor({ taskToEdit: task, groupId, position });
   };
+
+  const onOpenTaskFromQuickEdit = (groupId, taskId) => {
+    history.push(`${id}/${groupId}/${taskId}`)
+  }
 
   const onLoadBoard = () => {
     dispatch(loadBoard(id));
@@ -106,10 +101,11 @@ export function BoardApp(props) {
 
       {quickCardEditor.taskToEdit && (
         <QuickCardEditor
-          task={quickCardEditor.taskToEdit}
+          taskId={quickCardEditor.taskToEdit.id}
           groupId={quickCardEditor.groupId}
           position={quickCardEditor.position}
           toggleQuickCardEditor={toggleQuickCardEditor}
+          onOpenTaskFromQuickEdit={onOpenTaskFromQuickEdit}
         />
       )}
       {quickCardEditor.taskToEdit && (

@@ -13,7 +13,7 @@ export function TodoOptions({ toggleModal, onRemoveTodo, todoId }) {
                 <button className='simple-close-btn' onClick={toggleModal}><GrClose className='btn-content' /></button>
                 Item Actions
             </section>
-            <button class="delete-btn" onClick={(ev) => {
+            <button className="delete-btn" onClick={(ev) => {
                 onRemoveTodo(todoId)
                 toggleModal(ev)
             }

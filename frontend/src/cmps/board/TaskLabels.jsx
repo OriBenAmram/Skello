@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 // Blind-Mode
 import redBlindColorSign from '../../assets/imgs/blind-color/red.svg';
@@ -13,12 +13,11 @@ import lightBlueBlindColorSign from '../../assets/imgs/blind-color/light-blue.sv
 import orangeBlindColorSign from '../../assets/imgs/blind-color/orange.svg';
 import pinkBlindColorSign from '../../assets/imgs/blind-color/pink.svg';
 
-export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsShown }) {
+export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsShown, isQuickEdit = false }) {
   const isBlindMode = useSelector(state => state.appModule.isBlindMode);
 
   const onLabelClick = ev => {
     ev.preventDefault();
-    console.log('Open labels please')
     setLabelsShown(!areLabelsShown);
   };
 
@@ -60,8 +59,6 @@ export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsSho
     }
   }
 
-  console.log('isBlindMode:', isBlindMode);
-
   return (
     <div className="task-labels-container flex">
       {labelIds.map((labelId, index) => {
@@ -73,10 +70,9 @@ export function TaskLabels({ labelIds, boardLabels, areLabelsShown, setLabelsSho
               style={{ background: label.color }}
               key={index}
               onClick={ev => {
-                ev.preventDefault()
-                onLabelClick(ev);
+                if (!isQuickEdit) onLabelClick(ev);
               }}>
-                
+
               {!areLabelsShown && <span>
                 {isBlindMode && <div className='blind-sign-container'>
                   <img className='blind-color-sign-expended-svg' src={getColorBlindSignByColor(label.color)} />

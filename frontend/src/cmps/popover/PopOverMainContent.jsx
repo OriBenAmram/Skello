@@ -51,13 +51,7 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
                 </div>
 
             </section>
-            {/* <hr class="background-hr"></hr>
-            <h2>Custom</h2>
 
-            <div className="input-container">
-                <AiOutlinePlus className="plus-icon" />
-                <input type="file" className="upload-background" accept="image/*" />
-            </div> */}
             {/* Activity */}
             <section className="activity-section">
                 <ActivityContent />

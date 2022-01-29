@@ -110,7 +110,7 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
 
                                 </div>)}
                         </div>
-                    </div> : <div class="no-results">Sorry, your search didn't return any results. Please try again!</div>}
+                    </div> : <div className="no-results">Sorry, your search didn't return any results. Please try again!</div>}
                 </section></div>}
         </div>
     );
