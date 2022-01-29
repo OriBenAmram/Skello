@@ -264,9 +264,11 @@
                     grid-template-columns: 1fr 1fr;
                     gap: 0 10px;
 
-                    @include for-narrow-layout {
-                        display: block;
+                    @include for-585-layout {
+                        display: flex;
+                        flex-direction: column;
                     }
+
                 }
 
                 .button-link {
