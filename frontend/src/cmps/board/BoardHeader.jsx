@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 // Action
 import { toggleModal, toggleSideMenu } from '../../store/app/app.action';
@@ -8,13 +9,14 @@ import { toggleModal, toggleSideMenu } from '../../store/app/app.action';
 export function BoardHeader({ board }) {
   const { title, members } = board;
   const dispatch = useDispatch();
+  const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
 
   const onToggleMenu = () => {
     dispatch(toggleSideMenu());
   };
 
   const onAddMemberToBoard = event => {
-    dispatch(toggleModal({ event, type: 'addMemberToBoard', isShown: true }));
+    dispatch(toggleModal({ event, type: 'addMemberToBoard',isShown: !isModalOpen }));
   };
 
   const getAvatarBackground = member => {
@@ -22,7 +24,7 @@ export function BoardHeader({ board }) {
   };
 
   const onMemberClick = (event, member) => {
-    dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: true }));
+    dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: !isModalOpen }));
   }
 
   return (
@@ -60,14 +62,16 @@ export function BoardHeader({ board }) {
         </div>
         <div className="nav-right flex">
           <button className="nav-btn flex">
-            <IoBarChart /> Dashbaord
+            <IoBarChart /> 
+            <p>Dashbaord</p>
           </button>
           <button
             className="nav-btn flex"
             onClick={() => {
               onToggleMenu();
             }}>
-            <IoEllipsisHorizontalSharp /> Show Menu
+            <IoEllipsisHorizontalSharp /> 
+            <p>Show Menu</p>
           </button>
         </div>
       </nav>

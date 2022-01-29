@@ -1,4 +1,4 @@
-.board-header{
+.board-header {
     padding: 8px 4px 4px 0;
     position: relative;
     top: 50px;
@@ -6,7 +6,7 @@
     position: fixed;
     top: 40px;
     width: 100%;
-    .header-title{
+    .header-title {
         font-size: 18px;
         font-weight: 700;
         height: 32px;
@@ -16,63 +16,72 @@
         padding: 7px 5px;
         margin: 0;
         color: #fff;
-        background-color: hsla(0,0%,100%,.23921568627450981);
+        background-color: hsla(0, 0%, 100%, 0.23921568627450981);
         text-overflow: ellipsis;
     }
 
-    .nav-btn.fav,.add-member{
+    .nav-btn.fav,
+    .add-member {
         margin: 0 5px;
-        svg{
+        svg {
             color: #fff;
             font-size: 18px;
         }
     }
-
 }
 
-.nav-btn{
+.nav-btn {
+    background-color: hsla(0, 0%, 100%, 0.23921568627450981);
+    padding: 5px;
+    width: fit-content;
+    border-radius: 3px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 
-    background-color: hsla(0,0%,100%,.23921568627450981);
-        padding: 5px;
-        width: fit-content;
-        border-radius: 3px;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-
-    button{
-        border: none;
-        outline: none;
-        background:none;
+    p {
+        display: none;
+        @include for-narrow-layout {
+            margin: 0;
+            display: block;
+        }
     }
 
-    &:hover{
+    button {
+        border: none;
+        outline: none;
+        background: none;
+    }
+
+    &:hover {
         background-color: rgba(255, 255, 255, 0.459);
     }
 }
 
-.nav-right{
-    padding-right:23px;
-    .nav-btn{
+.nav-right {
+    padding-right: 23px;
+    .nav-btn {
         padding: 8px;
     }
     gap: 10px;
-    button{
+    button {
         border: none;
         gap: 5px;
     }
 }
 
-.nav-members{
-    display: flex;
+.nav-members {
+    display: none;
+    @include for-narrow-layout {
+        display: flex;
+        :not(:first-child) {
+            margin-left: -9px;
+        }
 
-    :not(:first-child) { 
-        margin-left: -9px;
-    }
-
-    .member-avatar{
-        background-color: #ff7c6a;
+        .member-avatar {
+            background-color: #ff7c6a;
+        }
     }
 }
