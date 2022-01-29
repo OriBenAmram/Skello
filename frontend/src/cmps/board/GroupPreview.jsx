@@ -1,23 +1,49 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {Draggable} from 'react-beautiful-dnd';
-import {IoEllipsisHorizontal} from 'react-icons/io5';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Draggable } from 'react-beautiful-dnd';
+import { IoEllipsisHorizontal } from 'react-icons/io5';
 
 // Cmps
-import {TaskList} from './TaskList';
-import {GroupPreviewTitle} from './GroupPreviewTitle';
-import {AddNewTask} from './AddNewTask';
+import { TaskList } from './TaskList';
+import { GroupPreviewTitle } from './GroupPreviewTitle';
+import { AddNewTask } from './AddNewTask';
 
 // Action
-import {removeGroup} from '../../store/board/board.action';
+import { removeGroup } from '../../store/board/board.action';
 
-export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown, setLabelsShown}) {
+export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShown, setLabelsShown }) {
+
+  console.log('group:', group);
+
   const dispatch = useDispatch();
   const [isBodyRender, setIsBodyRender] = useState(false);
+
+  const filterBy = useSelector(state => state.boardModule.filterBy)
 
   const toggleIsBodyRender = () => {
     setIsBodyRender(isBodyRender => !isBodyRender);
   };
+
+
+
+
+  function getFilteredTask() {
+    const { txt, labels, members } = filterBy
+    let filteredTasks = group.tasks;
+
+    if (txt) {
+      filteredTasks = filteredTasks.filter(task => task.title.toLowerCase().includes(txt.toLowerCase()))
+    }
+    if (members?.length) {
+      filteredTasks = filteredTasks.filter(task => task.members.some(entity => filterBy.members.includes(entity._id)))
+    }
+    if (labels?.length) {
+      filteredTasks = filteredTasks.filter(task => task.labelIds.some(entity => filterBy.labels.includes(entity)))
+    }
+
+    return filteredTasks
+  }
+
 
   return (
     <Draggable draggableId={group.id} index={index}>
@@ -48,7 +74,7 @@ export function GroupPreview({group, boardId, index, boardLabels, areLabelsShown
               setLabelsShown={setLabelsShown}
               groupId={group.id}
               boardId={boardId}
-              tasks={group.tasks}
+              tasks={getFilteredTask()}
               boardLabels={boardLabels}
             />
             {isBodyRender && (

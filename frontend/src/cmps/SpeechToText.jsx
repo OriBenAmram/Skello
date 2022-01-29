@@ -18,11 +18,14 @@ export function SpeechToText({ event }) {
   const dispatch = useDispatch()
 
 
+
   const commands = [
     {
       command: 'please create board',          //command the user says, * is any input
-      callback: () => {
-        console.log('again')
+      callback: (title) => {
+
+        console.log('title:', title);
+        console.log('im do it');
         dispatch(toggleModal({ event, type: 'createBoard', isShown: true }));
       }
     }
@@ -52,7 +55,6 @@ export function SpeechToText({ event }) {
 
 
 
-  console.log('useSpeechRecognition({ commands }):', useSpeechRecognition({ commands }));
 
   const { transcript, resetTranscript } = useSpeechRecognition({ commands })
   //pass the commands array to the SpeechRecognition function

@@ -6,6 +6,9 @@ import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { AddMemberModalContent } from './AddMemberModalContent.jsx'
 import { OtherMemberModalContent } from './OtherMemberModalContent.jsx'
 import { CreateBoardContent } from "./CreateBoardContent.jsx";
+import { SpeechToTextModalContent } from "./SpeechToTextMoadlContent.jsx";
+import { toggleModal } from "../../store/app/app.action.js";
+
 
 export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
@@ -33,9 +36,11 @@ export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, ty
             case 'addMemberToBoard':
                 return <AddMemberModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
-                return <CreateBoardContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+                return <CreateBoardContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} isGeneralModal={true} />
             case 'otherMemberModal':
                 return <OtherMemberModalContent member={member} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+            case 'stt':
+                return <SpeechToTextModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} event={event} isGeneralModal={true} />
         }
     }
     const getModalPositionStyle = () => {

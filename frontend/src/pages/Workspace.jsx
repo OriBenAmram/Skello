@@ -40,7 +40,7 @@ export function Workspace() {
             return;
         }
 
-        setModal({ isModalOpen: true, type, event, isDetails});
+        setModal({ isModalOpen: true, type, event, isDetails });
     };
 
     return (
@@ -55,7 +55,7 @@ export function Workspace() {
                             <h3>Starred boards</h3>
                         </div>
                         <div className="primary-boards-container-section">
-                            <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} isStarred/>
+                            <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} isStarred />
                         </div>
                     </section>
                     <section className="recent-boards-section">
@@ -66,14 +66,14 @@ export function Workspace() {
                             <h3>Recently viewed</h3>
                         </div>
                         <div className="primary-boards-container-section">
-                            
-                            <BoardList boards={boards} onToggleStarred={onToggleStarred} toggleModal={toggleModal}/>
+
+                            <BoardList boards={boards} onToggleStarred={onToggleStarred} toggleModal={toggleModal} />
                         </div>
                     </section>
                 </div>
             </section>
             {modal.isModalOpen && (
-                <DynamicActionModal toggleModal={toggleModal} type={modal.type} event={modal.event} isDetails={true} posXAddition={150}/>
+                <DynamicActionModal toggleModal={toggleModal} type={modal.type} event={modal.event} isDetails={true} posXAddition={150} />
             )}
         </section>
     );

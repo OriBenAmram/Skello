@@ -11,9 +11,9 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
     return (<div className='content-wrapper' >
         {/* Header */}
         <div className="popover-header flex align-center">
-        <button className="primary-close-btn"><MdClose className='primary-menu-close-btn' onClick={() => { 
-            toggleSideMenu()
-        }}/></button>
+            <button className="primary-close-btn"><MdClose className='primary-menu-close-btn' onClick={() => {
+                toggleSideMenu()
+            }} /></button>
             <span>Menu</span>
             <hr className='bottom-hr' />
         </div>
@@ -21,7 +21,7 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
             {/* Upper Options */}
             <section className='upper-sidemenu-options'>
                 <button className='primary-link-btn' onClick={() => {
-                    setSearchState(!isSearchOpen)
+                    setPopoverContent('filter')
                 }}>
                     <HiOutlineSearch className='primary-icon' />
                     Filter cards
@@ -40,12 +40,12 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
 
                     <div className="image-container" onClick={() => setPopoverContent('color')} >
                         <img src={colorTeaser} alt="" />
-                        <div class="title">Colors</div>
+                        <div className="title">Colors</div>
                     </div>
 
                     <div className="image-container" onClick={() => setPopoverContent('image')}>
                         <img src={imgsTeaser} alt="" />
-                        <div class="title">Photos</div>
+                        <div className="title">Photos</div>
                     </div>
 
 

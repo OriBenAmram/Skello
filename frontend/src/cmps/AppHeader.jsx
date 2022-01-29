@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
+import { BsMic } from 'react-icons/bs'
 import { ImTrello } from 'react-icons/im';
 
 // import { toggleModal } from '../store/app/app.action';
 
 // Services
 import { userService } from '../services/user.service';
+
 
 // Actions
 import { loadUsers } from '../store/user/user.actions.js';
@@ -18,6 +20,8 @@ export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
   const user = userService.getMiniUser();
+  const popupModal = useSelector(state => state.appModule.popupModal);
+
 
   useEffect(() => {
     dispatch(loadUsers())
@@ -26,6 +30,12 @@ export function AppHeader() {
   const onUserClick = event => {
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: true }));
   };
+
+  const onMic = (event) => {
+    console.log('event:', event);
+
+    dispatch(toggleModal({ event, type: 'stt', posXAddition: -300, isShown: true }));
+  }
 
   const getAvatarByUser = () => {
     return { background: `url(${user.imgUrl}) center center / cover` };
@@ -50,7 +60,17 @@ export function AppHeader() {
         </NavLink>
       </section>
 
+
+      {/* STT */}
+      <button className="mic-btn-modal">
+        <BsMic onClick={(event) => onMic(event)} />
+      </button>
+
+
+
       {/* HOME */}
+
+
       {(!user || isHome) && (
         <section className="login-signup-container">
           <Link to={'/login'}>

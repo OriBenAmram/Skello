@@ -18,13 +18,13 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
     const board = useSelector(state => state.boardModule.board);
 
     useEffect(() => {
-        const getUnsplashImgs = async () => {
-            const unsplashImgs = await boardService.queryImages(searchTxt);
-            setImgs(unsplashImgs)
-        }
         getUnsplashImgs()
     }, [searchTxt]);
 
+    const getUnsplashImgs = async () => {
+        const unsplashImgs = await boardService.queryImages(searchTxt);
+        setImgs(unsplashImgs)
+    }
 
     const gColors = [
         'rgb(210, 144, 52)',
@@ -41,16 +41,16 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
 
 
     const onSaveBg = (background, isImg = false) => {
-        console.log('background:', background);
 
         board.style = (isImg) ? { background: `url(${background})` } : { background };
         dispatch(onSaveBoard(board))
     }
 
-    console.log(imgs)
+    console.log('imgs:', imgs);
 
 
-    if (!imgs?.length) return <Loader />
+
+
 
 
 
@@ -110,15 +110,17 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
                         />
                         <AiOutlineSearch className="search-icon" />
                     </div>
-                    <div className="bg-options-container">
-                        {imgs.map((img, idx) =>
+                    {((imgs?.length)) ? <div>
+                        <div className="bg-options-container">
+                            {imgs.map((img, idx) =>
 
-                            <div className="bg-preview"
-                                onClick={() => onSaveBg(img.urls.regular, true)}
-                                key={idx} style={{ background: `url(${img.urls.small}) center center / cover` }}>
+                                <div className="bg-preview"
+                                    onClick={() => onSaveBg(img.urls.regular, true)}
+                                    key={idx} style={{ background: `url(${img.urls.small}) center center / cover` }}>
 
-                            </div>)}
-                    </div>
+                                </div>)}
+                        </div>
+                    </div> : <div class="no-results">Sorry, your search didn't return any results. Please try again!</div>}
                 </section></div>}
         </div>
     );
