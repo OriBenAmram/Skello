@@ -99,6 +99,21 @@
     cursor: pointer;
 }
 
+
+.extra-member-avatar{
+    border-radius: 25em;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #172b4d;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #ebecf0;
+}
+
 .basic-textarea {
     overflow: hidden;
     overflow-wrap: break-word;

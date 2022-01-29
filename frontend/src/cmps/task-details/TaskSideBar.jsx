@@ -1,15 +1,24 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
+// Icons
 import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
 import { BsPersonPlus, BsArrowRight, BsArchive, BsSquareHalf } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md";
 import { BiMicrophone } from "react-icons/bi";
 
+// Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
-export function TaskSideBar({ task, group, board }) {
+// Action
+import { updateTask } from '../../store/board/board.action';
 
+export function TaskSideBar({ task, group, board }) {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.userModule.loggedinUser);
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
+
     const toggleModal = ({ event, type }) => {
         // In case the modal is open somewhere
         if (modal.isModalOpen) {
@@ -18,12 +27,27 @@ export function TaskSideBar({ task, group, board }) {
         }
         setModal({ isModalOpen: true, type, event })
     }
+
+    const isLoggedInUserInTask = () => {
+        if (!task.members.length) return false
+        return task.members.find(member => member._id === user._id) ? true : false
+    }
+
+    const joinTask = () => {
+        const taskToUpdate = { ...task };
+        delete user.password
+        taskToUpdate.members.push(user)
+        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
+    }
+
     return (
         <section className='side-bar'>
-            <section className='add-to-card suggested'>
-                <h3 className="side-bar-title">suggested</h3>
-                <button className="button-link"> <IoPersonOutline /> Join</button>
-            </section>
+            {!isLoggedInUserInTask() && (
+                <section className='add-to-card suggested'>
+                    <h3 className="side-bar-title">suggested</h3>
+                    <button className="button-link" onClick={joinTask} > <IoPersonOutline /> Join</button>
+                </section>)}
+
             <section className='add-to-card'>
                 <h3 className="side-bar-title">Add to card</h3>
                 <div className="left-button-section sidebar-primary-btns-container">
