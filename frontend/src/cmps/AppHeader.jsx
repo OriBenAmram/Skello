@@ -69,11 +69,9 @@ export function AppHeader() {
 
 
       {/* STT */}
-      <button className="mic-btn-modal">
+      {/* <button className="mic-btn-modal">
         <BsMic onClick={(event) => onMic(event)} />
-      </button>
-
-
+      </button> */}
 
       {/* HOME */}
 
