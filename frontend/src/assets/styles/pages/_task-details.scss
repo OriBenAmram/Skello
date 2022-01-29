@@ -7,12 +7,15 @@
     right: 0;
     left: 0;
     z-index: 15;
-    padding-top: 50px;
+    padding: 50px 10px 10px;
     color: $clr1;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    padding-bottom: 80px;
+
+    @include for-narrow-layout {
+        padding: 50px 30px 80px;
+    }
 
     .label-box {
         border-radius: 3px;
@@ -27,26 +30,23 @@
         min-height: 32px;
         position: relative;
 
-        &.blind-mode { 
+        &.blind-mode {
             padding-left: 25px;
         }
 
-        
-        img { 
+        img {
             position: absolute;
-        left: 0;
-        top: 0;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
+            left: 0;
+            top: 0;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
         }
     }
 
     .task-details-modal {
         z-index: 20;
-        width: rem(768px);
+        max-width: rem(768px);
         position: relative;
-        // transform: translate(-100%);
-        // left: calc(100vw);
         min-height: 600px;
         margin: auto;
         background-color: whitesmoke;
@@ -143,6 +143,12 @@
         .main-content {
             display: flex;
             width: 100%;
+            flex-wrap: wrap;
+            flex-direction: column-reverse;
+
+            @include for-normal-layout {
+                flex-direction: row;
+            }
 
             .main-content-icon {
                 top: 8px;
@@ -150,10 +156,12 @@
 
             // MAIN-COL
             .main-col {
-                width: 71.8%;
+                min-width: 71.8%;
+                flex: 1;
                 padding: 0 8px 8px 16px;
                 position: relative;
                 margin: 0;
+                max-width: 100%;
 
                 // GENERAL
                 h3 {
@@ -187,17 +195,78 @@
                 height: 100%;
                 padding: 0 16px 8px 8px;
                 flex: 1;
+                min-width: 50%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-left: 40px;
+
+                @include for-narrow-layout {
+                }
+
+                @include for-normal-layout {
+                    flex-wrap: nowrap;
+                    margin-left: 0px;
+                    min-width: 200px;
+                    max-width: 240px;
+                    flex-direction: column;
+                }
                 // border: rgb(194, 111, 111) 1px solid;
+
+                .sidebar-primary-btns-container {
+                    > * {
+                        padding-right: 30px;
+                    }
+                    :not(:last-child) {
+                        margin-right: 10px;
+                    }
+                    @include for-normal-layout {
+                    }
+                }
 
                 h3 {
                     color: $clr2;
                     font-size: 12px;
                     font-weight: 600;
+
+                    &.side-bar-title {
+                        display: none;
+                        @include for-normal-layout {
+                            display: block;
+                        }
+                    }
                 }
 
                 .add-to-card {
                     position: relative;
-                    margin-bottom: 24px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 0px;
+
+                    @include for-normal-layout {
+                        margin-bottom: 24px;
+                        display: block;
+                        flex-direction: column;
+                    }
+
+                    &.suggested {
+                        display: none;
+
+                        @include for-normal-layout {
+                            display: block;
+                            flex-direction: column;
+                        }
+                    }
+                }
+
+                .actions {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 0 10px;
+
+                    @include for-narrow-layout {
+                        display: block;
+                    }
                 }
 
                 .button-link {
@@ -208,11 +277,15 @@
                     border-radius: 3px;
                     height: 32px;
                     padding: 6px 12px;
-                    width: 100%;
+                    min-width: 140px;
                     margin-bottom: 8px;
                     display: block;
                     display: flex;
                     align-items: center;
+
+                    @include for-normal-layout {
+                        width: 100%;
+                    }
 
                     :first-child {
                         margin-right: 10px;

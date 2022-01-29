@@ -7,19 +7,21 @@
   }
 }
 
+// 530px
 @mixin for-narrow-layout {
   @media (min-width: $padded-break-narrow) {
     @content;
   }
 }
 
-// Min width
+// 760px
 @mixin for-normal-layout {
   @media (min-width: $padded-break-normal) {
     @content;
   }
 }
 
+// 1000px
 @mixin for-wide-layout {
   @media (min-width: $padded-break-wide) {
     @content;
