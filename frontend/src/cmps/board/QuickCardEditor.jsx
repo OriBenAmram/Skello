@@ -1,19 +1,28 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 // Cmps
-import {Loader} from '../Loader';
-import {DueDatePreview} from './DueDatePreview';
-import {TaskLabels} from './TaskLabels';
+import { Loader } from '../Loader';
+import { DueDatePreview } from './DueDatePreview';
+import { TaskLabels } from './TaskLabels';
 
 // Icons
-import {GrTextAlignFull} from 'react-icons/gr';
-import {IoMdCheckboxOutline} from 'react-icons/io';
+import { GrTextAlignFull } from 'react-icons/gr';
+import { IoMdCheckboxOutline } from 'react-icons/io';
 import attachmentIcon from '../../assets/imgs/attachmentIcon.svg';
 import commentIcon from '../../assets/imgs/commentIcon.svg';
+import { AiOutlineCreditCard, AiFillTag, AiOutlineClockCircle } from 'react-icons/ai';
+import { BsPerson } from 'react-icons/bs';
+import { FiCreditCard } from 'react-icons/fi';
+import { HiOutlineArrowRight } from 'react-icons/hi';
+import { RiArchiveLine, RiPriceTag3Line } from 'react-icons/ri';
+
+
+
+
 
 // Action
-import {updateTask} from '../../store/board/board.action';
+import { updateTask } from '../../store/board/board.action';
 
 class _QuickCardEditor extends React.Component {
   constructor() {
@@ -28,14 +37,14 @@ class _QuickCardEditor extends React.Component {
   };
 
   componentDidMount() {
-    const {task, groupId} = this.props;
-    this.setState({task, taskTitle: task.title});
+    const { task, groupId } = this.props;
+    this.setState({ task, taskTitle: task.title });
   }
 
-  handleChange = ({target}) => {
+  handleChange = ({ target }) => {
     const field = target.name;
     const value = target.value;
-    this.setState(prevState => ({...prevState, [field]: value}));
+    this.setState(prevState => ({ ...prevState, [field]: value }));
   };
 
   handleFocus = event => {
@@ -43,15 +52,15 @@ class _QuickCardEditor extends React.Component {
   };
 
   onSave = event => {
-    const {updateTask, board, groupId, task, toggleQuickCardEditor} = this.props;
-    const taskToUpdate = {...this.state.task};
+    const { updateTask, board, groupId, task, toggleQuickCardEditor } = this.props;
+    const taskToUpdate = { ...this.state.task };
     taskToUpdate.title = this.state.taskTitle;
     updateTask(board._id, groupId, task.id, taskToUpdate);
     toggleQuickCardEditor(event, null, '');
   };
 
   getCheckListsInfo = () => {
-    const {task} = this.state;
+    const { task } = this.state;
     this.todos = 0;
     this.finishedTodos = 0;
     task.checklists.forEach(checklist => {
@@ -65,23 +74,23 @@ class _QuickCardEditor extends React.Component {
   };
 
   getAvatarBackground = member => {
-    return {background: `url(${member.imgUrl}) center center / cover`};
+    return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
   render() {
-    const {task, taskTitle} = this.state;
-    const {position, board} = this.props;
+    const { task, taskTitle } = this.state;
+    const { position, board } = this.props;
 
     if (!task) return <Loader />;
 
     return (
-      <div className="quick-card-editor" style={{position: 'fixed', top: position.top, left: position.left}}>
+      <div className="quick-card-editor flex" style={{ position: 'fixed', top: position.top, left: position.left }}>
         <div>
-          <div className="task-preview-edit" style={{width: position.width}}>
+          <div className="task-preview-edit" style={{ width: position.width }}>
             {/* HEADER */}
             <div className="task-preview-heder">
               {task.style.backgroundColor && (
-                <div className="header-color" style={{backgroundColor: task.style.backgroundColor}}></div>
+                <div className="header-color" style={{ backgroundColor: task.style.backgroundColor }}></div>
               )}
               {task.style.backgroundImage.url && (
                 <div className="img-wrapper">
@@ -94,7 +103,7 @@ class _QuickCardEditor extends React.Component {
             <div className="task-details-wrapper">
               <div className="task-details">
                 {task.labelIds?.length > 0 && (
-                  <TaskLabels labelIds={task.labelIds} boardLabels={board.labels} areLabelsShown={null} />
+                  <TaskLabels labelIds={task.labelIds} boardLabels={board.labels} isQuickEdit={true} />
                 )}
                 <textarea
                   className="clean-textarea"
@@ -146,11 +155,10 @@ class _QuickCardEditor extends React.Component {
                   {/* CHECKLIST */}
                   {task.checklists?.length > 0 && (
                     <div
-                      className={`badge checklists flex justify-center align-center ${
-                        this.getCheckListsInfo() ? 'all-done' : ''
-                      }`}>
+                      className={`badge checklists flex justify-center align-center ${this.getCheckListsInfo() ? 'all-done' : ''
+                        }`}>
                       <div className="badge-icon">
-                        <IoMdCheckboxOutline className="svg-icon" style={{filter: 'none'}} />
+                        <IoMdCheckboxOutline className="svg-icon" style={{ filter: 'none' }} />
                       </div>
                       <div className="badge-txt"> {this.getCheckListsInfo()}</div>
                     </div>
@@ -175,13 +183,22 @@ class _QuickCardEditor extends React.Component {
             Save
           </button>
         </div>
-        <div className="quick-task-editor-buttons"></div>
+        <div className="quick-task-editor-buttons flex column">
+          <button className="quick-edit-btn flex align-flex-start"> <span><AiOutlineCreditCard /> </span> <span>Open card</span> </button>
+          <button className="quick-edit-btn flex align-flex-start"> <span><RiPriceTag3Line /></span> <span>Edit labels</span> </button>
+          <button className="quick-edit-btn flex align-flex-start"> <span><BsPerson /></span> <span>Change members</span> </button>
+          <button className="quick-edit-btn flex align-flex-start"> <span><FiCreditCard /></span> <span>Change cover</span> </button>
+          <button className="quick-edit-btn flex align-flex-start"> <span><HiOutlineArrowRight /></span> <span>Move</span> </button>
+          <button className="quick-edit-btn flex align-flex-start"> <span><AiOutlineCreditCard /> </span> <span>Copy</span> </button>
+          <button className="quick-edit-btn flex align-flex-start"> <span><AiOutlineClockCircle /></span> <span>Edit dates</span> </button>
+          <button className="quick-edit-btn flex align-flex-start"> <span><RiArchiveLine /></span> <span>Archive</span> </button>
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({boardModule}) {
+function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
   };
