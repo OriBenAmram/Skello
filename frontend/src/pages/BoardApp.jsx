@@ -1,25 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {DragDropContext} from 'react-beautiful-dnd';
-import {Route} from 'react-router-dom';
-import {socketService} from '../services/socket.service.js';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { Route, useHistory } from 'react-router-dom';
+import { socketService } from '../services/socket.service.js';
 
 // Cmps
-import {GroupList} from '../cmps/board/GroupList.jsx';
-import {Loader} from '../cmps/Loader.jsx';
-import {TaskDetails} from './TaskDetails.jsx';
-import {BoardHeader} from '../cmps/board/BoardHeader.jsx';
-import {QuickCardEditor} from '../cmps/board/QuickCardEditor';
+import { GroupList } from '../cmps/board/GroupList.jsx';
+import { Loader } from '../cmps/Loader.jsx';
+import { TaskDetails } from './TaskDetails.jsx';
+import { BoardHeader } from '../cmps/board/BoardHeader.jsx';
+import { QuickCardEditor } from '../cmps/board/QuickCardEditor';
 
 // Action
-import {loadBoard, handleDrag, setBoard} from '../store/board/board.action';
-import {toggleModal} from '../store/app/app.action.js';
+import { loadBoard, handleDrag, setBoard } from '../store/board/board.action';
+import { toggleModal } from '../store/app/app.action.js';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
+  let history = useHistory();
   const board = useSelector(state => state.boardModule.board);
-  const [quickCardEditor, setQuickCardEditor] = useState({taskToEdit: null, groupId: '', position: {}});
-  const {id} = props.match.params;
+  const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {} });
+  const { id } = props.match.params;
 
   useEffect(() => {
     try {
@@ -56,8 +57,13 @@ export function BoardApp(props) {
     event.stopPropagation();
     const parentElement = task ? event.currentTarget.parentNode : null;
     const position = task ? parentElement.getBoundingClientRect() : {};
-    setQuickCardEditor({taskToEdit: task, groupId, position});
+    setQuickCardEditor({ taskToEdit: task, groupId, position });
   };
+
+  const onOpenTaskFromQuickEdit = (groupId, taskId) => {
+    history.push(`${id}/${groupId}/${taskId}`)
+    // this.props.history.push(`${board.id}/${groupId}/${taskId}`)
+  }
 
   const onLoadBoard = () => {
     dispatch(loadBoard(id));
@@ -72,7 +78,7 @@ export function BoardApp(props) {
     // Source - start index
     // Destination - end index(where was it dropped)
     // Type - group or task
-    const {destination, source, type} = result;
+    const { destination, source, type } = result;
 
     if (!destination) return;
 
@@ -87,7 +93,7 @@ export function BoardApp(props) {
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           className="board-app-wrapper"
-          style={{background: `${board.style.background}  center center / cover`}}>
+          style={{ background: `${board.style.background}  center center / cover` }}>
           <div className="board-app">
             <BoardHeader board={board} />
             <GroupList
@@ -103,10 +109,13 @@ export function BoardApp(props) {
 
       {quickCardEditor.taskToEdit && (
         <QuickCardEditor
-          task={quickCardEditor.taskToEdit}
+          taskId={quickCardEditor.taskToEdit.id}
           groupId={quickCardEditor.groupId}
           position={quickCardEditor.position}
           toggleQuickCardEditor={toggleQuickCardEditor}
+          onOpenTaskFromQuickEdit={onOpenTaskFromQuickEdit}
+        // onLoadBoard={onLoadBoard}
+        // board={board}
         />
       )}
       {quickCardEditor.taskToEdit && (

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Loader } from '../Loader';
 import { DueDatePreview } from './DueDatePreview';
 import { TaskLabels } from './TaskLabels';
+import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal';
 
 // Icons
 import { GrTextAlignFull } from 'react-icons/gr';
@@ -17,28 +18,63 @@ import { FiCreditCard } from 'react-icons/fi';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import { RiArchiveLine, RiPriceTag3Line } from 'react-icons/ri';
 
-
-
-
-
 // Action
 import { updateTask } from '../../store/board/board.action';
 
 class _QuickCardEditor extends React.Component {
+
+  state = {
+    task: null,
+    taskTitle: '',
+    modal: {
+      isModalOpen: false,
+      type: null,
+      event: null
+    }
+  };
+
   constructor() {
     super();
     this.todos = 0;
     this.finishedTodos = 0;
   }
 
-  state = {
-    task: null,
-    taskTitle: '',
-  };
-
   componentDidMount() {
-    const { task, groupId } = this.props;
-    this.setState({ task, taskTitle: task.title });
+    const { taskId, groupId } = this.props;
+    this.onSetTask(taskId, groupId)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { taskId, groupId } = this.props;
+    if (prevProps.board !== this.props.board) {
+      this.onSetTask(taskId, groupId)
+    }
+  }
+
+  onSetTask = (taskId, groupId) => {
+    const task = this.getTaskById(taskId, groupId)
+    this.setState({ task, taskTitle: task.title })
+  }
+
+  toggleModal = ({ event, type }) => {
+    this.setState(prevState => ({
+      ...prevState,
+      modal: { ...prevState.modal, isModalOpen: !prevState.modal.isOpenModal, event, type }
+    }))
+
+  }
+
+  getTaskById = (taskId, groupId) => {
+    const { board } = this.props
+    const group = board.groups.find(group => group.id === groupId)
+    return group.tasks.find(task => task.id === taskId)
+  }
+
+  //TODO: refactor like taskById
+  getGroupById = (groupId) => {
+    const { board } = this.props
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    return board.groups[groupIdx]
   }
 
   handleChange = ({ target }) => {
@@ -52,10 +88,10 @@ class _QuickCardEditor extends React.Component {
   };
 
   onSave = event => {
-    const { updateTask, board, groupId, task, toggleQuickCardEditor } = this.props;
+    const { updateTask, board, groupId, taskId, toggleQuickCardEditor } = this.props;
     const taskToUpdate = { ...this.state.task };
     taskToUpdate.title = this.state.taskTitle;
-    updateTask(board._id, groupId, task.id, taskToUpdate);
+    updateTask(board._id, groupId, taskId, taskToUpdate);
     toggleQuickCardEditor(event, null, '');
   };
 
@@ -78,8 +114,8 @@ class _QuickCardEditor extends React.Component {
   };
 
   render() {
-    const { task, taskTitle } = this.state;
-    const { position, board } = this.props;
+    const { task, taskTitle, modal } = this.state;
+    const { position, groupId, board, taskId, onOpenTaskFromQuickEdit, toggleQuickCardEditor } = this.props;
 
     if (!task) return <Loader />;
 
@@ -184,15 +220,29 @@ class _QuickCardEditor extends React.Component {
           </button>
         </div>
         <div className="quick-task-editor-buttons flex column">
-          <button className="quick-edit-btn flex align-flex-start"> <span><AiOutlineCreditCard /> </span> <span>Open card</span> </button>
-          <button className="quick-edit-btn flex align-flex-start"> <span><RiPriceTag3Line /></span> <span>Edit labels</span> </button>
-          <button className="quick-edit-btn flex align-flex-start"> <span><BsPerson /></span> <span>Change members</span> </button>
-          <button className="quick-edit-btn flex align-flex-start"> <span><FiCreditCard /></span> <span>Change cover</span> </button>
+          <button onClick={(event) => {
+            toggleQuickCardEditor(event, null, '')
+            onOpenTaskFromQuickEdit(groupId, taskId)
+
+          }} className="quick-edit-btn flex align-flex-start"> <span><AiOutlineCreditCard /> </span> <span>Open card</span> </button>
+          <button onClick={(event) => {
+            this.toggleModal({ event, type: 'labels' })
+          }} className="quick-edit-btn flex align-flex-start"> <span><RiPriceTag3Line /></span> <span>Edit labels</span> </button>
+          <button onClick={(event) => {
+            this.toggleModal({ event, type: 'members' })
+          }} className="quick-edit-btn flex align-flex-start"> <span><BsPerson /></span> <span>Change members</span> </button>
+          <button onClick={(event) => {
+            this.toggleModal({ event, type: 'cover' })
+          }} className="quick-edit-btn flex align-flex-start"> <span><FiCreditCard /></span> <span>Change cover</span> </button>
           <button className="quick-edit-btn flex align-flex-start"> <span><HiOutlineArrowRight /></span> <span>Move</span> </button>
           <button className="quick-edit-btn flex align-flex-start"> <span><AiOutlineCreditCard /> </span> <span>Copy</span> </button>
-          <button className="quick-edit-btn flex align-flex-start"> <span><AiOutlineClockCircle /></span> <span>Edit dates</span> </button>
+          <button onClick={(event) => {
+            this.toggleModal({ event, type: 'dates' })
+          }} className="quick-edit-btn flex align-flex-start"> <span><AiOutlineClockCircle /></span> <span>Edit dates</span> </button>
           <button className="quick-edit-btn flex align-flex-start"> <span><RiArchiveLine /></span> <span>Archive</span> </button>
+          {modal.isModalOpen && <DynamicActionModal task={task} group={this.getGroupById(groupId)} board={board} toggleModal={this.toggleModal} type={modal.type} event={modal.event} />}
         </div>
+
       </div>
     );
   }

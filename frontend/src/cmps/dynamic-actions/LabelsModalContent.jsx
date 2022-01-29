@@ -170,7 +170,9 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
         }
         return board.labels
     }
-    
+
+    console.log('Modal is rendering')
+
     return (
         <div>
             <section className='modal-header'>
