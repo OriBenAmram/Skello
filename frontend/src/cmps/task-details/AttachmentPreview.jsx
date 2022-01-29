@@ -9,7 +9,7 @@ import { utilService } from "../../services/util.service";
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 
-export function AttachmentPreview({ task, group,  attachment, board }) {
+export function AttachmentPreview({ task, group, attachment, board }) {
     const dispatch = useDispatch()
     const [attachmentTitle, setAttachmentTitle] = useState(attachment.name)
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
@@ -48,7 +48,7 @@ export function AttachmentPreview({ task, group,  attachment, board }) {
                 <div className="attachment-details">
                     <span className="attachment-name">{attachment.name + '.jpg'}</span>
                     <div className="actions-container">
-                        <span>{utilService.getTimeDiff(attachment.createdAt)}</span>
+                        <span>{utilService.timeSince(attachment.createdAt)}</span>
                         <span> - </span>
                         <span className="action-btn" onClick={onDeleteAttachment}  >Delete</span>
                         <span> - </span>

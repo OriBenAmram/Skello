@@ -14,7 +14,6 @@ import { QuickCardEditor } from '../cmps/board/QuickCardEditor';
 // Action
 import { loadBoard, handleDrag, setBoard } from '../store/board/board.action';
 
-
 export function BoardApp(props) {
   const dispatch = useDispatch();
   let history = useHistory();
@@ -37,20 +36,14 @@ export function BoardApp(props) {
       console.log('Cannot load board', err)
     }
 
+    // Unmount
     return () => {
       socketService.off('updated-board', () => {
       });
       socketService.terminate();
       clearBoard();
     };
-    // return () => {
-    //   console.log('UNMOUNT');
-    //   socketService.off('updated-board', () => {
-    //     console.log('I RUN FROM SOCKET OFF IN UNMOUNT');
-    //   });
-    //   socketService.terminate();
-    //   // await dispatch(setBoard(null));
-    // };
+
   }, []);
 
   const toggleQuickCardEditor = (event, task, groupId) => {

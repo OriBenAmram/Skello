@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
-import { AiFillHome } from 'react-icons/ai';
+import { AiFillHome, AiOutlineDown } from 'react-icons/ai';
+import { BsMic } from 'react-icons/bs'
 import { ImTrello } from 'react-icons/im';
 
 // import { toggleModal } from '../store/app/app.action';
 
 // Services
 import { userService } from '../services/user.service';
+
 
 // Actions
 import { loadUsers, loadUser } from '../store/user/user.actions.js';
@@ -18,18 +20,23 @@ export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
   const user = userService.getLoggedinUser();
+  const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
   
   useEffect(() => {
     dispatch(loadUsers())
   }, [])
-  
+
   useEffect(() => {
-    if(user?._id) dispatch(loadUser(user._id))
+    if (user?._id) dispatch(loadUser(user._id))
   }, [user])
 
   const onUserClick = event => {
-    dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: true }));
+    dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: !isModalOpen }));
   };
+
+  const onClickBoards = (ev) => { 
+    dispatch(toggleModal({ event: ev, type: 'profile', posYAddition: 20, isShown: !isModalOpen }));
+  }
 
   const getAvatarByUser = () => {
     return { background: `url(${user.imgUrl}) center center / cover` };
@@ -52,9 +59,23 @@ export function AppHeader() {
           <ImTrello className="trello-icon" />
           <p className="logo">Skello</p>
         </NavLink>
+        <button className={`app-header-primary-btn `} onClick={(ev) => { 
+          onClickBoards(ev)
+        }}>
+          Boards
+          <AiOutlineDown className='dropdown-icon' />
+        </button>
       </section>
 
+
+      {/* STT */}
+      {/* <button className="mic-btn-modal">
+        <BsMic onClick={(event) => onMic(event)} />
+      </button> */}
+
       {/* HOME */}
+
+
       {(!user || isHome) && (
         <section className="login-signup-container">
           <Link to={'/login'}>

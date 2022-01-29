@@ -14,6 +14,33 @@
     line-height: 20px;
     padding-bottom: 80px;
 
+    .label-box {
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 6px 12px;
+        color: white;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-height: 32px;
+        position: relative;
+
+        &.blind-mode { 
+            padding-left: 25px;
+        }
+
+        
+        img { 
+            position: absolute;
+        left: 0;
+        top: 0;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        }
+    }
+
     .task-details-modal {
         z-index: 20;
         width: rem(768px);

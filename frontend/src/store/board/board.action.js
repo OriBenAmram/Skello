@@ -10,6 +10,18 @@ export function setBoard(board) {
   };
 }
 
+
+export function setFilter(filterBy) {
+  return async dispatch => {
+    try {
+      const action = { type: 'SET_FILTER', filterBy };
+      dispatch(action);
+    } catch (err) {
+      console.log('Cant load boards', err);
+    }
+  };
+}
+
 // TODO: add filterby support
 export function loadBoards() {
   return async dispatch => {
@@ -210,6 +222,7 @@ export function handleDrag(
   droppableIndexEnd,
   type
 ) {
+
   return async dispatch => {
     if (type === 'group') {
       // take out group from old index

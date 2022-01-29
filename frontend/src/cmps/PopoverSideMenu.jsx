@@ -16,6 +16,7 @@ import { toggleModal, toggleSideMenu } from '../store/app/app.action.js';
 
 // Services
 import { utilService } from '../services/util.service.js'
+import { PopoverFilter } from './popover/PopoverFilter';
 
 export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
   const dispatch = useDispatch();
@@ -47,10 +48,12 @@ export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
   }
 
   return (
-    <section className="popover-side-menu" style={isSideBarOpen ? { right: '0px' } : { right: '-400px' }}>
+    <section className={`popover-side-menu ${(isSideBarOpen) ? 'open' : ''}`}>
       {(popoverContent === 'main') && <PopOverMainContent setSearchText={setSearchText} setSearchState={setSearchState} searchText={searchText} isSearchOpen={isSearchOpen} toggleSideMenu={toggleSideMenu} isSideBarOpen={isSideBarOpen} setPopoverContent={setPopoverContent} />}
       {(popoverContent === 'color' || popoverContent === 'image') &&
         < PopoverBgPicker setPopoverContent={setPopoverContent} popoverContent={popoverContent} isSideBarOpen={isSideBarOpen} toggleSideMenu={toggleSideMenu} />}
+      {(popoverContent === 'filter') && < PopoverFilter toggleSideMenu={toggleSideMenu} setPopoverContent={setPopoverContent} />}
+
     </section>
   );
 }

@@ -7,6 +7,14 @@ export function toggleSideMenu() {
   };
 }
 
+export function toggleBlindMode() {
+  return async dispatch => {
+    dispatch({
+      type: 'TOGGLE_BLINDMODE',
+    });
+  };
+}
+
 export function toggleModal({ event, type, posXAddition = 0, posYAddition = 0, isShown = false, member = null }) {
   return async dispatch => {
     dispatch({

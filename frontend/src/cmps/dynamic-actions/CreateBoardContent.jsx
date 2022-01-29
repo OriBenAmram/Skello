@@ -6,11 +6,16 @@ import boardPreview from '../../assets/imgs/board-preview.svg';
 
 // Actions
 
+
+import { toggleModal } from '../../store/app/app.action';
 import { addBoard } from '../../store/board/board.action';
-export function CreateBoardContent({ toggleModal }) {
+export function CreateBoardContent({ onToggleModal, isGeneralModal, toggleModal }) {
+
+
 
     const [board, setBoard] = useState({ title: '', style: { background: '#ff9f1a' } });
     const dispatch = useDispatch()
+
 
 
 
@@ -21,8 +26,13 @@ export function CreateBoardContent({ toggleModal }) {
     const onAddBoard = (event) => {
         if (!board.title) return;
         dispatch(addBoard(board))
-        setBoard({ ...board, title: '' })
-        toggleModal({ event, type: 'createBoard' })
+        setBoard({ ...board, title: '' });
+        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : toggleModal({ event, type: 'createBoard' });
+
+    }
+
+    const closeModal = (event) => {
+        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : toggleModal({ event, type: 'createBoard' });
     }
 
     const gColors = [
@@ -48,11 +58,10 @@ export function CreateBoardContent({ toggleModal }) {
         { title: 'sunset', url: "url(https://images.unsplash.com/photo-1422493757035-1e5e03968f95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1408&q=80)" },
 
     ]
-
     return (
         <section className="create-board-modal">
             <section className='modal-header'>
-                <button className='simple-close-btn' onClick={() => toggleModal()}><GrClose className='btn-content' /></button>
+                <button className='simple-close-btn' onClick={(event) => closeModal(event)}><GrClose className='btn-content' /></button>
                 Create Board
             </section>
             <section className="modal-details">

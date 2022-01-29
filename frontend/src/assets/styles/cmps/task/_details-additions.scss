@@ -45,6 +45,10 @@
                 align-items: center;
                 color: whitesmoke;
 
+                &.blind-mode { 
+                    padding-left: 25px;
+                }
+
                 &.plus-item {
                     color: #42526e;
                 }

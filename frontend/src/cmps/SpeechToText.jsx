@@ -14,10 +14,14 @@ export function SpeechToText({ event }) {
   const microphoneRef = useRef(null);
   const dispatch = useDispatch();
 
+
   const commands = [
     {
-      command: 'please create board', //command the user says, * is any input
-      callback: () => {
+      command: 'please create board',          //command the user says, * is any input
+      callback: (title) => {
+
+        // console.log('title:', title);
+        // console.log('im do it');
         dispatch(toggleModal({ event, type: 'createBoard', isShown: true }));
       }
     }
