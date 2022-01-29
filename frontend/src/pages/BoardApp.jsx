@@ -13,7 +13,7 @@ import { QuickCardEditor } from '../cmps/board/QuickCardEditor';
 
 // Action
 import { loadBoard, handleDrag, setBoard } from '../store/board/board.action';
-import { toggleModal } from '../store/app/app.action.js';
+
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
@@ -62,7 +62,6 @@ export function BoardApp(props) {
 
   const onOpenTaskFromQuickEdit = (groupId, taskId) => {
     history.push(`${id}/${groupId}/${taskId}`)
-    // this.props.history.push(`${board.id}/${groupId}/${taskId}`)
   }
 
   const onLoadBoard = () => {
@@ -114,8 +113,6 @@ export function BoardApp(props) {
           position={quickCardEditor.position}
           toggleQuickCardEditor={toggleQuickCardEditor}
           onOpenTaskFromQuickEdit={onOpenTaskFromQuickEdit}
-        // onLoadBoard={onLoadBoard}
-        // board={board}
         />
       )}
       {quickCardEditor.taskToEdit && (

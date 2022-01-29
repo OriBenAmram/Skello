@@ -215,32 +215,76 @@ class _QuickCardEditor extends React.Component {
               </div>
             </div>
           </div>
-          <button className="secondary-btn" onClick={this.onSave}>
+          <button
+            className="secondary-btn" onClick={this.onSave}>
             Save
           </button>
         </div>
+
         <div className="quick-task-editor-buttons flex column">
           <button onClick={(event) => {
             toggleQuickCardEditor(event, null, '')
             onOpenTaskFromQuickEdit(groupId, taskId)
 
-          }} className="quick-edit-btn flex align-flex-start"> <span><AiOutlineCreditCard /> </span> <span>Open card</span> </button>
+          }}
+            className="quick-edit-btn flex align-flex-start">
+            <span><AiOutlineCreditCard />
+            </span> <span>Open card</span>
+          </button>
+
           <button onClick={(event) => {
             this.toggleModal({ event, type: 'labels' })
-          }} className="quick-edit-btn flex align-flex-start"> <span><RiPriceTag3Line /></span> <span>Edit labels</span> </button>
+          }}
+            className="quick-edit-btn flex align-flex-start">
+            <span><RiPriceTag3Line /></span>
+            <span>Edit labels</span>
+          </button>
+
           <button onClick={(event) => {
             this.toggleModal({ event, type: 'members' })
-          }} className="quick-edit-btn flex align-flex-start"> <span><BsPerson /></span> <span>Change members</span> </button>
+          }}
+            className="quick-edit-btn flex align-flex-start">
+            <span><BsPerson /></span>
+            <span>Change members</span>
+          </button>
+
           <button onClick={(event) => {
             this.toggleModal({ event, type: 'cover' })
-          }} className="quick-edit-btn flex align-flex-start"> <span><FiCreditCard /></span> <span>Change cover</span> </button>
-          <button className="quick-edit-btn flex align-flex-start"> <span><HiOutlineArrowRight /></span> <span>Move</span> </button>
-          <button className="quick-edit-btn flex align-flex-start"> <span><AiOutlineCreditCard /> </span> <span>Copy</span> </button>
+          }}
+            className="quick-edit-btn flex align-flex-start">
+            <span><FiCreditCard /></span>
+            <span>Change cover</span>
+          </button>
+
+          <button
+            className="quick-edit-btn flex align-flex-start">
+            <span><HiOutlineArrowRight /></span>
+            <span>Move</span>
+          </button>
+
+          <button
+            className="quick-edit-btn flex align-flex-start">
+            <span><AiOutlineCreditCard /> </span>
+            <span>Copy</span>
+          </button>
           <button onClick={(event) => {
             this.toggleModal({ event, type: 'dates' })
-          }} className="quick-edit-btn flex align-flex-start"> <span><AiOutlineClockCircle /></span> <span>Edit dates</span> </button>
-          <button className="quick-edit-btn flex align-flex-start"> <span><RiArchiveLine /></span> <span>Archive</span> </button>
-          {modal.isModalOpen && <DynamicActionModal task={task} group={this.getGroupById(groupId)} board={board} toggleModal={this.toggleModal} type={modal.type} event={modal.event} />}
+          }}
+            className="quick-edit-btn flex align-flex-start">
+            <span><AiOutlineClockCircle /></span>
+            <span>Edit dates</span>
+          </button>
+
+          <button
+            className="quick-edit-btn flex align-flex-start">
+            <span><RiArchiveLine /></span>
+            <span>Archive</span>
+          </button>
+
+          {modal.isModalOpen &&
+            <DynamicActionModal task={task} group={this.getGroupById(groupId)} board={board}
+              toggleModal={this.toggleModal} type={modal.type} event={modal.event} />}
+
         </div>
 
       </div>
