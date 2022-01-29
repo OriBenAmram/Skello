@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AiFillStar } from 'react-icons/ai';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 export function BoardList({ boards, onToggleStarred, toggleModal, isStarred = false }) {
   if (!boards?.length) return <></>;
@@ -23,10 +23,10 @@ export function BoardList({ boards, onToggleStarred, toggleModal, isStarred = fa
               <div className="board-preview-details">
                 <h3>{board.title.length > 15 ? board.title.substring(0, 15) + '...' : board.title}</h3>
                 <div className="starred-container">
-                  <AiFillStar
-                    className={`star-icon ${board.isStarred ? 'starred' : ''}`}
-                    onClick={ev => onToggleStarred(ev, board._id)}
-                  />
+                  {(board.isStarred) ?
+                    <AiFillStar className="star-icon starred" onClick={ev => onToggleStarred(ev, board._id)} /> :
+                    <AiOutlineStar className="star-icon" onClick={ev => onToggleStarred(ev, board._id)} />
+                  }
                 </div>
               </div>
             </div>

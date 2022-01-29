@@ -13,6 +13,17 @@ import { toggleModal } from "../../store/app/app.action.js";
 export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
 
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+    const updateDimensions = () => {
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
+    }
+    useEffect(() => {
+        window.addEventListener("resize", updateDimensions);
+        return () => window.removeEventListener("resize", updateDimensions);
+    }, []);
+
     // const wrapperRef = useRef(null)
     // useEffect(() => {
     //     document.addEventListener("mousedown", handleClickOutside, true);
@@ -44,8 +55,12 @@ export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, ty
         }
     }
     const getModalPositionStyle = () => {
-        const { top, left, height } = event.target.getBoundingClientRect();
-        if (type === 'otherMemberModal') return { top: top + height + posYAddition, left: left + posXAddition, border: 'none' }
+        const { top, left, height, right } = event.target.getBoundingClientRect();
+        const sideStart = (width < 550) ? 'right' : 'left'
+        const sideStartValue = (width < 550) ? 10 : left
+        if (type === 'profile') return { top: top + height, right: '10px', border: 'none' }
+
+        return { top: top + height + posYAddition, [sideStart]: sideStartValue + 'px', border: 'none' }
         return { top: top + height + posYAddition, left: left + posXAddition }
     }
     if (!event) return <></>
