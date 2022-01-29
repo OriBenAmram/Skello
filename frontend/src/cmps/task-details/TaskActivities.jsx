@@ -69,7 +69,7 @@ export function TaskActivities({ board, group, task, description }) {
                 <button className="details-primary-link-btn" onClick={() => onToggleActivityList()}>{(isActivityListShown) ? 'Hide Details' : 'Shown Details'}</button>
             </div>
             <div className='text-area-container'>
-                <textarea defaultValue="" value={textAreaContent} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => {
+                <textarea value={textAreaContent} onClick={() => toggleTextArea(true)} onBlur={() => toggleTextArea(false)} className='input-activity-box comment-general-box' placeholder="Write a comment..." onChange={(ev) => {
                     setTextAreaContent(ev.target.value)
                 }}>
                 </textarea>

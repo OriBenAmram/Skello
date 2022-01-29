@@ -44,7 +44,7 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                 <hr className='bottom-hr' />
             </div >
                 <section className='sidemenu-main-content filter-container'>
-                    <p class="sub-title">Keyword</p>
+                    <p className="sub-title">Keyword</p>
                     <div className="search-container">
                         <input type="text"
                             placeholder="Enter a keyword…"
