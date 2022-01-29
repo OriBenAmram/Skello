@@ -8,11 +8,14 @@
         height: 100%;
         border-radius:5px;
         position: relative;
+        
+
+        
 
         &:hover{
             .starred-container .star-icon{
                 opacity: 1;
-                color: rgb(253, 236, 0);
+                stroke-width: 20px;
             }
         }
     }
@@ -30,6 +33,12 @@
         width: 17px;
         opacity: 0;
         font-size: 1.3rem;
+        opacity: 1;
+        color: white;
+        stroke-width: 20px;
+        @include for-normal-layout { 
+            opacity: 0;
+        }
         &.starred{
             opacity: 1;
             color: gold

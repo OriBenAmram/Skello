@@ -54,6 +54,7 @@ export function TaskActivities({ board, group, task, description }) {
             byMember: user,
             createdAt: Date.now()
         }
+        console.log('task before unshift', task)
         const newTaskComments = task.comments.unshift(comment);
         const taskToUpdate = { ...task, comments: newTaskComments };
         const activityTxt = textAreaContent;

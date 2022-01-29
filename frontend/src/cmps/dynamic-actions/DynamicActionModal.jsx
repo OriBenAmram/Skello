@@ -14,6 +14,21 @@ import { CreateBoardContent } from './CreateBoardContent.jsx';
 export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
 
+
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+    const updateDimensions = () => {
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
+    }
+    useEffect(() => {
+        window.addEventListener("resize", updateDimensions);
+        return () => window.removeEventListener("resize", updateDimensions);
+    }, []);
+
+    console.log('width,height:', width, height);
+
+
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':
@@ -44,7 +59,7 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
         const { top, left, height } = event.target.getBoundingClientRect();
         if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
 
-            return { top: top / 2, left: left + posXAddition }
+            return { top: top / 2, left: (width / 2) + posXAddition }
         }
         return { top: top + height + posYAddition, left: left + posXAddition }
     }
