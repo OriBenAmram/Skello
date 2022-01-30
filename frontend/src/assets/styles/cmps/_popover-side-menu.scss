@@ -118,6 +118,23 @@
         padding: 12px 6px 12px 12px;
         overflow-y: auto;
 
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #96969626;
+            border-radius: 10px;
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background-color: #b4b7b9b7;
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar {
+            height: 12px;
+            width: 12px;
+        }
+
         .activity-section {
             .activity-container {
                 .activity-preview {

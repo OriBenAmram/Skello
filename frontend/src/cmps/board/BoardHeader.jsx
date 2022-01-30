@@ -13,9 +13,12 @@ export function BoardHeader({ board }) {
   const [shownMembers, setShownMembers] = useState('4')
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    window.addEventListener("resize", handleResize)
     handleResize()
 
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
   }, [])
 
   const handleResize = () => {
