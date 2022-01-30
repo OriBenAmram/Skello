@@ -60,7 +60,7 @@ export function AttachmentPreview({ task, group, attachment, board }) {
                     title={"hero.jpg"}
                 ></a>
                 <div className="attachment-details">
-                    <span className="attachment-name">{attachment.name + '.jpg'}</span>
+                    <span className="attachment-name">{attachment.name}</span>
                     <div className="actions-container">
                         <span>{utilService.timeSince(attachment.createdAt)}</span>
                         <span> - </span>

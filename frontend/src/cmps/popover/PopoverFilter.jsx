@@ -21,7 +21,28 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
 
     useEffect(() => {
         dispatch(setFilter(filterBy))
+
+        return () => {
+            console.log('unmount');
+        }
+
     }, [filterBy]);
+
+    // useEffect(() => {
+
+
+    //     return () => {
+    //         console.log('unmount@@@@@@@');
+    //         setFilterBy({ members: [], labels: [], txt: '' })
+    //         dispatch(setFilter(filterBy))
+    //     };
+    // }, []);
+
+
+
+
+
+
 
     return (
         <div>
@@ -31,8 +52,8 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                     setPopoverContent('main')
                 }}><IoIosArrowBack /></button>
                 <button className="primary-close-btn"><MdClose className='primary-menu-close-btn' onClick={() => {
-                toggleSideMenu()
-            }} /></button>
+                    toggleSideMenu()
+                }} /></button>
                 <span>Filter</span>
                 <hr className='bottom-hr' />
             </div >
@@ -52,9 +73,11 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                     </div>
 
                     <ul className="clean-list">
-                        {board.members.map(member => <PopoverFilterUser key={member.fullname} member={member} setFilterBy={setFilterBy} filterBy={filterBy} />
-                        )}
-                    </ul>
+                        {
+                            board?.members.map(member => <PopoverFilterUser key={member._id} member={member} setFilterBy={setFilterBy} filterBy={filterBy} />
+                            )
+                        }
+                    </ul >
 
                     <hr />
 
@@ -62,12 +85,13 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                         <p className="sub-title">Labels</p>
                     </div>
 
-                    {board && <ul className="labels-filter-list clean-list">
-                        {board.labels.map(label => <PopoverFilterLabels key={label.color} label={label} setFilterBy={setFilterBy} filterBy={filterBy} />)}
-                    </ul>}
-                </section>
-            </div>
-        </div>
+                    {
+                        board && <ul className="labels-filter-list clean-list">
+                            {board.labels.map((label, idx) => <PopoverFilterLabels key={idx} label={label} setFilterBy={setFilterBy} filterBy={filterBy} />)}
+                        </ul >}
+                </section >
+            </div >
+        </div >
     );
 
 }

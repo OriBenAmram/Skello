@@ -9,11 +9,12 @@ import boardPreview from '../../assets/imgs/board-preview.svg';
 
 import { toggleModal } from '../../store/app/app.action';
 import { addBoard } from '../../store/board/board.action';
-export function CreateBoardContent({ onToggleModal, isGeneralModal, toggleModal }) {
+export function CreateBoardContent({ onToggleModal, isGeneralModal, boardTitle }) {
+
+    console.log('boardTitle:', boardTitle);
 
 
-
-    const [board, setBoard] = useState({ title: '', style: { background: '#ff9f1a' } });
+    const [board, setBoard] = useState({ title: (boardTitle) ? boardTitle : '', style: { background: '#ff9f1a' } });
     const dispatch = useDispatch()
 
     const setSelectedBackground = (background) => {
@@ -24,12 +25,12 @@ export function CreateBoardContent({ onToggleModal, isGeneralModal, toggleModal 
         if (!board.title) return;
         dispatch(addBoard(board))
         setBoard({ ...board, title: '' });
-        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : toggleModal({ event, type: 'createBoard' });
+        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : onToggleModal({ event, type: 'createBoard' });
 
     }
 
     const closeModal = (event) => {
-        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : toggleModal({ event, type: 'createBoard' });
+        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : onToggleModal({ event, type: 'createBoard' });
     }
 
     const gColors = [

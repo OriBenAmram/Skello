@@ -9,7 +9,9 @@ const initialState = {
     type: null,
     posXAddition: 0,
     posYAddition: 0,
-    member: null
+    member: null,
+    boardTitle: '',
+    isListening: false
   }
 };
 
@@ -21,11 +23,14 @@ export function appReducer(state = initialState, action) {
     case 'TOGGLE_BLINDMODE':
       return (newState = { ...state, isBlindMode: !state.isBlindMode });
     case 'TOGGLE_MODAL':
+      console.log('avtion.modalInfo.title:', action.modalInfo.title);
+
       return (newState = {
         ...state, popupModal: {
           ...state.popupModal, isModalOpen: action.modalInfo.isShown,
           event: action.modalInfo.event, type: action.modalInfo.type, posXAddition: action.modalInfo.posXAddition,
-          posYAddition: action.modalInfo.posYAddition, member: action.modalInfo.member
+          posYAddition: action.modalInfo.posYAddition, member: action.modalInfo.member, boardTitle: action.modalInfo.title,
+          isListening: action.modalInfo.isShown
         }
       });
 

@@ -10,12 +10,11 @@ import { CreateBoardContent } from "./CreateBoardContent.jsx";
 import { SpeechToTextModalContent } from "./SpeechToTextMoadlContent.jsx";
 import { toggleModal } from "../../store/app/app.action.js";
 
-
-export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, type, event, posXAddition = 0, posYAddition = 0 }) {
+export function DynamicBoardActionModal({ isListening, isModalOpen, member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
 
-    const [width, setWidth] = useState(window.innerWidth);
-    const [height, setHeight] = useState(window.innerHeight);
+    const [windowWidth, setWidth] = useState(window.innerWidth);
+    const [windowHeight, setHeight] = useState(window.innerHeight);
     const updateDimensions = () => {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
@@ -43,6 +42,9 @@ export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, ty
         // }
     }
 
+    console.log('type:', type);
+
+
     const getContentForDisplay = () => {
         switch (type) {
             case 'profile':
@@ -52,17 +54,18 @@ export function DynamicBoardActionModal({ isModalOpen, member, onToggleModal, ty
             case 'addMemberToBoard':
                 return <AddMemberModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
-                return <CreateBoardContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} isGeneralModal={true} />
+                return <CreateBoardContent boardTitle={boardTitle} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} isGeneralModal={true} />
             case 'otherMemberModal':
                 return <OtherMemberModalContent member={member} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'stt':
-                return <SpeechToTextModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} event={event} isGeneralModal={true} />
+                return <SpeechToTextModalContent isListening={isListening} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} event={event} isGeneralModal={true} />
         }
     }
     const getModalPositionStyle = () => {
-        const { top, left, height, right } = event.target.getBoundingClientRect();
-        const sideStart = (width < 550) ? 'right' : 'left'
-        const sideStartValue = (width < 550) ? 10 : left
+        const { top, left, height, right, width } = event.target.getBoundingClientRect();
+        if (type === 'stt') return { top: top + height + 20, left: left - 160, border: 'none' }
+        const sideStart = (windowWidth < 550) ? 'right' : 'left'
+        const sideStartValue = (windowWidth < 550) ? 10 : left
         if (type === 'profile') return { top: top + height, right: '10px', border: 'none' }
 
         return { top: top + height + posYAddition, [sideStart]: sideStartValue + 'px', border: 'none' }
