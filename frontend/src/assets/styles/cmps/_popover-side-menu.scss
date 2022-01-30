@@ -44,29 +44,10 @@
         opacity: 0.5;
     }
 
-    // General
-    .primary-link-btn {
-        border-radius: 3px;
-        font-weight: 600;
-        line-height: 20px;
-        text-decoration: none;
-        padding: 6px 6px 6px 40px;
-        position: relative;
-        background-color: initial;
-        border: none;
-        width: 100%;
-        text-align: left;
-        color: $clr1;
-
-        &:hover {
-            background-color: #091e4214;
-        }
-    }
-
     .primary-icon {
         font-size: 20px;
         height: 20px;
-        left: 12px;
+        left: 0px;
         line-height: 20px;
         position: absolute;
         top: 6px;
@@ -200,7 +181,7 @@
             font-weight: 600;
             line-height: 20px;
             text-decoration: none;
-            padding: 6px 6px 6px 40px;
+            padding: 6px 6px 6px 28px;
             position: relative;
             background-color: initial;
             border: none;
@@ -218,16 +199,6 @@
                     background-color: initial;
                 }
             }
-        }
-
-        .primary-icon {
-            font-size: 20px;
-            height: 20px;
-            left: 12px;
-            line-height: 20px;
-            position: absolute;
-            top: 6px;
-            width: 20px;
         }
         // Main content
         // Upper Options

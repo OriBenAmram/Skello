@@ -132,6 +132,7 @@ export function LoginSignup(props) {
               onClick={() => {
                 onClickGuest();
               }}>
+              {/* <img style={{ width: '20px' }} src={femaleGuest} className="button-icon-image guest" /> */}
               <img src={femaleGuest} className="button-icon-image guest" />
               Continue as Guest
             </button>
