@@ -45,13 +45,13 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         { title: 'jerusalem', url: 'https://images.unsplash.com/photo-1593019612399-86daa4d18cd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' }
     ]
 
-    useEffect( async () => {
+    useEffect( () => {
         if (task.style.backgroundImage.url) {
             setSelectedImage(task.style.backgroundImage)
         }
         else setSelectedColor(task.style.backgroundColor)
         if(task.style.isCover) { 
-            await setSelectedSize('cover')
+            setSelectedSize('cover')
             if (task.style?.isTextDarkMode) { 
                 setSelectedTextColor('dark')
             } else setSelectedTextColor('bright')
@@ -130,10 +130,10 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         let newTaskStyle;
         if (color === 'bright') {
             setSelectedTextColor('bright')
-            newTaskStyle = { ...task.style, isTextDarkMode: true }
+            newTaskStyle = { ...task.style, isTextDarkMode: false }
         } else { 
             setSelectedTextColor('dark')
-            newTaskStyle = { ...task.style, isTextDarkMode: false }
+            newTaskStyle = { ...task.style, isTextDarkMode: true }
         }
         const taskToUpdate = { ...task, style: newTaskStyle }
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
@@ -204,7 +204,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                                 </div>
                             </div>
                         </div>
-                        {(task.style.backgroundColor) && <button className='details-primary-link-btn wide-cover-btn' onClick={() => {
+                        {(task.style.backgroundColor || task.style.backgroundImage) && <button className='details-primary-link-btn wide-cover-btn' onClick={() => {
                             onDeleteCover()
                         }}>Remove cover</button>}
                     </section>
@@ -237,10 +237,10 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                             })}
                         </section>
                     </section>
-                    <section className='attachment-section'>
+                    {/* <section className='attachment-section'>
                         <h4>Attachment</h4>
                         <button className='details-primary-link-btn wide-cover-btn'>Upload a cover image</button>
-                    </section>
+                    </section> */}
                     <section className='images-section'>
                         <h4>Photos from unsplash</h4>
                         <section className='images-grid-container'>

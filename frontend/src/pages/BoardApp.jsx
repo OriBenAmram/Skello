@@ -29,6 +29,7 @@ export function BoardApp(props) {
       // get updated board from backend
       socketService.off('updated-board');
       socketService.on('updated-board', async updatedBoard => {
+        console.log('updated board from socket in BoardApp')
         await dispatch(setBoard(updatedBoard));
       });
       onLoadBoard();

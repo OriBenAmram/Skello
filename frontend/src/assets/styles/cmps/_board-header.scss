@@ -47,6 +47,11 @@
     text-decoration: none;
     height: 30px;
 
+    &.fav { 
+        padding: 6px 5px 5px;
+        cursor: pointer;
+    }
+
     .star-icon{
         height: 17px;
         width: 17px;

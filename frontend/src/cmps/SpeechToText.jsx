@@ -74,7 +74,7 @@ export function SpeechToText({ event }) {
         </div>
         <section className="instructions-section">
 
-          <h2>{(isListening) ? 'Press the Reset button to stop' : 'Press the Microphone to start'}</h2>
+          <h2>{(isListening) ? 'Press the reset button to stop' : 'Press the red circle to start'}</h2>
 
           <div className={`blob ${(isListening) ? 'recorder' : ''}`} onClick={() => {
             handleListing()

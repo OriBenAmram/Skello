@@ -12,7 +12,6 @@ export const userService = {
   getUsers,
   getUser,
   loginAsGuest,
-  getMiniUser,
   saveLocalUser
 };
 
@@ -44,22 +43,12 @@ async function signup(userCred) {
   }
 }
 
-function getMiniUser() {
-  const userCred = {
-    username: 'guest',
-    fullname: 'Guest',
-    imgUrl:
-      'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
-  };
-  return userCred;
-}
-
 async function loginAsGuest() {
   const userCred = {
     username: 'guest',
     password: 'guest123',
     imgUrl:
-      'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
+      'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643564751/dl6faof1ecyjnfnknkla.svg',
   };
   try {
     const user = await login(userCred);

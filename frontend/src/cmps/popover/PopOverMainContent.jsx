@@ -37,7 +37,7 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
             {/* BG */}
             <section className="background-teaser-section">
                 <div className="board-backgrounds-section-tile">
-                    <div className="image-container" onClick={() => setPopoverContent('color')} >
+                    <div className="image-container background-color-teaser" onClick={() => setPopoverContent('color')} >
                         <img src={colorTeaser} alt="" />
                         <div className="title">Colors</div>
                     </div>

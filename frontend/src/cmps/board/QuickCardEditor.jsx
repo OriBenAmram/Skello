@@ -61,7 +61,6 @@ class _QuickCardEditor extends React.Component {
       ...prevState,
       modal: { ...prevState.modal, isModalOpen: !prevState.modal.isOpenModal, event, type }
     }))
-
   }
 
   getTaskById = (taskId, groupId) => {

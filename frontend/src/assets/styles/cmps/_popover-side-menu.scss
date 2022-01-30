@@ -242,10 +242,12 @@
 
         .background-teaser-section {
             .board-backgrounds-section-tile {
+                display: flex;
+                align-items: center;
+
                 .image-container {
                     box-sizing: border-box;
                     cursor: pointer;
-                    float: left;
                     padding: 0 4px;
                     position: relative;
                     text-align: center;
@@ -254,6 +256,11 @@
                     color: rgb(23, 43, 77);
                     margin-bottom: 15px;
                     transition: 0.2s ease-in-out;
+
+                    &.background-color-teaser { 
+                        padding-left: 0;
+                        padding-right: 8px;
+                    }
 
                     &:hover {
                         opacity: 0.7;

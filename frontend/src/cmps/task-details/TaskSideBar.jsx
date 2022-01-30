@@ -72,9 +72,9 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'stt' })
                     }} > <BiMicrophone />Speech To Text</button>
-                    {(!task.style.backgroundColor && !task.style.backgroundImage?.url) && <button className="button-link" onClick={(event) => {
+                    <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'cover' })
-                    }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>}
+                    }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>
                 </div>
                 {modal.isModalOpen && <DynamicActionModal isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
             </section>

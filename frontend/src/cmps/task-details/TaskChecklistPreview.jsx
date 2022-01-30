@@ -19,6 +19,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
 
     function handleChange({ target }) {
         const { name, value } = target
+        console.log('value:', value);
         setChecklistData({ ...checklistData, [name]: value })
     }
 
@@ -75,9 +76,13 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
         onUpdateTask(task, `removed the checklist ${checklist.title}`)
     }
 
-    function saveChecklist(checklistId) {
+    function saveChecklist(ev, checklistId) {
+        console.log('before prevent Default')
+        ev.preventDefault();
+        console.log('saving')
         task.checklists = task.checklists.map(checklist =>
             (checklist.id === checklistId ? checklistData : checklist));
+        console.log('checklistData:', checklistData);
         onUpdateTask(task, `renamed ${checklistData.title} (from checklist)`)
     }
 
@@ -90,6 +95,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
 
     function onBlurTextArea(ev) {
         ev.preventDefault();
+        saveChecklist(ev, checklist.id)
         setEditingTitle(false)
     }
 
@@ -103,12 +109,12 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                     <div className='title-container'>
                         <BsCheck2Square className='primary-icon main-content-icon' />
 
-                        <h3 onClick={() => setEditingTitle(true)}>
+                        <h3 className='check-list-title' onClick={() => setEditingTitle(true)}>
                             {checklist.title}
                         </h3>
 
                         <div className='btns-container'>
-                            <button className="checklist-main-btn">Hide checked Items</button>
+                            {/* <button className="checklist-main-btn">Hide checked Items</button> */}
                             <button
                                 className="checklist-main-btn delete-btn"
                                 onClick={() => onDeleteChecklist(checklist.id)}
@@ -130,7 +136,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                     <section className='edit-checklist-controllers'>
                         <div>
                             <button
-                                onClick={() => saveChecklist(checklist.id)}
+                                onClick={(ev) => saveChecklist(ev, checklist.id)}
                                 className='save-btn'
                             >
                                 Save
