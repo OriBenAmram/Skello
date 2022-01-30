@@ -7,6 +7,7 @@ import { IoEllipsisHorizontal } from 'react-icons/io5';
 import { TaskList } from './TaskList';
 import { GroupPreviewTitle } from './GroupPreviewTitle';
 import { AddNewTask } from './AddNewTask';
+import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal';
 
 // Action
 import { removeGroup } from '../../store/board/board.action';
@@ -17,14 +18,28 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
   const dispatch = useDispatch();
   const [isBodyRender, setIsBodyRender] = useState(false);
 
-  const filterBy = useSelector(state => state.boardModule.filterBy)
+  const filterBy = useSelector(state => state.boardModule.filterBy);
+  const [modal, setModal] = useState(false)
 
   const toggleIsBodyRender = () => {
     setIsBodyRender(isBodyRender => !isBodyRender);
   };
 
 
+  const toggleModal = ({ event, type }) => {
+    if (modal.isModalOpen) {
 
+      setModal({ ...modal, isModalOpen: false })
+      return
+    }
+
+
+    setModal({ isModalOpen: true, type, event })
+  }
+
+  const onRemoveGroup = (groupId) => {
+    dispatch(removeGroup(groupId, boardId))
+  }
 
   function getFilteredTask() {
     const { txt, labels, members } = filterBy
@@ -57,12 +72,9 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
             <GroupPreviewTitle group={group} />
             <div
               className="header-more-options"
-              onClick={async () => {
-                if (window.confirm('Are you sure you want to delete?')) {
-                  await dispatch(removeGroup(group.id, boardId));
-                }
-              }}>
+              onClick={(event) => toggleModal({ event, type: 'removeMenuPopup' })}>
               <IoEllipsisHorizontal />
+              {modal.isModalOpen && <DynamicActionModal onRemoveGroup={onRemoveGroup} groupId={group.id} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
             </div>
           </div>
 

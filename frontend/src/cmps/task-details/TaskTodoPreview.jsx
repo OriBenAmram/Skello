@@ -63,7 +63,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
                 onClick={(ev) => onToggleTextArea(ev, true)}  >
 
             </textarea>
-            <MdMoreHoriz className="more-icon" onClick={(event) => toggleModal({ event, type: 'todoOptions' })} />
+            <MdMoreHoriz className="more-icon" onClick={(event) => toggleModal({ event, type: 'removeMenuPopup' })} />
             {/* Editing */}
             {isTextAreaOpen && <section className='edit-todo-controllers'>
                 <div>

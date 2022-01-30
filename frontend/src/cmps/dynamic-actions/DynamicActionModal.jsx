@@ -4,16 +4,17 @@ import { MembersModalContent } from './MembersModalContent.jsx'
 import { LabelsModalContent } from './LabelsModalContent.jsx'
 import { CheckListModalContent } from './CheckListModalContent.jsx'
 import { AttachmentModalContent } from "./AttachmentModalContent.jsx";
-import { TodoOptions } from './TodoOptions.jsx';
+import { RemoveMenuPopup } from './RemoveMenuPopup.jsx';
 import { EditAttachmentModalContent } from './EditAttachmentModalContent.jsx';
 import { CoverModalContent } from './CoverModalContent.jsx'
 import { DatesModalContent } from './DatesModalContent.jsx'
 import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
-export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = false, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
 
+    console.log('type:', type);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
@@ -36,8 +37,9 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
                 return <CheckListModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'attachment':
                 return <AttachmentModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
-            case 'todoOptions':
-                return <TodoOptions toggleModal={toggleModal} onRemoveTodo={onRemoveTodo} todoId={todoId} />
+            case 'removeMenuPopup':
+                console.log('im here!');
+                return <RemoveMenuPopup toggleModal={toggleModal} onRemoveTodo={onRemoveTodo} groupId={groupId} onRemoveGroup={onRemoveGroup} todoId={todoId} />
             case 'editAttachment':
                 return <EditAttachmentModalContent editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} />
             case 'cover':
