@@ -30,6 +30,9 @@ export function RootCmp() {
     dispatch(toggleModal({ event, type }))
   }
 
+  console.log('popupModal:', popupModal);
+
+
   return (
     <div className='root-cmp'>
       <AppHeader />
@@ -42,7 +45,7 @@ export function RootCmp() {
       </main>
 
       <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} />
-      {(popupModal.isModalOpen) && <DynamicBoardActionModal member={popupModal.member} onToggleModal={onToggleModal} isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />}
+      {(popupModal.isModalOpen) && <DynamicBoardActionModal isListening={popupModal.isListening} boardTitle={popupModal.boardTitle} member={popupModal.member} onToggleModal={onToggleModal} isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />}
     </div >
   );
 

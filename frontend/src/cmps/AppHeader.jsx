@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import { AiFillHome, AiOutlineDown } from 'react-icons/ai';
-import { BsMic } from 'react-icons/bs'
 import { ImTrello } from 'react-icons/im';
 
-// import { toggleModal } from '../store/app/app.action';
 
 // Services
 import { userService } from '../services/user.service';
@@ -16,12 +14,17 @@ import { userService } from '../services/user.service';
 import { loadUsers, loadUser } from '../store/user/user.actions.js';
 import { toggleModal } from '../store/app/app.action';
 
+// cmps
+import { SkellMicAssistant } from './SkellMicAssistence';
+
+
+
 export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
   const user = userService.getLoggedinUser();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
-  
+
   useEffect(() => {
     dispatch(loadUsers())
   }, [])
@@ -34,9 +37,10 @@ export function AppHeader() {
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: !isModalOpen }));
   };
 
-  const onClickBoards = (ev) => { 
+  const onClickBoards = (ev) => {
     dispatch(toggleModal({ event: ev, type: 'profile', posYAddition: 20, isShown: !isModalOpen }));
   }
+
 
   const getAvatarByUser = () => {
     return { background: `url(${user.imgUrl}) center center / cover` };
@@ -59,7 +63,7 @@ export function AppHeader() {
           <ImTrello className="trello-icon" />
           <p className="logo">Skello</p>
         </NavLink>
-        <button className={`app-header-primary-btn `} onClick={(ev) => { 
+        <button className={`app-header-primary-btn `} onClick={(ev) => {
           onClickBoards(ev)
         }}>
           Boards
@@ -69,9 +73,8 @@ export function AppHeader() {
 
 
       {/* STT */}
-      {/* <button className="mic-btn-modal">
-        <BsMic onClick={(event) => onMic(event)} />
-      </button> */}
+      <SkellMicAssistant />
+
 
       {/* HOME */}
 

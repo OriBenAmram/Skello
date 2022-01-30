@@ -56,12 +56,32 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
         }
     }
     const getModalPositionStyle = () => {
-        const { top, left, height } = event.target.getBoundingClientRect();
-        if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
+        if (width > 800) {
+            const { top, left, height, right } = event.target.getBoundingClientRect();
+            const startSide = (width / left < 2) ? 'right' : 'left'
+            const startSideValue = (width / left < 2) ? 30 : left;
+            if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
+                console.log('wowow');
+                return { top: top / 2, left }
+            }
+            if (width > 1050) return { top: top + height, left: left }
+            return { top: top + height, [startSide]: startSideValue + 'px' }
+        } else {
 
-            return { top: top / 2, left: (width / 2) + posXAddition }
+            const { top, left, height, right } = event.target.getBoundingClientRect();
+            const startSide = (width - left > 320) ? 'left' : 'right'
+            const startSideValue = (width - left > 320) ? left : 20;
+
+            if (width > 1050) return { top: top + height, [startSide]: startSideValue }
+            if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
+
+                return { top: top / 2, right: 15 }
+            }
+            return { top: top + height, [startSide]: startSideValue + 'px' }
         }
-        return { top: top + height + posYAddition, left: left + posXAddition }
+
+
+
     }
     if (!event) return <></>
     return (
