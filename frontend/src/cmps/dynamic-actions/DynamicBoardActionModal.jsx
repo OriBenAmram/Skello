@@ -10,7 +10,7 @@ import { CreateBoardContent } from "./CreateBoardContent.jsx";
 import { SpeechToTextModalContent } from "./SpeechToTextMoadlContent.jsx";
 import { toggleModal } from "../../store/app/app.action.js";
 
-export function DynamicBoardActionModal({ isListening, isModalOpen, member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0 }) {
+export function DynamicBoardActionModal({ isListening, members, isModalOpen, extraMembers, member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
 
     const [windowWidth, setWidth] = useState(window.innerWidth);
@@ -53,6 +53,8 @@ export function DynamicBoardActionModal({ isListening, isModalOpen, member, onTo
             //     return <BoardsModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'addMemberToBoard':
                 return <AddMemberModalContent onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+            case 'extraMembers':
+                return <AddMemberModalContent onToggleModal={onToggleModal} isExtra={true} extraMembers={extraMembers} type={type} />
             case 'createBoard':
                 return <CreateBoardContent boardTitle={boardTitle} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} isGeneralModal={true} />
             case 'otherMemberModal':
@@ -62,13 +64,15 @@ export function DynamicBoardActionModal({ isListening, isModalOpen, member, onTo
         }
     }
     const getModalPositionStyle = () => {
+        console.log('posYAddition:', posYAddition);
+
         const { top, left, height, right, width } = event.target.getBoundingClientRect();
         if (type === 'stt') return { top: top + height + 20, left: left - 160, border: 'none' }
         const sideStart = (windowWidth < 550) ? 'right' : 'left'
         const sideStartValue = (windowWidth < 550) ? 10 : left
-        if (type === 'profile') return { top: top + height, right: '10px', border: 'none' }
+        if (type === 'profile') return { top: top + height + posYAddition, right: '10px', border: 'none' }
 
-        return { top: top + height + posYAddition, [sideStart]: sideStartValue + 'px', border: 'none' }
+        return { top: top + height + posYAddition, [sideStart]: sideStartValue + posXAddition + 'px', border: 'none' }
         return { top: top + height + posYAddition, left: left + posXAddition }
     }
     if (!event) return <></>

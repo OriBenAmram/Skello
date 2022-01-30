@@ -77,12 +77,12 @@ export function TaskActivities({ board, group, task, description }) {
                     <button className={`save-btn ${(textAreaContent) ? 'activate' : ''}`} onMouseDown={() => {
                         onSaveComment()
                     }}>Save</button>
-                    <div className='add-icons-options'>
+                    {/* <div className='add-icons-options'>
                         <MdOutlineAttachment />
                         <GoMention />
                         <BiSmile />
                         <AiOutlineCreditCard />
-                    </div>
+                    </div> */}
                 </section>}
             </div>
             {isActivityListShown && <div className='activity-preview-container'>

@@ -11,7 +11,7 @@ import { loadUsers } from '../../store/user/user.actions';
 
 // ICONS
 
-export function AddMemberModalContent({ onToggleModal }) {
+export function AddMemberModalContent({ onToggleModal, extraMembers, isExtra }) {
   const dispatch = useDispatch();
   let location = useLocation()
   const members = useSelector(state => state.userModule.users);
@@ -34,6 +34,7 @@ export function AddMemberModalContent({ onToggleModal }) {
   };
 
   const onAddMemberToBoard = (event, member) => {
+    if (isExtra) return;
     const memberIdx = members.findIndex(memberToFind => {
       return memberToFind._id === member._id;
     });
@@ -56,6 +57,10 @@ export function AddMemberModalContent({ onToggleModal }) {
   };
 
   const getMembersForDisplay = () => {
+    if (isExtra) {
+      return extraMembers;
+    }
+
     if (filterBy) {
       return members.filter(member => {
         if (member._id !== board?.createdBy._id && !isMemberInBoard(member._id)) {
@@ -83,7 +88,7 @@ export function AddMemberModalContent({ onToggleModal }) {
           }}>
           <GrClose className="btn-content" />
         </button>
-        Invite to board
+        {(isExtra) ? 'More members' : 'Invite to board'}
       </section>
       <section className="modal-content">
         <div className="modal-title">
@@ -104,7 +109,9 @@ export function AddMemberModalContent({ onToggleModal }) {
                   key={index}
                   className="user-preview"
                   onClick={event => {
-                    onAddMemberToBoard(event, member);
+                    (isExtra) ? dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: true, posYAddition: -150, posXAddition: -200 })) : onAddMemberToBoard(event, member)
+
+
                   }}>
                   <div
                     className={`member-avatar ${member.imgUrl ? 'with-image' : ''}`}

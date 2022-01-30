@@ -17,9 +17,16 @@ import { updateTask } from '../../store/board/board.action';
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.userModule.loggedinUser);
-    const [modal, setModal] = useState({ isModalOpen: false, type: null });
+    const [modal, setModal] = useState({ isModalOpen: false, type: null, event: null });
+
+    // const toggleModal = ({ event, type }) => {
+    //     setModal({ ...modal, isModalOpen: !modal.isModalOpen, type, event })
+    // }
+
+
 
     const toggleModal = ({ event, type }) => {
+        console.log('toggeling localy');
         // In case the modal is open somewhere
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })

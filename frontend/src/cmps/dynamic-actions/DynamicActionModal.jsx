@@ -14,8 +14,6 @@ import { CreateBoardContent } from './CreateBoardContent.jsx';
 export function DynamicActionModal({ isDeleteModal = false ,toggleModal, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
 
-    console.log('event:', event);
-
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
     const updateDimensions = () => {
@@ -51,12 +49,12 @@ export function DynamicActionModal({ isDeleteModal = false ,toggleModal, type, t
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
                 return <CreateBoardContent onToggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
+
         }
     }
     const getModalPositionStyle = () => {
         if (width > 800) {
             const { top, left, height, right } = event.target.getBoundingClientRect();
-            
             const startSide = (width / left < 2) ? 'right' : 'left'
             const startSideValue = (width / left < 2) ? 30 : left;
             if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
@@ -79,6 +77,9 @@ export function DynamicActionModal({ isDeleteModal = false ,toggleModal, type, t
             return { top: top + height, [startSide]: startSideValue + 'px' }
         }
     }
+
+
+
     if (!event) return <></>
     return (
         <section className={`dynamic-action-modal ${(isDeleteModal) ? 'delete-modal' : ''}`} style={getModalPositionStyle()} ref={wrapperRef} >
