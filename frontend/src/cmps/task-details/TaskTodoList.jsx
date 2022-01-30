@@ -3,9 +3,9 @@ import { TaskTodoPreview } from './TaskTodoPreview.jsx'
 export function TaskTodoList({ checklist, onToggleTodo, onRemoveTodo, onSaveTodo }) {
 
     const elTodos = () => {
-        return checklist.todos.map(todo =>
+        return checklist.todos.map((todo, index) =>
             <TaskTodoPreview
-                key={todo.id}
+                key={index}
                 todo={todo}
                 onSaveTodo={onSaveTodo}
                 onToggleTodo={onToggleTodo}

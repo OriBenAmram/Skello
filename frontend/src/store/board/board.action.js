@@ -258,7 +258,6 @@ export function handleDrag(
       }
     }
     const savedBoard = await boardService.update(board);
-    console.log('savedBoard:', savedBoard);
 
     dispatch({
       type: 'SAVE_BOARD',

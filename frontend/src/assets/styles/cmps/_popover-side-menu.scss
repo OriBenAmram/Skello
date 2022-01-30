@@ -98,6 +98,23 @@
         overflow-y: auto;
         max-height: 80vh;
 
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #9b9a9a26;
+            border-radius: 10px;
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background-color: #b4b7b9b7;
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar {
+            height: 12px;
+            width: 12px;
+        }
+
         .activity-section {
             .activity-container {
                 .activity-preview {
