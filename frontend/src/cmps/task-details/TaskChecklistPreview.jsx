@@ -13,7 +13,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
     const [isEditingTitle, setEditingTitle] = useState(false);
     const [checklistData, setChecklistData] = useState(checklist);
     // const [isTextAreaOpen, toggleTextArea] = useState(false);
-    const [newTodoTitle, setNewTodoTitle] = useState(null)
+    const [newTodoTitle, setNewTodoTitle] = useState('')
     // const [editedChecklist, setEditedChecklist] = useState(null)
     const dispatch = useDispatch()
 
@@ -158,7 +158,7 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
                 }}>Add an Item</button>}
                 {isAddingItem && <section className='adding-item-section'>
                     <textarea
-                        // autoFocus
+                        autoFocus
                         value={newTodoTitle}
                         onChange={(ev) => setNewTodoTitle(ev.target.value)}
                         placeholder='Add an item'

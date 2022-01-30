@@ -7,11 +7,20 @@
 .upper-preview-background {
     // height: 32px;
     border-radius: 3px 3px 0 0;
+    
 }
 
 .task-preview-wrapper {
     padding-bottom: 8px;
     position: relative;
+
+    .blind-color-sign-expended-svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
 
     &:hover {
         .edit-icon {
@@ -65,8 +74,12 @@
     // transition: background-color 0.1s;
     cursor: pointer !important;
     // margin-bottom: 8px;
-
+  
     // transition: background-color 0.2s;
+
+    &.blind-mode { 
+        padding-left: 25px;
+    }
 
     &:hover {
         background: rgb(243, 243, 243);
@@ -81,6 +94,7 @@
 
     &.full-cover-mode {
         padding: 0px;
+        overflow-y: hidden;
 
         .task-title {
             position: absolute;
@@ -213,12 +227,17 @@
                 transition: height 0.5s, padding 0.3s;
                 height: 100%;
                 overflow: hidden;
-            }
-            img {
-                margin-right: -1px;
-                height: 100%;
-                transition: height 0.5s, padding 0.3s;
-                overflow: hidden;
+
+                .blind-color-sign-expended-svg {
+                    position: static;
+                }
+
+                img {
+                    margin-right: -1px;
+                    height: 100%;
+                    transition: height 0.5s, padding 0.3s;
+                    overflow: hidden;
+                }
             }
         }
 

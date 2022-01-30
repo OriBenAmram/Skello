@@ -39,7 +39,6 @@ export function AttachmentModalContent({ board, group, task, toggleModal }) {
   const onAddFile = fileUrl => {
     console.log('adding file...');
     dispatch(addFile(board, group.id, task.id, fileUrl));
-
   };
 
   return (

@@ -23,14 +23,14 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
     return { background: `url(${member.imgUrl}) center center / cover` }
   }
 
-  const onClickGroup = (groupId, taskId) => {
+  const onClickTask = (groupId, taskId) => {
     history.push(`/board/${board._id}/${groupId}/${taskId}`)
   }
 
   const onMemberClick = (event, member) => {
     dispatch(toggleModal({ event, type: 'otherMemberModal', member }));
   }
-
+  
   return (
     <section className='activity-section'>
       <section className='activity-container'>
@@ -44,6 +44,7 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
         {board?.activities.length > 0 && <div>
           {board.activities.map(activity => {
 
+            
             if (activity.isComment) {
               return <section key={activity.id} className='activity-preview'>
                 <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(event) => {
@@ -52,10 +53,10 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
                 </div>
                 <div className='activity-info'>
                   <h2> <span>{activity.member.fullname}</span> on <span className='group-link in-comment' onClick={() => {
-                    onClickGroup(activity.group.id, activity.task.id)
-                  }}>{activity.group.title}</span> <span className='time-mention'>{utilService.timeSince(activity.createdAt)}</span> </h2>
+                    onClickTask(activity.group.id, activity.task.id)
+                  }}>{activity.task.title}</span> <span className='time-mention'>{utilService.timeSince(activity.createdAt)}</span> </h2>
                   <div className='comment-preview' onClick={() => {
-                    onClickGroup(activity.group.id, activity.task.id)
+                    onClickTask(activity.group.id, activity.task.id)
                   }}>
                     {activity.txt}
                   </div>
@@ -68,9 +69,9 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
               }}>
               </div>
               <div className='activity-info'>
-                <h2> <span>{activity.member.fullname}</span> {activity.txt} in group <span className='group-link' onClick={() => {
-                  onClickGroup(activity.group.id, activity.task.id)
-                }}>{activity.group.title}</span> </h2>
+                <h2> <span>{activity.member.fullname}</span> {activity.txt} in task <span className='group-link' onClick={() => {
+                  onClickTask(activity.group.id, activity.task.id)
+                }}>{activity.task.title}</span> </h2>
                 <p>{utilService.timeSince(activity.createdAt)}</p>
               </div>
             </section>

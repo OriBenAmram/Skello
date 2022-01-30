@@ -30,14 +30,15 @@ export function TaskSideBar({ task, group, board }) {
 
     const isLoggedInUserInTask = () => {
         if (!task.members.length) return false
-        return task.members.find(member => member._id === user._id) ? true : false
+        return task.members.find(member => member._id === user?._id) ? true : false
     }
 
     const joinTask = () => {
         const taskToUpdate = { ...task };
         delete user.password
         taskToUpdate.members.push(user)
-        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
+        const activityTxt = `joined to task ${task.title}`;
+        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
     }
 
     return (

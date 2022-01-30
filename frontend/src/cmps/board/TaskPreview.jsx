@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Draggable } from 'react-beautiful-dnd';
 
@@ -9,6 +9,18 @@ import { IoMdCheckboxOutline } from 'react-icons/io';
 import attachmentIcon from '../../assets/imgs/attachmentIcon.svg';
 import editIcon from '../../assets/imgs/editIcon.svg';
 import commentIcon from '../../assets/imgs/commentIcon.svg';
+
+// Blind-Mode
+import redBlindColorSign from '../../assets/imgs/blind-color/red.svg';
+import purpleBlindColorSign from '../../assets/imgs/blind-color/purple.svg';
+import yellowBlindColorSign from '../../assets/imgs/blind-color/yellow.svg';
+import greenBlindColorSign from '../../assets/imgs/blind-color/green.svg';
+import blueBlindColorSign from '../../assets/imgs/blind-color/blue.svg';
+import buggerBlindColorSign from '../../assets/imgs/blind-color/bugger-green.svg';
+import darkBlindColorSign from '../../assets/imgs/blind-color/dark-navy.svg';
+import lightBlueBlindColorSign from '../../assets/imgs/blind-color/light-blue.svg';
+import orangeBlindColorSign from '../../assets/imgs/blind-color/orange.svg';
+import pinkBlindColorSign from '../../assets/imgs/blind-color/pink.svg';
 // CMPS
 import { TaskLabels } from './TaskLabels';
 import { DueDatePreview } from './DueDatePreview';
@@ -17,6 +29,7 @@ import { DueDatePreview } from './DueDatePreview';
 import { toggleModal } from '../../store/app/app.action';
 
 export function TaskPreview(props) {
+  const isBlindMode = useSelector(state => state.appModule.isBlindMode);
   const { task, boardId, groupId, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor } =
     props;
   const {
@@ -50,6 +63,7 @@ export function TaskPreview(props) {
         };
       } else {
         // Doesnt have an image
+        if(isBlindMode) return { backgroundColor: task.style.backgroundColor, paddingLeft: '25px' };
         return { backgroundColor: task.style.backgroundColor };
       }
 
@@ -133,6 +147,45 @@ export function TaskPreview(props) {
     return `${finishedTodos}/${todos}`;
   };
 
+  const getColorBlindSignByColor = (color) => {
+    if (!color) return
+    switch (color) {
+      // red
+      case '#ed5a46':
+        return redBlindColorSign
+      // purple
+      case '#c377e0':
+        return purpleBlindColorSign
+      // yellow
+      case '#f2d600':
+        return yellowBlindColorSign
+      // green
+      case '#61bd4f':
+        return greenBlindColorSign
+      // blue
+      case '#0079bf':
+        return blueBlindColorSign
+      // bugger
+      case '#51e898':
+        return buggerBlindColorSign
+      // dark-navy
+      case '#344563':
+        return darkBlindColorSign
+      // light-blue
+      case '#00c2e0':
+        return lightBlueBlindColorSign
+      // orange
+      case '#ff9f1a':
+        return orangeBlindColorSign
+      // pink
+      case '#ff78cb':
+        return pinkBlindColorSign
+
+      default:
+        return redBlindColorSign
+    }
+  }
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {provided => (
@@ -152,10 +205,19 @@ export function TaskPreview(props) {
             </div>
 
             <section className="upper-preview-background" style={getUpperPreviewBackground()}></section>
+            {isBlindMode && <div>
+              <img className='blind-color-sign-expended-svg' src={getColorBlindSignByColor(task.style.backgroundColor)} />
+              <img className='blind-color-sign-expended-svg' style={{ top: '16px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
+            </div>}
 
-            <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()}`}>
+            <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()} `}>
+            {isBlindMode && isCover && <div>
+              <img className='blind-color-sign-expended-svg' style={{ top: '4px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
+              <img className='blind-color-sign-expended-svg' style={{ top: '20px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
+              <img className='blind-color-sign-expended-svg' style={{ top: '36px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
+            </div>}
               {/* IMG */}
-              {attachments?.length > 0 && !isCover && (
+              {attachments?.length > 0 && !task.style.backgroundImage.url && !isCover && (
                 <img
                   src={attachments[0].url}
                   style={{
