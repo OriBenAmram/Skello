@@ -266,7 +266,6 @@
 // Badges
 .task-badges {
     flex-wrap: wrap;
-    min-height: 23px;
 
     .badges-icons {
         padding-bottom: 4px;
@@ -314,7 +313,7 @@
         padding-bottom: 4px;
 
         :not(:first-child) {
-            margin-left: -10px;
+            margin-left: 3px;
         }
     }
 }

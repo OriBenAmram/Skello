@@ -56,6 +56,7 @@ export function LoginSignup(props) {
   const onLoginGoogle = async (googleData) => {
     try {
       await fetch('http://localhost:3030/api/google-login', {
+        // await fetch('http://skello.herokuapp.com/api/google-login', {
         method: 'POST',
         body: JSON.stringify({
           token: googleData.tokenId,
@@ -132,6 +133,7 @@ export function LoginSignup(props) {
               onClick={() => {
                 onClickGuest();
               }}>
+              {/* <img style={{ width: '20px' }} src={femaleGuest} className="button-icon-image guest" /> */}
               <img src={femaleGuest} className="button-icon-image guest" />
               Continue as Guest
             </button>

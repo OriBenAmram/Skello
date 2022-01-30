@@ -13,6 +13,24 @@
     font-weight: 400;
     line-height: 20px;
 
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #00000026;
+        border-radius: 10px;
+
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background-color: #7e8386b7;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar {
+        height: 12px;
+        width: 12px;
+    }
+
     @include for-narrow-layout {
         padding: 50px 30px 80px;
     }
