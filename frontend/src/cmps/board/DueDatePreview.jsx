@@ -16,7 +16,7 @@ export function DueDatePreview({ dueDate, task }) {
       <div className="badge-icon">
         <IoTimeOutline />
       </div>
-      <span className="due-date-str">28 Jan</span>
+      <span className="due-date-str">31 Jan</span>
     </div>
   );
 }
