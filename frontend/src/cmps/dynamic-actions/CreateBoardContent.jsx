@@ -11,6 +11,8 @@ import { toggleModal } from '../../store/app/app.action';
 import { addBoard } from '../../store/board/board.action';
 export function CreateBoardContent({ onToggleModal, isGeneralModal, boardTitle }) {
 
+    console.log('onToggleModal:', onToggleModal);
+
     console.log('boardTitle:', boardTitle);
 
 

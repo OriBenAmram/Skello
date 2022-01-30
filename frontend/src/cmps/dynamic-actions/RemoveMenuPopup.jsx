@@ -1,7 +1,7 @@
 
 import { GrClose } from "react-icons/gr";
 
-export function TodoOptions({ toggleModal, onRemoveTodo, todoId }) {
+export function RemoveMenuPopup({ toggleModal, onRemoveTodo, onRemoveGroup, groupId, todoId }) {
 
 
 
@@ -14,7 +14,8 @@ export function TodoOptions({ toggleModal, onRemoveTodo, todoId }) {
                 Item Actions
             </section>
             <button className="delete-btn" onClick={(ev) => {
-                onRemoveTodo(todoId)
+                (onRemoveGroup) ? onRemoveGroup(groupId) : onRemoveTodo(todoId)
+
                 toggleModal(ev)
             }
             }>Delete</button>

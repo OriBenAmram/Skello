@@ -17,10 +17,7 @@ export function SkellMicAssistant() {
     }
 
     return (
-
-
         <BsMic className="icon-microphone" onClick={(event) => onMic(event)} />
-
     )
 }
 
