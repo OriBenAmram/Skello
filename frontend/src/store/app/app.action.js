@@ -15,8 +15,7 @@ export function toggleBlindMode() {
   };
 }
 
-export function toggleModal({ event, type, posXAddition = 0, posYAddition = 0, isShown = false, member = null, title, isListening }) {
-  console.log('title:', title);
+export function toggleModal({ event = null, type = null, posXAddition = 0, posYAddition = 0, isShown = false, member = null, title, isListening }) {
 
   return async dispatch => {
     dispatch({

@@ -54,7 +54,7 @@ export function TaskActivities({ board, group, task, description }) {
             byMember: user,
             createdAt: Date.now()
         }
-        const newTaskComments = task.comments.unshift(comment);
+        const newTaskComments = [...task.comments, comment]
         const taskToUpdate = { ...task, comments: newTaskComments };
         const activityTxt = textAreaContent;
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt, true));

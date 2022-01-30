@@ -9,7 +9,7 @@
     .header-title {
         font-size: 18px;
         font-weight: 700;
-        height: 32px;
+        height: 30px;
         border-radius: 3px;
         cursor: text;
         min-width: 30px;
@@ -20,12 +20,17 @@
         text-overflow: ellipsis;
     }
 
+    
+
     .nav-btn.fav,
     .add-member {
         margin: 0 5px;
         svg {
             color: #fff;
             font-size: 18px;
+            &.star-icon { 
+                color: gold;
+            }
         }
     }
 }
@@ -40,6 +45,22 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    height: 30px;
+
+    .star-icon{
+        height: 17px;
+        width: 17px;
+        font-size: 1.3rem;
+        color: gold;
+        stroke-width: 20px;
+        @include for-normal-layout { 
+        }
+        &.starred{
+            opacity: 1;
+            color: gold
+        }
+
+    }
 
     p {
         display: none;
@@ -64,6 +85,10 @@
     padding-right: 23px;
     .nav-btn {
         padding: 8px;
+
+        p { 
+            height: 13.3px;
+        }
     }
     gap: 10px;
     button {

@@ -15,6 +15,13 @@
 }
 
 // 760px
+@mixin for-585-layout {
+  @media (min-width: $break-585) {
+    @content;
+  }
+}
+
+// 760px
 @mixin for-normal-layout {
   @media (min-width: $padded-break-normal) {
     @content;

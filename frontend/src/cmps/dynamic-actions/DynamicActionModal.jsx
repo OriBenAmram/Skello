@@ -26,9 +26,6 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
-    console.log('width,height:', width, height);
-
-
     const getContentForDisplay = () => {
         switch (type) {
             case 'members':

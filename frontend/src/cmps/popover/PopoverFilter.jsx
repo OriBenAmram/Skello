@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 // import { IoCheckbox } from "react-icons/io5";
 // import { MdCheckBoxOutlineBlank, MdMoreHoriz } from "react-icons/md";
+import { MdOutlinePhotoCameraBack, MdClose } from 'react-icons/md';
 import { PopoverFilterUser } from './PopoverFilterUser';
 import { PopoverFilterLabels } from './PopoverFilterLabels';
 import { setFilter } from '../../store/board/board.action';
@@ -13,7 +14,6 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
 
     const board = useSelector(state => state.boardModule.board);
     const dispatch = useDispatch();
-    console.log('board:', board);
 
     const [filterBy, setFilterBy] = useState({ members: [], labels: [], txt: '' })
     // const [checkedUserField, setCheckedUserField] = useState(false)
@@ -28,15 +28,15 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
 
     }, [filterBy]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
 
-        return () => {
-            console.log('unmount@@@@@@@');
-            setFilterBy({ members: [], labels: [], txt: '' })
-            dispatch(setFilter(filterBy))
-        };
-    }, []);
+    //     return () => {
+    //         console.log('unmount@@@@@@@');
+    //         setFilterBy({ members: [], labels: [], txt: '' })
+    //         dispatch(setFilter(filterBy))
+    //     };
+    // }, []);
 
 
 
@@ -51,13 +51,9 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                 <button className='back-btn' onClick={() => {
                     setPopoverContent('main')
                 }}><IoIosArrowBack /></button>
-                <button className='primary-close-btn filter-btn'
-                    onClick={() => {
-                        toggleSideMenu();
-                        setPopoverContent('main')
-                    }}>
-                    x
-                </button>
+                <button className="primary-close-btn"><MdClose className='primary-menu-close-btn' onClick={() => {
+                    toggleSideMenu()
+                }} /></button>
                 <span>Filter</span>
                 <hr className='bottom-hr' />
             </div >
@@ -77,9 +73,11 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                     </div>
 
                     <ul className="clean-list">
-                        {board?.members.map(member => <PopoverFilterUser key={member._id} member={member} setFilterBy={setFilterBy} filterBy={filterBy} />
-                        )}
-                    </ul>
+                        {
+                            board?.members.map(member => <PopoverFilterUser key={member._id} member={member} setFilterBy={setFilterBy} filterBy={filterBy} />
+                            )
+                        }
+                    </ul >
 
                     <hr />
 
@@ -87,12 +85,13 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
                         <p className="sub-title">Labels</p>
                     </div>
 
-                    {board && <ul className="labels-filter-list clean-list">
-                        {board.labels.map((label, idx) => <PopoverFilterLabels key={idx} label={label} setFilterBy={setFilterBy} filterBy={filterBy} />)}
-                    </ul>}
-                </section>
-            </div>
-        </div>
+                    {
+                        board && <ul className="labels-filter-list clean-list">
+                            {board.labels.map((label, idx) => <PopoverFilterLabels key={idx} label={label} setFilterBy={setFilterBy} filterBy={filterBy} />)}
+                        </ul >}
+                </section >
+            </div >
+        </div >
     );
 
 }

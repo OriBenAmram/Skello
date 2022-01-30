@@ -17,10 +17,6 @@ export function CreateBoardContent({ onToggleModal, isGeneralModal, boardTitle }
     const [board, setBoard] = useState({ title: (boardTitle) ? boardTitle : '', style: { background: '#ff9f1a' } });
     const dispatch = useDispatch()
 
-    console.log('isGeneralModal:', isGeneralModal);
-
-
-
     const setSelectedBackground = (background) => {
         setBoard({ ...board, style: { ...board.style, background: background } })
     }
@@ -54,10 +50,10 @@ export function CreateBoardContent({ onToggleModal, isGeneralModal, boardTitle }
     ]
 
     const gImages = [
-        { title: 'forest', url: "url(https://images.unsplash.com/photo-1516466723877-e4ec1d736c8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1234&q=80)" },
-        { title: 'bird', url: "url(https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80)" },
-        { title: 'sea', url: "url(https://images.unsplash.com/photo-1553570739-330b8db8a925?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)" },
-        { title: 'sunset', url: "url(https://images.unsplash.com/photo-1422493757035-1e5e03968f95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1408&q=80)" },
+        { title: 'rose', url: "url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/df67a68103908e4528738b04b4785906/photo-1469204691332-56e068855403.jpg)" },
+        { title: 'computer', url: "url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/d8a2e950e141c3c8173e76cd4b7d98a1/photo-1640622658799-54e6039d189b.jpg)" },
+        { title: 'dog', url: "url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/632e14d3d4c046b35d6617562d2d4485/photo-1534361960057-19889db9621e.jpg)" },
+        { title: 'house', url: "url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/a2df3a25a59d01dc0664e4898693d333/photo-1568605114967-8130f3a36994.jpg)" },
 
     ]
     return (

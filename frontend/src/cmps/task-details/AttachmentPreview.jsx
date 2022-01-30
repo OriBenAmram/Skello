@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-
+import { BsSquareHalf } from "react-icons/bs";
 
 import { updateTaskTest, updateTask } from '../../store/board/board.action'
 
@@ -36,6 +36,20 @@ export function AttachmentPreview({ task, group, attachment, board }) {
         dispatch(updateTaskTest(board, taskToUpdate))
     }
 
+    const toggleAttachmentCover = () => {
+        if (attachment.url === task.style.backgroundImage.url) {
+            const newTaskStyle = { ...task.style, backgroundImage: { title: '', url: null }, backgroundColor: null }
+            const taskToUpdate = { ...task, style: newTaskStyle }
+            dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
+        } else {
+            const { url, name } = attachment
+            const newTaskStyle = { ...task.style, backgroundImage: { title: name, url }, backgroundColor: null }
+            const taskToUpdate = { ...task, style: newTaskStyle }
+            const activityTxt = `added the attachment ${name}`
+            dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
+        }
+    }
+
     return (
         <React.Fragment>
             <div className="attachment-preview-container" >
@@ -53,8 +67,12 @@ export function AttachmentPreview({ task, group, attachment, board }) {
                         <span className="action-btn" onClick={onDeleteAttachment}  >Delete</span>
                         <span> - </span>
                         <span className="action-btn" onClick={(event) => toggleModal({ event, type: 'editAttachment' })}>Edit</span>
+                        <span> - </span>
 
                     </div>
+                    <span className="action-btn" onClick={(event) => {
+                        toggleAttachmentCover()
+                    }}> <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} /> {(attachment.url === task.style.backgroundImage.url) ? 'Remove' : 'Make'} Cover</span>
                 </div>
                 {modal.isModalOpen && <DynamicActionModal editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
             </div>

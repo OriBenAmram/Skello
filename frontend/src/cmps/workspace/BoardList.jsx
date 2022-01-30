@@ -19,9 +19,9 @@ export function BoardList({ boards, onToggleStarred, toggleModal, isStarred = fa
           <Link key={board._id} className="clean-link" to={`/board/${board._id}`}>
             <div
               className="board-preview "
-              style={{ background: `${board.style.background} center center / cover` }}>
+              style={{ background: `${board.style.background} center center / cover`, backgroundColor: '#0000004d' }}>
               <div className="board-preview-details">
-                <h3>{board.title.length > 15 ? board.title.substring(0, 15) + '...' : board.title}</h3>
+                <h3>{board.title.length > 20 ? board.title.substring(0, 20) + '...' : board.title}</h3>
                 <div className="starred-container">
                   {(board.isStarred) ?
                     <AiFillStar className="star-icon starred" onClick={ev => onToggleStarred(ev, board._id)} /> :

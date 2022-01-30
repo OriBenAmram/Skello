@@ -130,10 +130,10 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         let newTaskStyle;
         if (color === 'bright') {
             setSelectedTextColor('bright')
-            newTaskStyle = { ...task.style, isTextDarkMode: false }
+            newTaskStyle = { ...task.style, isTextDarkMode: true }
         } else { 
             setSelectedTextColor('dark')
-            newTaskStyle = { ...task.style, isTextDarkMode: true }
+            newTaskStyle = { ...task.style, isTextDarkMode: false }
         }
         const taskToUpdate = { ...task, style: newTaskStyle }
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));

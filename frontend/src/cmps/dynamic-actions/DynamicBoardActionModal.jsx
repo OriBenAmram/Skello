@@ -21,7 +21,9 @@ export function DynamicBoardActionModal({ isListening, isModalOpen, member, onTo
     }
     useEffect(() => {
         window.addEventListener("resize", updateDimensions);
-        return () => window.removeEventListener("resize", updateDimensions);
+        return () => {
+            window.removeEventListener("resize", updateDimensions)
+        };
     }, []);
 
     // const wrapperRef = useRef(null)
