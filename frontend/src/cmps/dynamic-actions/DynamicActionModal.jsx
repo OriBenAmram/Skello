@@ -11,8 +11,12 @@ import { DatesModalContent } from './DatesModalContent.jsx'
 import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
+
 export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
+
+    console.log('event:', event);
+
 
     console.log('type:', type);
 
@@ -52,11 +56,16 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
                 return <CreateBoardContent onToggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
+
         }
     }
     const getModalPositionStyle = () => {
         if (width > 800) {
             const { top, left, height, right } = event.target.getBoundingClientRect();
+            // console.log('event.target.getBoundingClientRect():', event.target.getBoundingClientRect());
+            // console.log('event.target:', event.target);
+            // console.log('event.currentTarget:', event.currentTarget);
+
             const startSide = (width / left < 2) ? 'right' : 'left'
             const startSideValue = (width / left < 2) ? 30 : left;
             if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
@@ -82,6 +91,9 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
 
 
     }
+
+
+
     if (!event) return <></>
     return (
         <section className='dynamic-action-modal' style={getModalPositionStyle()} ref={wrapperRef} >

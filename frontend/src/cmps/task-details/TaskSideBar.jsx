@@ -17,9 +17,16 @@ import { updateTask } from '../../store/board/board.action';
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.userModule.loggedinUser);
-    const [modal, setModal] = useState({ isModalOpen: false, type: null });
+    const [modal, setModal] = useState({ isModalOpen: false, type: null, event: null });
+
+    // const toggleModal = ({ event, type }) => {
+    //     setModal({ ...modal, isModalOpen: !modal.isModalOpen, type, event })
+    // }
+
+
 
     const toggleModal = ({ event, type }) => {
+        console.log('toggeling localy');
         // In case the modal is open somewhere
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
@@ -69,9 +76,9 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'attachment' })
                     }} > <MdOutlineAttachment />Attachment</button>
-                    <button className="button-link" onClick={(event) => {
+                    {/* <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'stt' })
-                    }} > <BiMicrophone />Speech To Text</button>
+                    }} > <BiMicrophone />Speech To Text</button> */}
                     {(!task.style.backgroundColor && !task.style.backgroundImage?.url) && <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'cover' })
                     }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>}

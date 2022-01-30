@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GrClose } from 'react-icons/gr';
 
 // Actions
-import { updateTask} from '../../store/board/board.action.js';
+import { updateTask } from '../../store/board/board.action.js';
 
 export function CoverModalContent({ board, group, task, toggleModal }) {
     const dispatch = useDispatch();
@@ -45,14 +45,14 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         { title: 'jerusalem', url: 'https://images.unsplash.com/photo-1593019612399-86daa4d18cd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' }
     ]
 
-    useEffect( async () => {
+    useEffect(() => {
         if (task.style.backgroundImage.url) {
             setSelectedImage(task.style.backgroundImage)
         }
         else setSelectedColor(task.style.backgroundColor)
-        if(task.style.isCover) { 
-            await setSelectedSize('cover')
-            if (task.style?.isTextDarkMode) { 
+        if (task.style.isCover) {
+            setSelectedSize('cover')
+            if (task.style?.isTextDarkMode) {
                 setSelectedTextColor('dark')
             } else setSelectedTextColor('bright')
         }
@@ -63,15 +63,15 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         if (selectedImage?.url) {
             return `url(${selectedImage.url})`
         }
-        else if (selectedColor) { 
+        else if (selectedColor) {
             return selectedColor
-        } else { 
+        } else {
             return '#cfd3da'
         }
     }
 
-    const getCoverBackgroundGradient = () => { 
-        if(!selectedImage || !selectedImage.url) return 'rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)'
+    const getCoverBackgroundGradient = () => {
+        if (!selectedImage || !selectedImage.url) return 'rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)'
         else if (selectedTextColor === 'bright') return 'rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)'
         return 'rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)'
     }
@@ -81,16 +81,16 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
             const imageHalfCover = getImageColorByTitle(selectedImage.title)
             return imageHalfCover
         }
-        else if (selectedColor) { 
+        else if (selectedColor) {
             return selectedColor
-        } else { 
+        } else {
             return '#cfd3da'
         }
     }
 
-    const getStripesColor = () => { 
-        if(!task.style.backgroundColor && !task.style.backgroundImage.url) return { backgroundColor: '#cfd3da' }
-        return { }
+    const getStripesColor = () => {
+        if (!task.style.backgroundColor && !task.style.backgroundImage.url) return { backgroundColor: '#cfd3da' }
+        return {}
     }
 
     const getImageColorByTitle = (title) => {
@@ -126,12 +126,12 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
         dispatch(updateTask(board._id, group.id, task.id, taskToUpdate));
     }
 
-    const onClickTextColor = (color) => { 
+    const onClickTextColor = (color) => {
         let newTaskStyle;
         if (color === 'bright') {
             setSelectedTextColor('bright')
             newTaskStyle = { ...task.style, isTextDarkMode: true }
-        } else { 
+        } else {
             setSelectedTextColor('dark')
             newTaskStyle = { ...task.style, isTextDarkMode: false }
         }
@@ -175,7 +175,7 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                     <section className='cover-size-section'>
                         <h4>Size</h4>
                         <div className='size-choice-container'>
-                            <div className={`uncover-choice choice ${(selectedSize === 'cover') ? '' : 'selected'}`} choice onClick={() => {
+                            <div className={`uncover-choice choice ${(selectedSize === 'cover') ? '' : 'selected'}`} onClick={() => {
                                 onSizeClick('uncover')
                             }}>
                                 <div className='upper-background' style={{ background: `${getHalfCoverBackground()} center center / cover` }}>
@@ -186,11 +186,11 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                                         <div className='upper-stripe' style={(getStripesColor())}></div>
                                         <div className='lower-stripe' style={(getStripesColor())}></div>
                                         <div className='lower-dumy-btns-area'>
-                                                <div className='flex'>
-                                                    <div className='simple-dumy-short-text' style={(getStripesColor())}></div>
-                                                    <div className='simple-dumy-short-text' style={(getStripesColor())}></div>
-                                                </div>
-                                                <div className='dumy-circle' style={(getStripesColor())}></div>
+                                            <div className='flex'>
+                                                <div className='simple-dumy-short-text' style={(getStripesColor())}></div>
+                                                <div className='simple-dumy-short-text' style={(getStripesColor())}></div>
+                                            </div>
+                                            <div className='dumy-circle' style={(getStripesColor())}></div>
                                         </div>
                                     </div>
                                 </div>
@@ -199,8 +199,8 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                                 onSizeClick('cover')
                             }}>
                                 <div className='two-text-stripes-module'>
-                                    <div className='upper-stripe' style={(selectedTextColor === 'bright' ? { backgroundColor: '#6B778C' } : { backgroundColor: 'white'  })}></div>
-                                    <div className='lower-stripe' style={(selectedTextColor === 'bright' ? { backgroundColor: '#6B778C' } : { backgroundColor: 'white'  })}></div>
+                                    <div className='upper-stripe' style={(selectedTextColor === 'bright' ? { backgroundColor: '#6B778C' } : { backgroundColor: 'white' })}></div>
+                                    <div className='lower-stripe' style={(selectedTextColor === 'bright' ? { backgroundColor: '#6B778C' } : { backgroundColor: 'white' })}></div>
                                 </div>
                             </div>
                         </div>
@@ -209,18 +209,18 @@ export function CoverModalContent({ board, group, task, toggleModal }) {
                         }}>Remove cover</button>}
                     </section>
 
-                    {( task.style.isCover && selectedImage?.url )&& <section className='text-color-section'>
+                    {(task.style.isCover && selectedImage?.url) && <section className='text-color-section'>
                         <h4>Text color</h4>
                         <section className='text-color-choice-container'>
-                            <div className={`text-color-choice-item ${ (selectedTextColor === 'bright') ? '' : 'selected' }`} style={{ background: ` linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ${getCoverBackground()} center center / cover` }} onClick={() => { 
+                            <div className={`text-color-choice-item ${(selectedTextColor === 'bright') ? '' : 'selected'}`} style={{ background: ` linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ${getCoverBackground()} center center / cover` }} onClick={() => {
                                 onClickTextColor('dark')
                             }}>
                                 <h3 style={{ color: 'white' }}>{task?.title}</h3>
                             </div>
-                            <div className={`text-color-choice-item ${ (selectedTextColor === 'bright') ? 'selected' : '' }`} style={{ background: ` linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), ${getCoverBackground()} center center / cover` }} onClick={() => { 
+                            <div className={`text-color-choice-item ${(selectedTextColor === 'bright') ? 'selected' : ''}`} style={{ background: ` linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), ${getCoverBackground()} center center / cover` }} onClick={() => {
                                 onClickTextColor('bright')
                             }}>
-                            <h3 >{task?.title}</h3>
+                                <h3 >{task?.title}</h3>
                             </div>
                         </section>
                     </section>}

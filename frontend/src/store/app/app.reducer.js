@@ -10,6 +10,7 @@ const initialState = {
     posXAddition: 0,
     posYAddition: 0,
     member: null,
+    extraMembers: [],
     boardTitle: '',
     isListening: false
   }
@@ -30,7 +31,7 @@ export function appReducer(state = initialState, action) {
           ...state.popupModal, isModalOpen: action.modalInfo.isShown,
           event: action.modalInfo.event, type: action.modalInfo.type, posXAddition: action.modalInfo.posXAddition,
           posYAddition: action.modalInfo.posYAddition, member: action.modalInfo.member, boardTitle: action.modalInfo.title,
-          isListening: action.modalInfo.isShown
+          isListening: action.modalInfo.isShown, extraMembers: action.modalInfo.extraMembers
         }
       });
 

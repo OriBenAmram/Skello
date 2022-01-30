@@ -57,10 +57,14 @@ class _QuickCardEditor extends React.Component {
   }
 
   toggleModal = ({ event, type }) => {
+    console.log('from toggle modal@@')
     this.setState(prevState => ({
       ...prevState,
       modal: { ...prevState.modal, isModalOpen: !prevState.modal.isOpenModal, event, type }
-    }))
+    }), () => {
+      console.log(this.state);
+      console.log(this.state.modal.isModalOpen);
+    })
 
   }
 

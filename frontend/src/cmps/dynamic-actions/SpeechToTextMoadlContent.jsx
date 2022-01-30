@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GrClose } from "react-icons/gr";
-import { BsInfoSquare } from 'react-icons/bs'
+import { BsInfo } from 'react-icons/bs'
 
 // cmps
 import { SpeechToText } from '../SpeechToText';
@@ -16,19 +16,19 @@ export function SpeechToTextModalContent({ board, group, task, onToggleModal, ev
 
     return (
 
-        <section className="stt-modal">
+        <div className="stt-modal">
 
             <section className='modal-header'>
-                {/* <BsInfoSquare className="" /> */}
+                <BsInfo className="info-icon" />
                 <button className='simple-close-btn' onClick={() => dispatch(onToggleModal({ event, type: 'stt' }))}><GrClose className='btn-content' /></button>
                 Speech to text
             </section>
 
-            <div>
+            <section className="stt-main-content">
                 <SpeechToText event={event} isListening={isListening} />
-            </div>
+            </section>
 
-        </section>
+        </div>
 
     )
 }

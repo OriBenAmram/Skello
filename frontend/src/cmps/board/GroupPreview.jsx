@@ -41,6 +41,8 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
     dispatch(removeGroup(groupId, boardId))
   }
 
+
+
   function getFilteredTask() {
     const { txt, labels, members } = filterBy
     let filteredTasks = group.tasks;
@@ -49,6 +51,7 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
       filteredTasks = filteredTasks.filter(task => task.title.toLowerCase().includes(txt.toLowerCase()))
     }
     if (members?.length) {
+      console.log('imhere');
       filteredTasks = filteredTasks.filter(task => task.members.some(entity => filterBy.members.includes(entity._id)))
     }
     if (labels?.length) {

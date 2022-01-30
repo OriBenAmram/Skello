@@ -34,6 +34,8 @@ export function BoardHeader({ board }) {
     dispatch(toggleSideMenu());
   };
 
+
+
   const onAddMemberToBoard = event => {
     dispatch(toggleModal({ event, type: 'addMemberToBoard', isShown: !isModalOpen }));
   };
@@ -47,8 +49,9 @@ export function BoardHeader({ board }) {
   }
 
   const membersToShow = () => {
-    const members = [...board.members]
-    members.splice(shownMembers)
+    let members = [...board.members]
+
+    members = members.splice(0, shownMembers - 1)
     return members
   }
 
@@ -62,7 +65,13 @@ export function BoardHeader({ board }) {
     dispatch(onSaveBoard(board));
   };
 
-  console.log('board.isStarred:', board.isStarred);
+  // popup extra modal
+  const handleExtraPopup = (event) => {
+    const members = [...board.members]
+    dispatch(toggleModal(
+      { event, type: 'extraMembers', extraMembers: members.splice(shownMembers), isShown: true }))
+
+  }
 
   return (
     <header className="board-header ">
@@ -89,7 +98,9 @@ export function BoardHeader({ board }) {
                   }}></div>
               ))}
               {getLengthOfExtraMembers() > 0 && (
-                <div className="extra-member-avatar">
+                <div className="extra-member-avatar"
+                  onClick={(event) => handleExtraPopup(event)}
+                >
                   {`+${getLengthOfExtraMembers()}`}
                 </div>
               )}
@@ -120,6 +131,6 @@ export function BoardHeader({ board }) {
           </button>
         </div>
       </nav>
-    </header>
+    </header >
   );
 }
