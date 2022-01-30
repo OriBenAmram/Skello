@@ -49,7 +49,7 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
             case 'profile':
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
-                return <CreateBoardContent toggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
+                return <CreateBoardContent onToggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
         }
     }
     const getModalPositionStyle = () => {
