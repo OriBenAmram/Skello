@@ -23,6 +23,7 @@ export function Workspace() {
         }
     }, []);
 
+    
     const onLoadBoards = async () => { 
         await dispatch(loadBoards());
     }
