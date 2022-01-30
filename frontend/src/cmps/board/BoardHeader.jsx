@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
+import { IoPersonAddOutline, IoStarOutline, IoEllipsisHorizontalSharp, IoBarChart } from 'react-icons/io5';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 
 // Action
 import { toggleModal, toggleSideMenu } from '../../store/app/app.action';
+import { onSaveBoard } from '../../store/board/board.action';
 
 export function BoardHeader({ board }) {
-  const { title, members } = board;
   const dispatch = useDispatch();
+  const { title, members } = board;
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
   const [shownMembers, setShownMembers] = useState('4')
 
@@ -54,6 +56,14 @@ export function BoardHeader({ board }) {
     return board.members.length - shownMembers
   }
 
+  const onToggleStarred = (ev) => {
+    ev.preventDefault();
+    board.isStarred = !board.isStarred;
+    dispatch(onSaveBoard(board));
+  };
+
+  console.log('board.isStarred:', board.isStarred);
+
   return (
     <header className="board-header ">
       <nav className="main-nav flex align-center justify-space-between">
@@ -62,7 +72,10 @@ export function BoardHeader({ board }) {
           <div className="nav-left-actions flex">
             <div className="nav-btn fav">
               <button>
-                <IoStarOutline />
+                {(board.isStarred) ?
+                  <AiFillStar className="star-icon starred" onClick={ev => onToggleStarred(ev)} /> :
+                  <AiOutlineStar className="star-icon" onClick={ev => onToggleStarred(ev)} />
+                }
               </button>
             </div>
             <div className="nav-members">

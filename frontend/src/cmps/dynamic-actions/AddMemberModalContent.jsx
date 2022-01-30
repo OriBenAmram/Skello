@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { GrClose } from 'react-icons/gr';
 
 // Actions
+import { toggleModal } from '../../store/app/app.action';
 import { onSaveBoard } from '../../store/board/board.action';
 import { loadUsers } from '../../store/user/user.actions';
 
@@ -11,6 +13,7 @@ import { loadUsers } from '../../store/user/user.actions';
 
 export function AddMemberModalContent({ onToggleModal }) {
   const dispatch = useDispatch();
+  let location = useLocation()
   const members = useSelector(state => state.userModule.users);
   const board = useSelector(state => state.boardModule.board);
   const [filterBy, setFilterBy] = useState(null);
@@ -18,6 +21,13 @@ export function AddMemberModalContent({ onToggleModal }) {
   useEffect(() => {
     onLoadUsers();
   }, []);
+
+  useEffect(() => {
+    if (location.pathname !== `/board/${board._id}`) {
+      console.log('location changed')
+      dispatch(toggleModal({ event: null, type: null }))
+    }
+  }, [location]);
 
   const onLoadUsers = () => {
     dispatch(loadUsers());
@@ -39,8 +49,8 @@ export function AddMemberModalContent({ onToggleModal }) {
     if (member.imgUrl) return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
-  const isMemberInBoard = id => {
-    return board.members.some(member => {
+  const isMemberInBoard = (id) => {
+    return board?.members.some(member => {
       return member._id === id;
     });
   };
@@ -48,14 +58,14 @@ export function AddMemberModalContent({ onToggleModal }) {
   const getMembersForDisplay = () => {
     if (filterBy) {
       return members.filter(member => {
-        if (member._id !== board.createdBy._id && !isMemberInBoard(member._id)) {
+        if (member._id !== board?.createdBy._id && !isMemberInBoard(member._id)) {
           return member.fullname.toUpperCase().includes(filterBy.toUpperCase());
         }
       });
     } else {
       const membersToShow = [];
       for (let allMember of members) {
-        if (!isMemberInBoard(allMember._id) && allMember._id !== board.createdBy._id) {
+        if (!isMemberInBoard(allMember._id) && allMember._id !== board?.createdBy._id) {
           membersToShow.push(allMember);
         }
       }

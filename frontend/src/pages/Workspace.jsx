@@ -22,7 +22,7 @@ export function Workspace() {
             console.log('Cannot load boards', err);
         }
     }, []);
-    
+
     const onLoadBoards = async () => { 
         await dispatch(loadBoards());
     }
