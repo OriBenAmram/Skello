@@ -78,13 +78,20 @@ export function AppHeader() {
       {/* HOME */}
 
 
-      {(!user || isHome) && (
+      {(!user && isHome) && (
         <section className="login-signup-container">
           <Link to={'/login'}>
             <button className="login-btn">Log in</button>
           </Link>
           <Link to={'/signup'}>
             <button className="signup-btn">Sign up</button>
+          </Link>
+        </section>
+      )}
+      {(user && isHome) && (
+        <section className="login-signup-container">
+          <Link to={'/signup'}>
+            <button className="signup-btn">Log out</button>
           </Link>
         </section>
       )}

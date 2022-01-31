@@ -41,7 +41,7 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
           Activities
         </button>
 
-        {board?.activities.length > 0 && <div>
+        {board?.activities?.length > 0 && <div>
           {board.activities.map(activity => {
 
             

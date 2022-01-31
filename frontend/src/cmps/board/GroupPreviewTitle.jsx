@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Action
-import {onSaveBoard} from '../../store/board/board.action.js';
+import { onSaveBoard } from '../../store/board/board.action.js';
 
-export function GroupPreviewTitle({group}) {
+export function GroupPreviewTitle({ board, group }) {
   // console.log('group in GroupPreviewTitle', group.title )
   const dispatch = useDispatch();
-  const board = useSelector(state => state.boardModule.board);
   const [title, setTitle] = useState('');
-
+  
   useEffect(() => {
     setTitle(group.title)
   }, [group.title])
@@ -19,7 +18,7 @@ export function GroupPreviewTitle({group}) {
   //   setTitle(group.title)
   // }, [])
 
-  const handleChange = ({target}) => {
+  const handleChange = ({ target }) => {
     const title = target.value;
     setTitle(title);
   };
@@ -40,7 +39,7 @@ export function GroupPreviewTitle({group}) {
       console.log('Cant change group title', err);
     }
   };
-  if(!title) return <></>
+  if (!title) return <></>
   return (
     <form onSubmit={handleSubmit}>
       <input

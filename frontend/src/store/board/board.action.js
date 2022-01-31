@@ -1,7 +1,7 @@
 import {boardService} from '../../services/board.service.js';
 
 export function setBoard(board) {
-  return async dispatch => {
+  return dispatch => {
     try {
       dispatch({type: 'SET_BOARD', board});
     } catch (err) {
@@ -11,7 +11,7 @@ export function setBoard(board) {
 }
 
 export function setFilter(filterBy) {
-  return async dispatch => {
+  return dispatch => {
     try {
       const action = {type: 'SET_FILTER', filterBy};
       dispatch(action);

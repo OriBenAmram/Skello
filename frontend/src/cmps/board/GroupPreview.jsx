@@ -12,7 +12,7 @@ import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal';
 // Action
 import { removeGroup } from '../../store/board/board.action';
 
-export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor }) {
+export function GroupPreview({ group, boardId, board, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor }) {
 
   const dispatch = useDispatch();
   const [isBodyRender, setIsBodyRender] = useState(false);
@@ -66,7 +66,7 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
           className="group-preview flex column">
           {/* TITLE */}
           <div className="group-preview-header flex justify-space-between align-center">
-            <GroupPreviewTitle group={group} />
+            <GroupPreviewTitle board={board} group={group} />
             <div
               className="header-more-options"
               onClick={(event) => toggleModal({ event, type: 'removeMenuPopup', isDeleteModal : true})}>
