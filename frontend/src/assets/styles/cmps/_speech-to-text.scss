@@ -1,12 +1,11 @@
-.stt-modal{
-
-    .modal-header{
+.stt-modal {
+    .modal-header {
         position: relative;
-        .info-icon{
+        .info-icon {
             position: absolute;
             left: 0;
             font-size: 20px;
-            opacity: .7;
+            opacity: 0.7;
             cursor: pointer;
 
             &:hover {
@@ -15,221 +14,240 @@
         }
     }
 
-    .stt-main-content{
-.microphone-wrapper{
+    h4 {
+        font-size: 17px;
+        color: $clr1;
+        font-weight: 600;
+        line-height: 20px;
+        margin-bottom: 4px;
+    }
 
-    text-align: center;
-    margin: 0 auto;
-
-
-    .microphone-container{
-        margin: 15px 0;
-        .instructions-section{
+    .stt-main-content {
+        .microphone-wrapper {
+            padding: 10px 30px 20px;
             display: flex;
-            align-items: center;
-            width: 80%;
-            margin: 0 auto;
-            justify-content: space-between;
+            flex-direction: column;
 
-            h2 { 
-                font-size: 16px;
-                color: $clr1;
-                font-weight: 500;
-                max-width: 80%;
-                overflow-wrap: break-word;
-                text-align: left;
+            .microphone-container {
+                margin: 15px 0;
+                .short-insructions-section {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    h2 {
+                        font-size: 16px;
+                        color: $clr1;
+                        font-weight: 500;
+                        max-width: 80%;
+                        overflow-wrap: break-word;
+                        text-align: left;
+                    }
+                    .blob {
+                        background: black;
+                        border-radius: 50%;
+                        height: 30px;
+                        width: 30px;
+                        box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+                        background-color: maroon;
+                        cursor: pointer;
+                        text-align: center;
+
+                        &.recorder {
+                            transform: scale(1);
+                            animation: pulse 2s infinite;
+                        }
+                    }
+                }
             }
-            .blob {
-                background: black;
-                border-radius: 50%;
-                height: 30px;
-                width: 30px;
-                box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
-                background-color: maroon;
-                cursor: pointer;
-                text-align: center;
-                // margin:10px auto;
-        
-                &.recorder{
-                    transform: scale(1);
-                animation: pulse 2s infinite;
+            .microphone-result-container {
+                .microphone-result-text {
+                    width: 100%;
+                    text-align: center;
+                    padding: 8px 12px;
+                    background-color: #fafbfc;
+                    border: none;
+                    border-radius: 3px;
+                    box-shadow: inset 0 0 0 2px #dfe1e6;
+                    outline: none;
+                    min-height: 70px;
+                    margin-bottom: 15px;
+
+                    &:hover {
+                        background-color: #ebecf0;
+                        box-shadow: inset 0 0 0 2px #dfe1e6;
+                    }
+
+                    &:focus {
+                        background-color: #fff;
+                        box-shadow: inset 0 0 0 2px #0079bf;
+                        border: 0 none #fff;
+                    }
                 }
             }
         }
 
-        
-    }
-    .microphone-result-container{
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+            }
 
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+            }
 
-        .microphone-result-text{
-                margin: 4px 0 12px;
-                  width: 80%;
-                  text-align: center;
-                    margin: 0 auto;
-                  padding: 8px 12px;
-                  background-color: #fafbfc;
-                  border: none;
-                  border-radius: 3px;
-                  box-shadow: inset 0 0 0 2px #dfe1e6;
-                  outline: none;
-                  min-height: 45px;
-                  margin-bottom: 15px;
-      
-                  &:hover {
-                      background-color: #ebecf0;
-                      box-shadow: inset 0 0 0 2px #dfe1e6;
-                  }
-      
-                  &:focus {
-                      background-color: #fff;
-                      box-shadow: inset 0 0 0 2px #0079bf;
-                      border: 0 none #fff;
-                  }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
         }
-      }
 
+        .mic-loader-container {
+            display: none;
+            max-width: 400px;
+            margin: 0 auto;
 
-    
+            &.recording {
+                display: block;
+            }
+        }
 
+        .loader {
+            height: 5px;
+            background: red;
+            position: relative;
+            margin-bottom: 15px;
+            width: 80%;
+            text-align: center;
+            margin: 10px auto;
+            border-radius: 2em;
 
-    .microphone-result-text{
-        text-align: center;
-        margin: 20px auto;
-        box-shadow: inset 0 0 0 2px #0079bf;
-        width: 50%;
-        
+            span {
+                position: absolute;
+                display: block;
+                height: 5px;
+                width: 10px;
+                box-shadow: red 0 0 15px;
+                animation: animate 2s infinite ease-in-out;
+                opacity: 0;
+            }
+            span:nth-child(1) {
+                animation-delay: 0s;
+            }
+            span:nth-child(2) {
+                animation-delay: 0.5s;
+            }
+            span:nth-child(3) {
+                animation-delay: 1s;
+            }
+            span:nth-child(4) {
+                animation-delay: 1.5s;
+            }
+        }
 
+        @keyframes animate {
+            0% {
+                left: 0;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0;
+                left: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0;
+                left: calc(100% - 10px);
+            }
+            100% {
+                opacity: 0;
+                left: calc(100% - 10px);
+            }
+        }
+
+        .btns-container {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            .microphone-reset.btn {
+                margin: 0;
+            }
+
+            .toggle-info-btn {
+                margin: 0;
+            }
+        }
     }
 }
 
-@keyframes pulse {
-	0% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-	}
-
-	70% {
-		transform: scale(1);
-		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-	}
-
-	100% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-	}
-}
-
-  
- 
-  
-  .mic-loader-container {
-    display: none;
-      max-width:400px;
-      margin:0 auto;
-  
-    &.recording{
-      display: block;
-    }
-  }
-  
-  .loader {
-      height:5px;
-      background:red;
-      position:relative;
-      margin-bottom: 15px;
-      width: 80%;
-    text-align: center;
-    margin: 10px auto;
-    border-radius: 2em;
-      
-      span {
-          position:absolute;
-          display:block;
-          height:5px;
-          width:10px;
-          box-shadow:red 0 0 15px;
-          animation: animate 2s infinite ease-in-out;
-          opacity:0;
-      }
-      span:nth-child(1) {
-          animation-delay: 0s;
-      }
-      span:nth-child(2) {
-          animation-delay: 0.5s;
-      }
-      span:nth-child(3) {
-          animation-delay: 1s;
-      }
-      span:nth-child(4) {
-          animation-delay: 1.5s;
-      }
-  }
-  
-  @keyframes animate {
-      0% {
-          left:0;
-          opacity:0;
-      }
-      10% {
-          opacity:0;
-          left:0;
-      }
-      20% {
-          opacity:1;
-      }
-      80% {
-          opacity:1;
-      }
-      90% {
-          opacity:0;
-          left:calc(100% - 10px);
-      }
-      100% {
-          opacity:0;
-          left:calc(100% - 10px);
-      }
-  }
-
-
-  .microphone-reset.btn{
-      margin-bottom: 15px;
-  }
-
-}
-}
-
-
-.icon-microphone{
+.icon-microphone {
     font-size: 25px;
     color: whitesmoke;
     cursor: pointer;
-  }
-
-
-
+}
 
 //Info Container
 
-.stt-info-container{
+.stt-info-container {
+    margin: 15px 0 0;
 
+    p {
+        // margin: 0;
+    }
 
-    .command-info-preview{
-        display: flex;
-        width: 80%;
-        align-items: center;
-        text-align: center;
-        margin: 0 auto;
+    .info-upper-description {
+        color: #5e6c84;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+            sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
 
-        .stt-filter-icon{
+    .command-info-preview {
+        width: 100%;
+        border-radius: 3px;
+        padding-left: 25px;
+        position: relative;
 
+        .info-primary-icon {
+            color: #172b4d;
+            position: absolute;
+            left: 0;
+            top: 1px;
         }
 
-        .command-title{
-
+        .stt-filter-icon {
         }
 
-        .optional-txt{
+        .command-title {
+            color: #5e6c84;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
+                Helvetica Neue, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+
+            .command-text-optional {
+                font-style: italic;
+            }
+
+            .example-text {
+                font-size: 13px;
+                opacity: 0.8;
+            }
+        }
+
+        .optional-txt {
             font-style: italic;
             text-decoration: underline;
         }

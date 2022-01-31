@@ -12,8 +12,7 @@ import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal';
 // Action
 import { removeGroup } from '../../store/board/board.action';
 
-export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor }) {
-
+export function GroupPreview({ group, boardId, board, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor }) {
 
   const dispatch = useDispatch();
   const [isBodyRender, setIsBodyRender] = useState(false);
@@ -25,7 +24,6 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
     setIsBodyRender(isBodyRender => !isBodyRender);
   };
 
-
   const toggleModal = ({ event, type, isDeleteModal }) => {
     if (modal.isModalOpen) {
 
@@ -33,15 +31,12 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
       return
     }
 
-
     setModal({ isModalOpen: true, type, event, isDeleteModal })
   }
 
   const onRemoveGroup = (groupId) => {
     dispatch(removeGroup(groupId, boardId))
   }
-
-
 
   function getFilteredTask() {
     const { txt, labels, members } = filterBy
@@ -61,7 +56,6 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
     return filteredTasks
   }
 
-
   return (
     <Draggable draggableId={group.id} index={index}>
       {provided => (
@@ -72,7 +66,7 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
           className="group-preview flex column">
           {/* TITLE */}
           <div className="group-preview-header flex justify-space-between align-center">
-            <GroupPreviewTitle group={group} />
+            <GroupPreviewTitle board={board} group={group} />
             <div
               className="header-more-options"
               onClick={(event) => toggleModal({ event, type: 'removeMenuPopup', isDeleteModal : true})}>
