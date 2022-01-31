@@ -23,7 +23,7 @@ export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
-  const user = useSelector(state => state.userModule.loggedinUser)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     getLoggedInUser()
@@ -32,8 +32,9 @@ export function AppHeader() {
 
 
   const getLoggedInUser = async () => {
-    const loggedInUser = userService.getLoggedinUser() || await userService.loginAsGuest()
+    const loggedInUser = await userService.getLoggedinUser() || await userService.loginAsGuest()
     dispatch(setUser(loggedInUser))
+    setUser(loggedInUser)
   }
 
   const onUserClick = event => {
@@ -51,6 +52,10 @@ export function AppHeader() {
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
+
+  console.log('Rendering..')
+
+  if (!user) return <></>
 
   return (
     <header

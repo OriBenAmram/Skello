@@ -5,31 +5,35 @@ import { GrClose } from 'react-icons/gr';
 import femaleGuest from '../../assets/imgs/female-guest.svg';
 
 // Actions
-import { logout, loadUser } from '../../store/user/user.actions.js';
+import { logout } from '../../store/user/user.actions.js';
 import { toggleModal } from '../../store/app/app.action';
 
-// ICONS
+// Services
+import { userService } from '../../services/user.service.js'
 
 export function ProfileModalContent({ onToggleModal }) {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userModule.loggedinUser)
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    setUser(getLoggedInUser());
+  }, [])
+
+  const getLoggedInUser = () => {
+    const loggedInUser = userService.getLoggedinUser();
+    return loggedInUser;
+    // dispatch(setUser(loggedInUser))
+  }
+
   const onClickLogout = () => {
     dispatch(logout());
   };
-  // const [modalType, setModalType] = useState({ header: 'Labels', type: 'labels' });
-  // useEffect(() => {
-  //   loadUserFromStore()
-  // }, [user])
-
-  // const loadUserFromStore = async () => {
-  //   if(!user) return
-  //   console.log('user before sending', user)
-  //   dispatch(loadUser(user._id))
-  // }
 
   const getUserAvatarImg = () => {
     return { background: `url(${user.imgUrl}) center center / cover` };
   };
+
+  if (!user) return <></>
 
   return (
     <section className="profile-modal">
