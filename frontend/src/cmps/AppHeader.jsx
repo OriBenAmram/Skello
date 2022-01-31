@@ -23,18 +23,37 @@ export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
-  const [user, setUser] = useState(null)
+  // const user = useSelector(state => state.userModule.loggedinUser)
+  const [user, setLocalUser] = useState(null)
 
   useEffect(() => {
     getLoggedInUser()
     dispatch(loadUsers())
   }, [])
 
+  // useEffect(() => {
+  //   console.log('user @@@@', user)
+
+  // }, [user])
+
+  useEffect(() => {
+    if (location.pathname !== '/login' || location.pathname !== '/signup') {
+      console.log('MOUNT2 location')
+      setUserInStore()
+    }
+  }, [location.pathname])
+
+  const setUserInStore = () => {
+    console.log('setting user in store')
+    const userFromSession = userService.getLoggedinUser()
+    setLocalUser(userFromSession)
+  }
 
   const getLoggedInUser = async () => {
-    const loggedInUser = await userService.getLoggedinUser() || await userService.loginAsGuest()
+    const loggedInUser = userService.getLoggedinUser() || await userService.loginAsGuest()
+    setLocalUser(loggedInUser)
     dispatch(setUser(loggedInUser))
-    setUser(loggedInUser)
+    // setUser(loggedInUser)
   }
 
   const onUserClick = event => {
@@ -47,13 +66,14 @@ export function AppHeader() {
 
 
   const getAvatarByUser = () => {
-    return { background: `url(${user.imgUrl}) center center / cover` };
+    return { background: `url(${user?.imgUrl}) center center / cover` };
   };
+
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
 
-  console.log('Rendering..')
+
 
   if (!user) return <></>
 
