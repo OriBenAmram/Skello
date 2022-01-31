@@ -216,6 +216,12 @@
                     background-color: initial;
                 }
             }
+            &.bg-header-btn {
+                &:hover {
+                    cursor: auto;
+                    background-color: initial;
+                }
+            }
         }
         // Main content
         // Upper Options
@@ -237,6 +243,10 @@
                     display: none;
                     height: 0px;
                 }
+            }
+
+            .bg-header-btn { 
+
             }
         }
 

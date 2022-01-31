@@ -20,13 +20,15 @@ export function EditAttachmentModalContent({ editTitle, attachmentTitle, toggleM
 
             <div className="pop-over-content">
                 <form>
-                    <label>Link name
+                    <label>Link name <br />
                         <input
+                            autoFocus
+                            className="basic-textarea"
                             type="text"
                             value={title}
                             onChange={(ev) => setTitle(ev.target.value)}
                         />
-                        <input type="submit" value={"update"} onClick={(ev) => onEditTitle(ev)} />
+                        <input className="primary-btn" type="submit" value={"update"} onClick={(ev) => onEditTitle(ev)} />
                     </label>
                 </form>
             </div>

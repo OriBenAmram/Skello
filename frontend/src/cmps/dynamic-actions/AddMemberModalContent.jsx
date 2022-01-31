@@ -92,7 +92,7 @@ export function AddMemberModalContent({ onToggleModal, extraMembers, isExtra }) 
       </section>
       <section className="modal-content">
         <div className="modal-title">
-          <input
+          {!isExtra && <input
             placeholder={`Search users`}
             type="text"
             className="modal-main-input"
@@ -100,7 +100,7 @@ export function AddMemberModalContent({ onToggleModal, extraMembers, isExtra }) 
               setFilterBy(ev.target.value);
             }}
             autoFocus
-          />
+          />}
           <h4>Board Members</h4>
           <section className="users-list">
             {getMembersForDisplay().map((member, index) => {

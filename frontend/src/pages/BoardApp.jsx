@@ -88,7 +88,7 @@ export function BoardApp(props) {
           <div className="board-app">
             <BoardHeader board={board} />
             <GroupList
-              groups={[...board.groups]}
+              groups={board.groups}
               boardId={board._id}
               board={board}
               toggleQuickCardEditor={toggleQuickCardEditor}

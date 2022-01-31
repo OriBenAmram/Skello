@@ -62,6 +62,9 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'checklist' })
                     }} > <AiOutlineCheckSquare /> Checklist</button>
+                    <button className="button-link archive-secondary-btn" onClick={(event) => {
+                        toggleModal({ event, type: 'checklist' })
+                    }} > <BsArchive /> Archive</button>
                 </div>
                 <div className="middle-button-section sidebar-primary-btns-container">
                     <button className="button-link" onClick={(event) => {
@@ -73,7 +76,7 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'stt' })
                     }} > <BiMicrophone />Speech To Text</button>
-                    <button className="button-link" onClick={(event) => {
+                    <button className="button-link cover-sidebar-btn" onClick={(event) => {
                         toggleModal({ event, type: 'cover' })
                     }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>
                 </div>
@@ -83,7 +86,7 @@ export function TaskSideBar({ task, group, board }) {
                 <h3 className="side-bar-title sidebar-primary-btns-container">Actions</h3>
                 <button className="button-link" > <BsArrowRight /> Move</button>
                 <button className="button-link"> <AiOutlineCopy />Copy</button>
-                <button className="button-link"> <BsArchive /> Archive</button>
+                <button className="button-link archive-main-btn"> <BsArchive /> Archive</button>
             </section>
         </section>
     );
