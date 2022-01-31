@@ -60,7 +60,6 @@ export function SpeechToText({ event }) {
     {
       command: 'filter by *',
       callback: (name) => {
-        console.log('name:', name);
         const memberId = getMemberIdByFullName(name)
         dispatch(setFilter({ txt: filterBy.txt, labels: [...filterBy.labels], members: [...filterBy.members, memberId] }))
         SpeechRecognition.stopListening();

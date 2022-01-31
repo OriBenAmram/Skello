@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
+// Icons
 import { GrClose } from 'react-icons/gr';
 
+// Services
 import { utilService } from '../../services/util.service.js';
 import { cloudinaryService } from '../../services/cloudinary.service.js';
-
-import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx';
 
 import { addFile } from '../../store/board/board.action.js';
 
@@ -28,7 +29,6 @@ export function AttachmentModalContent({ board, group, task, toggleModal }) {
     try {
       const { secure_url } = await cloudinaryService.uploadFile(ev);
       onAddFile(secure_url);
-      console.log('adding');
       toggleModal({ event: ev, type: null })
     } catch (err) {
       console.log('error in getting fileUrl From Cloudinary', err);
@@ -37,7 +37,6 @@ export function AttachmentModalContent({ board, group, task, toggleModal }) {
   };
 
   const onAddFile = fileUrl => {
-    console.log('adding file...');
     dispatch(addFile(board, group.id, task.id, fileUrl));
     toggleModal({ event: null, type: null })
   };

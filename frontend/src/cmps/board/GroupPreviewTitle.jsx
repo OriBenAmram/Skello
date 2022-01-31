@@ -5,18 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { onSaveBoard } from '../../store/board/board.action.js';
 
 export function GroupPreviewTitle({ board, group }) {
-  // console.log('group in GroupPreviewTitle', group.title )
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   
   useEffect(() => {
     setTitle(group.title)
   }, [group.title])
-
-  // useEffect(() => {
-  //   console.log('did mount')
-  //   setTitle(group.title)
-  // }, [])
 
   const handleChange = ({ target }) => {
     const title = target.value;

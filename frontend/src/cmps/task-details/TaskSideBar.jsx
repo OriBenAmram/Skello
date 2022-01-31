@@ -20,8 +20,6 @@ export function TaskSideBar({ task, group, board }) {
     const [modal, setModal] = useState({ isModalOpen: false, type: null, event: null });
 
     const toggleModal = ({ event, type }) => {
-        console.log('toggeling localy');
-        // In case the modal is open somewhere
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
             return

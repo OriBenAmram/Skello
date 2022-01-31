@@ -22,7 +22,6 @@ export function Workspace() {
         socketService.emit('join-workspace', 'workspace');
         socketService.off('updated-board');
         socketService.on('updated-board', async updatedBoard => {
-            console.log('board change in front')
             await dispatch(setBoard(updatedBoard));
             onLoadBoards()
         });

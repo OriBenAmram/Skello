@@ -31,20 +31,13 @@ export function AppHeader() {
     dispatch(loadUsers())
   }, [])
 
-  // useEffect(() => {
-  //   console.log('user @@@@', user)
-
-  // }, [user])
-
   useEffect(() => {
     if (location.pathname !== '/login' || location.pathname !== '/signup') {
-      console.log('MOUNT2 location')
       setUserInStore()
     }
   }, [location.pathname])
 
   const setUserInStore = () => {
-    console.log('setting user in store')
     const userFromSession = userService.getLoggedinUser()
     setLocalUser(userFromSession)
   }

@@ -12,9 +12,6 @@ export function TaskProfileMemberModal({ onToggleModal, member, task, groupId })
     };
 
     const onRemoveMember = (event, member) => {
-        console.log('removing from task..')
-        console.log('task', task)
-        console.log('groupId', groupId)
         const memberIdx = task.members.findIndex(currMember => currMember._id === member._id)
         if (memberIdx >= 0) {
             const taskToUpdate = { ...task };

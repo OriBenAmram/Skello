@@ -24,7 +24,6 @@ export function AddMemberModalContent({ onToggleModal, extraMembers, isExtra }) 
 
   useEffect(() => {
     if (location.pathname !== `/board/${board._id}`) {
-      console.log('location changed')
       dispatch(toggleModal({ event: null, type: null }))
     }
   }, [location]);

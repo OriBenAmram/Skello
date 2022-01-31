@@ -11,7 +11,6 @@ export function LogoutWithGoogle() {
     }
 
     const handleLogout = () => {
-        console.log('Logging out')
     }
 
     return (

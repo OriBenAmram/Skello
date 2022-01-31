@@ -2,13 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 
 import { IoIosArrowBack } from 'react-icons/io';
-// import { IoCheckbox } from "react-icons/io5";
-// import { MdCheckBoxOutlineBlank, MdMoreHoriz } from "react-icons/md";
-import { MdOutlinePhotoCameraBack, MdClose } from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 import { PopoverFilterUser } from './PopoverFilterUser';
 import { PopoverFilterLabels } from './PopoverFilterLabels';
 import { setFilter } from '../../store/board/board.action';
-
 
 export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
 
@@ -23,26 +20,9 @@ export function PopoverFilter({ toggleSideMenu, setPopoverContent }) {
         dispatch(setFilter(filterBy))
 
         return () => {
-            console.log('unmount');
         }
 
     }, [filterBy]);
-
-    // useEffect(() => {
-
-
-    //     return () => {
-    //         console.log('unmount@@@@@@@');
-    //         setFilterBy({ members: [], labels: [], txt: '' })
-    //         dispatch(setFilter(filterBy))
-    //     };
-    // }, []);
-
-
-
-
-
-
 
     return (
         <div>
