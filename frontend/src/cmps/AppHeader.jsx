@@ -52,8 +52,6 @@ export function AppHeader() {
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
 
-  console.log('RENDERING')
-
   return (
     <header
       className={`app-header ${isBoard ? 'board' : ''} ${isHome ? 'home' : 'general'} ${isLoginSignup ? 'login-signup' : ''
