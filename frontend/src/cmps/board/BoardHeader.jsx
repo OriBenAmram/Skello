@@ -52,7 +52,7 @@ export function BoardHeader({ board }) {
   }
 
   const membersToShow = () => {
-    let members = [...board.members]
+    let members = [...board?.members]
 
     members = members.splice(0, shownMembers)
     return members
@@ -83,12 +83,10 @@ export function BoardHeader({ board }) {
           <h1 className="header-title flex align-center justify-center">{title}</h1>
           <div className="nav-left-actions flex">
             <div className="nav-btn fav">
-              <button>
-                {(board.isStarred) ?
-                  <AiFillStar className="star-icon starred" onClick={ev => onToggleStarred(ev)} /> :
-                  <AiOutlineStar className="star-icon" onClick={ev => onToggleStarred(ev)} />
-                }
-              </button>
+              {(board.isStarred) ?
+                <AiFillStar className="star-icon starred" onClick={ev => onToggleStarred(ev)} /> :
+                <AiOutlineStar className="star-icon" onClick={ev => onToggleStarred(ev)} />
+              }
             </div>
             <div className="nav-members">
               {membersToShow().map((member, index) => (

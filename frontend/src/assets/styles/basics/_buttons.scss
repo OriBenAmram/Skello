@@ -2,6 +2,24 @@ button {
     cursor: pointer;
 }
 
+
+.primary-btn {
+    position: relative;
+    background-color: #091e420a;
+    color: $clr1;
+    border: none;
+    border-radius: 3px;
+    height: 32px;
+    padding: 6px 12px;
+    min-width: 95px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background-color: #091e4214;
+    }
+}
+
 // close-icon-btn
 .primary-close-btn {
     font-size: rem(14px);

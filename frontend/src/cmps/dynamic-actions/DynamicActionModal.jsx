@@ -11,14 +11,8 @@ import { DatesModalContent } from './DatesModalContent.jsx'
 import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
-
-export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+export function DynamicActionModal({ isDeleteModal = false ,toggleModal, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
-
-    console.log('event:', event);
-
-
-    console.log('type:', type);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
@@ -42,7 +36,6 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
             case 'attachment':
                 return <AttachmentModalContent toggleModal={toggleModal} task={task} group={group} board={board} />
             case 'removeMenuPopup':
-                console.log('im here!');
                 return <RemoveMenuPopup toggleModal={toggleModal} onRemoveTodo={onRemoveTodo} groupId={groupId} onRemoveGroup={onRemoveGroup} todoId={todoId} />
             case 'editAttachment':
                 return <EditAttachmentModalContent editTitle={editTitle} attachmentTitle={attachmentTitle} toggleModal={toggleModal} />
@@ -62,10 +55,6 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
     const getModalPositionStyle = () => {
         if (width > 800) {
             const { top, left, height, right } = event.target.getBoundingClientRect();
-            // console.log('event.target.getBoundingClientRect():', event.target.getBoundingClientRect());
-            // console.log('event.target:', event.target);
-            // console.log('event.currentTarget:', event.currentTarget);
-
             const startSide = (width / left < 2) ? 'right' : 'left'
             const startSideValue = (width / left < 2) ? 30 : left;
             if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
@@ -87,16 +76,13 @@ export function DynamicActionModal({ toggleModal, baba, type, task, isDetails = 
             }
             return { top: top + height, [startSide]: startSideValue + 'px' }
         }
-
-
-
     }
 
 
 
     if (!event) return <></>
     return (
-        <section className='dynamic-action-modal' style={getModalPositionStyle()} ref={wrapperRef} >
+        <section className={`dynamic-action-modal ${(isDeleteModal) ? 'delete-modal' : ''}`} style={getModalPositionStyle()} ref={wrapperRef} >
             {getContentForDisplay()}
         </section>
     )

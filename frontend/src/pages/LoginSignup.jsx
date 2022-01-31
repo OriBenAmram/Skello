@@ -39,7 +39,7 @@ export function LoginSignup(props) {
             password,
             fullname,
             imgUrl:
-              'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643248079/yei5biapewqzmscjagz2.svg',
+              'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643564751/dl6faof1ecyjnfnknkla.svg',
           })
         );
 
@@ -127,16 +127,14 @@ export function LoginSignup(props) {
           <section className="other-login-options">
             <span>OR</span>
 
-            <LoginWithGoogle onLoginGoogle={onLoginGoogle} />
             {/* <LogoutWithGoogle /> */}
-            <button
-              onClick={() => {
-                onClickGuest();
-              }}>
-              {/* <img style={{ width: '20px' }} src={femaleGuest} className="button-icon-image guest" /> */}
-              <img src={femaleGuest} className="button-icon-image guest" />
-              Continue as Guest
+            <button onClick={() => { onClickGuest() }}>
+              <div className='button-content'>
+                <img src={'https://res.cloudinary.com/skello-dev-learning/image/upload/v1643564751/dl6faof1ecyjnfnknkla.svg'} className="button-icon-image guest" />
+                <p>Continue as Guest</p>
+              </div>
             </button>
+            <LoginWithGoogle onLoginGoogle={onLoginGoogle} />
           </section>
           <hr className="seperate-switch-link-hr" />
           <div className="lower-nav-links-container">

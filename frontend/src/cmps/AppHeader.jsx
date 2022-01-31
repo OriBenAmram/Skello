@@ -75,7 +75,6 @@ export function AppHeader() {
       {/* STT */}
       <SkellMicAssistant />
 
-
       {/* HOME */}
 
 

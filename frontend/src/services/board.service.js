@@ -72,6 +72,7 @@ async function getById(boardId) {
 async function update(board) {
   try {
     await httpService.put('board', board);
+    console.log('sending socket board update')
     socketService.emit('board-change', board);
     return board;
   } catch (err) {

@@ -1,6 +1,13 @@
 .checklist-container {
     .add-item-btn {
         margin-left: 40px;
+        margin-top: 10px;
+    }
+
+    .check-list-title { 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .adding-item-section {
@@ -72,6 +79,7 @@
     .title-container {
         display: flex;
         justify-content: space-between;
+        gap: 10px;
 
         // ICON
         .btns-container {

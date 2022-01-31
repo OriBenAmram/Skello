@@ -14,7 +14,6 @@ import { removeGroup } from '../../store/board/board.action';
 
 export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShown, setLabelsShown, toggleQuickCardEditor }) {
 
-
   const dispatch = useDispatch();
   const [isBodyRender, setIsBodyRender] = useState(false);
 
@@ -25,23 +24,19 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
     setIsBodyRender(isBodyRender => !isBodyRender);
   };
 
-
-  const toggleModal = ({ event, type }) => {
+  const toggleModal = ({ event, type, isDeleteModal }) => {
     if (modal.isModalOpen) {
 
       setModal({ ...modal, isModalOpen: false })
       return
     }
 
-
-    setModal({ isModalOpen: true, type, event })
+    setModal({ isModalOpen: true, type, event, isDeleteModal })
   }
 
   const onRemoveGroup = (groupId) => {
     dispatch(removeGroup(groupId, boardId))
   }
-
-
 
   function getFilteredTask() {
     const { txt, labels, members } = filterBy
@@ -61,7 +56,6 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
     return filteredTasks
   }
 
-
   return (
     <Draggable draggableId={group.id} index={index}>
       {provided => (
@@ -75,9 +69,9 @@ export function GroupPreview({ group, boardId, index, boardLabels, areLabelsShow
             <GroupPreviewTitle group={group} />
             <div
               className="header-more-options"
-              onClick={(event) => toggleModal({ event, type: 'removeMenuPopup' })}>
+              onClick={(event) => toggleModal({ event, type: 'removeMenuPopup', isDeleteModal : true})}>
               <IoEllipsisHorizontal />
-              {modal.isModalOpen && <DynamicActionModal onRemoveGroup={onRemoveGroup} groupId={group.id} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
+              {modal.isModalOpen && <DynamicActionModal isDeleteModal={modal.isDeleteModal} onRemoveGroup={onRemoveGroup} groupId={group.id} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
             </div>
           </div>
 

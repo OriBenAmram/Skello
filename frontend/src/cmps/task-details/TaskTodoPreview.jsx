@@ -39,7 +39,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
             return
         }
 
-        setModal({ isModalOpen: true, type, event })
+        setModal({ isModalOpen: true, type, event, isDeleteModal: true })
     }
 
     return (<div className='todo-preview' key={todo.id} onBlur={(ev) => {
@@ -91,7 +91,7 @@ export function TaskTodoPreview({ todo, onToggleTodo, onRemoveTodo, onSaveTodo }
                 </div>
             </section>}
         </div>
-        {modal.isModalOpen && <DynamicActionModal onRemoveTodo={onRemoveTodo} todoId={todo.id} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
+        {modal.isModalOpen && <DynamicActionModal isDeleteModal={true} onRemoveTodo={onRemoveTodo} todoId={todo.id} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
     </div>
     )
 }

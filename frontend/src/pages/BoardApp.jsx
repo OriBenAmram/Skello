@@ -39,6 +39,7 @@ export function BoardApp(props) {
       // get updated board from backend
       socketService.off('updated-board');
       socketService.on('updated-board', async updatedBoard => {
+        console.log('updated board from socket in BoardApp', updatedBoard)
         await dispatch(setBoard(updatedBoard));
       });
       onLoadBoard();
@@ -128,11 +129,11 @@ export function BoardApp(props) {
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           className="board-app-wrapper"
-          style={{ background: `${board.style.background}  center center / cover` }}>
+          style={{ background: `${board?.style?.background}  center center / cover` }}>
           <div className="board-app">
             <BoardHeader board={board} />
             <GroupList
-              groups={[...board.groups]}
+              groups={board.groups}
               boardId={board._id}
               board={board}
               toggleQuickCardEditor={toggleQuickCardEditor}

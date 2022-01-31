@@ -157,7 +157,6 @@ export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt =
         activityTxt,
         isComment
       );
-      console.log('🚀 ~ file: board.action.js ~ line 154 ~ updateTask ~ board', board);
       dispatch({
         type: 'SAVE_BOARD',
         board: board,

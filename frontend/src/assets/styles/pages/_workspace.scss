@@ -3,6 +3,8 @@
     flex-direction: row;
     justify-content: center;
 
+   
+
     .home-left-sidebar {
         margin: 84px 0 0;
         padding: 0 16px;
@@ -110,10 +112,14 @@
     }
 
     .all-boards {
-        margin: 84px 16px 0;
+        margin: 84px 16px 30px;
         max-width: 825px;
         min-width: 288px;
         width: 100%;
+
+        @include for-normal-layout { 
+            margin-bottom: 16px;
+        }
 
         .content-all-boards {
             position: relative;

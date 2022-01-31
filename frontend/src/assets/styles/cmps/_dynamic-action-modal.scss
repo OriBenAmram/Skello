@@ -9,6 +9,16 @@
     box-shadow: rgb(9 30 66 / 25%) 0px 8px 16px -4px, rgb(9 30 66 / 8%) 0px 0px 0px 1px;
     border-radius: 3px;
 
+    &.delete-modal { 
+        width: 195px;
+        min-height: 50px;
+
+        .delete-btn{ 
+            width: 90%;
+            margin: 5px auto;
+        }
+    }
+
     .modal-header {
         border-bottom: 1px solid #091e4221;
         color: $clr2;

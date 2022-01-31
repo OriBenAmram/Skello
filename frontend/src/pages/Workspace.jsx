@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClockCircle, AiOutlineStar } from 'react-icons/ai';
 
-// Actions
-import { onSaveBoard, loadBoards } from '../store/board/board.action';
+// Services
+import { socketService } from '../services/socket.service.js';
 
+// Actions
+import { onSaveBoard, loadBoards, setBoard } from '../store/board/board.action';
 
 // Cmps
 import { BoardList } from '../cmps/workspace/BoardList.jsx';
@@ -16,15 +18,28 @@ export function Workspace() {
     const [modal, setModal] = useState({ isModalOpen: false, type: null });
 
     useEffect(() => {
+        socketService.setup();
+        socketService.emit('join-workspace', 'workspace');
+        socketService.off('updated-board');
+        socketService.on('updated-board', async updatedBoard => {
+            console.log('board change in front')
+            await dispatch(setBoard(updatedBoard));
+            onLoadBoards()
+        });
         try {
             onLoadBoards()
         } catch (err) {
             console.log('Cannot load boards', err);
         }
+
+        return () => {
+            socketService.off('updated-board');
+            socketService.terminate();
+        }
     }, []);
 
-    
-    const onLoadBoards = async () => { 
+
+    const onLoadBoards = async () => {
         await dispatch(loadBoards());
     }
 
