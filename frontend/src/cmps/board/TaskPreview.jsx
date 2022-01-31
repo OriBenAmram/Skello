@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Draggable } from 'react-beautiful-dnd';
@@ -50,6 +50,17 @@ export function TaskPreview(props) {
 
   const { isCover, isTextDarkMode = true } = task.style;
   const dispatch = useDispatch();
+  const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
+
+  const [isBadges, setIsBadges] = useState(false)
+
+  useEffect(() => {
+    if (dueDate || description?.length > 0 || comments?.length > 0 ||
+      attachments?.length > 0 || checklists?.length > 0 || task.members?.length > 0) {
+      setIsBadges(true)
+    }
+
+  }, [])
 
   const getPreviewStyle = () => {
     // Cover !
@@ -63,7 +74,7 @@ export function TaskPreview(props) {
         };
       } else {
         // Doesnt have an image
-        if(isBlindMode) return { backgroundColor: task.style.backgroundColor, paddingLeft: '25px' };
+        if (isBlindMode) return { backgroundColor: task.style.backgroundColor, paddingLeft: '25px' };
         return { backgroundColor: task.style.backgroundColor };
       }
 
@@ -91,7 +102,7 @@ export function TaskPreview(props) {
 
   // Other Member Modal
   const onMemberClick = (event, member) => {
-    dispatch(toggleModal({ event, type: 'otherMemberModal', member, isShown: true }));
+    dispatch(toggleModal({ event, type: 'taskProfileMemberModal', member, isShown: !isModalOpen, task, groupId }));
   }
 
   // Title style by cover
@@ -211,11 +222,11 @@ export function TaskPreview(props) {
             </div>}
 
             <section style={getPreviewStyle()} className={`task-preview ${getPreviewClass()} `}>
-            {isBlindMode && isCover && <div>
-              <img className='blind-color-sign-expended-svg' style={{ top: '4px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
-              <img className='blind-color-sign-expended-svg' style={{ top: '20px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
-              <img className='blind-color-sign-expended-svg' style={{ top: '36px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
-            </div>}
+              {isBlindMode && isCover && <div>
+                <img className='blind-color-sign-expended-svg' style={{ top: '4px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
+                <img className='blind-color-sign-expended-svg' style={{ top: '20px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
+                <img className='blind-color-sign-expended-svg' style={{ top: '36px' }} src={getColorBlindSignByColor(task.style.backgroundColor)} />
+              </div>}
               {/* IMG */}
               {attachments?.length > 0 && !task.style.backgroundImage.url && !isCover && (
                 <img
@@ -246,7 +257,7 @@ export function TaskPreview(props) {
                 className={`task-title ${isTextDarkMode ? 'dark-text-mode' : 'bright-text-mode'}`}
                 style={getTitleStyleByCover()}>
                 <div className="full-cover-mode-upper-gradient"></div>
-                <div className="title-container">
+                <div className={`title-container ${isBadges ? 'expend' : ''}`}>
                   <p>{title}</p>
                 </div>
               </div>

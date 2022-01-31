@@ -53,13 +53,19 @@ export function loadUsers() {
   };
 }
 
-export function loadUser(userId) {
-  return async dispatch => {
-    try {
-      const user = await userService.getUser(userId);
-      dispatch({type: 'SET_USER', user});
-    } catch (err) {
-      console.log('Cannot load user', err);
-    }
+export function setUser(user) {
+  return dispatch => {
+    dispatch({type: 'SET_USER', user});
   };
 }
+
+// export function loadUser(userId) {
+//   return async dispatch => {
+//     try {
+//       const user = await userService.getUser(userId);
+//       dispatch({type: 'SET_USER', user});
+//     } catch (err) {
+//       console.log('Cannot load user', err);
+//     }
+//   };
+// }

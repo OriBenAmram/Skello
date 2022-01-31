@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { BoardsModalContent } from './BoardsModalContent.jsx'
 import { AddMemberModalContent } from './AddMemberModalContent.jsx'
+import { TaskProfileMemberModal } from './TaskProfileMemberModal.jsx'
 import { OtherMemberModalContent } from './OtherMemberModalContent.jsx'
 import { CreateBoardContent } from "./CreateBoardContent.jsx";
 import { SpeechToTextModalContent } from "./SpeechToTextMoadlContent.jsx";
 import { toggleModal } from "../../store/app/app.action.js";
 
-export function DynamicBoardActionModal({ isListening, members, isModalOpen, extraMembers, member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0 }) {
+export function DynamicBoardActionModal({ isListening, members, isModalOpen, extraMembers,
+    member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0, task, groupId }) {
     const dispatch = useDispatch();
 
     const [windowWidth, setWidth] = useState(window.innerWidth);
@@ -42,8 +44,6 @@ export function DynamicBoardActionModal({ isListening, members, isModalOpen, ext
         // }
     }
 
-    console.log('type:', type);
-
 
     const getContentForDisplay = () => {
         switch (type) {
@@ -59,13 +59,13 @@ export function DynamicBoardActionModal({ isListening, members, isModalOpen, ext
                 return <CreateBoardContent boardTitle={boardTitle} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} isGeneralModal={true} />
             case 'otherMemberModal':
                 return <OtherMemberModalContent member={member} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
+            case 'taskProfileMemberModal':
+                return <TaskProfileMemberModal groupId={groupId} task={task} member={member} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} />
             case 'stt':
                 return <SpeechToTextModalContent isListening={isListening} onToggleModal={onToggleModal} posXAddition={posXAddition} type={type} event={event} isGeneralModal={true} />
         }
     }
     const getModalPositionStyle = () => {
-        console.log('posYAddition:', posYAddition);
-
         const { top, left, height, right, width } = event.target.getBoundingClientRect();
         if (type === 'stt') return { top: top + height + 20, left: left - 160, border: 'none' }
         const sideStart = (windowWidth < 550) ? 'right' : 'left'

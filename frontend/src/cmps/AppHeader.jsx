@@ -11,7 +11,7 @@ import { userService } from '../services/user.service';
 
 
 // Actions
-import { loadUsers, loadUser } from '../store/user/user.actions.js';
+import { loadUsers, setUser } from '../store/user/user.actions.js';
 import { toggleModal } from '../store/app/app.action';
 
 // cmps
@@ -22,16 +22,19 @@ import { SkellMicAssistant } from './SkellMicAssistence';
 export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
-  const user = userService.getLoggedinUser();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
+  const user = useSelector(state => state.userModule.loggedinUser)
 
   useEffect(() => {
+    getLoggedInUser()
     dispatch(loadUsers())
   }, [])
 
-  useEffect(() => {
-    if (user?._id) dispatch(loadUser(user._id))
-  }, [user])
+
+  const getLoggedInUser = async () => {
+    const loggedInUser = userService.getLoggedinUser() || await userService.loginAsGuest()
+    dispatch(setUser(loggedInUser))
+  }
 
   const onUserClick = event => {
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: !isModalOpen }));
@@ -48,6 +51,8 @@ export function AppHeader() {
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
+
+  console.log('RENDERING')
 
   return (
     <header

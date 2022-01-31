@@ -1,23 +1,23 @@
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
-import {onSaveBoard} from '../../store/board/board.action';
+import { onSaveBoard } from '../../store/board/board.action';
 
-export function OtherMemberModalContent({onToggleModal, member}) {
+export function OtherMemberModalContent({ onToggleModal, member }) {
   const dispatch = useDispatch();
   const board = useSelector(state => state.boardModule.board);
 
   const getAvatarByUser = () => {
-    return {background: `url(${member.imgUrl}) center center / cover`};
+    return { background: `url(${member.imgUrl}) center center / cover` };
   };
 
   const onRemoveMember = (event, member) => {
     const memberIdx = board.members.findIndex(memberToFind => memberToFind._id === member._id);
     if (memberIdx >= 0) {
       board.members.splice(memberIdx, 1);
-      const newBoard = {...board, members: [...board.members]};
+      const newBoard = { ...board, members: [...board.members] };
       dispatch(onSaveBoard(newBoard));
-      onToggleModal({event, type: 'addMemberToBoard'});
+      onToggleModal({ event, type: 'addMemberToBoard' });
     }
   };
 
@@ -26,7 +26,7 @@ export function OtherMemberModalContent({onToggleModal, member}) {
       <button
         className="simple-close-btn"
         onClick={event => {
-          onToggleModal({event, type: 'otherMemberModal'});
+          onToggleModal({ event, type: 'otherMemberModal' });
         }}>
         x
       </button>
