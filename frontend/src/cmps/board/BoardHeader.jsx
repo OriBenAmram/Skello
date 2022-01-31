@@ -54,7 +54,7 @@ export function BoardHeader({ board }) {
   const membersToShow = () => {
     let members = [...board.members]
 
-    members = members.splice(0, shownMembers - 1)
+    members = members.splice(0, shownMembers)
     return members
   }
 

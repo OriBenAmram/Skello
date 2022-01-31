@@ -10,9 +10,10 @@ import { DynamicActionModal } from './dynamic-actions/DynamicActionModal';
 // Icons 
 import { IoCreateOutline, IoLogOutOutline } from 'react-icons/io5'
 import { BiFilterAlt } from 'react-icons/bi'
+import { AiOutlineTag } from 'react-icons/ai'
 
 
-import { toggleModal } from '../store/app/app.action';
+import { toggleModal, toggleBlindMode } from '../store/app/app.action';
 import { logout } from '../store/user/user.actions';
 import { setFilter } from '../store/board/board.action';
 
@@ -24,9 +25,14 @@ export function SpeechToText({ event }) {
   const filterBy = useSelector(state => state.boardModule.filterBy)
   const dispatch = useDispatch();
   const history = useHistory();
+  let timeoutId;
 
-  console.log('users:', users);
 
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutId)
+    };
+  }, []);
 
 
   const stopHandle = () => {
@@ -49,6 +55,12 @@ export function SpeechToText({ event }) {
     resetTranscript();
   };
 
+  const closeModal = () => {
+    timeoutId = setTimeout(() => {
+      dispatch(toggleModal({ event: null, type: '' }))
+    }, 2000)
+  }
+
 
 
   // Commands
@@ -67,6 +79,7 @@ export function SpeechToText({ event }) {
         const memberId = getMemberIdByFullName(name)
         dispatch(setFilter({ txt: filterBy.txt, labels: [...filterBy.labels], members: [...filterBy.members, memberId] }))
         SpeechRecognition.stopListening();
+        closeModal()
       }
     },
     {
@@ -77,11 +90,20 @@ export function SpeechToText({ event }) {
       }
     },
     {
+      command: 'toggle color blind mode',
+      callback: () => {
+        dispatch(toggleBlindMode());
+        SpeechRecognition.stopListening();
+        closeModal()
+      }
+    },
+    {
       command: 'clean filter',
       callback: () => {
 
         dispatch(setFilter({ txt: '', labels: [], members: [] }))
         SpeechRecognition.stopListening();
+        closeModal()
       }
     },
 
@@ -94,6 +116,7 @@ export function SpeechToText({ event }) {
         dispatch(toggleModal({ event, type: '' }));
         history.push(`/login`)
         SpeechRecognition.stopListening();
+        closeModal()
       }
     }
   ]
@@ -103,7 +126,8 @@ export function SpeechToText({ event }) {
     { commandTitle: 'Please create a board', Optional: 'board name', icon: <IoCreateOutline className="stt-filter-icon" /> },
     { commandTitle: 'Please logout', optional: null, icon: <IoLogOutOutline /> },
     { commandTitle: 'filter by member', optional: 'member name', icon: <BiFilterAlt className="stt-filter-icon" /> },
-    { commandTitle: 'filter by text', optional: 'text', icon: <BiFilterAlt className="stt-filter-icon" /> }
+    { commandTitle: 'filter by text', optional: 'text', icon: <BiFilterAlt className="stt-filter-icon" /> },
+    { commandTitle: 'toggle color blind mode', optional: null, icon: <AiOutlineTag className="stt-filter-icon" /> }
   ]
 
 
