@@ -1,4 +1,4 @@
-import { appService } from '../../services/board.service';
+import {appService} from '../../services/board.service';
 
 const initialState = {
   isSideBarOpen: false,
@@ -12,27 +12,36 @@ const initialState = {
     member: null,
     extraMembers: [],
     boardTitle: '',
-    isListening: false
-  }
+    isListening: false,
+    task: null,
+    groupId: '',
+  },
 };
 
 export function appReducer(state = initialState, action) {
   let newState = state;
   switch (action.type) {
     case 'TOGGLE_SIDEBAR':
-      return (newState = { ...state, isSideBarOpen: !state.isSideBarOpen });
+      return (newState = {...state, isSideBarOpen: !state.isSideBarOpen});
     case 'TOGGLE_BLINDMODE':
-      return (newState = { ...state, isBlindMode: !state.isBlindMode });
+      return (newState = {...state, isBlindMode: !state.isBlindMode});
     case 'TOGGLE_MODAL':
-      console.log('avtion.modalInfo.title:', action.modalInfo.title);
-
       return (newState = {
-        ...state, popupModal: {
-          ...state.popupModal, isModalOpen: action.modalInfo.isShown,
-          event: action.modalInfo.event, type: action.modalInfo.type, posXAddition: action.modalInfo.posXAddition,
-          posYAddition: action.modalInfo.posYAddition, member: action.modalInfo.member, boardTitle: action.modalInfo.title,
-          isListening: action.modalInfo.isShown, extraMembers: action.modalInfo.extraMembers
-        }
+        ...state,
+        popupModal: {
+          ...state.popupModal,
+          isModalOpen: action.modalInfo.isShown,
+          event: action.modalInfo.event,
+          type: action.modalInfo.type,
+          posXAddition: action.modalInfo.posXAddition,
+          posYAddition: action.modalInfo.posYAddition,
+          member: action.modalInfo.member,
+          boardTitle: action.modalInfo.title,
+          isListening: action.modalInfo.isShown,
+          extraMembers: action.modalInfo.extraMembers,
+          task: action.modalInfo.task,
+          groupId: action.modalInfo.groupId,
+        },
       });
 
     default:

@@ -240,9 +240,9 @@ export function handleDrag(
         const group = board.groups.find(group => group.id === droppableIdStart);
         const task = group.tasks.splice(droppableIndexStart, 1);
         group.tasks.splice(droppableIndexEnd, 0, ...task);
-      }
-      // Moving task between differents groups // CR: also refactor name
-      if (droppableIdStart !== droppableIdEnd) {
+      } else {
+        // Moving task between differents groups // CR: also refactor name
+        // if (droppableIdStart !== droppableIdEnd) {
         // Find the group where drag happened
         const groupStart = board.groups.find(group => group.id === droppableIdStart);
 
@@ -255,6 +255,7 @@ export function handleDrag(
         // Put the task in the new group
         groupEnd.tasks.splice(droppableIndexEnd, 0, ...task);
       }
+      // }
     }
     const savedBoard = await boardService.update(board);
 

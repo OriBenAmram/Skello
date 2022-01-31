@@ -104,6 +104,13 @@
         p{
             margin:0
         }
+
+        .title-container {
+
+            &.expend{
+                margin-bottom: 4px;
+            }
+        }
     }
 }
 

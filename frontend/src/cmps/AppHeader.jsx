@@ -11,7 +11,7 @@ import { userService } from '../services/user.service';
 
 
 // Actions
-import { loadUsers, loadUser } from '../store/user/user.actions.js';
+import { loadUsers, setUser } from '../store/user/user.actions.js';
 import { toggleModal } from '../store/app/app.action';
 
 // cmps
@@ -22,16 +22,39 @@ import { SkellMicAssistant } from './SkellMicAssistence';
 export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
-  const user = userService.getLoggedinUser();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
+  // const user = useSelector(state => state.userModule.loggedinUser)
+  const [user, setLocalUser] = useState(null)
 
   useEffect(() => {
+    getLoggedInUser()
     dispatch(loadUsers())
   }, [])
 
+  // useEffect(() => {
+  //   console.log('user @@@@', user)
+
+  // }, [user])
+
   useEffect(() => {
-    if (user?._id) dispatch(loadUser(user._id))
-  }, [user])
+    if (location.pathname !== '/login' || location.pathname !== '/signup') {
+      console.log('MOUNT2 location')
+      setUserInStore()
+    }
+  }, [location.pathname])
+
+  const setUserInStore = () => {
+    console.log('setting user in store')
+    const userFromSession = userService.getLoggedinUser()
+    setLocalUser(userFromSession)
+  }
+
+  const getLoggedInUser = async () => {
+    const loggedInUser = userService.getLoggedinUser() || await userService.loginAsGuest()
+    setLocalUser(loggedInUser)
+    dispatch(setUser(loggedInUser))
+    // setUser(loggedInUser)
+  }
 
   const onUserClick = event => {
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: !isModalOpen }));
@@ -43,11 +66,16 @@ export function AppHeader() {
 
 
   const getAvatarByUser = () => {
-    return { background: `url(${user.imgUrl}) center center / cover` };
+    return { background: `url(${user?.imgUrl}) center center / cover` };
   };
+
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
+
+
+
+  if (!user) return <></>
 
   return (
     <header

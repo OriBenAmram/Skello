@@ -55,8 +55,8 @@ export function LoginSignup(props) {
   // Todo: to enable user sign up multiple times with google, even if exists
   const onLoginGoogle = async (googleData) => {
     try {
-      await fetch('http://localhost:3030/api/google-login', {
-        // await fetch('http://skello.herokuapp.com/api/google-login', {
+      const res = await fetch('http://localhost:3030/api/google-login', {
+        // await fetch('/api/google-login', {
         method: 'POST',
         body: JSON.stringify({
           token: googleData.tokenId,
@@ -65,16 +65,56 @@ export function LoginSignup(props) {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(res => res.json()).then(data => {
-        dispatch(signup({ username: data.email, password: data.googleId, fullname: data.name, imgUrl: data.picture, googleId: data.googleId }));
-        props.history.push('/');
-      });
+      })
+      const result = await res.json()
+      await dispatch(signup({
+        username: result.email, password: result.googleId,
+        fullname: result.name, imgUrl: result.picture, googleId: result.googleId
+      }));
+
+      setTimeout(() => {
+
+        props.history.push('/workspace');
+      }, 500);
+
 
     } catch (err) {
       console.log('Cannot login', err);
     }
 
   }
+
+  // // Todo: to enable user sign up multiple times with google, even if exists
+  // const onLoginGoogle = async (googleData) => {
+  //   try {
+  //     await fetch('http://localhost:3030/api/google-login', {
+  //       // await fetch('/api/google-login', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         token: googleData.tokenId,
+  //         googleId: googleData.googleId
+  //       }),
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     }).then(res => res.json())
+  //       .then(data => {
+  //         dispatch(signup({
+  //           username: data.email, password: data.googleId,
+  //           fullname: data.name, imgUrl: data.picture, googleId: data.googleId
+  //         }));
+  //         // props.history.push('/workspace');
+
+
+  //       }).then(() => {
+  //         props.history.push('/workspace');
+  //       })
+
+  //   } catch (err) {
+  //     console.log('Cannot login', err);
+  //   }
+
+  // }
 
   const onClickGuest = async () => {
     await dispatch(
