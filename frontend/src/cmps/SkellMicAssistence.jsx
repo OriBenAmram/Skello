@@ -12,7 +12,7 @@ export function SkellMicAssistant() {
 
 
     const onMic = (event) => {
-        dispatch(toggleModal({ event, type: 'stt', isShown: true }))
+        dispatch(toggleModal({ event, type: 'stt', isShown: true,  }))
         // setIsListening(!isListening)
     }
 

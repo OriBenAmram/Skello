@@ -10,8 +10,7 @@ import { DynamicActionModal } from './dynamic-actions/DynamicActionModal';
 // Icons 
 import { IoCreateOutline, IoLogOutOutline } from 'react-icons/io5'
 import { BiFilterAlt } from 'react-icons/bi'
-
-
+import { BsInfo } from 'react-icons/bs'
 import { toggleModal } from '../store/app/app.action';
 import { logout } from '../store/user/user.actions';
 import { setFilter } from '../store/board/board.action';
@@ -20,14 +19,15 @@ export function SpeechToText({ event }) {
   const microphoneRef = useRef(null);
 
   const [isListening, setIsListening] = useState(false);
+  const [isInfoOpen, setInfoOpen] = useState(false);
   const users = useSelector(state => state.userModule.users)
   const filterBy = useSelector(state => state.boardModule.filterBy)
   const dispatch = useDispatch();
   const history = useHistory();
 
-  console.log('users:', users);
-
-
+  const toggleInfo = () => {
+    setInfoOpen(!isInfoOpen)
+  }
 
   const stopHandle = () => {
     setIsListening(false);
@@ -48,8 +48,6 @@ export function SpeechToText({ event }) {
     stopHandle();
     resetTranscript();
   };
-
-
 
   // Commands
   const commands = [
@@ -85,8 +83,6 @@ export function SpeechToText({ event }) {
       }
     },
 
-
-
     {
       command: 'Please logout',
       callback: () => {
@@ -100,13 +96,11 @@ export function SpeechToText({ event }) {
 
   // Command-info for render
   const commandsForRender = [
-    { commandTitle: 'Please create a board', Optional: 'board name', icon: <IoCreateOutline className="stt-filter-icon" /> },
-    { commandTitle: 'Please logout', optional: null, icon: <IoLogOutOutline /> },
-    { commandTitle: 'filter by member', optional: 'member name', icon: <BiFilterAlt className="stt-filter-icon" /> },
-    { commandTitle: 'filter by text', optional: 'text', icon: <BiFilterAlt className="stt-filter-icon" /> }
+    { commandTitle: 'Please create a board', optional: ' "board name"', icon: <IoCreateOutline className="info-primary-icon stt-filter-icon" /> },
+    { commandTitle: 'Please logout', optional: null, icon: <IoLogOutOutline className="info-primary-icon stt-filter-icon" /> },
+    { commandTitle: 'filter by member', optional: ' "member name"', icon: <BiFilterAlt className="info-primary-icon stt-filter-icon" /> },
+    { commandTitle: 'filter by text', optional: ' text you want to find', icon: <BiFilterAlt className="info-primary-icon stt-filter-icon" /> }
   ]
-
-
 
   // command functions
 
@@ -114,15 +108,13 @@ export function SpeechToText({ event }) {
     return users.find(user => user.fullname.toLowerCase() === name.toLowerCase())?._id
   }
 
-
-
   const { transcript, resetTranscript } = useSpeechRecognition({ commands })
   return (
     <div className="microphone-wrapper">
       <div className="microphone-container">
         <div className="microphone-icon-container" ref={microphoneRef}>
         </div>
-        <section className="instructions-section">
+        <section className="short-insructions-section">
 
           <h2>{(isListening) ? 'Press the reset button to stop' : 'Press the red circle to start'}</h2>
 
@@ -146,28 +138,39 @@ export function SpeechToText({ event }) {
 
       <div className="microphone-result-container">
         <div className="microphone-result-text">{transcript}</div>
-
-        <button className="microphone-reset btn secondary-btn" onClick={handleReset}>
-          Reset
-        </button>
+        <div className='btns-container'>
+          <button className="microphone-reset btn secondary-btn" onClick={handleReset}>
+            Reset
+          </button>
+          <button className="primary-btn toggle-info-btn" onClick={() => {
+            toggleInfo()
+          }}>
+            {(isInfoOpen) ? 'Close' : 'Open'} info
+          </button>
+        </div>
       </div>
-
-
-
-      <section className="stt-info-container">
-
-
-        {commandsForRender.map(commandObj =>
+      {isInfoOpen && <section className="stt-info-container">
+        <h4>Insructions</h4>
+        <p className='info-upper-description'>There are several simple and common commands, detailed under, that might save you effort when using the app.</p>
+        <p className='info-upper-description'>After pressing the red circle above, <strong>say to the microphone one of the following commands,</strong> and it will do it for you</p>
+        {commandsForRender.map((commandObj, idx) =>
           <div className="command-info-preview">
+
             {commandObj.icon}
-            <span className="command-title">"{commandObj.commandTitle}" - in the end: <span className="optional-txt">{(commandObj.optional) ? commandObj.optional : ''}</span></span>
+            <p className="command-title">
+
+              <strong>{commandObj.commandTitle}</strong> <span className='command-text-optional'> {(commandObj.optional) ? commandObj.optional : ''}</span>
+              {(idx === 0) ? <p className='example-text'> For example: Please create a board "new project" </p> : ''}
+              {/* "{commandObj.commandTitle}" - in the end: <span className="optional-txt">{(commandObj.optional) ? commandObj.optional : ''} */}
+            </p>
 
           </div>)}
-      </section>
+      </section>}
 
     </div>
   );
 }
+{/* <BsInfo className="info-icon" /> */ }
 
 
 

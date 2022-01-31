@@ -10,7 +10,7 @@ import { CreateBoardContent } from "./CreateBoardContent.jsx";
 import { SpeechToTextModalContent } from "./SpeechToTextMoadlContent.jsx";
 import { toggleModal } from "../../store/app/app.action.js";
 
-export function DynamicBoardActionModal({ isListening, members, isModalOpen, extraMembers, member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0 }) {
+export function DynamicBoardActionModal({ isListening, extraMembers, member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0 }) {
     const dispatch = useDispatch();
 
     const [windowWidth, setWidth] = useState(window.innerWidth);
@@ -42,9 +42,6 @@ export function DynamicBoardActionModal({ isListening, members, isModalOpen, ext
         // }
     }
 
-    console.log('type:', type);
-
-
     const getContentForDisplay = () => {
         switch (type) {
             case 'profile':
@@ -64,10 +61,8 @@ export function DynamicBoardActionModal({ isListening, members, isModalOpen, ext
         }
     }
     const getModalPositionStyle = () => {
-        console.log('posYAddition:', posYAddition);
-
         const { top, left, height, right, width } = event.target.getBoundingClientRect();
-        if (type === 'stt') return { top: top + height + 20, left: left - 160, border: 'none' }
+        if (type === 'stt') return { top: top + height + 20, left: left - 160, border: 'none', width: '405px' }
         const sideStart = (windowWidth < 550) ? 'right' : 'left'
         const sideStartValue = (windowWidth < 550) ? 10 : left
         if (type === 'profile') return { top: top + height + posYAddition, right: '10px', border: 'none' }

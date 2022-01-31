@@ -1,14 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 // Action
 import {onSaveBoard} from '../../store/board/board.action.js';
 
 export function GroupPreviewTitle({group}) {
+  // console.log('group in GroupPreviewTitle', group.title )
   const dispatch = useDispatch();
   const board = useSelector(state => state.boardModule.board);
-  const newGroup = {...group};
-  const [title, setTitle] = useState(newGroup.title);
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    setTitle(group.title)
+  }, [group.title])
+
+  // useEffect(() => {
+  //   console.log('did mount')
+  //   setTitle(group.title)
+  // }, [])
 
   const handleChange = ({target}) => {
     const title = target.value;
@@ -21,18 +30,17 @@ export function GroupPreviewTitle({group}) {
   };
 
   const saveGroupTitle = async () => {
-    const newBoard = {...board};
-    const groupIdx = newBoard.groups.findIndex(group => group.id === newGroup.id);
+    const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
     // Same title - no change or title is empty
-    if (newBoard.groups[groupIdx].title === title || !title) return;
-    newBoard.groups[groupIdx].title = title;
+    if (board.groups[groupIdx].title === title || !title) return;
+    board.groups[groupIdx].title = title;
     try {
-      await dispatch(onSaveBoard(newBoard));
+      await dispatch(onSaveBoard(board));
     } catch (err) {
       console.log('Cant change group title', err);
     }
   };
-
+  if(!title) return <></>
   return (
     <form onSubmit={handleSubmit}>
       <input
