@@ -7,9 +7,9 @@ import { BsTextLeft } from "react-icons/bs";
 import { updateTask } from '../../store/board/board.action.js';
 
 export function TaskDescription({ board, group, task, description }) {
-    
+
     const dispatch = useDispatch();
-    const [descriptionText, setDescriptionText] = useState(false);
+    const [descriptionText, setDescriptionText] = useState('');
     const [isTextAreaOpen, toggleTextArea] = useState(false);
 
     const onSaveDescription = () => {

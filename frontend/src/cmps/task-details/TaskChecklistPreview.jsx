@@ -75,10 +75,10 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
     }
 
     function saveChecklist(ev, checklistId) {
-s        ev.preventDefault();
-s        task.checklists = task.checklists.map(checklist =>
+        ev.preventDefault();
+        task.checklists = task.checklists.map(checklist =>
             (checklist.id === checklistId ? checklistData : checklist));
-s        onUpdateTask(task, `renamed ${checklistData.title} (from checklist)`)
+        onUpdateTask(task, `renamed ${checklistData.title} (from checklist)`)
     }
 
     function onUpdateTask(task, activityTxt) {
