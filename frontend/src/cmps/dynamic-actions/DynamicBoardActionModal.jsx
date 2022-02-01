@@ -64,7 +64,7 @@ export function DynamicBoardActionModal({ isListening, members, isModalOpen, ext
     }
     const getModalPositionStyle = () => {
         const { top, left, height, right, width } = event.target.getBoundingClientRect();
-        if (type === 'stt') return { top: top + height + 20, left: left - 160, border: 'none', width: '405px' }
+        if (type === 'stt') return { top: top + height + 20, left: left - 185, border: 'none', width: '405px' }
         const sideStart = (windowWidth < 550) ? 'right' : 'left'
         const sideStartValue = (windowWidth < 550) ? 10 : left
         if (type === 'profile') return { top: top + height + posYAddition, right: '10px', border: 'none' }
