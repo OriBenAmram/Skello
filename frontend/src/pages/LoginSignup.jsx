@@ -47,7 +47,7 @@ export function LoginSignup(props) {
   const onLoginGoogle = async (googleData) => {
     try {
       // const res = await fetch('http://localhost:3030/api/google-login', {
-      await fetch('/api/google-login', {
+      const res = await fetch('/api/google-login', {
         method: 'POST',
         body: JSON.stringify({
           token: googleData.tokenId,
