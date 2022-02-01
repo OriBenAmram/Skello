@@ -58,7 +58,6 @@ export function DynamicActionModal({ isDeleteModal = false ,toggleModal, type, t
             const startSide = (width / left < 2) ? 'right' : 'left'
             const startSideValue = (width / left < 2) ? 30 : left;
             if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover') && isDetails) {
-                console.log('wowow');
                 return { top: top / 2, left }
             }
             if (width > 1050) return { top: top + height, left: left }
