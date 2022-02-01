@@ -22,7 +22,6 @@ import { login, signup } from '../store/user/user.actions';
 
 export function LoginSignup(props) {
   const dispatch = useDispatch();
-  const loggedInUser = useSelector(state => state.userModule.loggedinUser)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullname] = useState('');
@@ -73,12 +72,6 @@ export function LoginSignup(props) {
         fullname: result.name, imgUrl: result.picture, googleId: result.googleId
       }));
       props.history.push('/workspace');
-      // setTimeout(() => {
-
-      //   props.history.push('/workspace');
-        
-      // }, 500);
-
 
     } catch (err) {
       console.log('Cannot login', err);

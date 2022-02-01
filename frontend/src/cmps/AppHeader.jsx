@@ -23,30 +23,17 @@ export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
-  // const user = useSelector(state => state.userModule.loggedinUser)
-  const [user, setLocalUser] = useState(null)
+  const user = useSelector(state => state.userModule.loggedinUser)
 
   useEffect(() => {
     getLoggedInUser()
     dispatch(loadUsers())
   }, [])
 
-  useEffect(() => {
-    if (location.pathname !== '/login' || location.pathname !== '/signup') {
-      setUserInStore()
-    }
-  }, [location.pathname])
-
-  const setUserInStore = () => {
-    const userFromSession = userService.getLoggedinUser()
-    setLocalUser(userFromSession)
-  }
 
   const getLoggedInUser = async () => {
     const loggedInUser = userService.getLoggedinUser() || await userService.loginAsGuest()
-    setLocalUser(loggedInUser)
     dispatch(setUser(loggedInUser))
-    // setUser(loggedInUser)
   }
 
   const onUserClick = event => {

@@ -1,7 +1,7 @@
 import {userService} from '../../services/user.service.js';
 
 export function login(credentials) {
-  console.log('doing login')
+  console.log('doing login');
   return async dispatch => {
     try {
       const user = await userService.login(credentials);
@@ -20,7 +20,6 @@ export function signup(credentials) {
   return async dispatch => {
     try {
       const user = await userService.signup(credentials);
-      console.log('user before dispatch', user)
       dispatch({
         type: 'SET_USER',
         user,
