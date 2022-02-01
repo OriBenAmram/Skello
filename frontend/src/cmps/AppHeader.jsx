@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import { AiFillHome, AiOutlineDown } from 'react-icons/ai';
 import { ImTrello } from 'react-icons/im';
-
 
 // Services
 import { userService } from '../services/user.service';
@@ -16,8 +15,6 @@ import { toggleModal } from '../store/app/app.action';
 
 // cmps
 import { SkellMicAssistant } from './SkellMicAssistence';
-
-
 
 export function AppHeader() {
   const dispatch = useDispatch();
@@ -86,35 +83,31 @@ export function AppHeader() {
       {/* HOME */}
 
 
-      {(!user && isHome) && (
-        <section className="login-signup-container">
-          <Link to={'/login'}>
-            <button className="login-btn">Log in</button>
-          </Link>
-          <Link to={'/signup'}>
-            <button className="signup-btn">Sign up</button>
-          </Link>
-        </section>
-      )}
-      {(user && isHome) && (
+      {(user && user.fullname !== 'Guest' && isHome) && (
         <section className="login-signup-container">
           <Link to={'/signup'}>
             <button className="signup-btn">Log out</button>
           </Link>
         </section>
       )}
+      {(!user || user.fullname === 'Guest' && isHome) && (
+        <section className="login-signup-container">
+          <Link to={'/login'}>
+            <button className="login-btn">Log in</button>
+          </Link>
+          <Link to={'/signup'}>
+            <button className="signup-btn">Sign up</button> 
+          </Link>
+        </section>
+      )}
       {user && !isHome && (
         <section className="user-section">
-          {/* <div className='bell-icon-container' onClick={() => { 
-            onBellClick()
-          }}><BiBell className='bell-icon'/></div> */}
           <div
             className={`${user?.imgUrl ? 'avatar-image' : 'member-avatar'}`}
             style={getAvatarByUser()}
             onClick={event => {
               onUserClick(event);
             }}>
-            {/* {user.fullname.charAt(0).toUpperCase} */}
           </div>
         </section>
       )}
