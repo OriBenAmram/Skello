@@ -46,7 +46,6 @@ export function GroupPreview({ group, boardId, board, index, boardLabels, areLab
       filteredTasks = filteredTasks.filter(task => task.title.toLowerCase().includes(txt.toLowerCase()))
     }
     if (members?.length) {
-      console.log('imhere');
       filteredTasks = filteredTasks.filter(task => task.members.some(entity => filterBy.members.includes(entity._id)))
     }
     if (labels?.length) {

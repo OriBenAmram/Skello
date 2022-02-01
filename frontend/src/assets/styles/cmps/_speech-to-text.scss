@@ -216,9 +216,16 @@
 }
 
 .icon-microphone {
-    font-size: 25px;
+    box-sizing: unset;
+    padding: 10px 10px;
+    font-size: 20px;
     color: whitesmoke;
     cursor: pointer;
+
+    &:hover{
+        background-color: rgba(255, 255, 255, 0.2);
+
+    }
 }
 
 //Info Container

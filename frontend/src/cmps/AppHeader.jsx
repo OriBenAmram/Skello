@@ -46,11 +46,16 @@ export function AppHeader() {
 
 
   const getAvatarByUser = () => {
-    return { background: `url(${user.imgUrl}) center center / cover` };
+    return { background: `url(${user?.imgUrl}) center center / cover` };
   };
+
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
+
+
+
+  if (!user) return <></>
 
   return (
     <header

@@ -108,6 +108,7 @@
             .full-cover-mode-upper-gradient {
                 left: 0;
                 right: 0;
+                height: 32px;
                 mix-blend-mode: normal;
                 width: 100%;
                 padding: 8px 8px 0px;
@@ -411,6 +412,7 @@
 
 .badge.due-date {
     padding-right: 7px;
+    padding-left: 2px;
 
     &.complete {
         .badge-icon {

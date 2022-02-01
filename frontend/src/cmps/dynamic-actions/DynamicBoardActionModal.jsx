@@ -1,15 +1,13 @@
 import { useRef, useEffect, useState } from "react"
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // CMPS
 import { ProfileModalContent } from './ProfileModalContent.jsx'
-import { BoardsModalContent } from './BoardsModalContent.jsx'
 import { AddMemberModalContent } from './AddMemberModalContent.jsx'
 import { TaskProfileMemberModal } from './TaskProfileMemberModal.jsx'
 import { OtherMemberModalContent } from './OtherMemberModalContent.jsx'
 import { CreateBoardContent } from "./CreateBoardContent.jsx";
 import { SpeechToTextModalContent } from "./SpeechToTextMoadlContent.jsx";
-import { toggleModal } from "../../store/app/app.action.js";
 
 export function DynamicBoardActionModal({ isListening, members, isModalOpen, extraMembers,
     member, onToggleModal, boardTitle, type, event, posXAddition = 0, posYAddition = 0, task, groupId }) {

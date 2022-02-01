@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IoCheckbox } from "react-icons/io5";
-import { MdCheckBoxOutlineBlank, MdMoreHoriz } from "react-icons/md";
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 export function PopoverFilterUser({ member, setFilterBy, filterBy }) {
 
@@ -10,7 +10,6 @@ export function PopoverFilterUser({ member, setFilterBy, filterBy }) {
         const fieldCurrStatus = !checkedUserField;
         let members;
         if (fieldCurrStatus) {
-            console.log('true');
             members = [...filterBy.members, memberId]
         } else {
             members = filterBy.members.filter(entityId => entityId !== memberId)

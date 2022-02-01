@@ -3,11 +3,14 @@
     padding: 0px 12px 12px;
     .upload-pc-container{
     margin-bottom: 7px;
-    border-bottom: 1px solid #091e4221;
+
+    .upload-file-pc { 
+        border:none;
+    }
 
         label{
-            padding: 6px 12px;
-            margin: 0 7px;
+            padding: 6px 12px 6px 0;
+            margin: 0 7px 0 0;
             height: 32px;
             line-height: 30px;
             width: 20rem;

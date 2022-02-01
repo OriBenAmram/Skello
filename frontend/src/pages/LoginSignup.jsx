@@ -1,32 +1,23 @@
-import React, { useState, useEffect } from 'react';
-
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { Link } from 'react-router-dom';
-import googleIcon from '../assets/imgs/google-icon.svg';
-import femaleGuest from '../assets/imgs/female-guest.svg';
+import { ImTrello } from 'react-icons/im';
 import leftHero from '../assets/imgs/left-loginsignup-hero.svg';
 import rightHero from '../assets/imgs/right-loginsignup-hero.svg';
-import { ImTrello } from 'react-icons/im';
 
 // Google Actions
 import { LoginWithGoogle } from '../cmps/login/LoginGoogle';
-import { LogoutWithGoogle } from '../cmps/login/LogoutGoogle';
-
-// Services
-import { userService } from '../services/user.service';
 
 // Actions
 import { login, signup } from '../store/user/user.actions';
 
 export function LoginSignup(props) {
   const dispatch = useDispatch();
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullname] = useState('');
-  const [isLoginWithGoogle, setLoginWithGoogle] = useState(false);
-  // const [isLogin, setIsLogin] = useState(true);
+
   const isLogin = props.location.pathname.includes('login');
 
   const handleSubmit = async ev => {
@@ -55,8 +46,8 @@ export function LoginSignup(props) {
   // Todo: to enable user sign up multiple times with google, even if exists
   const onLoginGoogle = async (googleData) => {
     try {
-      await fetch('http://localhost:3030/api/google-login', {
-        // await fetch('http://skello.herokuapp.com/api/google-login', {
+      const res = await fetch('http://localhost:3030/api/google-login', {
+        // await fetch('/api/google-login', {
         method: 'POST',
         body: JSON.stringify({
           token: googleData.tokenId,
@@ -65,16 +56,20 @@ export function LoginSignup(props) {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(res => res.json()).then(data => {
-        dispatch(signup({ username: data.email, password: data.googleId, fullname: data.name, imgUrl: data.picture, googleId: data.googleId }));
-        props.history.push('/workspace');
-      });
+      })
+      const result = await res.json()
+      await dispatch(signup({
+        username: result.email, password: result.googleId,
+        fullname: result.name, imgUrl: result.picture, googleId: result.googleId
+      }));
+      props.history.push('/workspace');
 
     } catch (err) {
       console.log('Cannot login', err);
     }
 
   }
+
 
   const onClickGuest = async () => {
     await dispatch(

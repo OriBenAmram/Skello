@@ -72,7 +72,7 @@ export function BoardHeader({ board }) {
   const handleExtraPopup = (event) => {
     const members = [...board.members]
     dispatch(toggleModal(
-      { event, type: 'extraMembers', extraMembers: members.splice(shownMembers), isShown: true }))
+      { event, type: 'extraMembers', extraMembers: members.splice(shownMembers),  isShown: !isModalOpen }))
 
   }
 
@@ -118,10 +118,10 @@ export function BoardHeader({ board }) {
           </div>
         </div>
         <div className="nav-right flex">
-          <button className="nav-btn flex">
+          {/* <button className="nav-btn flex">
             <IoBarChart />
             <p>Dashbaord</p>
-          </button>
+          </button> */}
           <button
             className="nav-btn flex"
             onClick={() => {

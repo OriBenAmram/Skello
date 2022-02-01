@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BsCheck2Square } from "react-icons/bs";
 
-
 import { TaskTodoList } from './TaskTodoList.jsx'
 import { TaskChecklistProgressbar } from './TaskChecklistProgressbar.jsx';
 
@@ -19,7 +18,6 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
 
     function handleChange({ target }) {
         const { name, value } = target
-        console.log('value:', value);
         setChecklistData({ ...checklistData, [name]: value })
     }
 
@@ -77,12 +75,9 @@ export function TaskChecklistPreview({ board, boardId, groupId, task, checklist,
     }
 
     function saveChecklist(ev, checklistId) {
-        console.log('before prevent Default')
         ev.preventDefault();
-        console.log('saving')
         task.checklists = task.checklists.map(checklist =>
             (checklist.id === checklistId ? checklistData : checklist));
-        console.log('checklistData:', checklistData);
         onUpdateTask(task, `renamed ${checklistData.title} (from checklist)`)
     }
 

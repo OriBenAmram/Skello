@@ -29,7 +29,7 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
                 <input autoFocus type="text" className={`primary-input filter-cards-input ${(isSearchOpen) ? 'open' : 'closed'}`} onChange={(ev) => {
                     setSearchText(ev.target.value)
                 }} />
-                <button className='primary-link-btn'>
+                <button className='primary-link-btn bg-header-btn'>
                     <MdOutlinePhotoCameraBack className='primary-icon' />
                     Change background
                 </button>

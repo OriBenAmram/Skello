@@ -1,0 +1,23 @@
+.pop-over-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 12px 12px;
+
+    >* { 
+        margin-bottom: 15px;
+    }
+
+    input { 
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    label { 
+        margin-bottom: 10px;
+    }
+
+    :last-child { 
+        margin-bottom: 0;
+    }
+}

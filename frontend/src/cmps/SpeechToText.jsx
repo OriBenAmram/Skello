@@ -83,9 +83,6 @@ export function SpeechToText({ event }) {
     {
       command: 'filter by *',
       callback: (name) => {
-        console.log('name:', name);
-        console.log('useSpeechRecognition:', useSpeechRecognition);
-
         const memberId = getMemberIdByFullName(name)
         console.log('memberId:', memberId);
         if (!memberId) {

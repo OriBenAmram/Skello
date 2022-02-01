@@ -1,20 +1,14 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GrClose } from "react-icons/gr";
 import boardPreview from '../../assets/imgs/board-preview.svg';
 
 // Actions
-
-
 import { toggleModal } from '../../store/app/app.action';
 import { addBoard } from '../../store/board/board.action';
+
 export function CreateBoardContent({ onToggleModal, isGeneralModal, boardTitle }) {
-
-    console.log('onToggleModal:', onToggleModal);
-
-    console.log('boardTitle:', boardTitle);
-
 
     const [board, setBoard] = useState({ title: (boardTitle) ? boardTitle : '', style: { background: '#ff9f1a' } });
     const dispatch = useDispatch()
