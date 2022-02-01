@@ -57,26 +57,19 @@ export function BoardApp(props) {
   }, []);
 
   const toggleQuickCardEditor = (event, task, groupId) => {
-
-
-
-
     event.stopPropagation();
     const parentElement = task ? event.currentTarget.parentNode : null;
     const position = task ? parentElement.getBoundingClientRect() : {};
-    const style = getPositionByTarget(event.target.getBoundingClientRect())
+    const style = task ? getPositionByTarget(event.target.getBoundingClientRect(), parentElement.getBoundingClientRect()) : {}
     setQuickCardEditor({ taskToEdit: task, groupId, position, style });
   };
 
 
-  const getPositionByTarget = ({ left, right, top, bottom }) => {
-    console.log('windowWidth, windowHeight:', windowWidth, windowHeight);
-    console.log('left, right, top, bottom:', left, right, top, bottom);
-
+  const getPositionByTarget = (eventTarget, parentElementBounding) => {
+    const { left, right, top, bottom } = eventTarget
 
     if (windowHeight - top < 160) return { position: 'fixed', top: top - 180, }
-    if (windowWidth - left < 420) {
-      console.log('im here@');
+    if (windowWidth - left < 200) {
       return {
         position: 'fixed', right: 15, top
       }
@@ -89,7 +82,7 @@ export function BoardApp(props) {
     }
     else {
       return {
-        position: 'fixed', top: top - 20, left: left - 235,
+        position: 'fixed', top: parentElementBounding.top, left: parentElementBounding.left,
       }
     }
 

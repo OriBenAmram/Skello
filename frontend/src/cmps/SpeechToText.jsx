@@ -84,7 +84,6 @@ export function SpeechToText({ event }) {
       command: 'filter by *',
       callback: (name) => {
         const memberId = getMemberIdByFullName(name)
-        console.log('memberId:', memberId);
         if (!memberId) {
           setValidMsg('member not found - please try again');
           handleReset()
@@ -153,7 +152,7 @@ export function SpeechToText({ event }) {
   }
 
   let { transcript, resetTranscript } = useSpeechRecognition({ commands })
-  console.log('useSpeechRecognition({ commands }):', useSpeechRecognition({ commands }));
+
 
 
   return (
@@ -202,15 +201,15 @@ export function SpeechToText({ event }) {
         <p className="info-upper-description">There are several simple and common commands, detailed under, that might save you effort when using the app.</p>
         <p className="info-upper-description">After pressing the red circle above, <strong>say to the microphone one of the following commands,</strong> and it will do it for you</p>
         {commandsForRender.map((commandObj, idx) =>
-          <div className="command-info-preview">
+          <div key={idx} className="command-info-preview">
 
             {commandObj.icon}
-            <p className="command-title">
+            <div className="command-title">
 
               <strong>{commandObj.commandTitle}</strong> <span className="command-text-optional"> {(commandObj.optional) ? commandObj.optional : ''}</span>
               {(idx === 0) ? <p className="example-text"> For example: Please create a board "new project" </p> : ''}
               {/* "{commandObj.commandTitle}" - in the end: <span className="optional-txt">{(commandObj.optional) ? commandObj.optional : ''} */}
-            </p>
+            </div>
 
           </div>)}
       </section>}

@@ -7,8 +7,6 @@ export function toggleSideMenu() {
 }
 
 export function toggleBlindMode() {
-  console.log('toggeling:');
-
   return async dispatch => {
     dispatch({
       type: 'TOGGLE_BLINDMODE',
