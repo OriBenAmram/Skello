@@ -114,12 +114,12 @@ class _QuickCardEditor extends React.Component {
 
   render() {
     const { task, taskTitle, modal } = this.state;
-    const { position, groupId, board, taskId, onOpenTaskFromQuickEdit, toggleQuickCardEditor } = this.props;
+    const { position, style, groupId, board, taskId, onOpenTaskFromQuickEdit, toggleQuickCardEditor } = this.props;
 
     if (!task) return <Loader />;
 
     return (
-      <div className="quick-card-editor flex" style={{ position: 'fixed', top: position.top, left: position.left }}>
+      <div className="quick-card-editor flex" style={{ ...style }}>
         <div>
           <div className="task-preview-edit" style={{ width: position.width }}>
             {/* HEADER */}

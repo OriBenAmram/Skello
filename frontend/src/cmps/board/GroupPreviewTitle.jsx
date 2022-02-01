@@ -7,7 +7,7 @@ import { onSaveBoard } from '../../store/board/board.action.js';
 export function GroupPreviewTitle({ board, group }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
-  
+
   useEffect(() => {
     setTitle(group.title)
   }, [group.title])

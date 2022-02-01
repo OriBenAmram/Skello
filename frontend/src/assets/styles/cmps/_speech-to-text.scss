@@ -45,12 +45,13 @@
                         text-align: left;
                     }
                     .blob {
-                        background: black;
+                        background: inherit;
                         border-radius: 50%;
-                        height: 30px;
-                        width: 30px;
+                        height: 35px;
+                        width: 35px;
+                        // padding: 5px;
                         box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
-                        background-color: maroon;
+                        // background-color: maroon;
                         cursor: pointer;
                         text-align: center;
 
@@ -58,10 +59,35 @@
                             transform: scale(1);
                             animation: pulse 2s infinite;
                         }
+
+                        .mic-icon{
+                            font-size: 23px;
+                            color: #212427;
+                            opacity: .8;
+                            // padding: px;
+                        }
                     }
                 }
             }
             .microphone-result-container {
+
+                .validMsg{
+                    color: red;
+                    font-size: 13px;
+                    // font-style: italic;
+
+                    .cta{
+                        color: red;
+                    
+                        // font-style: italic;
+                        text-decoration: underline;
+                        transition: 0.2ms ease-in-out;
+                        cursor: pointer;
+                        &:hover{
+                            color: gray;
+                        }
+                    }
+                }
                 .microphone-result-text {
                     width: 100%;
                     text-align: center;
@@ -91,17 +117,17 @@
         @keyframes pulse {
             0% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+                box-shadow: 0 0 0 0 rgba(165, 45, 45, 0.7);
             }
 
             70% {
                 transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+                box-shadow: 0 0 0 10px rgba(165, 45, 45, 0);
             }
 
             100% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                box-shadow: 0 0 0 0 rgba(165, 45, 45, 0);
             }
         }
 

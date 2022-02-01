@@ -18,8 +18,18 @@ export function BoardApp(props) {
   const dispatch = useDispatch();
   let history = useHistory();
   const board = useSelector(state => state.boardModule.board);
-  const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {} });
+  const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {}, style: {} });
   const { id } = props.match.params;
+
+
+  // position 
+  const [windowWidth, setWidth] = useState(window.innerWidth);
+  const [windowHeight, setHeight] = useState(window.innerHeight);
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  }
+
 
   useEffect(() => {
     try {
@@ -47,11 +57,44 @@ export function BoardApp(props) {
   }, []);
 
   const toggleQuickCardEditor = (event, task, groupId) => {
+
+
+
+
     event.stopPropagation();
     const parentElement = task ? event.currentTarget.parentNode : null;
     const position = task ? parentElement.getBoundingClientRect() : {};
-    setQuickCardEditor({ taskToEdit: task, groupId, position });
+    const style = getPositionByTarget(event.target.getBoundingClientRect())
+    setQuickCardEditor({ taskToEdit: task, groupId, position, style });
   };
+
+
+  const getPositionByTarget = ({ left, right, top, bottom }) => {
+    console.log('windowWidth, windowHeight:', windowWidth, windowHeight);
+    console.log('left, right, top, bottom:', left, right, top, bottom);
+
+
+    if (windowHeight - top < 160) return { position: 'fixed', top: top - 180, }
+    if (windowWidth - left < 420) {
+      console.log('im here@');
+      return {
+        position: 'fixed', right: 15, top
+      }
+    }
+    if (windowWidth - left < 420 && windowHeight - top < 160) {
+      console.log('width < 420');
+      return {
+        position: 'fixed', top: top - 160, right: 15
+      }
+    }
+    else {
+      return {
+        position: 'fixed', top: top - 20, left: left - 235,
+      }
+    }
+
+  }
+
 
   const onOpenTaskFromQuickEdit = (groupId, taskId) => {
     history.push(`${id}/${groupId}/${taskId}`)
@@ -103,6 +146,7 @@ export function BoardApp(props) {
           taskId={quickCardEditor.taskToEdit.id}
           groupId={quickCardEditor.groupId}
           position={quickCardEditor.position}
+          style={quickCardEditor.style}
           toggleQuickCardEditor={toggleQuickCardEditor}
           onOpenTaskFromQuickEdit={onOpenTaskFromQuickEdit}
         />

@@ -30,7 +30,7 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
   const onMemberClick = (event, member) => {
     dispatch(toggleModal({ event, type: 'otherMemberModal', member }));
   }
-  
+
   return (
     <section className='activity-section'>
       <section className='activity-container'>
@@ -44,7 +44,7 @@ export function ActivityContent({ isSideBarOpen, toggleSideMenu }) {
         {board?.activities?.length > 0 && <div>
           {board.activities.map(activity => {
 
-            
+
             if (activity.isComment) {
               return <section key={activity.id} className='activity-preview'>
                 <div className={`member-avatar ${(activity.member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(activity.member)} onClick={(event) => {
