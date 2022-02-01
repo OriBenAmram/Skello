@@ -6,7 +6,6 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { DynamicActionModal } from './dynamic-actions/DynamicActionModal';
 // import { BiMicrophone } from "react-icons/bi";
 
-
 // Icons 
 import { IoCreateOutline, IoLogOutOutline } from 'react-icons/io5'
 import { BiFilterAlt } from 'react-icons/bi'

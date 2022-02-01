@@ -11,7 +11,7 @@ import { userService } from '../services/user.service';
 
 
 // Actions
-import { loadUsers, loadUser } from '../store/user/user.actions.js';
+import { loadUsers, setUser } from '../store/user/user.actions.js';
 import { toggleModal } from '../store/app/app.action';
 
 // cmps
@@ -22,16 +22,19 @@ import { SkellMicAssistant } from './SkellMicAssistence';
 export function AppHeader() {
   const dispatch = useDispatch();
   let location = useLocation();
-  const user = userService.getLoggedinUser();
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
+  const user = useSelector(state => state.userModule.loggedinUser)
 
   useEffect(() => {
+    getLoggedInUser()
     dispatch(loadUsers())
   }, [])
 
-  useEffect(() => {
-    if (user?._id) dispatch(loadUser(user._id))
-  }, [user])
+
+  const getLoggedInUser = async () => {
+    const loggedInUser = userService.getLoggedinUser() || await userService.loginAsGuest()
+    dispatch(setUser(loggedInUser))
+  }
 
   const onUserClick = event => {
     dispatch(toggleModal({ event, type: 'profile', posXAddition: -300, isShown: !isModalOpen }));
@@ -78,7 +81,7 @@ export function AppHeader() {
       {/* HOME */}
 
 
-      {(!user || isHome) && (
+      {(isHome) && (
         <section className="login-signup-container">
           <Link to={'/login'}>
             <button className="login-btn">Log in</button>
@@ -88,6 +91,13 @@ export function AppHeader() {
           </Link>
         </section>
       )}
+      {/* {(user && isHome) && (
+        <section className="login-signup-container">
+          <Link to={'/signup'}>
+            <button className="signup-btn">Log out</button>
+          </Link>
+        </section>
+      )} */}
       {user && !isHome && (
         <section className="user-section">
           {/* <div className='bell-icon-container' onClick={() => { 

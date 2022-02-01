@@ -42,7 +42,22 @@ export function RootCmp() {
       </main>
 
       <PopoverSideMenu toggleSideMenu={onToggleSideMenu} isSideBarOpen={isSideBarOpen} />
-      {(popupModal.isModalOpen) && <DynamicBoardActionModal extraMembers={popupModal.extraMembers} isListening={popupModal.isListening} boardTitle={popupModal.boardTitle} member={popupModal.member} onToggleModal={onToggleModal} isModalOpen={popupModal.isModalOpen} event={popupModal.event} type={popupModal.type} posXAddition={popupModal.posXAddition} posYAddition={popupModal.posYAddition} />}
+      {(popupModal.isModalOpen) &&
+        <DynamicBoardActionModal
+          extraMembers={popupModal.extraMembers}
+          task={popupModal.task}
+          groupId={popupModal.groupId}
+          isListening={popupModal.isListening}
+          boardTitle={popupModal.boardTitle}
+          member={popupModal.member}
+          onToggleModal={onToggleModal}
+          isModalOpen={popupModal.isModalOpen}
+          event={popupModal.event}
+          type={popupModal.type}
+          posXAddition={popupModal.posXAddition}
+          posYAddition={popupModal.posYAddition}
+
+        />}
     </div >
   );
 

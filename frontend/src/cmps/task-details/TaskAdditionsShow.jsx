@@ -98,10 +98,10 @@ export function TaskAdditionsShow({ board, group, task }) {
         setModal({ isModalOpen: true, type, event })
     }
 
-    const getAvatarInnerText = (member) => {
-        if (member.imgUrl) return ''
-        return member.fullname.charAt(0).toUpperCase()
-    }
+    // const getAvatarInnerText = (member) => {
+    //     if (member.imgUrl) return ''
+    //     return member.fullname.charAt(0).toUpperCase()
+    // }
 
     const getAvatarBackground = (member) => {
         if (member.imgUrl) return { background: `url(${member.imgUrl}) center center / cover` }
@@ -116,7 +116,7 @@ export function TaskAdditionsShow({ board, group, task }) {
                     {task.members.map((member, idx) => <div key={idx} className={`member-avatar ${(member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(member)} onClick={() => {
                         onClickAvatar(member)
                     }}>
-                        {getAvatarInnerText(member)}
+                        {/* {getAvatarInnerText(member)} */}
                     </div>)}
                     <div className='plus-item member-avatar' onClick={(event) => {
                         toggleModal({ event, type: 'members' })

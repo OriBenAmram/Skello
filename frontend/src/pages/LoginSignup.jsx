@@ -67,7 +67,7 @@ export function LoginSignup(props) {
         }
       }).then(res => res.json()).then(data => {
         dispatch(signup({ username: data.email, password: data.googleId, fullname: data.name, imgUrl: data.picture, googleId: data.googleId }));
-        props.history.push('/');
+        props.history.push('/workspace');
       });
 
     } catch (err) {

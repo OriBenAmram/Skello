@@ -39,7 +39,6 @@ export function BoardApp(props) {
       // get updated board from backend
       socketService.off('updated-board');
       socketService.on('updated-board', async updatedBoard => {
-        console.log('updated board from socket in BoardApp', updatedBoard)
         await dispatch(setBoard(updatedBoard));
       });
       onLoadBoard();
@@ -122,14 +121,13 @@ export function BoardApp(props) {
       handleDrag(board, source.droppableId, destination.droppableId, source.index, destination.index, type)
     );
   };
-
   if (!board) return <Loader />;
   return (
     <React.Fragment>
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           className="board-app-wrapper"
-          style={{ background: `${board?.style?.background}  center center / cover` }}>
+          style={{ background: `${board.style?.background}  center center / cover` }}>
           <div className="board-app">
             <BoardHeader board={board} />
             <GroupList

@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 // Action
 import { onSaveBoard } from '../../store/board/board.action.js';
 
-export function GroupPreviewTitle({ group }) {
+export function GroupPreviewTitle({ group, board }) {
   // console.log('group in GroupPreviewTitle', group.title )
   const dispatch = useDispatch();
-  const board = useSelector(state => state.boardModule.board);
   const [title, setTitle] = useState('');
 
   useEffect(() => {
