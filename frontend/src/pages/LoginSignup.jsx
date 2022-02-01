@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import googleIcon from '../assets/imgs/google-icon.svg';
 import femaleGuest from '../assets/imgs/female-guest.svg';
@@ -21,11 +22,11 @@ import { login, signup } from '../store/user/user.actions';
 
 export function LoginSignup(props) {
   const dispatch = useDispatch();
-
+  const loggedInUser = useSelector(state => state.userModule.loggedinUser)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullname] = useState('');
-  const [isLoginWithGoogle, setLoginWithGoogle] = useState(false);
+  // const [isLoginWithGoogle, setLoginWithGoogle] = useState(false);
   // const [isLogin, setIsLogin] = useState(true);
   const isLogin = props.location.pathname.includes('login');
 
@@ -71,11 +72,12 @@ export function LoginSignup(props) {
         username: result.email, password: result.googleId,
         fullname: result.name, imgUrl: result.picture, googleId: result.googleId
       }));
+      props.history.push('/workspace');
+      // setTimeout(() => {
 
-      setTimeout(() => {
-
-        props.history.push('/workspace');
-      }, 500);
+      //   props.history.push('/workspace');
+        
+      // }, 500);
 
 
     } catch (err) {

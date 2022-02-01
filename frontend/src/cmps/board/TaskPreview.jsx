@@ -254,10 +254,10 @@ export function TaskPreview(props) {
 
               {/* TITLE */}
               <div
-                className={`task-title ${isTextDarkMode ? 'dark-text-mode' : 'bright-text-mode'}`}
+                className={`task-title ${isTextDarkMode ? 'bright-text-mode' : 'dark-text-mode'}`}
                 style={getTitleStyleByCover()}>
                 <div className="full-cover-mode-upper-gradient"></div>
-                <div className={`title-container ${isBadges ? 'expend' : ''}`}>
+                <div className={`title-container ${(isBadges && !isCover) ? 'expend' : ''}`}>
                   <p>{title}</p>
                 </div>
               </div>

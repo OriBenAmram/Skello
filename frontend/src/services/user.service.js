@@ -37,7 +37,7 @@ function _saveLocalUser(user) {
 async function signup(userCred) {
   try {
     await httpService.post('auth/signup', userCred);
-    login(userCred);
+    return login(userCred);
   } catch (err) {
     console.log('Cannot signup', err);
   }
@@ -103,6 +103,5 @@ async function getUser(userId) {
 
 function getLoggedinUser() {
   const loggedinUser = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN) || null);
-  console.log('loggedinUser', loggedinUser);
   return loggedinUser;
 }
