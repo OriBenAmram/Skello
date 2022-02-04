@@ -127,6 +127,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
     ]
 
     const onLabelSave = (ev) => {
+        console.log('save label')
         ev.preventDefault();
         const labelToSave = {
             id: selectedLabel.id,
