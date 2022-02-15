@@ -25,11 +25,6 @@ export function Workspace() {
             await dispatch(setBoard(updatedBoard));
             onLoadBoards()
         });
-        try {
-            onLoadBoards()
-        } catch (err) {
-            console.log('Cannot load boards', err);
-        }
 
         return () => {
             socketService.off('updated-board');

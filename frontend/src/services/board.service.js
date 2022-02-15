@@ -4,42 +4,28 @@ import { httpService } from './http.service.js';
 import { socketService } from './socket.service.js';
 import { userService } from './user.service.js';
 
-// Localstorage
-// import DUMMY_BOARDS from './board.dummy.data.service';
-// import {storageService} from './async-storage.service.js';
-
-// TODO: get key from const file and exclude that file from github
 const API_KEY_UNSPLASH = 'Nw9aD2jV-Yfb_bfoA37BqoleA2un9Nv68GDKeRed8Jk';
 
 export const boardService = {
   query,
   getById,
-  // getBoardsFromStorage,
   addGroup,
   removeGroup,
-  // save,
   queryImages,
   addTask,
   updateTask,
   addChecklist,
   addTodo,
   addFile,
-  // updateTaskTest,
   update,
+  updateWithoutSocket,
   add,
 };
-
-// Localstorage
-// const STORAGE_KEY = 'boards';
-// const gBoards = _setBoardsToStorage();
 
 async function query() {
   const boards = await httpService.get('board');
   return boards;
 }
-// function query() {
-//   return storageService.query(STORAGE_KEY);
-// }
 
 // Img
 async function queryImages(query) {
@@ -50,12 +36,6 @@ async function queryImages(query) {
   return photos.data.results;
 }
 
-// For board reducer -> boards store
-// function getBoardsFromStorage() {
-//   const boards = storageService.loadFromStorage(STORAGE_KEY);
-//   return boards;
-// }
-
 async function getById(boardId) {
   try {
     const board = await httpService.get(`board/${boardId}`);
@@ -65,15 +45,19 @@ async function getById(boardId) {
   }
 }
 
-// function getById(boardId) {
-//   return storageService.get(STORAGE_KEY, boardId);
-// }
-
 async function update(board) {
   try {
-    console.log('board before httpService', board);
     await httpService.put('board', board);
     socketService.emit('board-change', board);
+    return board;
+  } catch (err) {
+    console.log('Cannot update board', err);
+  }
+}
+
+async function updateWithoutSocket(board) {
+  try {
+    await httpService.put('board', board);
     return board;
   } catch (err) {
     console.log('Cannot update board', err);

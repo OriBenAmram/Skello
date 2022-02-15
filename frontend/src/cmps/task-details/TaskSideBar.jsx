@@ -19,12 +19,12 @@ export function TaskSideBar({ task, group, board }) {
     const user = useSelector(state => state.userModule.loggedinUser);
     const [modal, setModal] = useState({ isModalOpen: false, type: null, event: null });
 
-    const toggleModal = ({ event, type }) => {
+    const toggleModal = ({ event, type, isMove = false }) => {
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
             return
         }
-        setModal({ isModalOpen: true, type, event })
+        setModal({ isModalOpen: true, type, event, isMove })
     }
 
     const isLoggedInUserInTask = () => {
@@ -78,12 +78,16 @@ export function TaskSideBar({ task, group, board }) {
                         toggleModal({ event, type: 'cover' })
                     }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>
                 </div>
-                {modal.isModalOpen && <DynamicActionModal isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
+                {modal.isModalOpen && <DynamicActionModal isMove={modal.isMove} isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
             </section>
             <section className='actions'>
                 <h3 className="side-bar-title sidebar-primary-btns-container">Actions</h3>
-                <button className="button-link" > <BsArrowRight /> Move</button>
-                <button className="button-link"> <AiOutlineCopy />Copy</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'copy', isMove: true })
+                }} > <BsArrowRight /> Move</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'copy' })
+                }}> <AiOutlineCopy />Copy</button>
                 <button className="button-link archive-main-btn"> <BsArchive /> Archive</button>
             </section>
         </section>
