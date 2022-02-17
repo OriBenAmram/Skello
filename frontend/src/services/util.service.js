@@ -6,7 +6,8 @@ export const utilService = {
     timeSince,
     isValidUrl,
     getTimeDiff,
-    getDateByTimestamp
+    getDateByTimestamp,
+    dueDateFormat,
 }
 
 function makeId(length = 6) {
@@ -119,5 +120,18 @@ function getDateByTimestamp(timestamp) {
         strDate += `${dueYear} `
     }
     strDate += `${new Date(timestamp).toLocaleString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true }).toLocaleUpperCase()}`
+    return strDate
+}
+
+function dueDateFormat(dueDate) {
+    const currYear = new Date().getFullYear()
+    const dueYear = new Date(dueDate).getFullYear()
+    let strDate = ''
+    strDate += `${new Date(dueDate).toLocaleString('en-GB', { day: 'numeric' })} `
+    strDate += `${new Date(dueDate).toLocaleString('en-GB', { month: 'short' })} at `
+    if (dueYear !== currYear) {
+        strDate += `${dueYear} `
+    }
+    strDate += `${new Date(dueDate).toLocaleString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true }).toLocaleUpperCase()}`
     return strDate
 }

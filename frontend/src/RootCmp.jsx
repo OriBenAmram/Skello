@@ -16,8 +16,11 @@ import { toggleSideMenu, toggleModal } from './store/app/app.action.js'
 export function RootCmp() {
   const dispatch = useDispatch();
 
+
   const isSideBarOpen = useSelector(state => state.appModule.isSideBarOpen);
   const popupModal = useSelector(state => state.appModule.popupModal);
+
+
 
   const onToggleSideMenu = () => {
     dispatch(toggleSideMenu())
