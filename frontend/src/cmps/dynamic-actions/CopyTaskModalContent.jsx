@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// Icons & SVG
-import { GrClose } from 'react-icons/gr';
-
-// Actions
-import { addTask, onSaveBoard, saveBoardToDB } from '../../store/board/board.action.js';
+import { useHistory } from 'react-router-dom';
 
 // Services
 import { utilService } from '../../services/util.service.js';
+import { boardService } from '../../services/board.service.js';
+
+// Actions
+import { onSaveBoard } from '../../store/board/board.action.js';
+
+// Icons & SVG
+import { GrClose } from 'react-icons/gr';
 
 export function CopyTaskModalContent({ isMove = false, board, group, task, toggleModal }) {
     const dispatch = useDispatch();
+    let history = useHistory();
     const boards = useSelector(state => state.boardModule.boards);
 
     const [titleText, setTitleText] = useState(task.title);
     const [selectedBoard, setSelectedBoard] = useState(board);
     const [selectedGroup, setSelectedGroup] = useState(null);
     const [selectedTaskPos, setSelectedTaskPos] = useState(null);
-    console.log('selectedTaskPos:', selectedTaskPos);
 
     const handleFocus = event => {
         event.target.select();
@@ -31,28 +34,22 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
         setSelectedTaskPos(selectedBoard.groups[0].tasks.length)
     }
 
-    const handleGroupChange = ( ev ) => {
+    const handleGroupChange = (ev) => {
         ev.preventDefault()
         const { value } = ev.target
         const selectedGroup = selectedBoard.groups.find(group => group.id === value)
-        console.log("🚀 ~ selectedGroup", selectedGroup)
         setSelectedGroup(selectedGroup)
         setSelectedTaskPos(selectedGroup.tasks.length)
     }
 
     const handleTaskPosChange = ({ target }) => {
         const { value } = target
-        console.log('value from handle task', value)
         setSelectedTaskPos(value)
     }
 
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        if (isMove) {
-            onMoveTask(ev)
-        } else {
-            onCopyTask(ev)
-        }
+            (isMove) ? onMoveTask(ev) : onCopyTask(ev)
         toggleModal(ev)
     }
 
@@ -61,31 +58,31 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
         if (selectedBoard._id !== board._id) taskToCopy.members = []
         const destinationGroupIdx = selectedBoard.groups.findIndex(group => group.id === selectedGroup.id)
         selectedBoard.groups[destinationGroupIdx].tasks.splice(selectedTaskPos, 0, taskToCopy)
-        if (selectedBoard._id !== board._id) {
-            saveBoardToDB(selectedBoard, false)
-        } else {
-            saveBoardToDB(selectedBoard)
-        }
+        onSaveBoard(selectedBoard)
     }
 
-    const onMoveTask = (ev) => {
+    const onMoveTask = async (ev) => {
         ev.preventDefault()
 
         // Same Board - Same Group
         if (selectedBoard._id === board._id) {
             if (selectedGroup.id === group.id) {
-                const currGroupIdx = selectedBoard.groups.findIndex(group => group.id === selectedGroup.id)
+                // Same board - same group 
+                const currGroupIdx = board.groups.findIndex(group => group.id === selectedGroup.id)
                 const taskIdx = board.groups[currGroupIdx].tasks.findIndex(currTask => currTask.id === task.id)
                 board.groups[currGroupIdx].tasks.splice(taskIdx, 1)
                 board.groups[currGroupIdx].tasks.splice(selectedTaskPos, 0, task)
-                dispatch(onSaveBoard(selectedBoard))
+                dispatch(onSaveBoard(board))
             } else {
-                const currGroupIdx = selectedBoard.groups.findIndex(currGroup => currGroup.id === group.id)
+                // Same board, different group
+                const currGroupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id)
                 const taskIdx = board.groups[currGroupIdx].tasks.findIndex(currTask => currTask.id === task.id)
                 board.groups[currGroupIdx].tasks.splice(taskIdx, 1)
                 const destinationGroupIdx = board.groups.findIndex(currGroup => currGroup.id === selectedGroup.id)
                 board.groups[destinationGroupIdx].tasks.splice(selectedTaskPos, 0, task)
-                dispatch(onSaveBoard(selectedBoard))
+                dispatch(onSaveBoard(board))
+                // Task's group has changed - so to keep TaskDetails open, changing the url 
+                history.push(`/board/${board._id}/${selectedGroup.id}/${task.id}`)
             }
         } else {
             // Different Board
@@ -97,7 +94,7 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
             // adding to the destination board
             const destinationGroupIdx = selectedBoard.groups.findIndex(group => group.id === selectedGroup.id)
             selectedBoard.groups[destinationGroupIdx].tasks.splice(selectedTaskPos, 0, task)
-            saveBoardToDB(selectedBoard, false)
+            await boardService.updateWithoutSocket(selectedBoard)
         }
     }
 
@@ -116,7 +113,6 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
                     {!isMove && <div>
                         <h4>Title</h4>
                         <textarea
-
                             type="text"
                             className="modal-main-input"
                             value={titleText}
@@ -134,9 +130,9 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
                             <span className='select-description'>Board</span>
                             <span className='select-title'>{selectedBoard?.title}</span>
                         </div>
+                        {/* Select Board - by the boards that have one group or more */}
                         <select className='main-select' onChange={handleBoardChange}>
                             {boards.map(board => (
-
                                 board.groups.length > 0 && <option key={board._id} value={board._id}>{board.title}</option>
                             ))}
                         </select>
@@ -147,7 +143,8 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
                                 <span className='select-description'>List</span>
                                 <span className='select-title'>{selectedGroup?.title}</span>
                             </div>
-                            <select className='main-select' onChange={(ev) => { 
+                            {/* Select List */}
+                            <select className='main-select' onChange={(ev) => {
                                 handleGroupChange(ev)
                             }}>
                                 {selectedBoard?.groups.map(group => (
@@ -158,19 +155,21 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
                         <div className='main-select-container position'>
                             <div className='flex column'>
                                 <span className='select-description'>Position</span>
-                                <span className='select-title'>{(!selectedTaskPos)  ? selectedTaskPos : +selectedTaskPos + 1}</span>
-                                {/* <span className='select-title'>{(isMove) ? selectedTaskPos : +selectedTaskPos + 1}</span> */}
+                                <span className='select-title'>{(!selectedTaskPos && selectedTaskPos !== 0) ? selectedTaskPos : +selectedTaskPos + 1}</span>
                             </div>
-                            <select className='main-select' onChange={handleTaskPosChange}>
+                            {/* Select Task Position in the list - showing to the user the index + 1 place (not to show 0) */}
+                            {selectedGroup && <select className='main-select' onChange={handleTaskPosChange}>
+                            {/* Not allowing to click when there is no Chosen List */}
                                 {selectedGroup?.tasks.map((task, index) => (
                                     <option key={task.id} value={index}>{index + 1}</option>
                                 ))}
                                 <option value={selectedGroup?.tasks.length}>{selectedGroup?.tasks.length + 1}</option>
-                            </select>
+                            </select>}
                         </div>
                     </div>
                 </div>
                 <button className='secondary-btn' onClick={(ev) => {
+                    ev.preventDefault()
                     handleSubmit(ev)
                 }}>{(isMove) ? 'Move' : 'Create Card'}</button>
             </section>

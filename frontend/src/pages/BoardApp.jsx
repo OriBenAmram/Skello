@@ -13,14 +13,16 @@ import { QuickCardEditor } from '../cmps/board/QuickCardEditor';
 
 // Action
 import { loadBoard, handleDrag, setBoard } from '../store/board/board.action';
+import { boardService } from '../services/board.service.js';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
   let history = useHistory();
+  // const [board, setBoard] = useState(null);
   const board = useSelector(state => state.boardModule.board);
+  
   const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {}, style: {} });
   const { id } = props.match.params;
-
 
   // position 
   const [windowWidth, setWidth] = useState(window.innerWidth);
@@ -57,10 +59,6 @@ export function BoardApp(props) {
   }, []);
 
   const toggleQuickCardEditor = (event, task, groupId) => {
-
-
-
-
     event.stopPropagation();
     const parentElement = task ? event.currentTarget.parentNode : null;
     const position = task ? parentElement.getBoundingClientRect() : {};
@@ -68,11 +66,9 @@ export function BoardApp(props) {
     setQuickCardEditor({ taskToEdit: task, groupId, position, style });
   };
 
-
   const getPositionByTarget = ({ left, right, top, bottom }) => {
     console.log('windowWidth, windowHeight:', windowWidth, windowHeight);
     console.log('left, right, top, bottom:', left, right, top, bottom);
-
 
     if (windowHeight - top < 160) return { position: 'fixed', top: top - 180, }
     if (windowWidth - left < 420) {
@@ -100,7 +96,7 @@ export function BoardApp(props) {
     history.push(`${id}/${groupId}/${taskId}`)
   }
 
-  const onLoadBoard = () => {
+  const onLoadBoard = async () => {
     dispatch(loadBoard(id));
   };
 
@@ -121,7 +117,7 @@ export function BoardApp(props) {
       handleDrag(board, source.droppableId, destination.droppableId, source.index, destination.index, type)
     );
   };
-  if (!board) return <Loader />;
+  if (!board ) return <Loader />;
   return (
     <React.Fragment>
       <DragDropContext onDragEnd={onDragEnd}>

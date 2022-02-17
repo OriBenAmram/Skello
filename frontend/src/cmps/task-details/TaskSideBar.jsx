@@ -12,7 +12,7 @@ import { BiMicrophone } from "react-icons/bi";
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 // Action
-import { updateTask } from '../../store/board/board.action';
+import { updateTask, onSaveBoard } from '../../store/board/board.action';
 
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
@@ -36,9 +36,20 @@ export function TaskSideBar({ task, group, board }) {
         const taskToUpdate = { ...task };
         delete user.password
         taskToUpdate.members.push(user)
-        const activityTxt = `joined to task ${task.title}`;
-        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
+        // Finding the task and splicing it.
+        const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id)
+        const taskToUpdateIdx = board.groups[groupIdx].tasks.findIndex(currTask => currTask.id === task.id)
+
+        board.groups[groupIdx].tasks.splice(taskToUpdateIdx, 1, taskToUpdate)
+        if (!isMemberInBoard(user._id)) board.members.push(user)
+        dispatch(onSaveBoard(board))
     }
+
+    const isMemberInBoard = (id) => {
+        return board?.members.some(member => {
+            return member._id === id;
+        });
+    };
 
     return (
         <section className='side-bar'>

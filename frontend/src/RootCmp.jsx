@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-
 // Routes
 import routes from './routes.js';
 
@@ -9,8 +8,6 @@ import routes from './routes.js';
 import { AppHeader } from './cmps/AppHeader';
 import { PopoverSideMenu } from './cmps/PopoverSideMenu.jsx'
 import { useDispatch, useSelector } from 'react-redux';
-import { Loader } from './cmps/Loader';
-import { DynamicActionModal } from './cmps/dynamic-actions/DynamicActionModal.jsx'
 import { DynamicBoardActionModal } from './cmps/dynamic-actions/DynamicBoardActionModal.jsx'
 // Action
 import { toggleSideMenu, toggleModal } from './store/app/app.action.js'
