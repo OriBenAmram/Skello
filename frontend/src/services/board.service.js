@@ -45,6 +45,16 @@ async function getById(boardId) {
     }
 }
 
+async function updateWithoutSocket(board) {
+    try {
+        await httpService.put('board', board);
+        return board;
+    } catch (err) {
+        console.log('Cannot update board', err);
+    }
+}
+
+
 async function update(board) {
     try {
         await httpService.put('board', board);

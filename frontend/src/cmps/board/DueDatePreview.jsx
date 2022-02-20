@@ -18,7 +18,6 @@ export function DueDatePreview({ dueDate, task, boardId, groupId }) {
   const onToggleDone = (ev) => {
     ev.preventDefault();
     ev.stopPropagation();
-    console.log('isDone');
     task.isDone = !task.isDone;
     dispatch(updateTask(boardId, groupId, task.id, task))
   }
