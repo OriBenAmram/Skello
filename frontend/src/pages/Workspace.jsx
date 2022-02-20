@@ -68,7 +68,7 @@ export function Workspace() {
                             <div className="title-header-icon-container">
                                 <AiOutlineStar className="header-icon star-icon" />
                             </div>
-                            <h3>Sta§rred boards</h3>
+                            <h3>Starred boards</h3>
                         </div>
                         <div className="primary-boards-container-section">
                             <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} isStarred />

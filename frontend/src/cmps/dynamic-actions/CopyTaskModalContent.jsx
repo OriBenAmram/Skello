@@ -48,7 +48,7 @@ export function CopyTaskModalContent({ isMove = false, board, group, task, toggl
     }
 
     const handleSubmit = (ev) => {
-        ev.preventDefault()
+        // ev.preventDefault()
             (isMove) ? onMoveTask(ev) : onCopyTask(ev)
         toggleModal(ev)
     }
