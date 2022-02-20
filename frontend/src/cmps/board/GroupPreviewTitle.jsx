@@ -10,7 +10,7 @@ export function GroupPreviewTitle({ board, group }) {
 
   useEffect(() => {
     setTitle(group.title)
-  }, [group.title])
+}, [group.title])
 
   const handleChange = ({ target }) => {
     const title = target.value;

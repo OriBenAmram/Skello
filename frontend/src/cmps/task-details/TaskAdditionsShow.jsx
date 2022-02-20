@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Action
+import { toggleModal as toggleAppModal } from '../../store/app/app.action';
 
 // Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
@@ -20,6 +22,7 @@ import pinkBlindColorSign from '../../assets/imgs/blind-color/pink.svg';
 
 export function TaskAdditionsShow({ board, group, task }) {
     const dispatch = useDispatch();
+    const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
     const isBlindMode = useSelector(state => state.appModule.isBlindMode);
 
     const [taskLabels, setTaskLabels] = useState([]);
@@ -68,7 +71,8 @@ export function TaskAdditionsShow({ board, group, task }) {
         }
     }
 
-    const onClickAvatar = (member) => {
+    const onClickAvatar = (event, member) => {
+        dispatch(toggleAppModal({ event, type: 'taskProfileMemberModal', member, isShown: !isModalOpen, task, groupId: group.id }));
     }
 
     const onClickLabel = (label) => {
@@ -108,8 +112,8 @@ export function TaskAdditionsShow({ board, group, task }) {
             {task.members && <section className='type-container'>
                 <h4>Members</h4>
                 <div className='items-container members-container'>
-                    {task.members.map((member, idx) => <div key={idx} className={`member-avatar ${(member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(member)} onClick={() => {
-                        onClickAvatar(member)
+                    {task.members.map((member, idx) => <div key={idx} className={`member-avatar ${(member.imgUrl) ? 'with-image' : ''}`} style={getAvatarBackground(member)} onClick={(event) => {
+                        onClickAvatar(event, member)
                     }}>
                     </div>)}
                     <div className='plus-item member-avatar' onClick={(event) => {

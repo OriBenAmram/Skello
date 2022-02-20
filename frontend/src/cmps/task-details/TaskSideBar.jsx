@@ -12,19 +12,19 @@ import { BiMicrophone } from "react-icons/bi";
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 // Action
-import { updateTask } from '../../store/board/board.action';
+import { updateTask, onSaveBoard } from '../../store/board/board.action';
 
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.userModule.loggedinUser);
     const [modal, setModal] = useState({ isModalOpen: false, type: null, event: null });
 
-    const toggleModal = ({ event, type }) => {
+    const toggleModal = ({ event, type, isMove = false }) => {
         if (modal.isModalOpen) {
             setModal({ ...modal, isModalOpen: false })
             return
         }
-        setModal({ isModalOpen: true, type, event })
+        setModal({ isModalOpen: true, type, event, isMove })
     }
 
     const isLoggedInUserInTask = () => {
@@ -36,9 +36,20 @@ export function TaskSideBar({ task, group, board }) {
         const taskToUpdate = { ...task };
         delete user.password
         taskToUpdate.members.push(user)
-        const activityTxt = `joined to task ${task.title}`;
-        dispatch(updateTask(board._id, group.id, task.id, taskToUpdate, activityTxt));
+        // Finding the task and splicing it.
+        const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id)
+        const taskToUpdateIdx = board.groups[groupIdx].tasks.findIndex(currTask => currTask.id === task.id)
+
+        board.groups[groupIdx].tasks.splice(taskToUpdateIdx, 1, taskToUpdate)
+        if (!isMemberInBoard(user._id)) board.members.push(user)
+        dispatch(onSaveBoard(board))
     }
+
+    const isMemberInBoard = (id) => {
+        return board?.members.some(member => {
+            return member._id === id;
+        });
+    };
 
     return (
         <section className='side-bar'>
@@ -60,9 +71,9 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'checklist' })
                     }} > <AiOutlineCheckSquare /> Checklist</button>
-                    <button className="button-link archive-secondary-btn" onClick={(event) => {
+                    {/* <button className="button-link archive-secondary-btn" onClick={(event) => {
                         toggleModal({ event, type: 'checklist' })
-                    }} > <BsArchive /> Archive</button>
+                    }} > <BsArchive /> Archive</button> */}
                 </div>
                 <div className="middle-button-section sidebar-primary-btns-container">
                     <button className="button-link" onClick={(event) => {
@@ -71,19 +82,23 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'attachment' })
                     }} > <MdOutlineAttachment />Attachment</button>
-                    <button className="button-link" onClick={(event) => {
+                    {/* <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'stt' })
-                    }} > <BiMicrophone />Speech To Text</button>
+                    }} > <BiMicrophone />Speech To Text</button> */}
                     <button className="button-link cover-sidebar-btn" onClick={(event) => {
                         toggleModal({ event, type: 'cover' })
                     }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>
                 </div>
-                {modal.isModalOpen && <DynamicActionModal isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
+                {modal.isModalOpen && <DynamicActionModal isMove={modal.isMove} isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
             </section>
             <section className='actions'>
                 <h3 className="side-bar-title sidebar-primary-btns-container">Actions</h3>
-                <button className="button-link" > <BsArrowRight /> Move</button>
-                <button className="button-link"> <AiOutlineCopy />Copy</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'copy', isMove: true })
+                }} > <BsArrowRight /> Move</button>
+                <button className="button-link" onClick={(event) => {
+                    toggleModal({ event, type: 'copy' })
+                }}> <AiOutlineCopy />Copy</button>
                 <button className="button-link archive-main-btn"> <BsArchive /> Archive</button>
             </section>
         </section>

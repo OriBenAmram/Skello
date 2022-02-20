@@ -1,5 +1,3 @@
-import {appService} from '../../services/board.service';
-
 const initialState = {
   isSideBarOpen: false,
   isBlindMode: false,

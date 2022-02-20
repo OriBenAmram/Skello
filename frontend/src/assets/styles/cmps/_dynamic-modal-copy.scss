@@ -1,0 +1,76 @@
+.copy-modal-content {
+    .modal-main-input {
+        min-height: 72px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    // Select
+    .main-select-container {
+        position: relative;
+        background-color: #091e420a;
+        color: $clr1;
+        border: none;
+        border-radius: 3px;
+        height: 50px;
+        padding: 6px 12px;
+        min-width: 140px;
+        margin-bottom: 8px;
+        display: block;
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+
+        &:hover {
+            background-color: #091e4214;
+            border: none;
+            box-shadow: none;
+        }
+
+        &.group {
+            flex: 3;
+            margin-right: 8px;
+            min-width: 0px;
+        }
+        
+        &.position {
+            min-width: 0px;
+            flex: 1;
+        }
+
+        span {
+            display: block;
+        }
+
+        .select-description {
+            color: #5e6c84;
+            display: block;
+            font-size: 12px;
+            line-height: 16px;
+            margin-bottom: 0;
+        }
+
+        .main-select {
+            border: none;
+            cursor: pointer;
+            height: 50px;
+            left: 0;
+            margin: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+    }
+
+    .lower-selects-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .secondary-btn { 
+        padding: 6px 24px;
+        line-height: 20px;
+    }
+}

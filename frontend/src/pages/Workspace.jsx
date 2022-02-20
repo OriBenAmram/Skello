@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClockCircle, AiOutlineStar } from 'react-icons/ai';
-
+import {Loader} from '../cmps/Loader.jsx'
 // Services
 import { socketService } from '../services/socket.service.js';
 
@@ -25,11 +25,6 @@ export function Workspace() {
             await dispatch(setBoard(updatedBoard));
             onLoadBoards()
         });
-        try {
-            onLoadBoards()
-        } catch (err) {
-            console.log('Cannot load boards', err);
-        }
 
         return () => {
             socketService.off('updated-board');
@@ -61,6 +56,8 @@ export function Workspace() {
 
         setModal({ isModalOpen: true, type, event, isDetails });
     };
+
+    if(!boards?.length) return <Loader/>
 
     return (
         <section className="workspace-page">

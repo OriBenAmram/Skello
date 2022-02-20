@@ -12,6 +12,7 @@ import { userService } from '../services/user.service';
 // Actions
 import { loadUsers, setUser } from '../store/user/user.actions.js';
 import { toggleModal } from '../store/app/app.action';
+import { loadBoards } from '../store/board/board.action';
 
 // cmps
 import { SkellMicAssistant } from './SkellMicAssistence';
@@ -25,7 +26,13 @@ export function AppHeader() {
   useEffect(() => {
     getLoggedInUser()
     dispatch(loadUsers())
+    onLoadBoards()
+
   }, [])
+
+  const onLoadBoards = async () => {
+    await dispatch(loadBoards());
+  }
 
 
   const getLoggedInUser = async () => {
@@ -96,7 +103,7 @@ export function AppHeader() {
             <button className="login-btn">Log in</button>
           </Link>
           <Link to={'/signup'}>
-            <button className="signup-btn">Sign up</button> 
+            <button className="signup-btn">Sign up</button>
           </Link>
         </section>
       )}

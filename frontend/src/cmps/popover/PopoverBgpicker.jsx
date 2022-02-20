@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { debounce } from "lodash";
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoIosArrowBack } from 'react-icons/io'
 
@@ -12,6 +13,9 @@ import { onSaveBoard } from '../../store/board/board.action';
 export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent, setPopoverContent }) {
 
     const [searchTxt, setSearchTxt] = useState('')
+    const updateSearch = (e) => setSearchTxt(e?.target?.value);
+    const debounceTxt = debounce(updateSearch, 2000);
+    
     const [imgs, setImgs] = useState([]);
     const dispatch = useDispatch()
     const board = useSelector(state => state.boardModule.board);
@@ -95,8 +99,7 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
                         <input
                             type="text"
                             placeholder="Photos"
-                            value={searchTxt}
-                            onChange={(ev) => setSearchTxt(ev.target.value)}
+                            onChange={debounceTxt}
                         />
                         <AiOutlineSearch className="search-icon" />
                     </div>
@@ -105,8 +108,8 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
                             {imgs.map((img, idx) =>
 
                                 <div className="bg-preview"
-                                    onClick={() => onSaveBg(img.urls.regular, true)}
-                                    key={idx} style={{ background: `url(${img.urls.small}) center center / cover` }}>
+                                    onClick={() => onSaveBg(img.urls.full, true)}
+                                    key={idx} style={{ background: `url(${img.urls.full}) center center/cover` }}>
 
                                 </div>)}
                         </div>

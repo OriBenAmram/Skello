@@ -13,14 +13,16 @@ import { QuickCardEditor } from '../cmps/board/QuickCardEditor';
 
 // Action
 import { loadBoard, handleDrag, setBoard } from '../store/board/board.action';
+import { boardService } from '../services/board.service.js';
 
 export function BoardApp(props) {
   const dispatch = useDispatch();
   let history = useHistory();
+  // const [board, setBoard] = useState(null);
   const board = useSelector(state => state.boardModule.board);
+
   const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {}, style: {} });
   const { id } = props.match.params;
-
 
   // position 
   const [windowWidth, setWidth] = useState(window.innerWidth);
@@ -66,8 +68,7 @@ export function BoardApp(props) {
 
 
   const getPositionByTarget = (eventTarget, parentElementBounding) => {
-    const { left, right, top, bottom } = eventTarget
-
+    const { left, top } = eventTarget
     if (windowHeight - top < 160) return { position: 'fixed', top: top - 180, }
     if (windowWidth - left < 200) {
       return {
@@ -75,7 +76,6 @@ export function BoardApp(props) {
       }
     }
     if (windowWidth - left < 420 && windowHeight - top < 160) {
-      console.log('width < 420');
       return {
         position: 'fixed', top: top - 160, right: 15
       }
@@ -93,7 +93,7 @@ export function BoardApp(props) {
     history.push(`${id}/${groupId}/${taskId}`)
   }
 
-  const onLoadBoard = () => {
+  const onLoadBoard = async () => {
     dispatch(loadBoard(id));
   };
 
@@ -120,7 +120,7 @@ export function BoardApp(props) {
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           className="board-app-wrapper"
-          style={{ background: `${board.style?.background}  center center / cover` }}>
+          style={{ background: `${board.style?.background}` }}>
           <div className="board-app">
             <BoardHeader board={board} />
             <GroupList

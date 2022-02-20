@@ -9,6 +9,7 @@ import { toggleModal, toggleSideMenu } from '../../store/app/app.action';
 import { onSaveBoard } from '../../store/board/board.action';
 
 export function BoardHeader({ board }) {
+  
   const dispatch = useDispatch();
   const { title, members } = board;
   const isModalOpen = useSelector(state => state.appModule.popupModal.isModalOpen)
@@ -37,8 +38,6 @@ export function BoardHeader({ board }) {
     dispatch(toggleSideMenu());
   };
 
-
-
   const onAddMemberToBoard = event => {
     dispatch(toggleModal({ event, type: 'addMemberToBoard', isShown: !isModalOpen }));
   };
@@ -53,7 +52,6 @@ export function BoardHeader({ board }) {
 
   const membersToShow = () => {
     let members = [...board?.members]
-
     members = members.splice(0, shownMembers)
     return members
   }
