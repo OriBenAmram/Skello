@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClockCircle, AiOutlineStar } from 'react-icons/ai';
-
+import {Loader} from '../cmps/Loader.jsx'
 // Services
 import { socketService } from '../services/socket.service.js';
 
@@ -57,6 +57,8 @@ export function Workspace() {
         setModal({ isModalOpen: true, type, event, isDetails });
     };
 
+    if(!boards?.length) return <Loader/>
+
     return (
         <section className="workspace-page">
             <section className="all-boards">
@@ -66,7 +68,7 @@ export function Workspace() {
                             <div className="title-header-icon-container">
                                 <AiOutlineStar className="header-icon star-icon" />
                             </div>
-                            <h3>Starred boards</h3>
+                            <h3>Sta§rred boards</h3>
                         </div>
                         <div className="primary-boards-container-section">
                             <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} isStarred />

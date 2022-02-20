@@ -29,11 +29,20 @@ async function query() {
 
 // Img
 async function queryImages(query) {
+<<<<<<< Updated upstream
     if (!query) query = 'random'
     const photos = await axios.get(
         `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
     );
     return photos.data.results;
+=======
+  if (!query) query = 'random'
+  const photos = await axios.get(
+    `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
+  );
+  console.log('photos.data.results', photos.data.results);
+  return photos.data.results;
+>>>>>>> Stashed changes
 }
 
 async function getById(boardId) {
