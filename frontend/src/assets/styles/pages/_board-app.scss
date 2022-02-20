@@ -1,12 +1,17 @@
 .board-app-wrapper { 
     height: 100vh;
     padding-bottom: 10px;
+    background-size: cover!important;
+    background-position: 50%!important;
+    background-attachment: fixed!important;
 
     .board-app {
         overflow-y: hidden;
-        height: 100%;
+        width: 100%;
+        height: 100vh;
         display: flex;
         padding: 0px 13px 8px 13px;
+    
 
                 /* Track */
                 &::-webkit-scrollbar-track {

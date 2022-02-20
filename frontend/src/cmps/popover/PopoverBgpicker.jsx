@@ -108,8 +108,8 @@ export function PopoverBgPicker({ isSideBarOpen, toggleSideMenu, popoverContent,
                             {imgs.map((img, idx) =>
 
                                 <div className="bg-preview"
-                                    onClick={() => onSaveBg(img.urls.regular, true)}
-                                    key={idx} style={{ background: `url(${img.urls.full}) center center / cover` }}>
+                                    onClick={() => onSaveBg(img.urls.full, true)}
+                                    key={idx} style={{ background: `url(${img.urls.full}) center center/cover` }}>
 
                                 </div>)}
                         </div>

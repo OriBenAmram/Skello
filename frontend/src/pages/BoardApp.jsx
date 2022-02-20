@@ -123,7 +123,7 @@ export function BoardApp(props) {
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           className="board-app-wrapper"
-          style={{ background: `${board.style?.background}  center center / cover` }}>
+          style={{ background: `${board.style?.background}` }}>
           <div className="board-app">
             <BoardHeader board={board} />
             <GroupList
