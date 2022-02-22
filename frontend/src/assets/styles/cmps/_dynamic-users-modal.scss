@@ -1,12 +1,17 @@
 .users-modal-content {
     // general content
     .modal-content {
+        .invite{
+            color:#1182f7;
+        }
         h4 {
             color: #5e6c84;
             font-size: 12px;
             font-weight: 600;
             line-height: 20px;
             margin-bottom: 4px;
+            text-decoration: underline;
+            cursor: pointer;
         }
         .users-list {
             display: flex;
