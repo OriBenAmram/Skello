@@ -138,7 +138,7 @@ export function AddMemberModalContent({ onToggleModal, extraMembers, isExtra }) 
             })}
           </section>}
 
-          {isQRShown && <section className="qr-code">
+          {isQRShown && <section className="qr-code flex justify-center">
             <QRCode value={`https://skello.herokuapp.com/board/${board._id}`} />
           </section>}
         </div>
