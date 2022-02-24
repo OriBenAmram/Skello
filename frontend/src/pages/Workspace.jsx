@@ -57,7 +57,7 @@ export function Workspace() {
         setModal({ isModalOpen: true, type, event, isDetails });
     };
 
-    if(!boards?.length) return <Loader/>
+    // if(!boards?.length) return <Loader/>
 
     return (
         <section className="workspace-page">
