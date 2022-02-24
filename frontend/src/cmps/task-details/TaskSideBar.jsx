@@ -7,12 +7,12 @@ import { IoPersonOutline } from "react-icons/io5";
 import { BsPersonPlus, BsArrowRight, BsArchive, BsSquareHalf } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md";
 import { BiMicrophone } from "react-icons/bi";
-
 // Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 // Action
 import { updateTask, onSaveBoard } from '../../store/board/board.action';
+import { boardService } from "../../services/board.service.js";
 
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
@@ -50,6 +50,21 @@ export function TaskSideBar({ task, group, board }) {
             return member._id === id;
         });
     };
+
+    const onAddToArchive = () => {
+        // console.log('archive&&', task, group.id);
+        const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
+        const taskIdx = board.groups[groupIdx].tasks.findIndex(currTask => currTask.id === task.id);
+        const splicedTask = board.groups[groupIdx].tasks.splice(taskIdx,1)[0];
+        splicedTask.archiveAt = Date.now();
+        console.log('pp;', splicedTask);
+        board.archive.push({task:splicedTask,groupId: group.id })
+        console.log('board', board.archive);
+        dispatch(onSaveBoard(board))
+     
+        
+
+    }
 
     return (
         <section className='side-bar'>
@@ -99,7 +114,7 @@ export function TaskSideBar({ task, group, board }) {
                 <button className="button-link" onClick={(event) => {
                     toggleModal({ event, type: 'copy' })
                 }}> <AiOutlineCopy />Copy</button>
-                <button className="button-link archive-main-btn"> <BsArchive /> Archive</button>
+                <button className="button-link archive-main-btn" onClick={onAddToArchive}> <BsArchive /> Archive</button>
             </section>
         </section>
     );

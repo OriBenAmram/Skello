@@ -20,7 +20,6 @@ export function BoardApp(props) {
   let history = useHistory();
   // const [board, setBoard] = useState(null);
   const board = useSelector(state => state.boardModule.board);
-
   const [quickCardEditor, setQuickCardEditor] = useState({ taskToEdit: null, groupId: '', position: {}, style: {} });
   const { id } = props.match.params;
 

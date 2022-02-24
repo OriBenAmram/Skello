@@ -131,19 +131,6 @@ export function addChecklist(checklistTitle, groupId, board, taskId, activityTxt
     };
 }
 
-// function addBoard(board) {
-//   return async dispatch => {
-//     try {
-//       const boards = await boardService.addBoard(boardId, groupId, taskId, taskToUpdate, activityTxt);
-//       dispatch({
-//         type: 'SAVE_BOARD',
-//         board: board,
-//       });
-//     } catch (err) {
-//       console.log('Cant update task', err);
-//     }
-//   };
-// }
 
 export function updateTask(boardId, groupId, taskId, taskToUpdate, activityTxt = null, isComment = false) {
     return async dispatch => {
