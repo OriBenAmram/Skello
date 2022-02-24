@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { MdClose } from "react-icons/md";
 
 // cmps
 import { PopoverBgPicker } from './popover/PopoverBgpicker';
@@ -9,14 +8,15 @@ import { PopOverMainContent } from './popover/PopOverMainContent';
 
 
 // Cmps
-import { ActivityContent } from './popover/ActivityContent.jsx'
+import { PopoverFilter } from './popover/PopoverFilter';
+import { PopoverArchive } from './popover/PopoverArchive'
+
 
 // Action
 import { toggleModal, toggleSideMenu } from '../store/app/app.action.js';
 
 // Services
 import { utilService } from '../services/util.service.js'
-import { PopoverFilter } from './popover/PopoverFilter';
 
 export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
   const dispatch = useDispatch();
@@ -49,10 +49,33 @@ export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
 
   return (
     <section className={`popover-side-menu ${(isSideBarOpen) ? 'open' : ''}`}>
-      {(popoverContent === 'main') && <PopOverMainContent setSearchText={setSearchText} setSearchState={setSearchState} searchText={searchText} isSearchOpen={isSearchOpen} toggleSideMenu={toggleSideMenu} isSideBarOpen={isSideBarOpen} setPopoverContent={setPopoverContent} />}
+      {(popoverContent === 'main') &&
+        <PopOverMainContent
+          setSearchText={setSearchText}
+          setSearchState={setSearchState}
+          searchText={searchText}
+          isSearchOpen={isSearchOpen}
+          toggleSideMenu={toggleSideMenu}
+          isSideBarOpen={isSideBarOpen}
+          setPopoverContent={setPopoverContent}
+        />}
       {(popoverContent === 'color' || popoverContent === 'image') &&
-        < PopoverBgPicker setPopoverContent={setPopoverContent} popoverContent={popoverContent} isSideBarOpen={isSideBarOpen} toggleSideMenu={toggleSideMenu} />}
-      {(popoverContent === 'filter') && < PopoverFilter toggleSideMenu={toggleSideMenu} setPopoverContent={setPopoverContent} />}
+        <PopoverBgPicker
+          setPopoverContent={setPopoverContent}
+          popoverContent={popoverContent}
+          isSideBarOpen={isSideBarOpen}
+          toggleSideMenu={toggleSideMenu}
+        />}
+      {(popoverContent === 'filter') &&
+        <PopoverFilter
+          toggleSideMenu={toggleSideMenu}
+          setPopoverContent={setPopoverContent}
+        />}
+      {(popoverContent === 'archive') &&
+        <PopoverArchive
+          toggleSideMenu={toggleSideMenu}
+          setPopoverContent={setPopoverContent}
+        />}
 
     </section>
   );

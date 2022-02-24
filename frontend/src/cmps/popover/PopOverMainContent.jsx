@@ -1,11 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { HiOutlineSearch } from 'react-icons/hi';
-import { MdOutlinePhotoCameraBack, MdClose } from 'react-icons/md';
+// Cmps
+import { ActivityContent } from './ActivityContent.jsx';
+
+// imgs
 import colorTeaser from '../../assets/imgs/color-teaser-sidebar.jpg';
 import imgsTeaser from '../../assets/imgs/imgs-teaser-sidebar.jpg';
 
-// Cmps
-import { ActivityContent } from './ActivityContent.jsx';
+// icons
+import { HiOutlineSearch } from 'react-icons/hi';
+import { MdOutlinePhotoCameraBack, MdClose } from 'react-icons/md';
+import { RiArchiveLine } from 'react-icons/ri';
 
 export function PopOverMainContent({ setPopoverContent, setSearchState, setSearchText, toggleSideMenu, isSideBarOpen, searchText, isSearchOpen }) {
     return (<div className='content-wrapper' >
@@ -25,6 +28,12 @@ export function PopOverMainContent({ setPopoverContent, setSearchState, setSearc
                 }}>
                     <HiOutlineSearch className='primary-icon' />
                     Filter cards
+                </button>
+                <button className='primary-link-btn' onClick={() => {
+                    setPopoverContent('archive')
+                }}>
+                    <RiArchiveLine className='primary-icon' />
+                    Archive
                 </button>
                 <input autoFocus type="text" className={`primary-input filter-cards-input ${(isSearchOpen) ? 'open' : 'closed'}`} onChange={(ev) => {
                     setSearchText(ev.target.value)

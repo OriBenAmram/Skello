@@ -68,9 +68,17 @@ export function GroupPreview({ group, boardId, board, index, boardLabels, areLab
             <GroupPreviewTitle board={board} group={group} />
             <div
               className="header-more-options"
-              onClick={(event) => toggleModal({ event, type: 'removeMenuPopup', isDeleteModal : true})}>
+              onClick={(event) => toggleModal({ event, type: 'removeMenuPopup', isDeleteModal: true })}>
               <IoEllipsisHorizontal />
-              {modal.isModalOpen && <DynamicActionModal isDeleteModal={modal.isDeleteModal} onRemoveGroup={onRemoveGroup} groupId={group.id} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
+              {modal.isModalOpen &&
+                <DynamicActionModal
+                  isDeleteModal={modal.isDeleteModal}
+                  onRemoveGroup={onRemoveGroup}
+                  groupId={group.id}
+                  toggleModal={toggleModal}
+                  type={modal.type}
+                  event={modal.event}
+                />}
             </div>
           </div>
 
