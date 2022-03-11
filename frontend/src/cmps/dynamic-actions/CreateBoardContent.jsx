@@ -21,12 +21,14 @@ export function CreateBoardContent({ onToggleModal, isGeneralModal, boardTitle }
         if (!board.title) return;
         dispatch(addBoard(board))
         setBoard({ ...board, title: '' });
-        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : onToggleModal({ event, type: 'createBoard' });
+        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' }))
+            : onToggleModal({ event, type: 'createBoard' });
 
     }
 
     const closeModal = (event) => {
-        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' })) : onToggleModal({ event, type: 'createBoard' });
+        (isGeneralModal) ? dispatch(toggleModal({ event, type: 'createBoard' }))
+            : onToggleModal({ event, type: 'createBoard' });
     }
 
     const gColors = [

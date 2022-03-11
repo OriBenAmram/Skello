@@ -12,7 +12,7 @@ import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 import { CopyTaskModalContent } from './CopyTaskModalContent.jsx';
-export function DynamicActionModal({ isMove, isDeleteModal = false ,toggleModal, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
+export function DynamicActionModal({ isMove, isDeleteModal = false, toggleModal, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
 
     const [width, setWidth] = useState(window.innerWidth);
@@ -49,7 +49,7 @@ export function DynamicActionModal({ isMove, isDeleteModal = false ,toggleModal,
             case 'profile':
                 return <ProfileModalContent toggleModal={toggleModal} posXAddition={posXAddition} type={type} />
             case 'createBoard':
-                return <CreateBoardContent toggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
+                return <CreateBoardContent onToggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
             // case 'copy':
             //     return <CopyTaskModalContent onToggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
             case 'copy':
@@ -62,7 +62,7 @@ export function DynamicActionModal({ isMove, isDeleteModal = false ,toggleModal,
             const { top, left, height, right } = event.target.getBoundingClientRect();
             const startSide = (width / left < 2) ? 'right' : 'left'
             const startSideValue = (width / left < 2) ? 30 : left;
-            if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover' || type === 'copy' ) && isDetails) {
+            if ((type === 'dates' || type === 'labels' || type === 'createBoard' || type === 'cover' || type === 'copy') && isDetails) {
                 return { top: top / 2, left }
             }
             if (width > 1050) return { top: top + height, left: left }
