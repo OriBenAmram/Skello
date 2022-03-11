@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Cmps
-import { AcrhiveTaskPreview } from '../board/ArchiveTaskPreview';
+import { ArchiveTaskPreview } from '../board/ArchiveTaskPreview';
 
 // Icons
 import { IoIosArrowBack } from 'react-icons/io';
@@ -34,9 +34,9 @@ export function PopoverArchive({ toggleSideMenu, setPopoverContent }) {
             </div>
             <div className="sidemenu-main-content">
                 <ul className="clean-list flex column">
-                    {board.archive.map(archiveObj => (
-                        <li key={archiveObj.task.id}>
-                            <AcrhiveTaskPreview task={archiveObj.task} groupId={archiveObj.groupId} />
+                    {board?.archive.map(archiveItem => (
+                        <li key={archiveItem.task.id}>
+                            <ArchiveTaskPreview task={archiveItem.task} groupId={archiveItem.groupId} />
                         </li>
                     ))}
                 </ul>

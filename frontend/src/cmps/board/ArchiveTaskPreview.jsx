@@ -13,7 +13,7 @@ import commentIcon from '../../assets/imgs/commentIcon.svg';
 
 
 
-export function AcrhiveTaskPreview({ task, groupId }) {
+export function ArchiveTaskPreview({ task, groupId }) {
     const board = useSelector(state => state.boardModule.board);
     const {
         archiveAt,

@@ -56,9 +56,13 @@ export function TaskDetails(props) {
           }}>
           <GrClose style={{ height: '15px', width: '15px' }} />
         </button>
+        
         {/* Cover */}
         <TaskCover board={board} group={group} task={task} />
-          <TaskArchiveHeader/>
+        
+        {/* archive-header */}
+        {task.archiveAt && <TaskArchiveHeader />}
+        
         {/* Details-header */}
         <TaskHeader board={board} group={group} task={task} title={task.title} />
 
@@ -70,8 +74,10 @@ export function TaskDetails(props) {
 
             {/* Description */}
             <TaskDescription board={board} group={group} task={task} description={task.description} />
+            
             {/* Attachments */}
             {task.attachments?.length > 0 && <TaskAttachments board={board} group={group} task={task} />}
+            
             {/* CheckList */}
             <TaskChecklists
               boardId={props.match.params.boardId}

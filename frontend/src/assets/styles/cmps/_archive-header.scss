@@ -6,10 +6,18 @@
     padding: 12px 12px 12px 50px;
     position: relative;
 
-    span{
+    .icon-container-wrap{
         position: absolute;
         top: 12px;
         left: 12px;
+
+        .icon-container{
+            color: rgb(66, 82, 110);
+            display: inline-block;
+            fill: inherit;
+            flex-shrink: 0;
+            line-height: 1;
+        }
     }
 
     p{
