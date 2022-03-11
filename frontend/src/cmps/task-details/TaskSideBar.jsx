@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // Icons
 import { AiOutlineTags, AiOutlineMinus, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
@@ -18,6 +19,7 @@ import { onSaveBoard } from '../../store/board/board.action';
 
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
+    const history = useHistory();
     const user = useSelector(state => state.userModule.loggedinUser);
     const [modal, setModal] = useState({ isModalOpen: false, type: null, event: null });
 
@@ -74,6 +76,9 @@ export function TaskSideBar({ task, group, board }) {
         // Remove task from archive
         board.archive = board.archive.filter((archiveItem) => archiveItem.task.id !== task.id);
         dispatch(onSaveBoard(board));
+
+        // Change url back to board
+        history.push(`/board/${board._id}`)
     }
 
     return (

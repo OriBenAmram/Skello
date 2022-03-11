@@ -3,8 +3,6 @@
     flex-direction: row;
     justify-content: center;
 
-   
-
     .home-left-sidebar {
         margin: 84px 0 0;
         padding: 0 16px;
@@ -54,7 +52,7 @@
             flex-wrap: wrap;
         }
 
-        .add-board-preview{
+        .add-board-preview {
             height: 80px;
             width: 194px;
             border: none;
@@ -64,11 +62,10 @@
             font-size: 14px;
             cursor: pointer;
             transition-duration: 85ms;
-            transition-property: background-color,border-color,box-shadow;
+            transition-property: background-color, border-color, box-shadow;
             border-radius: 3px;
 
-            
-            &:hover{
+            &:hover {
                 background-color: #091e4214;
             }
         }
@@ -79,19 +76,15 @@
             height: 96px;
             width: 152px;
 
-        @include for-narrow-layout { 
-            width: 156px;
-        }
-        @include for-normal-layout { 
-            width: 170px;
-        }
-        @include  for-wide-layout { 
-            width: 194px;
-        }
-
-
-
-
+            @include for-narrow-layout {
+                width: 156px;
+            }
+            @include for-normal-layout {
+                width: 170px;
+            }
+            @include for-wide-layout {
+                width: 194px;
+            }
 
             .board-preview-details {
                 display: flex;
@@ -103,6 +96,7 @@
                     font-weight: 700;
                     color: white;
                     line-height: 20px;
+                    text-transform: capitalize;
                 }
 
                 .starred-container {
@@ -117,7 +111,7 @@
         min-width: 288px;
         width: 100%;
 
-        @include for-normal-layout { 
+        @include for-normal-layout {
             margin-bottom: 16px;
         }
 
@@ -129,8 +123,6 @@
                 padding: 0 0 20px;
             }
         }
-
-        
     }
 }
 

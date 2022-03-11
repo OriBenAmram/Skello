@@ -103,7 +103,7 @@
             background: #9b9a9a26;
             border-radius: 10px;
         }
-        
+
         /* Handle */
         &::-webkit-scrollbar-thumb {
             background-color: #b4b7b9b7;
@@ -245,8 +245,7 @@
                 }
             }
 
-            .bg-header-btn { 
-
+            .bg-header-btn {
             }
         }
 
@@ -254,6 +253,7 @@
             .board-backgrounds-section-tile {
                 display: flex;
                 align-items: center;
+                margin-top: 8px;
 
                 .image-container {
                     box-sizing: border-box;
@@ -267,7 +267,7 @@
                     margin-bottom: 15px;
                     transition: 0.2s ease-in-out;
 
-                    &.background-color-teaser { 
+                    &.background-color-teaser {
                         padding-left: 0;
                         padding-right: 8px;
                     }

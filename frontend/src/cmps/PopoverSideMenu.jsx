@@ -13,10 +13,9 @@ import { PopoverArchive } from './popover/PopoverArchive'
 
 
 // Action
-import { toggleModal, toggleSideMenu } from '../store/app/app.action.js';
+// import { toggleModal } from '../store/app/app.action.js';
 
-// Services
-import { utilService } from '../services/util.service.js'
+
 
 export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
   const dispatch = useDispatch();
@@ -24,28 +23,26 @@ export function PopoverSideMenu({ isSideBarOpen, toggleSideMenu }) {
   const [searchText, setSearchText] = useState(null)
   const [popoverContent, setPopoverContent] = useState('main')
 
-  // const [, setSearchText] = useState(null)
 
   let location = useLocation();
-  let history = useHistory();
   const board = useSelector(state => state.boardModule.board);
 
-  const getAvatarBackground = (member) => {
-    return { background: `url(${member.imgUrl}) center center / cover` }
-  }
+  // const getAvatarBackground = (member) => {
+  //   return { background: `url(${member.imgUrl}) center center / cover` }
+  // }
 
-  const onClickGroup = (groupId, taskId) => {
-    history.push(`/board/${board._id}/${groupId}/${taskId}`)
-  }
+  // const onClickGroup = (groupId, taskId) => {
+  //   history.push(`/board/${board._id}/${groupId}/${taskId}`)
+  // }
 
   useEffect(() => {
     if (isSideBarOpen && location.pathname !== `/board/${board._id}`) toggleSideMenu();
 
   }, [location])
 
-  const onMemberClick = (event, member) => {
-    dispatch(toggleModal({ event, type: 'otherMemberModal', member }));
-  }
+  // const onMemberClick = (event, member) => {
+  //   dispatch(toggleModal({ event, type: 'otherMemberModal', member }));
+  // }
 
   return (
     <section className={`popover-side-menu ${(isSideBarOpen) ? 'open' : ''}`}>

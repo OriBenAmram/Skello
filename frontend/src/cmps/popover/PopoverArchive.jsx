@@ -33,7 +33,7 @@ export function PopoverArchive({ toggleSideMenu, setPopoverContent }) {
                 <hr className="bottom-hr" />
             </div>
             <div className="sidemenu-main-content">
-                <ul className="clean-list flex column">
+                <ul className="archive-list clean-list flex column">
                     {board?.archive.map(archiveItem => (
                         <li key={archiveItem.task.id}>
                             <ArchiveTaskPreview task={archiveItem.task} groupId={archiveItem.groupId} />
