@@ -12,28 +12,23 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-
     /* Track */
     &::-webkit-scrollbar-track {
         background: #00000026;
         border-radius: 10px;
     }
-
     /* Handle */
     &::-webkit-scrollbar-thumb {
         background-color: #7e8386b7;
         border-radius: 4px;
     }
-
     &::-webkit-scrollbar {
         height: 12px;
         width: 12px;
     }
-
     @include for-narrow-layout {
         padding: 50px 30px 80px;
     }
-
     .label-box {
         border-radius: 3px;
         cursor: pointer;
@@ -46,11 +41,9 @@
         white-space: nowrap;
         min-height: 32px;
         position: relative;
-
         &.blind-mode {
             padding-left: 25px;
         }
-
         img {
             position: absolute;
             left: 0;
@@ -59,7 +52,6 @@
             border-bottom-left-radius: 3px;
         }
     }
-
     .task-details-modal {
         z-index: 20;
         max-width: rem(768px);
@@ -67,10 +59,8 @@
         min-height: 600px;
         margin: auto;
         background-color: whitesmoke;
-
         display: flex;
         flex-direction: column;
-
         .close-modal-btn {
             border-radius: 50%;
             color: #42526e;
@@ -87,7 +77,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
             path {
                 color: red;
                 // color: #42526e;
@@ -95,15 +84,12 @@
             &:hover {
                 background-color: #00000029;
             }
-
             &.dark {
                 background-color: #00000014;
                 color: #42526e;
             }
         }
-
         // GENERAL
-
         h4 {
             color: $clr2;
             font-size: 12px;
@@ -111,7 +97,6 @@
             line-height: 20px;
             margin-bottom: 4px;
         }
-
         .details-primary-link-btn {
             background-color: #091e420a;
             color: $clr1;
@@ -120,7 +105,6 @@
             height: 32px;
             padding: 6px 12px;
         }
-
         .main-input {
             background-color: #fafbfc;
             border: none;
@@ -139,13 +123,11 @@
             font-weight: 400;
             line-height: 20px;
         }
-
         ::placeholder {
             color: $clr1;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
                 Helvetica Neue, sans-serif;
         }
-
         .primary-icon {
             height: 24px;
             width: 24px;
@@ -153,24 +135,19 @@
             left: -40px;
             top: 0px;
         }
-
         // COVER
-
         // Main-vontent
         .main-content {
             display: flex;
             width: 100%;
             flex-wrap: wrap;
             flex-direction: column-reverse;
-
             @include for-normal-layout {
                 flex-direction: row;
             }
-
             .main-content-icon {
                 top: 8px;
             }
-
             // MAIN-COL
             .main-col {
                 min-width: 71.8%;
@@ -179,7 +156,6 @@
                 position: relative;
                 margin: 0;
                 max-width: 100%;
-
                 // GENERAL
                 h3 {
                     margin: 0;
@@ -188,25 +164,20 @@
                     min-width: rem(40px);
                     font-weight: 600;
                 }
-
                 .title-container {
                     min-height: rem(32px);
                     display: flex;
                     margin: 0 0 4px 40px;
                     padding: 8px 0;
                     position: relative;
-
                     .details-primary-link-btn {
                         position: absolute;
                         right: 5px;
                     }
                 }
-
                 // DESCRIPTION
-
                 // ACTIVITY
             }
-
             // Side-Bar
             .side-bar {
                 height: 100%;
@@ -217,10 +188,8 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 margin-left: 40px;
-
                 @include for-narrow-layout {
                 }
-
                 @include for-normal-layout {
                     flex-wrap: nowrap;
                     margin-left: 0px;
@@ -228,7 +197,6 @@
                     max-width: 240px;
                     flex-direction: column;
                 }
-
                 .sidebar-primary-btns-container {
                     > * {
                         padding-right: 30px;
@@ -239,12 +207,10 @@
                     @include for-normal-layout {
                     }
                 }
-
                 h3 {
                     color: $clr2;
                     font-size: 12px;
                     font-weight: 600;
-
                     &.side-bar-title {
                         display: none;
                         @include for-normal-layout {
@@ -252,40 +218,33 @@
                         }
                     }
                 }
-
                 .add-to-card {
                     position: relative;
                     display: flex;
                     flex-direction: row;
                     margin-bottom: 0px;
-
                     @include for-normal-layout {
                         margin-bottom: 24px;
                         display: block;
                         flex-direction: column;
                     }
-
                     &.suggested {
                         display: none;
-
                         @include for-normal-layout {
                             display: block;
                             flex-direction: column;
                         }
                     }
                 }
-
                 .actions {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 0 10px;
-
                     @include for-585-layout {
                         display: flex;
                         flex-direction: column;
                     }
                 }
-
                 .button-link {
                     position: relative;
                     background-color: #091e420a;
@@ -299,32 +258,33 @@
                     display: block;
                     display: flex;
                     align-items: center;
-
+                    &.delete {
+                        background-color: #b04632;
+                        color: #fff;
+                        &:hover {
+                            background-color: #933b27;
+                            color: #fff;
+                        }
+                    }
                     &.archive-secondary-btn {
                         display: inline-block;
                         text-align: left;
-
                         @include for-normal-layout {
                             display: none;
                         }
                     }
-
                     &.archive-main-btn {
-
                         @include for-normal-layout {
                             display: inline-block;
                             text-align: left;
                         }
                     }
-
                     @include for-normal-layout {
                         width: 100%;
                     }
-
                     :first-child {
                         margin-right: 10px;
                     }
-
                     &:hover {
                         background-color: #091e4214;
                     }

@@ -2,17 +2,19 @@ import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 // Icons
-import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
+import { AiOutlineTags, AiOutlineMinus, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
 import { BsPersonPlus, BsArrowRight, BsArchive, BsSquareHalf } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md";
-import { BiMicrophone } from "react-icons/bi";
+import { IoMdRefresh } from "react-icons/io";
+
+
 // Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 // Action
-import { updateTask, onSaveBoard } from '../../store/board/board.action';
-import { boardService } from "../../services/board.service.js";
+import { onSaveBoard } from '../../store/board/board.action';
+
 
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
@@ -51,19 +53,27 @@ export function TaskSideBar({ task, group, board }) {
         });
     };
 
-    const onAddToArchive = () => {
-        // console.log('archive&&', task, group.id);
+    const onToggleArchive = () => {
+        task.archiveAt = (task.archiveAt) ? null : Date.now();
+
+        if (task.archiveAt) {
+            board.archive.push({ task, groupId: group.id });
+        } else {
+            board.archive = board.archive.filter(archiveItem => archiveItem.task.id !== task.id);
+        }
+        dispatch(onSaveBoard(board));
+
+    }
+
+    const onRemoveTask = () => {
+        // Remove task from group
         const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
         const taskIdx = board.groups[groupIdx].tasks.findIndex(currTask => currTask.id === task.id);
-        const splicedTask = board.groups[groupIdx].tasks.splice(taskIdx,1)[0];
-        splicedTask.archiveAt = Date.now();
-        console.log('pp;', splicedTask);
-        board.archive.push({task:splicedTask,groupId: group.id })
-        console.log('board', board.archive);
-        dispatch(onSaveBoard(board))
-     
-        
+        board.groups[groupIdx].tasks.splice(taskIdx, 1);
 
+        // Remove task from archive
+        board.archive = board.archive.filter((archiveItem) => archiveItem.task.id !== task.id);
+        dispatch(onSaveBoard(board));
     }
 
     return (
@@ -86,10 +96,9 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'checklist' })
                     }} > <AiOutlineCheckSquare /> Checklist</button>
-                    {/* <button className="button-link archive-secondary-btn" onClick={(event) => {
-                        toggleModal({ event, type: 'checklist' })
-                    }} > <BsArchive /> Archive</button> */}
+
                 </div>
+
                 <div className="middle-button-section sidebar-primary-btns-container">
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'dates' })
@@ -97,24 +106,64 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'attachment' })
                     }} > <MdOutlineAttachment />Attachment</button>
-                    {/* <button className="button-link" onClick={(event) => {
-                        toggleModal({ event, type: 'stt' })
-                    }} > <BiMicrophone />Speech To Text</button> */}
+
                     <button className="button-link cover-sidebar-btn" onClick={(event) => {
                         toggleModal({ event, type: 'cover' })
                     }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>
                 </div>
-                {modal.isModalOpen && <DynamicActionModal isMove={modal.isMove} isDetails={true} task={task} group={group} board={board} toggleModal={toggleModal} type={modal.type} event={modal.event} />}
+
+                {modal.isModalOpen &&
+                    <DynamicActionModal
+                        isMove={modal.isMove}
+                        isDetails={true}
+                        task={task}
+                        group={group}
+                        board={board}
+                        toggleModal={toggleModal}
+                        type={modal.type}
+                        event={modal.event} />}
             </section>
             <section className='actions'>
                 <h3 className="side-bar-title sidebar-primary-btns-container">Actions</h3>
-                <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'copy', isMove: true })
-                }} > <BsArrowRight /> Move</button>
-                <button className="button-link" onClick={(event) => {
-                    toggleModal({ event, type: 'copy' })
-                }}> <AiOutlineCopy />Copy</button>
-                <button className="button-link archive-main-btn" onClick={onAddToArchive}> <BsArchive /> Archive</button>
+
+                <button className="button-link"
+                    onClick={(event) => {
+                        toggleModal({ event, type: 'copy', isMove: true })
+                    }}>
+                    <BsArrowRight />
+                    Move
+                </button>
+
+                <button className="button-link"
+                    onClick={(event) => {
+                        toggleModal({ event, type: 'copy' })
+                    }}>
+                    <AiOutlineCopy />
+                    Copy
+                </button>
+
+
+                {/* Task not in archive -> Archive btn */}
+                {!task.archiveAt && (
+                    <button className="button-link archive-main-btn" onClick={onToggleArchive}>
+                        <BsArchive />
+                            Archive
+                    </button>
+                )}
+
+                {/* Task in archive -> Send to board btn */}
+                {task.archiveAt &&
+                    (<button className="button-link" onClick={onToggleArchive}>
+                        <IoMdRefresh className='rotate-back' />
+                        Send to board
+                    </button>)}
+
+                {/* Task in archive -> delete btn */}
+                {task.archiveAt &&
+                    (<button className="button-link delete" onClick={onRemoveTask}>
+                        <AiOutlineMinus />
+                        Delete
+                    </button>)}
             </section>
         </section>
     );

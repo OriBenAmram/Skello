@@ -1,30 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import {GrClose} from 'react-icons/gr';
-import {Loader} from '../cmps/Loader.jsx';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { GrClose } from 'react-icons/gr';
+import { Loader } from '../cmps/Loader.jsx';
 
 // CPMS
-import {TaskCover} from '../cmps/task-details/TaskCover.jsx';
-import {TaskHeader} from '../cmps/task-details/TaskHeader.jsx';
-import {TaskAdditionsShow} from '../cmps/task-details/TaskAdditionsShow.jsx';
-import {TaskDescription} from '../cmps/task-details/TaskDescription.jsx';
-import {TaskChecklists} from '../cmps/task-details/TaskChecklists.jsx';
-import {TaskAttachments} from '../cmps/task-details/TaskAttachments.jsx';
-import {TaskActivities} from '../cmps/task-details/TaskActivities.jsx';
-import {TaskSideBar} from '../cmps/task-details/TaskSideBar.jsx';
+import { TaskCover } from '../cmps/task-details/TaskCover.jsx';
+import { TaskHeader } from '../cmps/task-details/TaskHeader.jsx';
+import { TaskAdditionsShow } from '../cmps/task-details/TaskAdditionsShow.jsx';
+import { TaskDescription } from '../cmps/task-details/TaskDescription.jsx';
+import { TaskChecklists } from '../cmps/task-details/TaskChecklists.jsx';
+import { TaskAttachments } from '../cmps/task-details/TaskAttachments.jsx';
+import { TaskActivities } from '../cmps/task-details/TaskActivities.jsx';
+import { TaskSideBar } from '../cmps/task-details/TaskSideBar.jsx';
 
 export function TaskDetails(props) {
   const [group, setGroup] = useState(null);
   const [task, setTask] = useState(null);
   const board = useSelector(state => state.boardModule.board);
 
-  useEffect(async () => {
-    const {boardId, groupId, taskId} = props.match.params;
+  useEffect(() => {
+    const { boardId, groupId, taskId } = props.match.params;
     const currGroup = board?.groups.find(group => group.id === groupId);
     setGroup(currGroup);
     const currTask = currGroup?.tasks?.find(task => task.id === taskId);
     setTask(currTask);
   }, [board]);
+
   const onCloseModal = () => {
     props.history.push(`/board/${board._id}`);
   };
@@ -51,7 +52,7 @@ export function TaskDetails(props) {
           onClick={() => {
             onCloseModal();
           }}>
-          <GrClose style={{height: '15px', width: '15px'}} />
+          <GrClose style={{ height: '15px', width: '15px' }} />
         </button>
         {/* Cover */}
         <TaskCover board={board} group={group} task={task} />

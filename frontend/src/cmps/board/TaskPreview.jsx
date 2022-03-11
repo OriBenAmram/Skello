@@ -268,14 +268,12 @@ export function TaskPreview(props) {
                   {/* DUE DATE */}
                   {!isCover && dueDate && (
                     <div className="due-date-container">
-                      <DueDatePreview dueDate={dueDate} task={task} boardId={boardId} groupId={groupId} />
-                      {/* <DueDatePreview
+                      <DueDatePreview
                         dueDate={dueDate}
-                        isDone={isDone}
-                        taskId={task.id}
-                        groupId={groupId}
                         task={task}
-                      /> */}
+                        boardId={boardId}
+                        groupId={groupId}
+                      />
                     </div>
                   )}
                   {/* DESCRIPTION */}
