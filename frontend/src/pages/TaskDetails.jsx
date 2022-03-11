@@ -12,6 +12,8 @@ import { TaskChecklists } from '../cmps/task-details/TaskChecklists.jsx';
 import { TaskAttachments } from '../cmps/task-details/TaskAttachments.jsx';
 import { TaskActivities } from '../cmps/task-details/TaskActivities.jsx';
 import { TaskSideBar } from '../cmps/task-details/TaskSideBar.jsx';
+import { TaskArchiveHeader } from '../cmps/task-details/TaskArchiveHeader.jsx';
+
 
 export function TaskDetails(props) {
   const [group, setGroup] = useState(null);
@@ -56,6 +58,7 @@ export function TaskDetails(props) {
         </button>
         {/* Cover */}
         <TaskCover board={board} group={group} task={task} />
+          <TaskArchiveHeader/>
         {/* Details-header */}
         <TaskHeader board={board} group={group} task={task} title={task.title} />
 
