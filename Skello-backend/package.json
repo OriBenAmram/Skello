@@ -1,0 +1,35 @@
+{
+  "name": "skello-backend",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "set NODE_ENV=development&&node server.js",
+    "server:dev": "set NODE_ENV=development&&nodemon server.js",
+    "server:prod": "set NODE_ENV=production&&node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuvalshai95/Skello-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuvalshai95/Skello-backend/issues"
+  },
+  "homepage": "https://github.com/yuvalshai95/Skello-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "google-auth-library": "^7.11.0",
+    "mongodb": "^4.3.1",
+    "socket.io": "^4.4.1"
+  }
+}
