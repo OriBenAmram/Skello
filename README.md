@@ -1,14 +1,12 @@
 
-# Skello - clone of Trello with React.js, pixel perfect, e2e. 
-Kanban-style task management board app inspired by trello.com (https://trello.com)
+# Skello - pixel perfect and E2E clone of Trello. 
 [Here is my project link](https://skello.herokuapp.com "Skello link")
-
 
 ___
 
 ### Table of Contents
 - [Description](#description)
-- [Features](#features)
+- [Technologies](#אechnologies)
 - [Getting started](#getting-started)
 - [Showcase](#showcase)
 
@@ -21,14 +19,10 @@ You are more than welcome to ***check it out*** (just enter your name and see it
 
 
 
-#### Technologies
+## Technologies
 
-- Vue 3
-- Vue chart.js
-- Vue-Router
-- Vuex
-- Sass
-- Vue CLI & Github pages
+- React.js(17)
+- 
 
 ## Features
 Please feel free to take a look of the different components of the website - [Showcase](#showcase)
