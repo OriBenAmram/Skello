@@ -1,6 +1,9 @@
 
-# Skello - pixel perfect and E2E clone of Trello. 
-[Here is my project link](https://skello.herokuapp.com "Skello link")
+# Skello - pixel perfect, E2E clone of Trello (React + Node.js). 
+
+Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello.herokuapp.com "Skello link").
+
+Manage projects and tasks using a kanban board. A board contains lists and tasks. Usually each project is a board, and the lists and cards are the tasks and subjects to do in the project. Users can modify the board and change list and card locations using Drag and Drop.
 
 ___
 
