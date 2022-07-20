@@ -4,7 +4,7 @@
 Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello.herokuapp.com "Skello link").
 
 For those of you who are already familliar with Trello, we added some intersting and unique features, just keep reading or take a look!
-If you are not familliar with the App, read about it [here](#description).
+If you are not familliar with the App, read about it [here](#trello-description).
 ___
 
 ### Table of Contents
@@ -37,18 +37,9 @@ You are more than welcome to ***check it out*** (just enter your name and see it
 
 ## Technologies
 
-- React.js(17)
+- React.js(17) - Hooks & Classes
+- Redux
 - 
-
-## Features
-Please feel free to take a look of the different components of the website - [Showcase](#showcase)
-
-- Simple authentication - store and session storage.
-- HTTP request for Market price, BITcoin value and more.
-- Presenting data in a dashboard using charts & 3rd side library.
-- CRUDL of contacts, along with User messages for different actions.
-- Responsive and well designed.
-
 
 ## Getting started
 Clone the project or dowload the files on top.
