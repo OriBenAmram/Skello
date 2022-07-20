@@ -3,24 +3,37 @@
 
 Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello.herokuapp.com "Skello link").
 
-Manage projects and tasks using a kanban board. A board contains lists and tasks. Usually each project is a board, and the lists and cards are the tasks and subjects to do in the project. Users can modify the board and change list and card locations using Drag and Drop.
-
+For those of you who are already familliar with Trello, we added some intersting and unique features, just keep reading or take a look!
+If you are not familliar with the App, read about it [here](#description).
 ___
 
 ### Table of Contents
-- [Description](#description)
+- [Trello Description](#trello-description)
+- [Application Features](#application-features)
 - [Technologies](#אechnologies)
 - [Getting started](#getting-started)
 - [Showcase](#showcase)
 
-## Description
-I decided to learn a new framework, because I want to keep expanding my knowladge and try new chalanges. That was **my motivation.** 
-
-And a bit about the project - a small App that was built in a few days, which provides the user a list of contacts that they can transfer money to, a basic CRUDL and some information about the value of theirs fake bank currency in Bitcoin.
+## Trello Description
+Trello is an app in which you can manage projects and tasks using a kanban board. A board contains lists and tasks. Usually each project is a board, and the lists and cards are the tasks and subjects to do in the project. Users can modify the board and change list and card locations using Drag and Drop.
+Users can work together and watch live changes. 
+There are many other features in Trello, such as labels, due date for tasks, members and more. 
+Every thing Trello has, we also had. We even added color-blind mode and speaker assistant! 
+More about it in the [features section](#application-features).
 
 You are more than welcome to ***check it out*** (just enter your name and see it yourself - [right here](https://oribenamram.github.io/Bitcoin-Vue "Github pages link"))
 
-
+## Application Features
+- Create Boards and manage projects.
+- Create, remove, and update lists and tasks.
+- Drag and Drop lists and task cards in the board
+- Create, remove, edit tasks
+- Manage members, lables, due date, attachments, activity and comments in each task
+- Get notifications when actions are done on your tasks
+- Search and filter cards based on lables, members and free text
+- Archive tasks and view the archived tasks
+- Change the background of your board with the Unsplash Photo API
+- View project analytics in the dashboard
 
 ## Technologies
 
