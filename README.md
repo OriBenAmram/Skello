@@ -3,14 +3,14 @@
 
 Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello.herokuapp.com "Skello link").
 
-For those of you who are already familliar with Trello, we added some intersting and unique features, just keep reading or take a look!
+For those of you who are already familliar with Trello, we added some intersting and unique features - [features](#application-features).
 If you are not familliar with the App, read about it [here](#trello-description).
 ___
 
 ### Table of Contents
 - [Trello Description](#trello-description)
 - [Application Features](#application-features)
-- [Technologies](#אechnologies)
+- [Technologies](#technologies)
 - [Getting started](#getting-started)
 - [Showcase](#showcase)
 
@@ -24,22 +24,23 @@ More about it in the [features section](#application-features).
 You are more than welcome to ***check it out*** (just enter your name and see it yourself - [right here](https://oribenamram.github.io/Bitcoin-Vue "Github pages link"))
 
 ## Application Features
-- Create Boards and manage projects.
-- Create, remove, and update lists and tasks.
-- Drag and Drop lists and task cards in the board
-- Create, remove, edit tasks
-- Manage members, lables, due date, attachments, activity and comments in each task
-- Get notifications when actions are done on your tasks
-- Search and filter cards based on lables, members and free text
-- Archive tasks and view the archived tasks
-- Change the background of your board with the Unsplash Photo API
-- View project analytics in the dashboard
+- Create ***Boards*** and manage projects: Using ***D&D***, create, remove, and update lists and tasks.
+- Create, edit and archive ***Task*** to the deepest level: Labels, Due date, Members, Cover images, Checklists, Activity log, Copy, Move and Archive.
+- ***Side Menu:*** - Change the background of the board with the ***Unsplash Photo API***, ***Filtering*** by members / labels and General ***Activity*** Log!
+- Google Login, along with regular authentication which is encrypted and safe.
+
+In addition, we created Blind Color Mode, in which you can recognize the labels and cover colors by signs.
+We have added a voice assistant which can accept vocal commands and help manage products with no effort! For example, you can filter, create board and more.
+Of course that we included all the small nuances Trello has. You are not supposed to find any differences! 
 
 ## Technologies
 
-- React.js(17) - Hooks & Classes
-- Redux
-- 
+The technology stack we used was MERN - MongoDB, Express, React, Node.js.
+The app uses webSockets to update the board in real-time.
+The API calls to the backend are done with the REST API method , and we used middlewares to authenticate and authorize actions.
+
+We have used many thirs side libraries for many goals, such as the voice assistant, google-login, D&D and more.
+The layout and pixel-perfect were made with Sass (functions, mixins, variables). 
 
 ## Getting started
 Clone the project or dowload the files on top.
