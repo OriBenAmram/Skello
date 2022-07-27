@@ -75,7 +75,7 @@ That's it! The App should be opened automatically, enjoy!
 
 ### Sign-up page
 
-![Signup page image](src/assets/imgs/signup-desktop.jpg "Sign-up page")
+![Signup page image](frontend/src/assets/imgs/readme/homepage.png "Sign-up page")
 
 ### Your contacts
 You can view your different contacts, filter them by number or name. 
