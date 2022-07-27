@@ -43,16 +43,33 @@ We have used many thirs side libraries for many goals, such as the voice assista
 The layout and pixel-perfect were made with Sass (functions, mixins, variables). 
 
 ## Getting started
-Clone the project or dowload the files on top.
+
+Head to the repository on top and clone the project or download the files.
+
 ```
 git clone https://github.com/OriBenAmram/Bitcoin-Vue.git
 ```
-Open the terminal and enter the following line to run it locally on your computer:
+
+Enter the backend folder and make sure you have node_modules installed. After that we will initiate the server with 'npm start':
+
 ```
-npm run dev 
+cd backend
+npm i 
+npm start
 ```
-Runs the app in the development mode.
-Open http://localhost:3000 to view it in the browser.
+
+You shuold get a console ouput that the server is up and running at port 3030.
+Enter the frontend folder and repeat the same process.
+
+```
+cd frontend
+npm i 
+npm start
+```
+
+You shuold get a console ouput that the server is up and running at localhost:3000.
+
+That's it! The App should be opened automatically, enjoy!
 
 ## Showcase
 
