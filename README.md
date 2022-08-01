@@ -93,13 +93,19 @@ We created an e2e authentication flow, including encrypting the users' details, 
 
 ![Login image](frontend/src/assets/imgs/readme/login.png "login-page")
 
+### Task details
+Here the user can edit their tasks and to watch it happens live, in this page and behind. Every button on the right menu opens an dynamic modal which fits the content accordingly to the pressed button.
+
+![Task details image](frontend/src/assets/imgs/readme/details.png "task-details")
+
+
+### Side menu
+The menu on the right which is opened by the pressing the "Show menu" button enables the user to filter members by labels / name, change the board background with unsplash Images, watch the archived tasks (and bring it back to the board) and watch the activity of the board (who did what and when, and to navigate to those tasks).
+
+![Sidemenu image](frontend/src/assets/imgs/readme/sidemenu.png "side-menu-image")
+
 ### Some mobile!
 Just a taste of the mobile experience. We used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
 The layout we have built from the very first moment enabled us to make the website responsive without a lot of effort.
 
 <img src="frontend/src/assets/imgs/readme/login-mobile.png" width="25%" style="float: left"/><img src="frontend/src/assets/imgs/readme/workspace-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/sidemenu-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/details-mobile.png" width="25%" style="float: left;"/>
-
-### Dashboard
-Here I present some of the user bank details, with charts about USD exchange trade value over the years, the Market place and their latest moves.
-
-![Dashboard image](src/assets/imgs/chart-dekstop.jpg "Dashboard")
