@@ -7,9 +7,7 @@ For those of you who are already familliar with Trello, we added some intersting
 If you are not familliar with the App, read about it [here](#trello-description).
 And, if you are tired and just want to see some images of the website, [scroll to the bottom...](#showcase)
 
-![Recording gif](frontend/src/assets/imgs/readme/recording.gif "recording-gif")
-
-<img src="frontend/src/assets/imgs/readme/recording.gif" width="100%" style="float: left"/>
+![Main board image](frontend/src/assets/imgs/readme/board-main.png "Board-main-page")
 
 ___
 
