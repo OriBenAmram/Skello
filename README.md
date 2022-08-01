@@ -73,15 +73,15 @@ That's it! The App should be opened automatically, enjoy!
 
 ## Showcase
 
-### Sign-up page
+### Homepage
+The landing page in which the user can sign up / login, or press the call to action button to start demo if the are limited with time.
 
 ![Homepage image](frontend/src/assets/imgs/readme/homepage.png "Home-page")
 
-### Your contacts
-You can view your different contacts, filter them by number or name. 
-In addition, you can transform money, randomly, to one of your contacts by pressing on the "I'm flexible" button. You would get a message about the details right after, of course.
+### Workspace
+All of the user's boards. Here, in addition to create a board with the empty board box and navigate between their's boards, they are able to use the vocal-assistant we created with 3rd side library! Pressing on the button in the middle of the nav bar on top would open an modal with instructions that makes life a bit easier.
 
-![Contacts page image](src/assets/imgs/contact-desktop-regular.jpg "Contacts page")
+![Workspace image](frontend/src/assets/imgs/readme/workspace.png "Workspace-page")
 
 ### Add a new contact
 In the same page, you can click on the button "Add a new contact", and the right fields would appear.
