@@ -6,6 +6,10 @@ Kanban-style task management board app inspired by trello.com, [Here is my proje
 For those of you who are already familliar with Trello, we added some intersting and unique features - [features](#application-features).
 If you are not familliar with the App, read about it [here](#trello-description).
 And, if you are tired and just want to see some images of the website, [scroll to the bottom...](#showcase)
+
+![Recording gif](frontend/src/assets/imgs/readme/recording.gif "recording-gif")
+<img src="frontend/src/assets/imgs/readme/recording.png" width="100%"/>
+
 ___
 
 ### Table of Contents
