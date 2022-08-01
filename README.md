@@ -84,9 +84,14 @@ All of the user's boards. Here, in addition to create a board with the empty boa
 ![Workspace image](frontend/src/assets/imgs/readme/workspace.png "Workspace-page")
 
 ### Board
-There is to many features to explain, such as opening labels, live updates, D&D and everything that comes in mind - just [check it out...!](https://skello.herokuapp.com "Skello link")
+All the functionality that you have in Trello. D&D, live-updates, editing tasks to the deepest level, side-menu, editing board members and much more - just [check it out...!](https://skello.herokuapp.com "Skello link")
 
 ![Main board image](frontend/src/assets/imgs/readme/board-main.png "Board-main-page")
+
+### Signup
+We created an e2e authentication flow, including encrypting the users' details, midelwears and ****Google Login***.
+
+![Login image](frontend/src/assets/imgs/readme/login.png "login-page")
 
 ### Some mobile!
 Just a taste of the mobile experience. I used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
