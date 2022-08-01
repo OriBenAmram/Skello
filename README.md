@@ -94,10 +94,10 @@ We created an e2e authentication flow, including encrypting the users' details, 
 ![Login image](frontend/src/assets/imgs/readme/login.png "login-page")
 
 ### Some mobile!
-Just a taste of the mobile experience. I used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
-You can also see that there is an interactive **side menu** for routing.
+Just a taste of the mobile experience. We used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
+The layout we have built from the very first moment enabled us to make the website responsive without a lot of effort.
 
-<img src="src/assets/imgs/home-mobile.jpg" width="25%" style="float: left"/><img src="src/assets/imgs/contacts-mobile.jpg" width="25%" style="float: left;"/><img src="src/assets/imgs/statistic-mobile.jpg" width="25%" style="float: left;"/><img src="src/assets/imgs/signup-mobile.jpg" width="25%" style="float: left;"/>
+<img src="frontend/src/assets/imgs/readme/login-mobile.png" width="25%" style="float: left"/><img src="frontend/src/assets/imgs/readme/workspace-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/sidemenu-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/details-mobile.png" width="25%" style="float: left;"/>
 
 ### Dashboard
 Here I present some of the user bank details, with charts about USD exchange trade value over the years, the Market place and their latest moves.
