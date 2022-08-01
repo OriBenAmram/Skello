@@ -109,3 +109,8 @@ Just a taste of the mobile experience. We used different **mixins**, **condition
 The layout we have built from the very first moment enabled us to make the website responsive without a lot of effort.
 
 <img src="frontend/src/assets/imgs/readme/login-mobile.png" width="25%" style="float: left"/><img src="frontend/src/assets/imgs/readme/workspace-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/sidemenu-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/details-mobile.png" width="25%" style="float: left;"/>
+
+### Authors
+ - [Ori Ben Amram](https://github.com/OriBenAmram)
+ - [Daniel Shaked](https://github.com/DanielShaked)
+ - [Yuval shai](https://github.com/yuvalshai95)
