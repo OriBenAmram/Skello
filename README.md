@@ -83,10 +83,10 @@ All of the user's boards. Here, in addition to create a board with the empty boa
 
 ![Workspace image](frontend/src/assets/imgs/readme/workspace.png "Workspace-page")
 
-### Add a new contact
-In the same page, you can click on the button "Add a new contact", and the right fields would appear.
+### Board
+There is to many features to explain, such as opening labels, live updates, D&D and everything that comes in mind - just [check it out...!](https://skello.herokuapp.com "Skello link")
 
-![Add a contact mode - image](src/assets/imgs/contact-dekstop-add.jpg "Add a contact mode")
+![Main board image](frontend/src/assets/imgs/readme/board-main.png "Board-main-page")
 
 ### Some mobile!
 Just a taste of the mobile experience. I used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
