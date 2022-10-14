@@ -51,7 +51,7 @@ The layout and pixel-perfect were made with Sass (functions, mixins, variables).
 Head to the repository on top and clone the project or download the files.
 
 ```
-git clone https://github.com/OriBenAmram/Bitcoin-Vue.git
+git clone https://github.com/OriBenAmram/Skello.git
 ```
 
 Enter the backend folder and make sure you have node_modules installed. After that we will initiate the server with 'npm start':
