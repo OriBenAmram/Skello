@@ -1,7 +1,7 @@
 
 # Skello - pixel perfect, E2E clone of Trello (React + Node.js). 
 
-Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello.herokuapp.com "Skello link").
+Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello-deploy.onrender.com "Skello link").
 
 For those of you who are already familliar with Trello, we added some intersting and unique [features](#application-features).
 If you are not familliar with the App, read about it [here](#trello-description).
@@ -88,7 +88,7 @@ All of the user's boards. Here, in addition to create a board with the empty boa
 ![Workspace image](frontend/src/assets/imgs/readme/workspace.png "Workspace-page")
 
 ### Board
-All the functionality that you have in Trello. D&D, live-updates, editing tasks to the deepest level, side-menu, editing board members and much more - just [check it out...!](https://skello.herokuapp.com "Skello link")
+All the functionality that you have in Trello. D&D, live-updates, editing tasks to the deepest level, side-menu, editing board members and much more - just [check it out...!](https://skello-deploy.onrender.com "Skello link")
 
 ![Main board image](frontend/src/assets/imgs/readme/board-main.png "Board-main-page")
 
