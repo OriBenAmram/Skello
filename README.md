@@ -3,9 +3,9 @@
 
 Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello.herokuapp.com "Skello link").
 
-For those of you who are already familliar with Trello, we added some intersting and unique features - [features](#application-features).
+For those of you who are already familliar with Trello, we added some intersting and unique [features](#application-features).
 If you are not familliar with the App, read about it [here](#trello-description).
-And, if you are tired and just want to see some images of the website, [scroll to the bottom...](#showcase)
+And if you are tired and just want to see some images of the website, [scroll to the bottom...](#showcase)
 
 ![Main board image](frontend/src/assets/imgs/readme/board-main.png "Board-main-page")
 
