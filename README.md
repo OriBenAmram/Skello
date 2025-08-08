@@ -1,7 +1,7 @@
 
 # Skello - pixel perfect, E2E clone of Trello (React + Node.js). 
 
-Kanban-style task management board app inspired by trello.com, [Here is my project link](https://skello-deploy.onrender.com "Skello link").
+Kanban-style task management board app inspired by trello.com. An old project, no longer online — but you’re welcome to take a look at the images that represent it and the code we wrote back in the day.
 
 For those of you who are already familliar with Trello, we added some intersting and unique [features](#application-features).
 If you are not familliar with the App, read about it [here](#trello-description).
